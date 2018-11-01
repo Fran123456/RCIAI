@@ -62,8 +62,8 @@
 
      	<?php 
 	     	if($datos['tipo'] == 'Periferico' && $datos['unidad'][0]['id_unidad'] == '1'){
-	            require 'BUY_add_periferico_new.php';
-	     	}  
+              require 'BUY_add_periferico_new.php';
+        }  
         if($datos['tipo'] == 'Laptop' && $datos['unidad'][0]['id_unidad'] == '1'){
               require 'BUY_add_laptop_new.php';
          
@@ -80,9 +80,37 @@
               require 'BUY_add_pc_new.php';
          }
 
-          if($datos['tipo'] == 'PC' && $datos['unidad'][0]['id_unidad'] != '1'){
+         if($datos['tipo'] == 'PC' && $datos['unidad'][0]['id_unidad'] != '1' && $datos['unidad'][0]['id_unidad'] != '37'){
               require 'BUY_add_pc_asignar.php';
          }
+
+         if($datos['tipo'] == 'Servidor' && $datos['unidad'][0]['id_unidad'] != '1' && $datos['unidad'][0]['id_unidad'] != '37'){
+              require 'BUY_add_servidor_asignar.php';
+         }
+
+         if($datos['tipo'] == 'Laptop' && $datos['unidad'][0]['id_unidad'] != '1' && $datos['unidad'][0]['id_unidad'] != '37'){
+              require 'BUY_add_laptop_asignar.php';
+         }
+
+         if($datos['tipo'] == 'Periferico' && $datos['unidad'][0]['id_unidad'] != '1' && $datos['unidad'][0]['id_unidad'] != '37'){
+              require 'BUY_add_periferico_asignar.php';
+         }
+
+         if($datos['tipo'] == 'Disco duro externo' && $datos['unidad'][0]['id_unidad'] != '1' && $datos['unidad'][0]['id_unidad'] != '37'){
+              require 'BUY_ad_disco_asignar.php';
+         }
+
+         if($datos['tipo'] == 'PC' && $datos['unidad'][0]['id_unidad'] == '37'){
+            
+          require 'BUY_add_pc_lab_asignar.php';
+         }
+
+
+
+         if($datos['tipo'] == 'otro' && $datos['unidad'][0]['id_unidad'] != '1' && $datos['unidad'][0]['id_unidad'] != '37'){ 
+          require 'BUY_otro_asignar.php';
+         }
+
      	?>
 
      

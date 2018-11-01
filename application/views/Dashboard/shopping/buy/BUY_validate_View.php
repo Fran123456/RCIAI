@@ -112,6 +112,7 @@
                                       <option  value="Servidor">Servidor</option>
                                       <option value="Laptop">Laptop</option>
                                       <option value="Disco duro externo">Disco duro externo</option>
+                                      <option  value="otro">UPS, Acces Point, Web Cam, Impresores</option>
                                  </select>
 	        			</div>
 	        		</div>
