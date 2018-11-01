@@ -114,7 +114,7 @@
 
 </script>
 
-<form method="post" action="<?php echo base_url()?>BUY_elements_Controller/disco_asignado_add">
+<form method="post" action="<?php echo base_url()?>BUY_elements_Controller/otro_asignado_add">
   <div>
   <input type="hidden" name="idcompra" value="<?php echo $datos['data'][0]['id_compra'] ?>">
   <input type="hidden" name="cantidad" value="<?php echo $datos['data'][0]['cantidad'] ?>">

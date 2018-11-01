@@ -205,6 +205,22 @@ public function laptop_nuevo_add(){
   }
 
 
+  public function otro_asignado_add(){
+       $data = array(
+       'serial' =>$this->input->post('serial-0'),
+       'nombre' =>$this->input->post('nombre-0'),
+       'marca' =>$this->input->post('marca-0'),
+        'tipo' =>$this->input->post('tipo-0'),
+       'estatus' =>$this->input->post('estatus-0'),
+       'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
+       'origen' => '1',
+       'destino' =>$this->input->post('destino-0'),
+        'compra_id' =>$this->input->post('idcompra'),
+     );
+       print_r($data);
+  }
+
+
 
  public function periferico_nuevo_add(){
      $data = array(
