@@ -406,6 +406,12 @@ public function disco_asignado_add(){
     echo json_encode($data);
   }
 
+  public function unidad_seleccionada(){
+     $id = filter_input(INPUT_POST, 'dato');
+     $data = $this->element->u($id);
+     echo json_encode($data);
+  }
+
   public function codigos_lab(){
     $id = filter_input(INPUT_POST, 'dato');
     $data = $this->element->getCodigoslab($id);

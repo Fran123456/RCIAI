@@ -15,6 +15,8 @@ var PC= new Vue({
        op: '',
        num:'',
        total: '',
+       codex: '',
+       selectOtros: '',
        validar1: false, //valida
        defaultK: true, //controla los radiobuttons, desabilitar boton de validar etc.
        mensaje: "Seleccione", //Aqui se ubica algun mensaje este referente a los radiobutton

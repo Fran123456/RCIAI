@@ -125,12 +125,45 @@
   <div class="col-md-12">
     <div class="panel">
                       <div class="panel-heading">
-                        <h3 class="panel-title">Disco duro para asignar a la unidad: <?php echo $datos['unidad'][0]['unidad'] ?></h3>
+                        <h3 class="panel-title">Elemento para asignar a la unidad: <?php echo $datos['unidad'][0]['unidad'] ?></h3>
                         <div class="right">
                           <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
                         </div>
                       </div>
-                      <div class="panel-body">
+                      <div class="panel-body ">
+
+                           <div class="row">
+                       
+                              <div id="diverror" class="col-md-2 col-sm-2">
+                                  <div id="cod" class="form-group">
+                                    <label>&nbsp;</label>
+                                   
+                                    <select onchange="cambiar();" id="codex0" name="codex0"  class="form-control">
+                                      <option selected="" value="UPS">UPS</option>
+                                      <option value="Acces Point Radio U Masferrer">APRADIO</option>
+                                      <option value="Web Cam">WEBCAM</option>
+                                      <option value="Impresores">IMPR</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div id="diverror" class="col-md-2 col-sm-2 ">
+                                  <label id="errorlabel">Codigo</label>
+                                  <div id="cod" class="form-group">
+                                    <input type="text" required=""  id="codex" class="form-control" name="codex">
+                                  </div>
+                                </div>
+                                 <div id="diverror" class="col-md-2 col-sm-2">
+                                  <label >&nbsp;</label>
+                                  <div id="cod" class="form-group">
+                                    <input type="text" required="" value="USAM" id="codex1" class="form-control" name="codex1">
+                                  </div>
+                                </div>
+                        
+
+
+
+
+
                         <div class="col-md-3">
                           <div class="form-group">
                             <label id="errorlabels">Serial</label> 
@@ -149,26 +182,26 @@
                             <input type="text" class="form-control" name="marca-0">
                           </div>
                         </div>
-                        <div class="col-md-3">
+                        <!--<div class="col-md-3">
                           <div class="form-group">
                             <label>Capacidad</label>
-                            <input type="text" class="form-control" name="capacidad-0">
+                            <input  type="hidden" class="form-control" name="capacidad-0">
                           </div>
-                        </div>
+                        </div>-->
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Tipo</label>
-                            <input class="form-control" value="DISCO DURO EXTERNO" readonly="" name="tipo-0" type="text" >
+                            <input class="form-control" id="cm" readonly="" name="tipo-0" type="text" >
                            
 
                           </div>
                         </div>
-                        <div class="col-md-3">
+                       <!-- <div class="col-md-3">
                           <div class="form-group">
                             <label>Velocidad</label>
                             <input type="text" class="form-control" name="velocidad-0">
                           </div>
-                        </div>
+                        </div>-->
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Estado</label>
@@ -192,50 +225,89 @@
                                   <div class="form-group">
                                     <label>Destino</label>
                                     <input type="text" readonly class="form-control" value="<?php echo $datos['unidad'][0]['unidad'] ?>" name="destinoPC-1">
-                                    <input hidden type="text" value="<?php echo $datos['unidad'][0]['id_unidad'] ?>" name="destino-0">
+                                    <input hidden type="text" value="<?php echo $datos['unidad'][0]['id_unidad'] ?>" id="destino-0" name="destino-0">
                                   </div>
                          </div>
 
-
-
-                           <div>
-                              <div id="diverror" class="col-md-1 col-sm-1">
-                                  <div id="cod" class="form-group">
-                                    <label>&nbsp;</label>
-                                    <input type="text" required="" value="DDE" id="codex0" class="form-control" name="codex0">
-                                  </div>
-                                </div>
-                                <div id="diverror" class="col-md-2 col-sm-2 ">
-                                  <label id="errorlabel">Codigo</label>
-                                  <div id="cod" class="form-group">
-                                    <input type="text" required=""  id="codex" class="form-control" name="codex">
-                                  </div>
-                                </div>
-                                 <div id="diverror" class="col-md-2 col-sm-2">
-                                  <label >&nbsp;</label>
-                                  <div id="cod" class="form-group">
-                                    <input type="text" required="" value="USAM" id="codex1" class="form-control" name="codex1">
-                                  </div>
-                                </div>
-                            </div>
-
                         <div class="col-md-3">
-                          <div class="form-group">
+                                  <div class="form-group">
                                     <label>Encargado</label>
                                     <input type="text"  class="form-control"  name="encargado">
                                   </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                 <label>Asignar a PC</label>
+                                 <select class="form-control" id="chek" onchange="cambioAsignar();"><option value="no">No asignar</option><option value="asignar">Asignar a PC</option></select>
+                             </div>
+                        </div> 
 
+                       <div id="temp">
                          
+                       </div>
+                       
+
                         <div class="col-md-3">
-                          <br>  
+                          <br>
                           <button onclick="validar();" type="button" class="btn btn-info">Validar</button>
                         </div>
-                      </div>
-                    </div> 
-   </div>
+            </div>
+
+      </div>
    <button id="en" disabled="" type="submit" class="btn btn-success">Guardar</button>
+   <input type="text" name="mejor" id="mejor" value="0">
 </form>
+
+<script type="text/javascript">
+  $("#cm").val($('#codex0').val());
+  function cambiar(){
+    $("#cm").val($('#codex0').val());
+
+    if($('#codex0').val() == "UPS"){
+     
+    }
+  }
+
+  function cambioAsignar(){
+    if($('#chek').val() == "asignar"){
+        $('#mejor').val('1');
+            var html2 ='<div id="destroy" class="col-md-3"><div class="form-group"><label>Unidades</label><select id="unidadesU" name="unidadesU" class="form-control"></select></div></div>';
+        $('#temp').append(html2);
+
+        unidadesSelec();
+    }
+    else{
+       $('#mejor').val('0');
+       destroy();
+    }
+  }
+
+
+  function unidadesSelec(){
+        var dato = $('#destino-0').val();
+        var html3 = "";
+      $.ajax({
+          dataType: 'JSON',
+          method: 'post',
+          data: {dato: dato},
+          url: '<?php echo base_url()?>BUY_elements_Controller/unidad_seleccionada',
+          success: function(data){
+           for (var i = 0; i < data.length; i++) {
+              html3 +=  '<option value="'+data[i].identificador+'">'+data[i].identificador+'</option>';
+           }
+           $('#unidadesU').append(html3);
+          },
+          error: function(){
+            alert('error');
+          }
+      });
+  }
+
+  function destroy(){
+     $('#destroy').remove();
+  }
+
+</script>
 
 
                     

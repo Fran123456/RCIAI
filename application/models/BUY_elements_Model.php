@@ -16,6 +16,11 @@ class BUY_elements_Model extends CI_Model
        $this->db->where('serial', $id)->update('inventario_bodega', $data);
     }
 
+    function u($id){
+      $data = $this->db->where('destino', $id )->get('inventario_adm')->result_array();
+      return $data;
+    }
+
  //FUNCIONES PARA VALIDACIONES
      function getSerial($id){
         $resultado = $this->db->where('serial' , $id)->where('serial !=' , null)->get('inventario_bodega')->result_array();
