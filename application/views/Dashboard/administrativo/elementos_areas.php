@@ -3,7 +3,6 @@
 <head>
 	<title></title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
-
 	
 </head>
 <body>
@@ -85,25 +84,66 @@
 		 		 </div>
 			<!---->
 
-			<!--Mouse-->
-
+			<!--UPS -->
+				<div class="col-md-3">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title">UPS</h3>
+								</div>
+								<div class="panel-body text-center">
+									<a href="<?php echo base_url('listado/'.$op=$unidad.'/'.$elemento='UP')?>"><i class="fa fa-archive fa-4x" aria-hidden="true"></i></a>
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+		 		 </div>
 			<!---->
 
-			<!--Teclado-->
-
+			<!--Acces Point Radio -->
+				<div class="col-md-3">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title">Access point</h3>
+								</div>
+								<div class="panel-body text-center">
+									<a href="<?php echo base_url('listado/'.$op=$unidad.'/'.$elemento='AP')?>"><i class="fa fa-wifi fa-4x" aria-hidden="true"></i></a>
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+		 		 </div>
 			<!---->
 
-			<!--Pantallas-->
-
+			<!--Web cam -->
+				<div class="col-md-3">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title">Web cam</h3>
+								</div>
+								<div class="panel-body text-center">
+									<a href="<?php echo base_url('listado/'.$op=$unidad.'/'.$elemento='WE')?>"><i class="fa fa-camera fa-4x" aria-hidden="true"></i></a>
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+		 		 </div>
 			<!---->
 
-			<!--Impresoras-->
-
+			<!--Impresoras -->
+				<div class="col-md-3">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title">Impresoras</h3>
+								</div>
+								<div class="panel-body text-center">
+									<a href="<?php echo base_url('listado/'.$op=$unidad.'/'.$elemento='IM')?>"><i class="fa fa-print fa-4x" aria-hidden="true"></i></a>
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+		 		 </div>
 			<!---->
 
-			<!--Perifericos aqui van-->
-
-			<!---->
 		</div>
 	</div>
 

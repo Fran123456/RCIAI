@@ -583,9 +583,14 @@ class administrativo_Controller extends CI_Controller {
 					$data['perifericosAD'] = $periferico_AD;
 					$this->load->view('Dashboard/administrativo/detalle_adm',$data);
 					break;
+				#para discos duros externos, UPS, Access Point, Webcam, impresoras	
 				case 'DD':
+				case 'UP':
+				case 'AP':
+				case 'WE':
+				case 'IM':
 					$data['equipo'] = $cad;
-					$resultado = $this->adm->getDetalleDDE($id);
+					$resultado = $this->adm->getDetallePeriferico($id);
 					if($resultado){
 					//vamos a obtener las unidades 
 						foreach ($resultado as $u) {

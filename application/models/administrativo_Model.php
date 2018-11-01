@@ -169,7 +169,7 @@ class administrativo_Model extends CI_Model
   }//fin de getSoftware
 
   //vamos a obtener los datos del disco duro externo
-  public function getDetalleDDE($id){
+  public function getDetallePeriferico($id){
   	/*por medio del identificador haremos una consulta para obtener el serial
   	de la tabla inventario_adm para luego hacer la consulta a la tabla bodega
   	y obtener los datos de ese registro con ese serial*/
