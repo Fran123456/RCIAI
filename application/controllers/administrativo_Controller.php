@@ -40,7 +40,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 1;
 				$registro['mensaje'] = "Listado de equipos en Bodega de informática";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -52,7 +52,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 2;
 				$registro['mensaje'] = "Listado de equipos en Academica";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -63,7 +63,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 3;
 				$registro['mensaje'] = "Listado de equipos en Gerencia general";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -74,7 +74,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 5;
 				$registro['mensaje'] = "Listado de equipos en Contabilidad";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -85,7 +85,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 6;
 				$registro['mensaje'] = "Listado de equipos en RRHH";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -96,7 +96,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 7;
 				$registro['mensaje'] = "Listado de equipos en Planificación";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -107,7 +107,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 8;
 				$registro['mensaje'] = "Listado de equipos en Biblioteca";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -118,7 +118,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 9;
 				$registro['mensaje'] = "Listado de equipos en ICTUSAM";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -129,7 +129,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 10;
 				$registro['mensaje'] = "Listado de equipos en Medicina";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -140,7 +140,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 11;
 				$registro['mensaje'] = "Listado de equipos en Proyección social";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -151,7 +151,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 12;
 				$registro['mensaje'] = "Listado de equipos en Extensión cultural";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -162,7 +162,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 13;
 				$registro['mensaje'] = "Listado de equipos en Colecturia";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -173,7 +173,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 14;
 				$registro['mensaje'] = "Listado de equipos en Secretaria General";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -184,7 +184,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 15;
 				$registro['mensaje'] = "Listado de equipos en Egresados y graduados";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -195,7 +195,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 16;
 				$registro['mensaje'] = "Listado de equipos en Ultrasonografia";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -206,7 +206,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 17;
 				$registro['mensaje'] = "Listado de equipos en Rectoria y Vicerrectoria";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -217,7 +217,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 18;
 				$registro['mensaje'] = "Listado de equipos en Decanato de jurisprudencia";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -228,7 +228,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 19;
 				$registro['mensaje'] = "Listado de equipos en Odontologia";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -239,7 +239,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 20;
 				$registro['mensaje'] = "Listado de equipos en Veterinaria";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -250,7 +250,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 21;
 				$registro['mensaje'] = "Listado de equipos en Quimica y farmacia";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -261,7 +261,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 22;
 				$registro['mensaje'] = "Listado de equipos en Gestión educativa";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -272,7 +272,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 23;
 				$registro['mensaje'] = "Listado de equipos en Control de calidad";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -283,7 +283,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 24;
 				$registro['mensaje'] = "Listado de equipos en Ciencias empresariales";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -294,7 +294,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 25;
 				$registro['mensaje'] = "Listado de equipos en Informática";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -305,7 +305,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 26;
 				$registro['mensaje'] = "Listado de equipos en Relaciones públicas";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -316,7 +316,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 28;
 				$registro['mensaje'] = "Listado de equipos en Fiscalia";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -327,7 +327,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 29;
 				$registro['mensaje'] = "Listado de equipos en URNI";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -338,7 +338,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 30;
 				$registro['mensaje'] = "Listado de equipos en Enfermeria";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -349,7 +349,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 31;
 				$registro['mensaje'] = "Listado de equipos en CEFADE";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -360,7 +360,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 32;
 				$registro['mensaje'] = "Listado de equipos en OFAL";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -371,7 +371,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 33;
 				$registro['mensaje'] = "Listado de equipos en Almacen y bodega";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -382,7 +382,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 34;
 				$registro['mensaje'] = "Listado de equipos en Celula de quimica";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -393,7 +393,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 35;
 				$registro['mensaje'] = "Listado de equipos en Proyecto USAID";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -404,7 +404,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 36;
 				$registro['mensaje'] = "Listado de equipos en Otros proyectos";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -415,7 +415,7 @@ class administrativo_Controller extends CI_Controller {
 				$unidad = 37;
 				$registro['mensaje'] = "Listado General de los equipos";
 				$registro['registro'] = $this->adm->showregistro($unidad,$tipo);
-				if($tipo == 'DD'){
+				if($tipo == 'DD' || $tipo == 'UP' || $tipo == 'AP' || $tipo == 'WE' || $tipo == 'IM'){
 					$this->load->view('Dashboard/administrativo/inventario_adm_DDE',$registro);	
 				}else{
 					$this->load->view('Dashboard/administrativo/inventario_adm_mantenimiento',$registro);	
@@ -590,6 +590,7 @@ class administrativo_Controller extends CI_Controller {
 				case 'WE':
 				case 'IM':
 					$data['equipo'] = $cad;
+					$data['msj'] = $this->TipoPeriferico($cad);
 					$resultado = $this->adm->getDetallePeriferico($id);
 					if($resultado){
 					//vamos a obtener las unidades 
@@ -600,8 +601,9 @@ class administrativo_Controller extends CI_Controller {
 							$u->destino = $destino;
 						}
 					}
+
 					$data['detalle'] = $resultado;
-					$this->load->view('Dashboard/administrativo/detalle_DDE',$data);
+					$this->load->view('Dashboard/administrativo/detalle_periferico',$data);
 					break;
 				
 				default:
@@ -610,6 +612,29 @@ class administrativo_Controller extends CI_Controller {
 			}#fin del switch
 		
 	}//fin de detalle
+
+	#esta función mandara un msj dependiento el tipo de elemento de periferico a mostrar
+	public function TipoPeriferico($tipo){
+		#se evalua si es una impresora,ups, access point, web cam o DDE
+		switch ($tipo) {
+			case 'DD':
+				$msj = "Disco Duro Externo";
+				break;
+			case 'UP':
+				$msj = "UPS";
+				break;
+			case 'AP':
+				$msj = "Access Point";
+				break;
+			case 'WE':
+				$msj = "Web Cam";
+				break;
+			case 'IM':
+				$msj = "Impresora";
+				break;
+		}
+		return $msj;
+	}
 
 	#esta funcion nos permite obtener los registros 
 	public function consultarRegistro($id){

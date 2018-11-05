@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Disco duro externo</title>
+	<title>Periferico</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 
 	<style type="text/css" media="screen">
@@ -29,13 +29,13 @@
 	<script type="text/javascript">
 		swal({
 				  type: 'success',
-				  title: 'Disco duro asignado correctamente',
+				  title: 'Periferico asignado correctamente',
 		});
 	</script>
 	<?php endif; ?>
 	<div class="content1">
 		<center>
-			<h3>Disco Duro Externo</h3>
+			<h3>Detalle de <?php echo $msj; ?> </h3>
 		</center>
 		<?php if($detalle != false) {?>
 			<?php foreach ($detalle as $key ) { ?>
@@ -45,7 +45,7 @@
 				
 				<div class="col-md-4">
 					<div class="form-group">
-						<label>Codigo Disco Duro Externo</label>
+						<label>Codigo <?php echo $msj; ?></label>
 						<input type="text" class="form-control" id="codigoDDE" readonly="" value="<?php echo empty($key->identificador) ? 'no disponible' : $key->identificador  ?>">
 					</div>
 					
@@ -68,7 +68,7 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-						<label>Nombre</label>
+						<label>Tipo</label>
 						<input type="text" class="form-control" id="nombreDDE" readonly="" value="<?php echo empty($key->nombre) ? 'no disponible' : $key->nombre  ?>">
 					</div>
 				</div>
@@ -86,7 +86,7 @@
 				</div>
 				<div class="col-md-3">
 					<div class="form-group">
-						<label>Tipo</label>
+						<label>Tipo de periferico</label>
 						<input type="text" class="form-control" id="tipoDDE" readonly="" value="<?php echo empty($key->tipo) ? 'no disponible' : $key->tipo  ?>">
 					</div>
 				</div>
