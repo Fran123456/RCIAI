@@ -9,6 +9,7 @@ class bodega_Model extends CI_Model{
 		$this->db->select('bo.*');
 		$this->db->from('inventario_bodega bo');
 		$this->db->where('estatus','nuevo');
+		$this->db->or_where('estatus','disponible');
 		$query=$this->db->get();
 
 		//comprobamos
