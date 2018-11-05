@@ -205,19 +205,73 @@ public function laptop_nuevo_add(){
   }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
   public function otro_asignado_add(){
+    $soldado =  $this->input->post('mejor');
+    $servidorPC = $this->input->post('codex0') .$this->input->post('codex').$this->input->post('codex1');
+    $lugarName = $this->element->get_unidad_unique($this->input->post('destino-0'));
+    if($soldado == 0){
+       //no asignado
        $data = array(
        'serial' =>$this->input->post('serial-0'),
-       'nombre' =>$this->input->post('nombre-0'),
+       'nombre' =>$this->input->post('nombre-0'), //tipo si es vga , etc
        'marca' =>$this->input->post('marca-0'),
-        'tipo' =>$this->input->post('tipo-0'),
-       'estatus' =>$this->input->post('estatus-0'),
+        'tipo' =>$this->input->post('tipo-0'), //tipo de perfericos
+       'estatus' =>'En uso',
        'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
-       'origen' => '1',
+       'origen' => '4',
        'destino' =>$this->input->post('destino-0'),
         'compra_id' =>$this->input->post('idcompra'),
-     );
-       print_r($data);
+      );
+       $this->element->add_data($data, 'inventario_bodega');
+
+    }else{
+      //no asignado
+       $data = array(
+       'serial' =>$this->input->post('serial-0'),
+       'nombre' =>$this->input->post('nombre-0'), //tipo si es vga , etc
+       'marca' =>$this->input->post('marca-0'),
+        'tipo' =>$this->input->post('tipo-0'), //tipo de perfericos
+       'estatus' =>'En uso',
+       'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
+       'origen' => '4',
+       'destino' =>$this->input->post('destino-0'),
+        'compra_id' =>$this->input->post('idcompra'),
+         'pc_servidor_id ' => $servidorPC,
+      );
+      $this->element->add_data($data, 'inventario_bodega');
+    }
+
+
+      $dataAdmin = array(
+        'identificador' => $servidorPC,
+        'encargado_puesto' =>$this->input->post('encargado'),
+        'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
+        'origen' => '4',
+        'destino' =>$this->input->post('destino-0'),
+        'compra_id' =>$this->input->post('idcompra'),
+        'lugar_name' =>$lugarName[0]['unidad'],
+        'serial' =>$this->input->post('serial-0'),
+      );
+      $this->element->add_data($dataAdmin, 'inventario_adm');
+
+
+      $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
+      redirect(base_url().'add-element-buy');  
   }
 
 

@@ -140,16 +140,16 @@
 
                                     <select onchange="cambiar();" id="codex0" name="codex0"  class="form-control">
                                       <option selected="" value="UPS">UPS</option>
-                                      <option value="Acces Point Radio U Masferrer">APRADIO</option>
-                                      <option value="Web Cam">WEBCAM</option>
-                                      <option value="Impresores">IMPR</option>
+                                      <option value="APRADIO">APRADIO</option>
+                                      <option value="WEBCAM">WEBCAM</option>
+                                      <option value="IMPR">IMPR</option>
                                     </select>
                                   </div>
                                 </div>
                                 <div id="diverror" class="col-md-2 col-sm-2 ">
                                   <label id="errorlabel">Codigo</label>
                                   <div id="cod" class="form-group">
-                                    <input type="text" required=""  id="codex" class="form-control" name="codex">
+                                    <input type="text" required=""   id="codex" class="form-control" name="codex">
                                   </div>
                                 </div>
                                  <div id="diverror" class="col-md-2 col-sm-2">
@@ -172,12 +172,6 @@
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" required="" class="form-control" name="nombre-0">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
                             <label>Marca</label>
                             <input type="text" class="form-control" name="marca-0">
                           </div>
@@ -190,10 +184,14 @@
                         </div>-->
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label>Tipo</label>
+                            <label>Tipo de periferico</label>
                             <input class="form-control" id="cm" readonly="" name="tipo-0" type="text" >
-
-
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="form-group">
+                            <label>Tipo</label>
+                            <input type="text" class="form-control" name="nombre-0">
                           </div>
                         </div>
                        <!-- <div class="col-md-3">
@@ -202,12 +200,12 @@
                             <input type="text" class="form-control" name="velocidad-0">
                           </div>
                         </div>-->
-                        <div class="col-md-3">
+                       <!-- <div class="col-md-3">
                           <div class="form-group">
                             <label>Estado</label>
                             <input type="text" value="nuevo" class="form-control" name="estatus-0">
                           </div>
-                        </div>
+                        </div>--->
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Fecha ingreso</label>
@@ -255,16 +253,47 @@
 
       </div>
    <button id="en" disabled="" type="submit" class="btn btn-success">Guardar</button>
-   <input type="text" name="mejor" id="mejor" value="0">
+   <input type="hidden" name="mejor" id="mejor" value="0">
 </form>
 
 <script type="text/javascript">
   $("#cm").val($('#codex0').val());
   function cambiar(){
+
     $("#cm").val($('#codex0').val());
+
     if($('#codex0').val() == "UPS"){
+        $('#cm').val('UPS');
     }
+
+    if($('#codex0').val() == "APRADIO"){
+      $('#cm').val('ACCES POINT RADIO U MASFERRER');
+    }
+
+
+    if($('#codex0').val() == "WEBCAM"){
+        $('#cm').val('WEB CAM');
+    }
+
+
+    if($('#codex0').val() == "IMPR"){
+        $('#cm').val('IMPRESOR');
+    }
+
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   function cambioAsignar(){
     if($('#chek').val() == "asignar"){

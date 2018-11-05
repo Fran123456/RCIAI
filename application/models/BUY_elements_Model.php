@@ -109,6 +109,7 @@ function add_periferico_nuevo($data){
      $this->db->insert($table, $data);
   }
 
+ 
 
 
     public function get_c($id){
