@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -136,8 +135,8 @@ class usuarios_Model extends CI_Model
 			'rol' => $varRol
 
 		);
-			
-		
+
+
 		$this->db->where('usuario', $varUsuario);
 		$resultados = $this->db->get('usuarios');
 		if ($resultados->num_rows()>0) {
@@ -151,7 +150,7 @@ class usuarios_Model extends CI_Model
 			}else{
 				return false;
 			}
-		}	
+		}
 	}//end insertUser()
 
 	//editar los usuarios
@@ -168,7 +167,7 @@ class usuarios_Model extends CI_Model
 		}else{
 			return false;
 		}
-	}//end editUser	
+	}//end editUser
 
 	//actualizar usuarios
 	public function updateUser($editId,$editUsuario,$editNombre,$editApellido,$editCargo,$editCorreo,$editRol){
@@ -211,7 +210,7 @@ class usuarios_Model extends CI_Model
 				}
 			}
 		}
-		
+
 	}//fin de updateUser
 
 	//función para eliminar un usuario
@@ -243,5 +242,3 @@ class usuarios_Model extends CI_Model
 
 
 }
-
-
