@@ -428,7 +428,7 @@ public function disco_asignado_add(){
      echo json_encode($data);
   }
 
-	public function pc_unidad($name)
+	public function pc_unidad()
 	{
 		$id = filter_input(INPUT_POST, 'dato');
 		$data = $this->element->pc_unidad($id);
