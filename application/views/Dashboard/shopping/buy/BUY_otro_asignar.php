@@ -269,7 +269,7 @@
   function cambioAsignar(){
     if($('#chek').val() == "asignar"){
         $('#mejor').val('1');
-            var html2 ='<div id="destroy" class="col-md-3"><div class="form-group"><label>Unidades</label><select id="unidadesU" name="unidadesU" class="form-control"></select></div></div>';
+            var html2 ='<div id="destroy" class="col-md-3"><div class="form-group"><label>PC disponibles</label><select id="unidadesU" name="unidadesU" class="form-control"></select></div></div>';
         $('#temp').append(html2);
 
         pcDisponibles();
@@ -288,7 +288,7 @@
           dataType: 'JSON',
           method: 'post',
           data: {dato: dato},
-          url: '<?php echo base_url()?>BUY_elements_Controller/unidad_seleccionada',
+          url: '<?php echo base_url()?>BUY_elements_Controller/pc_unidad',
           success: function(data){
            for (var i = 0; i < data.length; i++) {
               html3 +=  '<option value="'+data[i].identificador+'">'+data[i].identificador+'</option>';
