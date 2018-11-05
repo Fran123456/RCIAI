@@ -11,7 +11,7 @@
 
 
    var html = "";
-   
+
    function serialesA(){
     var seriales = "";
     var dato1 = $('#serial').val();
@@ -36,7 +36,7 @@
   }
 
   function activar(){
-       $('#en').attr("disabled", false);   
+       $('#en').attr("disabled", false);
   }
 
   function validar(){
@@ -53,7 +53,7 @@
                   $("#errorlabels").append("<span id='error2' style='color:red;'> - Vacio</span>");
                   contador++;
         }
-        
+
 
 
         if($("#codex").val() == ""){
@@ -63,12 +63,12 @@
                contador++;
         }
 
-        
+
          if(seriales.length > 0){
              $("#serial").addClass("back");
                   $("#error2").remove();
                   $("#errorlabels").append("<span id='error2' style='color:red;'> - Ya utilizado</span>");
-          contador++;   
+          contador++;
         }
 
         if(codigos.length > 0){
@@ -133,11 +133,11 @@
                       <div class="panel-body ">
 
                            <div class="row">
-                       
+
                               <div id="diverror" class="col-md-2 col-sm-2">
                                   <div id="cod" class="form-group">
                                     <label>&nbsp;</label>
-                                   
+
                                     <select onchange="cambiar();" id="codex0" name="codex0"  class="form-control">
                                       <option selected="" value="UPS">UPS</option>
                                       <option value="Acces Point Radio U Masferrer">APRADIO</option>
@@ -158,7 +158,7 @@
                                     <input type="text" required="" value="USAM" id="codex1" class="form-control" name="codex1">
                                   </div>
                                 </div>
-                        
+
 
 
 
@@ -166,7 +166,7 @@
 
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label id="errorlabels">Serial</label> 
+                            <label id="errorlabels">Serial</label>
                             <input type="text" required="" class="form-control" id="serial" name="serial-0">
                           </div>
                         </div>
@@ -192,7 +192,7 @@
                           <div class="form-group">
                             <label>Tipo</label>
                             <input class="form-control" id="cm" readonly="" name="tipo-0" type="text" >
-                           
+
 
                           </div>
                         </div>
@@ -240,12 +240,12 @@
                                  <label>Asignar a PC</label>
                                  <select class="form-control" id="chek" onchange="cambioAsignar();"><option value="no">No asignar</option><option value="asignar">Asignar a PC</option></select>
                              </div>
-                        </div> 
+                        </div>
 
                        <div id="temp">
-                         
+
                        </div>
-                       
+
 
                         <div class="col-md-3">
                           <br>
@@ -262,9 +262,7 @@
   $("#cm").val($('#codex0').val());
   function cambiar(){
     $("#cm").val($('#codex0').val());
-
     if($('#codex0').val() == "UPS"){
-     
     }
   }
 
@@ -274,7 +272,7 @@
             var html2 ='<div id="destroy" class="col-md-3"><div class="form-group"><label>Unidades</label><select id="unidadesU" name="unidadesU" class="form-control"></select></div></div>';
         $('#temp').append(html2);
 
-        unidadesSelec();
+        pcDisponibles();
     }
     else{
        $('#mejor').val('0');
@@ -283,7 +281,7 @@
   }
 
 
-  function unidadesSelec(){
+  function pcDisponibles(){
         var dato = $('#destino-0').val();
         var html3 = "";
       $.ajax({
@@ -295,6 +293,7 @@
            for (var i = 0; i < data.length; i++) {
               html3 +=  '<option value="'+data[i].identificador+'">'+data[i].identificador+'</option>';
            }
+           console.log(data);
            $('#unidadesU').append(html3);
           },
           error: function(){
@@ -308,6 +307,3 @@
   }
 
 </script>
-
-
-                    
