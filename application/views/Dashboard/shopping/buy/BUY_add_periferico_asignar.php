@@ -73,10 +73,33 @@
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" required="" class="form-control" name="nombre-0">
+                            <label>Tipo de periferico</label>
+                            <select class="form-control" name="tipo-0">
+                                        <option value="MOUSE">MOUSE</option>
+                                        <option value="TECLADO">TECLADO</option>
+                                        <option value="MOUSE">MONITOR</option>
+                                        <option value="USB">USB</option>
+                                        <option value="MEMORIA SD">MEMORIA SD</option>
+                                        <option value="LECTOR DVD/CD">LECTOR DVD/CD</option>
+                                       <!--  <option value="IMPRESORES MATRICIALES">IMPRESORES MATRICIALES</option>
+                                        <option value="IMPRESORES MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
+                                        <option value="IMPRESOR DESJEKT">IMPRESOR DESJEKT</option>-->
+                                      <!--  <option value="SCANNER">SCANNER</option>
+                                        <option value="WEBCAN">WEBCAN</option>-->
+                                        <option value="PARLANTES">PARLANTES</option>
+                                        <option value="LECTOR PARA MEMORIA SD">LECTOR PARA MEMORIA SD</option>
+                                       <!-- <option value="UPS">UPS</option>-->
+                                        <option value="AUDIFONOS">AUDIFONOS</option>
+                                        <option value="MEMORIA SD">MEMORIA SD</option>
+                                        <option value="PROYECTOR">PROYECTOR</option>
+                                        <option value="FAX">FAX</option>
+                                        <option value="MICROFONO">MICROFONO</option>
+                                        <option value="OTRO">OTRO</option>
+                             </select>
+
                           </div>
                         </div>
+                       
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Marca</label>
@@ -89,34 +112,13 @@
                             <input type="text" class="form-control" name="capacidad-0">
                           </div>
                         </div>
-                        <div class="col-md-3">
+                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Tipo</label>
-                            <select class="form-control" name="tipo-0">
-                                        <option value="MOUSE">MOUSE</option>
-                                        <option value="TECLADO">TECLADO</option>
-                                        <option value="MOUSE">MONITOR</option>
-                                        <option value="USB">USB</option>
-                                        <option value="MEMORIA SD">MEMORIA SD</option>
-                                        <option value="LECTOR DVD/CD">LECTOR DVD/CD</option>
-                                        <option value="IMPRESORES MATRICIALES">IMPRESORES MATRICIALES</option>
-                                        <option value="IMPRESORES MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
-                                        <option value="IMPRESOR DESJEKT">IMPRESOR DESJEKT</option>
-                                        <option value="SCANNER">SCANNER</option>
-                                        <option value="WEBCAN">WEBCAN</option>
-                                        <option value="PARLANTES">PARLANTES</option>
-                                        <option value="LECTOR PARA MEMORIA SD">LECTOR PARA MEMORIA SD</option>
-                                        <option value="UPS">UPS</option>
-                                        <option value="AUDIFONOS">AUDIFONOS</option>
-                                        <option value="MEMORIA SD">MEMORIA SD</option>
-                                        <option value="PROYECTOR">PROYECTOR</option>
-                                        <option value="FAX">FAX</option>
-                                        <option value="MICROFONO">MICROFONO</option>
-                                        <option value="OTRO">OTRO</option>
-                             </select>
-
+                            <input type="text" required="" class="form-control" name="nombre-0">
                           </div>
                         </div>
+                        
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Velocidad</label>

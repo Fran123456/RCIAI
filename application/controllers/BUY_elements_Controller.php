@@ -209,6 +209,45 @@ public function laptop_nuevo_add(){
 
 
 
+public function otro_asignado_add_new(){
+    $soldado =  $this->input->post('mejor');
+    $servidorPC = $this->input->post('codex0') .$this->input->post('codex').$this->input->post('codex1');
+    $lugarName = $this->element->get_unidad_unique($this->input->post('destino-0'));
+    if($soldado == 0){
+       //no asignado
+       $data = array(
+       'serial' =>$this->input->post('serial-0'),
+       'nombre' =>$this->input->post('nombre-0'), //tipo si es vga , etc
+       'marca' =>$this->input->post('marca-0'),
+        'capacidad' =>$this->input->post('capacidad-0'),
+        'tipo' =>$this->input->post('codex0'), //tipo de perfericos
+         'velocidad' =>$this->input->post('velocidad-0'),
+       'estatus' =>'nuevo',
+       'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
+       'origen' => '4',
+       'destino' =>$this->input->post('destino-0'),
+        'compra_id' =>$this->input->post('idcompra'),
+      );
+       $this->element->add_data($data, 'inventario_bodega');
+    }
+
+
+      $unidadxdata = $this->element->unidadxdata($this->input->post('idcompra'), $this->input->post('destino-0'));
+
+     if( count($unidadxdata) == 0){
+
+           $this->unidadxdata_add();
+           $this->buy_edit();
+       }
+       else{
+           $this->unidadxdata_update();
+            $this->buy_edit();
+       }
+
+
+      $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
+      redirect(base_url().'add-element-buy');  
+  }
 
 
 
@@ -217,7 +256,12 @@ public function laptop_nuevo_add(){
 
 
 
-  
+
+
+
+
+
+
 
 
   public function otro_asignado_add(){
@@ -230,7 +274,9 @@ public function laptop_nuevo_add(){
        'serial' =>$this->input->post('serial-0'),
        'nombre' =>$this->input->post('nombre-0'), //tipo si es vga , etc
        'marca' =>$this->input->post('marca-0'),
+       'capacidad' =>$this->input->post('capacidad-0'),
         'tipo' =>$this->input->post('tipo-0'), //tipo de perfericos
+         'velocidad' =>$this->input->post('velocidad-0'),
        'estatus' =>'En uso',
        'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
        'origen' => '4',
@@ -245,7 +291,9 @@ public function laptop_nuevo_add(){
        'serial' =>$this->input->post('serial-0'),
        'nombre' =>$this->input->post('nombre-0'), //tipo si es vga , etc
        'marca' =>$this->input->post('marca-0'),
+       'capacidad' =>$this->input->post('capacidad-0'),
         'tipo' =>$this->input->post('tipo-0'), //tipo de perfericos
+         'velocidad' =>$this->input->post('velocidad-0'),
        'estatus' =>'En uso',
        'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
        'origen' => '4',
@@ -268,6 +316,18 @@ public function laptop_nuevo_add(){
         'serial' =>$this->input->post('serial-0'),
       );
       $this->element->add_data($dataAdmin, 'inventario_adm');
+
+      $unidadxdata = $this->element->unidadxdata($this->input->post('idcompra'), $this->input->post('destino-0'));
+
+     if( count($unidadxdata) == 0){
+
+           $this->unidadxdata_add();
+           $this->buy_edit();
+       }
+       else{
+           $this->unidadxdata_update();
+            $this->buy_edit();
+       }
 
 
       $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');

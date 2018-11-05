@@ -137,10 +137,11 @@
                             <input type="text" required="" class="form-control" id="serial" name="serial-0">
                           </div>
                         </div>
+                        
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" required="" class="form-control" name="nombre-0">
+                            <label>Capacidad</label>
+                            <input type="text" class="form-control" name="capacidad-0">
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -151,18 +152,19 @@
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label>Capacidad</label>
-                            <input type="text" class="form-control" name="capacidad-0">
+                            <label>Tipo de periferico</label>
+                            <input class="form-control" value="DISCO DURO EXTERNO" readonly="" name="tipo-0" type="text" >
                           </div>
                         </div>
+                        
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Tipo</label>
-                            <input class="form-control" value="DISCO DURO EXTERNO" readonly="" name="tipo-0" type="text" >
-                           
-
+                            <input type="text" required="" class="form-control" name="nombre-0">
                           </div>
                         </div>
+
+                        
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Velocidad</label>

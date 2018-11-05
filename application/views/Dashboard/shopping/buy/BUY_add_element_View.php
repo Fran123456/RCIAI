@@ -110,6 +110,10 @@
           require 'BUY_otro_asignar.php';
          }
 
+         if($datos['tipo'] == 'otro' && $datos['unidad'][0]['id_unidad'] == '1'){ 
+          require 'BUY_otro_nuevo.php';
+         }
+
      	?>
 
      

@@ -298,10 +298,10 @@
                                <select size="14" id="exampleFormControlSelect2" name="select-A" v-model='seleccionPC' class="form-control" multiple>
                                   <option v-for="item in lists" selected value="{{item.keep}}">{{  item.keep}}</option>
                                   <option value="AUDIFONOS" >AUDIFONOS</option>
-                                  <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option>
+                                 <!-- <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option>
                                   <option value="IMPRESORES-MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
                                   <option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option>
-                                  <option value="SCANNER">SCANNER</option>
+                                  <option value="SCANNER">SCANNER</option>-->
                                   <option value="PARLANTES">PARLANTES</option>
                                   <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
                                   <option value="UPS">UPS</option>
@@ -440,7 +440,13 @@
                                   </div>
                                   <div class="col-md-4">
                                     <div class="form-group">
-                                      <label>Nombre</label>
+                                      <label>Tipo de periferico</label>
+                                      <input type="text" value="{{index}}" readonly="" class="form-control"  name="tipo-{{item3}}-{{index}}">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label>Tipo</label>
                                       <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="{{index}}" required class="form-control"  name="nombre-{{item3}}-{{index}}">
                                     </div>
                                   </div>
@@ -456,12 +462,7 @@
                                       <input type="text"  class="form-control"  name="capacidad-{{item3}}-{{index}}">
                                     </div>
                                   </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">
-                                      <label>Tipo</label>
-                                      <input type="text" value="{{index}}" readonly="" class="form-control"  name="tipo-{{item3}}-{{index}}">
-                                    </div>
-                                  </div>
+                                  
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>Velocidad</label>

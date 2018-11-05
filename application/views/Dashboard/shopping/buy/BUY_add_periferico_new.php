@@ -74,25 +74,7 @@
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" required="" class="form-control" name="nombre-0">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Marca</label>
-                            <input type="text" class="form-control" name="marca-0">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Capacidad</label>
-                            <input type="text" class="form-control" name="capacidad-0">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Tipo</label>
+                            <label>Tipo de periferico</label>
                             <select class="form-control" name="tipo-0">
                                         <option value="MOUSE">MOUSE</option>
                                         <option value="TECLADO">TECLADO</option>
@@ -116,6 +98,26 @@
                                         <option value="OTRO">OTRO</option>
                              </select>
 
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Marca</label>
+                            <input type="text" class="form-control" name="marca-0">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Capacidad</label>
+                            <input type="text" class="form-control" name="capacidad-0">
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Tipo</label>
+                            <input type="text" required="" class="form-control" name="nombre-0">
                           </div>
                         </div>
                         <div class="col-md-3">

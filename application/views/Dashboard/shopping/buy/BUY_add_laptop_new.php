@@ -74,10 +74,11 @@
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" required="" class="form-control" name="nombre-0">
+                            <label>Tipo de elemento</label>
+                            <input class="form-control" type="text" value="LAPTOP" name="tipo-0">
                           </div>
                         </div>
+                        
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Marca</label>
@@ -93,8 +94,7 @@
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Tipo</label>
-                            <input class="form-control" type="text" value="LAPTOP" name="tipo-0">
-
+                            <input type="text" required="" class="form-control" name="nombre-0">
                           </div>
                         </div>
                         <div class="col-md-3">
