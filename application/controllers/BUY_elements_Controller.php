@@ -144,10 +144,10 @@ public function laptop_nuevo_add(){
          $this->unidadxdata_update();
           $this->buy_edit();
      }
-    
+
        $this->catch_info_pc();
        $this->generate_admin_pc();
-      
+
 
     $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
      redirect(base_url().'add-element-buy');
@@ -162,10 +162,10 @@ public function laptop_nuevo_add(){
     }else{
        $pcservidor = $this->__idElemento($this->input->post('tipo'));
     }
-   
+
 
     for ($i=0; $i <$cantidad ; $i++) {
-     $tipoPeriferico = $this->input->post($i.'-ele'); 
+     $tipoPeriferico = $this->input->post($i.'-ele');
       $data = array(
         'serial' => $this->input->post('serial-'.$i.'-'.$tipoPeriferico),
         'nombre' => $this->input->post('nombre-'.$i.'-'.$tipoPeriferico) ,
@@ -241,7 +241,7 @@ public function laptop_nuevo_add(){
      $unidadxdata = $this->element->unidadxdata($this->input->post('idcompra'), $this->input->post('destino-0'));
 
    if( count($unidadxdata) == 0){
-         
+
          $this->unidadxdata_add();
          $this->buy_edit();
      }
@@ -269,13 +269,13 @@ public function laptop_nuevo_add(){
        'compra_id' =>$this->input->post('idcompra'),
         'pc_servidor_id' =>$this->input->post('selectQ'),
      );
-    
+
      $this->element->add_periferico_nuevo($data);
 
      $unidadxdata = $this->element->unidadxdata($this->input->post('idcompra'), $this->input->post('destino-0'));
 
    if( count($unidadxdata) == 0){
-         
+
          $this->unidadxdata_add();
          $this->buy_edit();
      }
@@ -304,13 +304,13 @@ public function disco_asignado_add(){
        'destino' =>$this->input->post('destino-0'),
        'compra_id' =>$this->input->post('idcompra'),
      );
-    
+
      $this->element->add_periferico_nuevo($data);
 
      $unidadxdata = $this->element->unidadxdata($this->input->post('idcompra'), $this->input->post('destino-0'));
 
    if( count($unidadxdata) == 0){
-         
+
          $this->unidadxdata_add();
          $this->buy_edit();
      }
@@ -319,7 +319,7 @@ public function disco_asignado_add(){
           $this->buy_edit();
      }
 
-    
+
         $admin = array(
           'identificador' => $this->input->post('codex3'),
           'encargado_puesto' =>$this->input->post('encargado'),
@@ -330,7 +330,7 @@ public function disco_asignado_add(){
            'serial' =>$this->input->post('serial-0'),
         );
         $this->element->admin_pc($admin);
-     
+
 
 
      $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
@@ -347,7 +347,7 @@ public function disco_asignado_add(){
 
     $data = array(
      'identificador' => $this->input->post('codex3'),
-     'encargado_puesto' =>$this->input->post('encargado'), 
+     'encargado_puesto' =>$this->input->post('encargado'),
      'des_sistema_id' => $this->input->post('codex3'),
      'placa_base_id' => $this->input->post('codex3'),
      'adaptador_red_id'=> $this->input->post('codex3'),
@@ -360,7 +360,7 @@ public function disco_asignado_add(){
       'lugar_name' =>$this->input->post('destinoPC-1')
     );
     $this->element->admin_pc($data);
-     
+
    }
 
   public function catch_info_pc(){
@@ -381,7 +381,7 @@ public function disco_asignado_add(){
       'direccion_ip' => $this->input->post('5-c'),
       'tarjeta_extra' => $this->input->post('6-c'),
     );
-    
+
     $video = array(
        'pc_id' => $this->input->post('codex3'),
       'modelo' => $this->input->post('8-c'),
@@ -428,6 +428,7 @@ public function disco_asignado_add(){
      echo json_encode($data);
   }
 
+
   public function codigos_lab(){
     $id = filter_input(INPUT_POST, 'dato');
     $data = $this->element->getCodigoslab($id);
@@ -448,21 +449,3 @@ public function disco_asignado_add(){
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
