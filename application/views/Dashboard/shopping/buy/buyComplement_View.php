@@ -23,10 +23,10 @@
     <?php require 'application/views/Plantilla/nav.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LA BARRA DE NAVEGACION-->
     <?php require 'application/views/Plantilla/panel.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL MENU DESPLEGABLE-->
     
-     <form action="<?php echo base_url() ?>addbuy" method="post" id="form-compra">
+     <form action="<?php echo base_url() ?>BUY_Controller/addbuy2" method="post" id="form-compra">
     	<div class="panel" > <!--INICIO DE COMPONENTE VUE-->
                 <div class="panel-heading">
-                  <div class="text-center "><h3>Crea una nueva compra</h3></div>
+                  <div class="text-center "><h3>Crea una compra independiente</h3></div>
                   <div class="right">
                   <button   type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
                   </div>

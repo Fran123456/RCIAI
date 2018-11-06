@@ -80,6 +80,10 @@ $route['updateuser']='profile_Controller/updateUserAjax';
 $route['deleteuser']='profile_Controller/deleteUserAjax';
 
 
+//compra para un elemento sin aumento 
+$route['shopping-others'] = 'BUY_Controller/indexComplement'; 
+
+
 //-----------------------------
 $route['shopping-admin'] = 'shopping/index';
 $route['showcompras'] = 'shopping/showComprasAjax';
