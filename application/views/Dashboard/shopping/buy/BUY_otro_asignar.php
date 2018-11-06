@@ -182,8 +182,8 @@
                             <input  type="text" class="form-control" name="capacidad-0">
                           </div>
                         </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
+                        <div id="divtipo" class="col-md-3">
+                          <div id="tipoP" class="form-group">
                             <label>Tipo de periferico</label>
                             <input class="form-control" id="cm" readonly="" name="tipo-0" type="text" >
                           </div>
@@ -262,29 +262,36 @@
 
     $("#cm").val($('#codex0').val());
 
+    $('#tipoP').remove();
+    $('#divtipo').append('<div id="tipoP" class="form-group"><label>Tipo de periferico</label><input class="form-control" id="cm" readonly="" name="tipo-0" type="text" ></div>');
+
     if($('#codex0').val() == "UPS"){
         $('#cm').val('UPS');
+        //$('#tipoP').remove();
+        //$('#divtipo').append('<div id="tipoP" class="form-group"><label>Tipo de periferico</label><input class="form-control" id="cm" readonly="" name="tipo-0" type="text" ></div>');
     }
 
     if($('#codex0').val() == "APRADIO"){
       $('#cm').val('ACCES POINT RADIO U MASFERRER');
+    //  $('#tipoP').remove();
+    //  $('#divtipo').append('<div id="tipoP" class="form-group"><label>Tipo de periferico</label><input class="form-control" id="cm" readonly="" name="tipo-0" type="text" ></div>');
     }
 
 
     if($('#codex0').val() == "WEBCAM"){
         $('#cm').val('WEB CAM');
+      //  $('#tipoP').remove();
+      //  $('#divtipo').append('<div id="tipoP" class="form-group"><label>Tipo de periferico</label><input class="form-control" id="cm" readonly="" name="tipo-0" type="text" ></div>');
     }
 
 
     if($('#codex0').val() == "IMPR"){
         $('#cm').val('IMPRESOR');
+        $('#tipoP').remove();
+        $('#divtipo').append('<div id="tipoP" class="form-group"><label>Tipo de periferico</label><select  class="form-control" id="cm"  name="tipo-0">  <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option><option value="IMPRESORES-MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option><option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option><option value="SCANNER">SCANNER</option></select></div>');
     }
 
   }
-
-
-
-
 
 
 

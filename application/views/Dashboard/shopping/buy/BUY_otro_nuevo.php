@@ -154,7 +154,7 @@
                             <input  type="text" class="form-control" name="capacidad-0">
                           </div>
                         </div>
-                        <div id="diverror" class="col-md-2 col-sm-2">
+                        <div id="diverror" class="col-md-3 col-sm-3">
                                 <label>Tipo periferico</label>
                                   <div id="cod" class="form-group">
                                     <select  id="codex0" name="codex0"  class="form-control">
@@ -162,6 +162,7 @@
                                       <option value="ACCES POINT RADIO U MASFERRER">ACCES POINT RADIO U MASFERRER</option>
                                       <option value="WEBCAM">WEB CAM</option>
                                       <option value="IMPRESOR">IMPRESOR</option>
+                                      <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option><option value="IMPRESORES-MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option><option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option><option value="SCANNER">SCANNER</option>
                                     </select>
                                   </div>
                                 </div>
@@ -208,13 +209,13 @@
 
                         <div class="col-md-3">
                           <br>
-              
+
                         </div>
             </div>
 
       </div>
    <button id="en"  type="submit" class="btn btn-success">Guardar</button>
-  
+
 </form>
 
 <script type="text/javascript">
@@ -222,6 +223,7 @@
   function cambiar(){
 
     $("#cm").val($('#codex0').val());
+
 
     if($('#codex0').val() == "UPS"){
         $('#cm').val('UPS');
@@ -239,12 +241,13 @@
 
     if($('#codex0').val() == "IMPR"){
         $('#cm').val('IMPRESOR');
+
     }
 
   }
 
 
 
-  
+
 
 </script>
