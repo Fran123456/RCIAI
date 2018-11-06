@@ -21,10 +21,18 @@ class BUY_Controller extends CI_Controller {
   }
 
   public function addbuy(){
+   $html = "";
+   $cantidadE = $this->input->post('softwareCONT');
+   for ($i=0; $i <$cantidadE ; $i++) { 
+     $html = $html . " , ".$this->input->post('name-'.$i) ;
+   }
+    $html =  substr($html,2, strlen($html));
+   
+
     $data = array(
      'id_compra' =>  $this->input->post('code'),
      'tipo_compra' => 'fisica',
-     'tipo' => $this->input->post('tipoauto'),
+     'tipo' =>  $html,
      'detalle' => $this->input->post('detalle'),
      'cantidad' => $this->input->post('cantidadproducto'),
      'proveedor' => $this->input->post('proveedor'),
@@ -36,9 +44,9 @@ class BUY_Controller extends CI_Controller {
      'observaciones' => $this->input->post('observaciones'),
      'usuario_id' => $this->session->userdata('id'),
     );
+    print_r($data);
  
     $this->BUY->add_buy($data);
-
     $this->session->set_flashdata('item','COMPRA CREADA CORRECTAMENTE'); 
     redirect(base_url().'show-pc-buy/'.$this->input->post('code')); 
   }

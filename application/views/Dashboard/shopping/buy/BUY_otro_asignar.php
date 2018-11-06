@@ -250,9 +250,11 @@
                           <button onclick="validar();" type="button" class="btn btn-info">Validar</button>
                         </div>
             </div>
+            <br>
+            <button id="en" disabled="" type="submit" class="btn btn-success">Guardar</button>
 
       </div>
-   <button id="en" disabled="" type="submit" class="btn btn-success">Guardar</button>
+   
    <input type="hidden" name="mejor" id="mejor" value="0">
 </form>
 
