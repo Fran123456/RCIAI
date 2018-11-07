@@ -306,7 +306,7 @@
                                   <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
                                  <!-- <option value="UPS">UPS</option>-->
                                   <!--  <option value="WEBCAN">WEBCAN</option>-->
-                                  <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
+                               
                                   <option value="MEMORIA-SD">MEMORIA-SD</option>
                                   <option value="PROYECTOR">PROYECTOR</option>
                                   <option value="FAX">FAX</option>
@@ -447,7 +447,7 @@
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>Tipo</label>
-                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="{{index}}" required class="form-control"  name="nombre-{{item3}}-{{index}}">
+                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="" required class="form-control"  name="nombre-{{item3}}-{{index}}">
                                     </div>
                                   </div>
                                   <div class="col-md-4">

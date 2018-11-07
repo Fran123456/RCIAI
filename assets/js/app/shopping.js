@@ -256,14 +256,7 @@ function color(comp){ //funcion para desabilitar botones del elemento de una PC
        $('#serial-'+id).parent().parent().removeClass('has-error');
      }
 
-     if($('#nombre-'+id).val() == "")
-     {
-        $('#nombre-'+id).parent().parent().addClass('has-error');
-        cont++;
-     }
-     else {
-       $('#nombre-'+id).parent().parent().removeClass('has-error');
-     }
+   
 
      if(cont == 0){
      // $('.PC'+id).attr('disabled', 'disabled');
