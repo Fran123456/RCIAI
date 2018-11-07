@@ -40,7 +40,8 @@
   }
 
   function validar(){
-      var co = $('#codex0').val()+$('#codex').val()+$('#codex1').val();
+      var co = $('#codex0').val()+$('#codex').val()+$('#laboal').val();
+
       $('#codex3').val(co);
        var  seriales = serialesA();
         var codigos = codigo();
@@ -97,7 +98,7 @@
     $.ajax({
        type: 'ajax',
        method: 'post',
-       url: '<?php echo base_url() ?>BUY_elements_Controller/codigosAdmin',
+       url: '<?php echo base_url() ?>BUY_elements_Controller/codigos_lab',
        data: {dato: dato},
        async: false,
        dataType: 'json',
@@ -114,7 +115,7 @@
 
 </script>
 
-<form method="post" action="<?php echo base_url()?>BUY_elements_Controller/otro_asignado_add">
+<form method="post" action="<?php echo base_url()?>BUY_elements_Controller/otro_asignado_add_lab">
   <div>
   <input type="hidden" name="idcompra" value="<?php echo $datos['data'][0]['id_compra'] ?>">
   <input type="hidden" name="cantidad" value="<?php echo $datos['data'][0]['cantidad'] ?>">
@@ -134,15 +135,16 @@
 
                            <div class="row">
 
+
                               <div id="diverror" class="col-md-2 col-sm-2">
                                   <div id="cod" class="form-group">
                                     <label>&nbsp;</label>
 
                                     <select onchange="cambiar();" id="codex0" name="codex0"  class="form-control">
                                       <option selected="" value="UPS">UPS</option>
-                                      <option value="APRADIO">APRADIO</option>
+                                <!--      <option value="APRADIO">APRADIO</option>
                                       <option value="WEBCAM">WEBCAM</option>
-                                      <option value="IMPR">IMPR</option>
+                                      <option value="IMPR">IMPR</option>-->
                                     </select>
                                   </div>
                                 </div>
@@ -155,7 +157,15 @@
                                  <div id="diverror" class="col-md-2 col-sm-2">
                                   <label >&nbsp;</label>
                                   <div id="cod" class="form-group">
-                                    <input type="text" required="" value="USAM" id="codex1" class="form-control" name="codex1">
+                                     <select id="laboal" name="codex1" class="form-control int">
+                                        <option selected="" value="LAB1">LAB1</option>
+                                        <option value="LAB2">LAB2</option>
+                                        <option value="LAB3">LAB3</option>
+                                        <option value="LAB4">LAB4</option>
+                                        <option value="LAB5">LAB5</option>
+                                        <option value="HW">HW</option>
+                                        <option value="RED">RED</option>
+                                      </select>
                                   </div>
                                 </div>
 
@@ -250,9 +260,10 @@
                           <button onclick="validar();" type="button" class="btn btn-info">Validar</button>
                         </div>
             </div>
-
+            <br>
+<button id="en" disabled="" type="submit" class="btn btn-success">Guardar</button>
       </div>
-   <button id="en" disabled="" type="submit" class="btn btn-success">Guardar</button>
+   
    <input type="hidden" name="mejor" id="mejor" value="0">
 </form>
 
@@ -267,21 +278,18 @@
 
     if($('#codex0').val() == "UPS"){
         $('#cm').val('UPS');
-        //$('#tipoP').remove();
-        //$('#divtipo').append('<div id="tipoP" class="form-group"><label>Tipo de periferico</label><input class="form-control" id="cm" readonly="" name="tipo-0" type="text" ></div>');
+       
     }
 
     if($('#codex0').val() == "APRADIO"){
       $('#cm').val('ACCES POINT RADIO U MASFERRER');
-    //  $('#tipoP').remove();
-    //  $('#divtipo').append('<div id="tipoP" class="form-group"><label>Tipo de periferico</label><input class="form-control" id="cm" readonly="" name="tipo-0" type="text" ></div>');
+  
     }
 
 
     if($('#codex0').val() == "WEBCAM"){
         $('#cm').val('WEB CAM');
-      //  $('#tipoP').remove();
-      //  $('#divtipo').append('<div id="tipoP" class="form-group"><label>Tipo de periferico</label><input class="form-control" id="cm" readonly="" name="tipo-0" type="text" ></div>');
+ 
     }
 
 
@@ -292,10 +300,6 @@
     }
 
   }
-
-
-
-
 
 
 
@@ -318,16 +322,41 @@
 
 
   function pcDisponibles(){
-        var dato = $('#destino-0').val();
+        var dato = $('#laboal').val();
+
+
+      if(dato == "LAB1"){
+        dato = 'lab-01';
+      }
+      if(dato == "LAB2"){
+        dato = 'lab-02';
+      }
+      if(dato == "LAB3"){
+        dato = 'lab-03';
+      }
+      if(dato == "LAB4"){
+        dato = 'lab-04';
+      }
+      if(dato == "LAB5"){
+        dato = 'lab-05';
+      }
+      if(dato == "HW"){
+        dato = 'lab-hw';
+      }
+      if(dato == "RED"){
+        dato = 'lab-red';
+      }
+        
         var html3 = "";
+
       $.ajax({
           dataType: 'JSON',
           method: 'post',
           data: {dato: dato},
-          url: '<?php echo base_url()?>BUY_elements_Controller/pc_unidad',
+          url: '<?php echo base_url()?>BUY_elements_Controller/get_pc_labxlab',
           success: function(data){
            for (var i = 0; i < data.length; i++) {
-              html3 +=  '<option value="'+data[i].identificador+'">'+data[i].identificador+'</option>';
+              html3 +=  '<option value="'+data[i].identificador_lab+'">'+data[i].identificador_lab+'</option>';
            }
            console.log(data);
            $('#unidadesU').append(html3);

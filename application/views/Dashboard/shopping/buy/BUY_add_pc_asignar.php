@@ -269,8 +269,8 @@
         <input type="number"  min="1" class="form-control"  name="10-c">
       </div>
       <div class="es col-md-3">
-        <label>Capacidad (GB):</label>
-        <input type="number"  min="1" class="form-control"  name="11-c">
+        <label>Capacidad disco duro:</label>
+        <input type="text"  class="form-control"  name="11-c">
       </div>
       <div class="es col-md-3">
         <label>Marca disco duro:</label>

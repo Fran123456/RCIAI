@@ -115,6 +115,12 @@
          }
 
 
+          if($datos['tipo'] == 'otro' && $datos['unidad'][0]['id_unidad'] == '37'){
+            
+          require 'BUY_otro_asignar_lab.php';
+         }
+
+
         
 
 

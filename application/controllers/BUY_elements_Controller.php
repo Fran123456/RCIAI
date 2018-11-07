@@ -31,6 +31,12 @@ class BUY_elements_Controller extends CI_Controller {
     return $data;
   }
 
+  public function get_pc_labxlab(){
+     $id = filter_input(INPUT_POST, 'dato');
+    $data = $this->element->labxlab($id);
+    echo json_encode($data);
+  }
+
    public function add_PC($compraA = null, $cantidad = null)
    {
     $compra = $compraA;
@@ -248,6 +254,80 @@ public function otro_asignado_add_new(){
       $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
       redirect(base_url().'add-element-buy');  
   }
+
+
+
+
+  public function otro_asignado_add_lab(){
+    $soldado =  $this->input->post('mejor');
+    $servidorPC = $this->input->post('codex0') .$this->input->post('codex').$this->input->post('codex1');
+    $lugarName = $this->element->get_unidad_unique($this->input->post('destino-0'));
+    if($soldado == 0){
+       //no asignado
+       $data = array(
+       'serial' =>$this->input->post('serial-0'),
+       'nombre' =>$this->input->post('nombre-0'), //tipo si es vga , etc
+       'marca' =>$this->input->post('marca-0'),
+        'capacidad' =>$this->input->post('capacidad-0'),
+        'tipo' =>$this->input->post('codex0'), //tipo de perfericos
+         'velocidad' =>$this->input->post('velocidad-0'),
+       'estatus' =>'En uso',
+       'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
+       'origen' => '4',
+       'destino' =>$this->input->post('destino-0'),
+        'compra_id' =>$this->input->post('idcompra'),
+      );
+       
+       $this->element->add_data($data, 'inventario_bodega');
+    }else{
+      $data = array(
+       'serial' =>$this->input->post('serial-0'),
+       'nombre' =>$this->input->post('nombre-0'), //tipo si es vga , etc
+       'marca' =>$this->input->post('marca-0'),
+        'capacidad' =>$this->input->post('capacidad-0'),
+        'tipo' =>$this->input->post('codex0'), //tipo de perfericos
+         'velocidad' =>$this->input->post('velocidad-0'),
+       'estatus' =>'En uso',
+       'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
+       'origen' => '4',
+       'destino' =>$this->input->post('destino-0'),
+        'compra_id' =>$this->input->post('idcompra'),
+        'pc_servidor_id' => $servidorPC,
+      );
+       $this->element->add_data($data, 'inventario_bodega');
+    }
+
+
+      $unidadxdata = $this->element->unidadxdata($this->input->post('idcompra'), $this->input->post('destino-0'));
+
+     if( count($unidadxdata) == 0){
+
+           $this->unidadxdata_add();
+           $this->buy_edit();
+       }
+       else{
+           $this->unidadxdata_update();
+            $this->buy_edit();
+       }
+
+       //agregamos a lab
+       $labox = array(
+        'identificador_lab' => $servidorPC,
+        'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
+        'origen' => '4',
+        'destino' =>$this->input->post('destino-0'),
+         'serial' =>$this->input->post('serial-0'),
+         'lab' =>$this->input->post('codex0'),
+         'compra_id' => $this->input->post('idcompra'),
+       );
+       $this->element->labo_pc($labox);
+
+
+      $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
+      redirect(base_url().'add-element-buy');  
+  }
+
+
 
 
 

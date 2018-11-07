@@ -10,8 +10,12 @@ class BUY_elements_Model extends CI_Model
     {
 
     }
-
-
+     public function labxlab($ind){
+      
+      $data = $this->db->where('lab', $ind)->get('inventario_lab')->result_array();
+      return $data;
+     }
+   
     function updatePeriferico($id , $data){
        $this->db->where('serial', $id)->update('inventario_bodega', $data);
     }
