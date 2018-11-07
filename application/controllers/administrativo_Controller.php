@@ -673,6 +673,7 @@ class administrativo_Controller extends CI_Controller {
 		$data['software'] = $this->adm->getSoftware($id);
 		$this->session->set_flashdata('url',$id);
 		$this->load->view('Dashboard/administrativo/software',$data);
+		
 	}# fin de mostrarSW
 
 	public function SW($id){
@@ -686,20 +687,22 @@ class administrativo_Controller extends CI_Controller {
 	public function deleteSoftware(){
 		//vamos a llamar la función del modelo que nos eliminara el software seleccionado
 		$id=$this->input->post('valor');
-		$lab=$this->adm->equipo_id($id);
+		$pc=$this->adm->equipo_id($id);
+		$area = $this->input->post('area');
+
 		$result = $this->adm->deleteSoftware($id);
 
          //$result=true;
 		if($result){
 			
 			$this->session->set_flashdata('Exitos','El elemento ha sido eliminado ');
-			redirect(base_url().'administrativo_Controller/mostrarSW/'.$lab[0]['pc_id']);
+			redirect(base_url().'sotfware/'.$pc[0]['pc_id'].'/'.$area);
 			//return true;
 			//$this->editarLab($lab);
 		}else{
 			//return false;
 			$this->session->set_flashdata('Errors','El elemento no ha podido ser eliminado ');
-			redirect(base_url().'administrativo_Controller/mostrarSW/'.$lab[0]['pc_id']);
+			redirect(base_url().'sotfware/'.$pc[0]['pc_id'].'/'.$area);
 		}
 	}//fin de deleteSoftware
 
@@ -714,23 +717,23 @@ class administrativo_Controller extends CI_Controller {
 
 	//función para poder eliminar todos los registros del software de una PC
 	public function deleteAll(){
-		//capturamos el id que mandamos por ajax, el cual nos servira para encontrar el identificador de esa pc
-		$id = $this->input->post('valor2');var_dump($id);
-		//mandamos el id del software para poder obtener el PC_lab_id 
-		//$pc = $this->lab->lab_id($id);
+		//capturamos el id que es el identificador de esa pc
+		$id = $this->input->post('id');
+		$area = $this->input->post('area');
 		//llamamos a la función en el modelo que nos eliminara todo el software
 		$result = $this->adm->deleteAll($id);
 
 		if($result){
 			
 			$this->session->set_flashdata('Exitos','El elemento ha sido eliminado ');
-			redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
+			redirect(base_url().'sotfware/'.$id.'/'.$area);
+			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
 			//return true;
 			//$this->editarLab($lab);
 		}else{
 			//return false;
 			$this->session->set_flashdata('Errors','El elemento no ha podido ser eliminado ');
-			redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
+			redirect(base_url().'sotfware/'.$id.'/'.$area);
 		}
 	}
 
@@ -740,19 +743,14 @@ class administrativo_Controller extends CI_Controller {
 		$id= $this->session->flashdata('url');
 		
 		$descripcion = $this->input->post('descripcion');
-		$empresa = $this->input->post('empresa');
-		$nom_carpeta = $this->input->post('nom_carpeta');
 		$version = $this->input->post('version');
-		$nom_archivo = $this->input->post('nom_archivo');
+		$area = $this->input->post('area');
 
 		//vamos a agregar esos elementos a el software
 		$valores = array(
 			'pc_id' => $id,
 			'nombre' => $descripcion,
-			'empresa' => $empresa,
-			'nom_carpeta' => $nom_carpeta,
-			'version' => $version,
-			'nom_archivo' => $nom_archivo
+			'version' => $version
 
 		);
 
@@ -761,10 +759,12 @@ class administrativo_Controller extends CI_Controller {
 
 		if($result){
 			$this->session->set_flashdata('agregado','El elemento ha sido agregado ');
-			redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
+			redirect(base_url().'sotfware/'.$id.'/'.$area);
+			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id.'/'.$area);
 		}else{
 			$this->session->set_flashdata('error2','El elemento no ha podido ser agregado ');
-			redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
+			redirect(base_url().'sotfware/'.$id.'/'.$area);
+			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id.'/'.$area);
 		}
 	}//fin de guardar
 
@@ -772,23 +772,24 @@ class administrativo_Controller extends CI_Controller {
 	//esta función se encargara de actualizar los datos de los software
 	public function updateSoftware(){
 		$data = array('nombre' => $this->input->post('descripcionE'),
-					  'empresa' => $this->input->post('empresaE'),
-					  'nom_carpeta' => $this->input->post('nom_carpetaE'),
-					  'version' => $this->input->post('versionE'),
-					  'nom_archivo' => $this->input->post('nom_archivoE'), );
+					  'version' => $this->input->post('versionE'), );
 		$id = $this->input->post('id');
+		$area = $this->input->post('areaE');
+		$pc=$this->adm->equipo_id($id);
 
 		//llamamos a la funcion en el modelo para actualizar 
 		$result = $this->adm->updateSoftware($data,$id);
 		if($result){
 			
 			$this->session->set_flashdata('actualizado','El elemento ha sido actualizado ');
-			redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
+			redirect(base_url().'sotfware/'.$pc[0]['pc_id'].'/'.$area);
+			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
 			
 		}else{
 			//return false;
 			$this->session->set_flashdata('Error_update','El elemento no ha podido ser actualizado ');
-			redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
+			redirect(base_url().'sotfware/'.$pc[0]['pc_id'].'/'.$area);
+			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
 		}
 	}//fin de updateSoftware
 

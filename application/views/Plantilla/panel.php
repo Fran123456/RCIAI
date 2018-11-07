@@ -58,7 +58,7 @@
 							<div id="subPages1" class="collapse ">
 								<ul class="nav">
 									<li><a href="<?php echo base_url()?>mantenimiento-administrativo" class="">Inventario administrativo</a></li>
-									<li><a href="<?php echo base_url()?>software-administrativo" class="">Editar software</a></li>
+									<!--<li><a href="<?php //echo base_url()?>software-administrativo" class="">Editar software</a></li>-->
 
 								</ul>
 							</div>

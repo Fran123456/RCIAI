@@ -242,8 +242,14 @@
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<label> Modelo y serie monitor</label>
-					<input type="text" class="form-control" id="serie" readonly="" value="<?php echo  empty($key->serie) ? 'no disponible' : $key->serie   ?>">
+					<label>Tipo monitor</label>
+					<input type="text" class="form-control" id="tipo" readonly="" value="<?php echo empty($key->tipo) ? 'no disponible' : $key->tipo  ?>">
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Modelo del monitor</label>
+					<input type="text" class="form-control" id="modelo" readonly="" value="<?php echo empty($key->modelo) ? 'no disponible' : $key->modelo  ?>">
 				</div>
 			</div>
 			<div class="col-md-3">

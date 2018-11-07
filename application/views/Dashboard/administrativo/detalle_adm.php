@@ -226,10 +226,18 @@
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<label> Modelo y serie monitor</label>
+					<label>Modelo del monitor</label>
+					<input type="text" class="form-control" id="modelo" readonly="" value="<?php echo empty($key->modelo) ? 'no disponible' : $key->modelo  ?>">
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Serie del monitor</label>
 					<input type="text" class="form-control" id="serie" readonly="" value="<?php echo empty($key->serie) ? 'no disponible' : $key->serie  ?>">
 				</div>
 			</div>
+
 			<div class="col-md-3">
 				<div class="form-group">
 					<label >Disco fisico 1</label>
@@ -238,7 +246,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<label >Capacidad (GB)</label>
+					<label >Capacidad </label>
 					<input type="text" class="form-control" id="capacidad" readonly="" value="<?php echo empty($key->capacidad) ? 'no disponible' : $key->capacidad  ?>">
 				</div>
 			</div>
@@ -272,7 +280,7 @@
 							<thead class="thead-dark">
 								<tr>
 									<th style="width: 200px" scope="col">Serial</th>
-									<th style="width: 200px" scope="col">Nombre</th>
+									<th style="width: 200px" scope="col">Tipo de periferico</th>
 									<th style="width: 200px" scope="col">Tipo</th>
 									<th style="width: 200px" scope="col">Marca</th>
 								</tr>
@@ -283,12 +291,15 @@
 										<td>
 											<?php echo empty($perifericosAD[$i]['serial']) ? '<span style= "color:red">no disponible</span>' : $perifericosAD[$i]['serial'] ; ?>
 										</td>
-										<td>
-											<?php echo empty($perifericosAD[$i]['nombre']) ?  '<span style= "color:red">no disponible</span>' : $perifericosAD[$i]['nombre'] ; ?>
-										</td>
+
 										<td>
 											<?php echo empty($perifericosAD[$i]['tipo']) ? '<span style= "color:red">no disponible</span>' : $perifericosAD[$i]['tipo'] ; ?>
 										</td>
+
+										<td>
+											<?php echo empty($perifericosAD[$i]['nombre']) ?  '<span style= "color:red">no disponible</span>' : $perifericosAD[$i]['nombre'] ; ?>
+										</td>
+										
 										<td>
 											<?php echo empty($perifericosAD[$i]['marca']) ? '<span style= "color:red">no disponible</span>' : $perifericosAD[$i]['marca'] ; ?>
 										</td>

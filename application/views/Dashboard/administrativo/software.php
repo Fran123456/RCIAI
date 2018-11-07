@@ -45,7 +45,8 @@
 				success: function(data){
 					console.log(data);
 					//mandamos los datos al modal para que sean editados
-					$('#id').val(data[0]['pc_id']);
+					//$('#id').val(data[0]['pc_id']);
+					$('#id').val(id);
 					$('#descripcionE').val(data[0]['nombre']);
 					$('#empresaE').val(data[0]['empresa']);
 					$('#nom_carpetaE').val(data[0]['nom_carpeta']);
@@ -105,6 +106,29 @@
             </script>
 			<?php endif; ?>
 
+			<!-- al actualizar un elemento -->
+			<?php if($this->session->flashdata('actualizado')): ?>
+			<script>
+                swal(
+				  'Éxito!',
+				  'El registro ha sido actualizado!',
+				  'success'
+				)
+            </script>
+			<?php endif; ?>
+			
+			<?php if($this->session->flashdata('Error_update')): ?>
+			<script>
+                swal(
+				  'Atención!',
+				  'El registro no ha podido ser actualizado!',
+				  'error'
+				)
+            </script>
+			<?php endif; ?>
+
+			<!-- ----------------------------------------------- -->
+
 			<?php if($this->session->flashdata('error2')): ?>
 			<script>
                 swal(
@@ -115,7 +139,7 @@
             </script>
 			<?php endif; ?>
 
-
+			<!-- ----------------------------------------------- -->
 
 			<div class="col-md-12">
 				<center>
@@ -145,36 +169,22 @@
 					      	<!--Agregamos un formulario para guardar los elementos del software-->
 						    <form method="post" action="<?php echo base_url()?>agregar-sw">
 
+						    	<input type="hidden" name="area" value="<?php echo $this->uri->segment(3) ?>">
+
 						      	<div class="modal-body">
 						      		<div class="row">
-							      			<div class="form-group">
-							      				<div class="col-md-4">
-							      				<label for="descripcion">software</label>
+						      			<div class="form-group">
+						      				<div class="col-md-4">
+							      				<label for="descripcion">Nombre de software</label>
 							       				<input type="text" id="descripcion" class="form-control" name="descripcion" required="" placeholder="Digitar">
 							      			</div>
 							      			<div class="col-md-4">
-							      				<label for="empresa">Empresa</label>
-							       				<input type="text" id="empresa" class="form-control" name="empresa"  placeholder="Digitar">
-							      			</div>
-							      			<div class="col-md-4">
-							      				<label for="nom_carpeta">Nombre de la carpeta</label>
-							       				<input type="text" id="nom_carpeta" class="form-control" name="nom_carpeta" required="" placeholder="Digitar">
-							      			</div>
-						      			</div>
-						      		</div>
-						      		<br>
-						      		<div class="row">
-						      			<div class="col-md-3">
-						      				<div class="form-group">
-						      					<label for="version">Versión</label>
+							      				<label for="version">Versión</label>
 						       					<input type="text" id="version" class="form-control" name="version"  placeholder="Digitar">
-						      				</div>
-						      			</div>
-						      			<div class="col-md-3">
-						      				<label for="nom_archivo">Nombre del archivo</label>
-						       				<input type="text" id="nom_archivo" class="form-control" name="nom_archivo" required="" placeholder="Digitar">
+							      			</div>
 						      			</div>
 						      		</div>
+						      		
 							    </div>
 						      	<div class="modal-footer">
 						        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -204,6 +214,7 @@
 				        ¿Seguro quieres eliminar este registro?
 
 				        	<input id="valor" type="hidden" name="valor">
+				        	<input id="area" type="hidden" name="area" value="<?php echo $this->uri->segment(3) ?>">
 
 				      </div>
 				      <div class="modal-footer">
@@ -233,7 +244,8 @@
 				      <form method="post" action="<?php echo base_url()?>eliminar_todoAdm">
 				      <div class="modal-body">
 				        ¿Seguro quieres eliminar TODOS los registros?
-						<input type="hidden" name="valor2" value="<?php echo $this->uri->segment(3); ?>">
+						<input type="hidden" name="area" value="<?php echo $this->uri->segment(3); ?>">
+						<input type="hidden" name="id" value="<?php echo $this->uri->segment(2); ?>">
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -259,36 +271,20 @@
 					      	</div>
 					      	<!--Agregamos un formulario para guardar los elementos del software-->
 						    <form method="post" action="<?php echo base_url()?>actualizar-sw">
-								<!--input escondido que tendra el id de la pc-->
+								<!--input escondido que tendra el id de la pc y el area a la que pertenece-->
 								<input type="hidden" id="id" name="id" >
+								<input type="hidden" id="areaE" name="areaE" value="<?php echo $this->uri->segment(3) ?>" >
 						      	<div class="modal-body">
 						      		<div class="row">
-							      			<div class="form-group">
-							      				<div class="col-md-4">
+						      			<div class="form-group">
+						      				<div class="col-md-4">
 							      				<label for="descripcionE">Descripción</label>
 							       				<input type="text" id="descripcionE" class="form-control" name="descripcionE" required="" placeholder="Digitar">
 							      			</div>
 							      			<div class="col-md-4">
-							      				<label for="empresaE">Empresa</label>
-							       				<input type="text" id="empresaE" class="form-control" name="empresaE"  placeholder="Digitar">
-							      			</div>
-							      			<div class="col-md-4">
-							      				<label for="nom_carpetaE">Nombre de la carpeta</label>
-							       				<input type="text" id="nom_carpetaE" class="form-control" name="nom_carpetaE" required="" placeholder="Digitar">
-							      			</div>
-						      			</div>
-						      		</div>
-						      		<br>
-						      		<div class="row">
-						      			<div class="col-md-3">
-						      				<div class="form-group">
-						      					<label for="versionE">Versión</label>
+							      				<label for="versionE">Versión</label>
 						       					<input type="text" id="versionE" class="form-control" name="versionE"  placeholder="Digitar">
-						      				</div>
-						      			</div>
-						      			<div class="col-md-3">
-						      				<label for="nom_archivoE">Nombre del archivo</label>
-						       				<input type="text" id="nom_archivoE" class="form-control" name="nom_archivoE" required="" placeholder="Digitar">
+							      			</div>
 						      			</div>
 						      		</div>
 							    </div>
@@ -321,13 +317,10 @@
 							<thead class="thead-dark">
 								<tr>
 									<th></th>
-									<th style="width: 200px" scope="col">Software</th>
-									<th style="width: 200px" scope="col">Empresa</th>
-									<th style="width: 240px" scope="col">Nombre de la carpeta</th>
-									<th style="width: 200px" scope="col">Version</th>
-									<th style="width: 200px" scope="col">Nombre del archivo</th>
-									<th style="width: 10px" scope="col">Editar</th>
-									<th style="width: 10px" scope="col">Eliminar</th>
+									<th style="width: 450px" scope="col">Software</th>
+									<th style="width: 300px" scope="col">Version</th>
+									<th style="width: 200px" scope="col">Editar</th>
+									<th style="width: 100px" scope="col">Eliminar</th>
 								</tr>
 							</thead>
 							<tbody style="cursor:pointer;">
@@ -339,18 +332,11 @@
 										<td>
 											<?php echo empty($software[$i]['nombre']) ? '<span style= "color:red">no disponible</span>' : $software[$i]['nombre']; ?>
 										</td>
-										<td>
-											<?php echo empty($software[$i]['empresa']) ? '<span style= "color:red">no disponible</span>' : $software[$i]['empresa']; ?>
-										</td>
-										<td>
-											<?php echo empty($software[$i]['nom_carpeta']) ? '<span style= "color:red">no disponible</span>' : $software[$i]['nom_carpeta'] ; ?>
-										</td>
+										
 										<td>
 											<?php echo empty($software[$i]['version']) ? '<span style= "color:red">no disponible</span>' : $software[$i]['version']; ?>
 										</td>
-										<td>
-											<?php echo empty($software[$i]['nom_archivo']) ? '<span style= "color:red">no disponible</span>' : $software[$i]['nom_archivo'] ; ?>
-										</td>
+										
 										<td>
 											<button id="openModalE" onclick="openModalEdit(<?php echo $software[$i]['id'] ?>);" type="button" class="btn btn-info" ><i class="fa fa-pencil" aria-hidden="true"></i></button>
 										</td>
