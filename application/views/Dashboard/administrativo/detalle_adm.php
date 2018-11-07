@@ -218,12 +218,12 @@
 					<input type="text" class="form-control" id="monitor" readonly="" value="<?php echo empty($key->monitor_marca) ? 'no disponible' : $key->monitor_marca  ?>">
 				</div>
 			</div>
-			<div class="col-md-3">
+			<!--<div class="col-md-3">
 				<div class="form-group">
 					<label>Tipo monitor</label>
 					<input type="text" class="form-control" id="tipo" readonly="" value="<?php echo empty($key->tipo) ? 'no disponible' : $key->tipo  ?>">
 				</div>
-			</div>
+			</div>-->
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Modelo del monitor</label>
