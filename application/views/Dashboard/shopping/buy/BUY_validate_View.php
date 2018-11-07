@@ -136,8 +136,8 @@
     var dato = $('#uni').val();
     if(dato == 37){
       select = $('#tipo').remove();
-      var html = '<input type="text" name="tipo" id="tipo"  value="PC" readonly class="form-control">';
-   //   var html = '<select  class="form-control" name="tipo" id="tipo"><option value="PC">PC</option><option value="otro">UPS, Acces Point, Web Cam, Impresores</option></select>';
+    //  var html = '<input type="text" name="tipo" id="tipo"  value="PC" readonly class="form-control">';
+     var html = '<select  class="form-control" name="tipo" id="tipo"><option value="PC">PC</option><option value="otro">UPS, Acces Point, Web Cam, Impresores</option></select>';
 
        $("#sel").append(html);
 

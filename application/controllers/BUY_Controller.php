@@ -49,7 +49,7 @@ class BUY_Controller extends CI_Controller {
      'observaciones' => $this->input->post('observaciones'),
      'usuario_id' => $this->session->userdata('id'),
     );
-    print_r($data);
+    
  
     $this->BUY->add_buy($data);
     $this->session->set_flashdata('item','COMPRA CREADA CORRECTAMENTE'); 

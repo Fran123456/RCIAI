@@ -204,7 +204,7 @@
       </div>
       <div class="es col-md-4">
         <label>Nucleos:</label>
-        <select class="form-control" name="5-e"><option value="64 bits">64 bits</option></select>
+        <select class="form-control" name="5-e"><option value="64 bits">64 bits</option><option value="32 bits">32 bits</option></select>
       </div>
       <div class="es col-md-3">
         <label>Memoria física (GB):</label>
@@ -238,11 +238,11 @@
       </div>
       <div class="es col-md-3">
         <label>Modelo motherboard:</label>
-        <input type="text" class="form-control" value="Sin grupo" name="3-c">
+        <input type="text" class="form-control" name="3-c">
       </div>
       <div class="es col-md-3">
         <label>Marca RAM:</label>
-        <input type="text" class="form-control" value="Sin grupo" name="4-c">
+        <input type="text" class="form-control"  name="4-c">
       </div>
       <div class="es col-md-3">
         <label>Dirección IP:</label>
@@ -269,8 +269,8 @@
         <input type="number"  min="1" class="form-control"  name="10-c">
       </div>
       <div class="es col-md-3">
-        <label>Capacidad (GB):</label>
-        <input type="number"  min="1" class="form-control"  name="11-c">
+        <label>Capacidad disco duro:</label>
+        <input type="text"  class="form-control"  name="11-c">
       </div>
       <div class="es col-md-3">
         <label>Marca disco duro:</label>
@@ -297,15 +297,16 @@
                           <div class="col-md-8">
                                <select size="14" id="exampleFormControlSelect2" name="select-A" v-model='seleccionPC' class="form-control" multiple>
                                   <option v-for="item in lists" selected value="{{item.keep}}">{{  item.keep}}</option>
-                                  <option value="AUDIFONOS" >AUDIFONOS</option>
+                                  
+                                  <option value="AUDIFONOS">AUDIFONOS</option>
+
                                  <!-- <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option>
                                   <option value="IMPRESORES-MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
                                   <option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option>
                                   <option value="SCANNER">SCANNER</option>-->
                                   <option value="PARLANTES">PARLANTES</option>
-                                  <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
-                                  <option value="UPS">UPS</option>
-                                  <option value="WEBCAN">WEBCAN</option>
+                                  <!--<option value="UPS">UPS</option>-->
+                                 <!-- <option value="WEBCAN">WEBCAN</option>-->
                                   <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
                                   <option value="MEMORIA-SD">MEMORIA-SD</option>
                                   <option value="PROYECTOR">PROYECTOR</option>
@@ -447,7 +448,7 @@
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>Tipo</label>
-                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="{{index}}" required class="form-control"  name="nombre-{{item3}}-{{index}}">
+                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="" required class="form-control"  name="nombre-{{item3}}-{{index}}">
                                     </div>
                                   </div>
                                   <div class="col-md-4">

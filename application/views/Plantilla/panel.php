@@ -27,7 +27,7 @@
 									<li><a href="<?php echo base_url()?>shopping-service" class="">Crea una compra de servicio</a></li>
 									<li><a href="<?php echo base_url()?>shopping-admin" class="">Administración de compra fisica</a></li>
 									<li><a href="<?php echo base_url()?>shopping-services" class="">Administración de servicio</a></li>
-									<li><a href="<?php echo base_url()?>shopping-others" class="">Compras independientes</a></li>
+									<!--<li><a href="<?php echo base_url()?>shopping-others" class="">Compras independientes</a></li>-->
 								</ul>
 							</div>
 						</li>
