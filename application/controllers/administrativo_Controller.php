@@ -532,6 +532,9 @@ class administrativo_Controller extends CI_Controller {
 			case 'otros_proyectos':
 				return 'Otros proyectos';
 				break;
+			case 'general':
+				return 'Listado General administrativo';
+				break;
 		}
 
 	}//fin de nomUnidad

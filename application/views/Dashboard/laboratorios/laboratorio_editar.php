@@ -184,7 +184,7 @@
 							      			</div>
 							      			<div class="col-md-4">
 							      				<label for="nom_carpeta">Nombre de la carpeta</label>
-							       				<input type="text" id="nom_carpeta" class="form-control" name="nom_carpeta" required="" placeholder="Digitar">
+							       				<input type="text" id="nom_carpeta" class="form-control" name="nom_carpeta"  placeholder="Digitar">
 							      			</div>
 						      			</div>
 						      		</div>
@@ -198,7 +198,7 @@
 						      			</div>
 						      			<div class="col-md-3">
 						      				<label for="nom_archivo">Nombre del archivo</label>
-						       				<input type="text" id="nom_archivo" class="form-control" name="nom_archivo" required="" placeholder="Digitar">
+						       				<input type="text" id="nom_archivo" class="form-control" name="nom_archivo"  placeholder="Digitar">
 						      			</div>
 						      		</div>
 							    </div>
