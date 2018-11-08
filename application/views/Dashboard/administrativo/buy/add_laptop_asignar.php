@@ -9,114 +9,114 @@
 
 <script type="text/javascript">
 
-function serialesA(){
- var seriales = "";
- var dato1 = $('#serial').val();
- var co = $('#codex0').val()+$('#codex').val()+$('#codex1').val();
- var dato = dato1;
- $.ajax({
-    type: 'ajax',
-    method: 'post',
-    url: '<?php echo base_url() ?>BUY_elements_Controller/serial__',
-    data: {dato: dato},
-    async: false,
-    dataType: 'json',
-    success: function(data){
-      seriales = data;
-    },
-    error: function(){
-        alert("error");
-    }
+   var html = "";
+   var datos;
 
- });
- return seriales;
-}
-
-function activar(){
-    $('#en').attr("disabled", false);
-}
-
-function definitiva(){
+  function serialesA(){
+   var seriales = "";
+   var dato1 = $('#serial').val();
    var co = $('#codex0').val()+$('#codex').val()+$('#codex1').val();
-   $('#codex3').val(co);
-    var  seriales = serialesA();
-     var codigos = codigo();
-     console.log(seriales);
-     var contador = 0;
+   var dato = dato1;
+   $.ajax({
+      type: 'ajax',
+      method: 'post',
+      url: '<?php echo base_url() ?>BUY_elements_Controller/serial__',
+      data: {dato: dato},
+      async: false,
+      dataType: 'json',
+      success: function(data){
+        seriales = data;
+      },
+      error: function(){
+          alert("error");
+      }
 
-     if($("#serial").val() == ""  ){
-               $("#serial").addClass("back");
-               $("#error2").remove();
-               $("#errorlabels").append("<span id='error2' style='color:red;'> - Vacio</span>");
-               contador++;
-     }
+   });
+   return seriales;
+ }
 
+ function activar(){
+      $('#en').attr("disabled", false);
+ }
 
+ function definitiva(){
+     var co = $('#codex0').val()+$('#codex').val()+$('#codex1').val();
+     $('#codex3').val(co);
+      var  seriales = serialesA();
+       var codigos = codigo();
+       console.log(seriales);
+       var contador = 0;
 
-     if($("#codex").val() == ""){
-              $("#codex").addClass("back");
-               $("#error").remove();
-               $("#errorlabel").append("<span id='error' style='color:red;'> - Vacio</span>");
-            contador++;
-     }
-
-
-      if(seriales.length > 0){
-          $("#serial").addClass("back");
-               $("#error2").remove();
-               $("#errorlabels").append("<span id='error2' style='color:red;'> - Ya utilizado</span>");
-       contador++;
-     }
-
-     if(codigos.length > 0){
-          $("#codex").addClass("back");
-               $("#error").remove();
-               $("#errorlabel").append("<span id='error' style='color:red;'> - Ya utilizado</span>");
-            contador++;
-     }
-
-     if(contador == 0){
-       $("#error").remove();
-       $("#error2").remove();
-       $("#codex").removeClass("back");
-       $("#serial").removeClass("back");
-       activar();
-     }
-
-}
+       if($("#serial").val() == ""  ){
+                 $("#serial").addClass("back");
+                 $("#error2").remove();
+                 $("#errorlabels").append("<span id='error2' style='color:red;'> - Vacio</span>");
+                 contador++;
+       }
 
 
 
-function codigo(){
- var dato1 = $('#codex0').val()+$('#codex').val()+$('#codex1').val();
- var dato = dato1;
- var valores;
- $.ajax({
-    type: 'ajax',
-    method: 'post',
-    url: '<?php echo base_url() ?>BUY_elements_Controller/codigosAdmin',
-    data: {dato: dato},
-    async: false,
-    dataType: 'json',
-    success: function(data){
-       valores = data;
-    },
-    error: function(){
-        alert("error");
-    }
+       if($("#codex").val() == ""){
+                $("#codex").addClass("back");
+                 $("#error").remove();
+                 $("#errorlabel").append("<span id='error' style='color:red;'> - Vacio</span>");
+              contador++;
+       }
 
- });
- return valores;
-}
+
+        if(seriales.length > 0){
+            $("#serial").addClass("back");
+                 $("#error2").remove();
+                 $("#errorlabels").append("<span id='error2' style='color:red;'> - Ya utilizado</span>");
+         contador++;
+       }
+
+       if(codigos.length > 0){
+            $("#codex").addClass("back");
+                 $("#error").remove();
+                 $("#errorlabel").append("<span id='error' style='color:red;'> - Ya utilizado</span>");
+              contador++;
+       }
+
+       if(contador == 0){
+         $("#error").remove();
+         $("#error2").remove();
+         $("#codex").removeClass("back");
+         $("#serial").removeClass("back");
+         activar();
+       }
+
+ }
+
+
+
+  function codigo(){
+   var dato1 = $('#codex0').val()+$('#codex').val()+$('#codex1').val();
+   var dato = dato1;
+   var valores;
+   $.ajax({
+      type: 'ajax',
+      method: 'post',
+      url: '<?php echo base_url() ?>BUY_elements_Controller/codigosAdmin',
+      data: {dato: dato},
+      async: false,
+      dataType: 'json',
+      success: function(data){
+         valores = data;
+      },
+      error: function(){
+          alert("error");
+      }
+
+   });
+   return valores;
+ }
+
 </script>
 
-<form method="post" action="<?php echo base_url()?>BUY_elements_Controller/laptop_nuevo_add">
+<form method="post" action="<?php echo base_url()?>AddAdmin_Controller/laptop_nuevo_add">
  <div>
-  <input type="hidden" name="idcompra" value="<?php echo $datos['data'][0]['id_compra'] ?>">
-  <input type="hidden" name="cantidad" value="<?php echo $datos['data'][0]['cantidad'] ?>">
-   <input type="hidden" name="rest" value="<?php echo $datos['data'][0]['rest'] ?>">
-   <input type="hidden" name="n_factura" value="<?php echo $datos['data'][0]['n_factura'] ?>">
-   <input type="hidden" name="tipo" value="<?php echo $datos['tipo'] ?>">
+
    <input type="hidden" id="codex3" name="codex3">
 </div>
 
@@ -211,7 +211,7 @@ function codigo(){
         <input type="number"  min="1" class="form-control"  name="10-c">
       </div>
       <div class="es col-md-3">
-        <label>Capacidad de disco duro:</label>
+        <label>Capacidad disco duro:</label>
         <input type="text"  class="form-control"  name="11-c">
       </div>
       <div class="es col-md-3">
@@ -248,19 +248,19 @@ function codigo(){
                               <div id="diverror" class="col-md-1 col-sm-1">
                                   <div id="cod" class="form-group">
                                     <label>&nbsp;</label>
-                                    <input type="text" required="" value="LAP" id="codex0" class="form-control" name="codigopc">
+                                    <input type="text" required="" value="LAP" id="codex0" class="form-control" name="codigopc1">
                                   </div>
                                 </div>
                                 <div id="diverror" class="col-md-2 col-sm-2 ">
                                   <label id="errorlabel">Codigo</label>
                                   <div id="cod" class="form-group">
-                                    <input type="text" required=""  id="codex" class="form-control" name="codigopc">
+                                    <input type="text" required=""  id="codex" class="form-control" name="codigopc2">
                                   </div>
                                 </div>
-                                 <div id="diverror" class="col-md-1 col-sm-1">
+                                 <div id="diverror" class="col-md-2 col-sm-2">
                                   <label >&nbsp;</label>
                                   <div id="cod" class="form-group">
-                                    <input type="text" required="" value="USAM" id="codex1" class="form-control" name="codigopc">
+                                    <input type="text" required="" value="USAM" id="codex1" class="form-control" name="codigopc3">
                                   </div>
                                 </div>
                             </div>
@@ -268,7 +268,7 @@ function codigo(){
                                 <div class="col-md-4">
                                   <div class="form-group">
                                     <label>Encargado</label>
-                                    <input type="text"  class="form-control" value="" name="encargado">
+                                    <input  type="text"  class="form-control" value="" name="encargado">
                                   </div>
                                 </div>
                                 <div class="col-md-4">

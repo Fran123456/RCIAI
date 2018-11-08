@@ -151,6 +151,20 @@ public function laptop_nuevo_add(){
           $this->buy_edit();
      }
 
+		 $data = array(
+
+		 'serial' => $this->input->post('serial'),
+		 'marca' => $this->input->post('marca'),
+		 'tipo' => 'LAPTOP',
+		 'estatus' => 'En uso',
+		 'fecha_ingreso' => $this->input->post('ingreso-1'),
+		 'origen' => $this->input->post('OrigenPC_Falso-1'),
+		 'destino' => $this->input->post('destino-0'),
+
+	 );
+
+				$this->element->add_periferico_nuevo($data);
+
        $this->catch_info_pc();
        $this->generate_admin_pc();
 
@@ -252,7 +266,7 @@ public function otro_asignado_add_new(){
 
 
       $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
-      redirect(base_url().'add-element-buy');  
+      redirect(base_url().'add-element-buy');
   }
 
 
@@ -277,7 +291,7 @@ public function otro_asignado_add_new(){
        'destino' =>$this->input->post('destino-0'),
         'compra_id' =>$this->input->post('idcompra'),
       );
-       
+
        $this->element->add_data($data, 'inventario_bodega');
     }else{
       $data = array(
@@ -324,7 +338,7 @@ public function otro_asignado_add_new(){
 
 
       $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
-      redirect(base_url().'add-element-buy');  
+      redirect(base_url().'add-element-buy');
   }
 
 
@@ -379,7 +393,7 @@ public function otro_asignado_add_new(){
        'origen' => '4',
        'destino' =>$this->input->post('destino-0'),
         'compra_id' =>$this->input->post('idcompra'),
-         'pc_servidor_id ' => $servidorPC,
+         'pc_servidor_id ' =>$this->input->post('unidadesU') ,
       );
       $this->element->add_data($data, 'inventario_bodega');
     }
@@ -411,7 +425,7 @@ public function otro_asignado_add_new(){
 
 
       $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
-      redirect(base_url().'add-element-buy');  
+      redirect(base_url().'add-element-buy');
   }
 
 
@@ -599,7 +613,7 @@ public function disco_asignado_add(){
         'modelo_placa' => $this->input->post('3-c'),
         'marca_ram' => $this->input->post('4-c'),
     );
-       
+
 
         $this->element->add_data($descripcion, 'descripcion_sistema');
        $this->element->add_data($red, 'adaptador_red');

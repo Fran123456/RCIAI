@@ -71,7 +71,7 @@ $route['404_override'] = '';
 $route['shopping'] = 'shopping_Controller';
 $route['showUnidades'] = 'shopping_Controller/showUnidadesAjax';
 $route['shopping-adding'] = 'shopping_Controller/BuyCaso1';
-$route['shopping-success'] = 'shoppingAdd_Controller/add_'; 
+$route['shopping-success'] = 'shoppingAdd_Controller/add_';
 $route['shopping-service'] = 'shoppingService_Controller';
 $route['service-adding'] = 'shoppingService_Controller/add__';
 $route['adduser']='profile_Controller/addUserAjax';
@@ -80,14 +80,21 @@ $route['updateuser']='profile_Controller/updateUserAjax';
 $route['deleteuser']='profile_Controller/deleteUserAjax';
 
 
-//compra para un elemento sin aumento 
-$route['shopping-others'] = 'BUY_Controller/indexComplement'; 
+//compra para un elemento sin aumento
+$route['shopping-others'] = 'BUY_Controller/indexComplement';
 
 
 //-----------------------------
 $route['shopping-admin'] = 'shopping/index';
 $route['showcompras'] = 'shopping/showComprasAjax';
 $route['editcompra'] = 'shopping/editComprasAjax';
+
+
+
+//sin compra para administracion
+$route['get-element'] = 'AddAdmin_Controller/add_PC';
+$route['element-add'] = 'AddAdmin_Controller/validate_buy';
+
 
 
 //compras nuevas y asignadas 18/10/2018 - RUTAS HECHAS POR FRANCISCO NAVAS

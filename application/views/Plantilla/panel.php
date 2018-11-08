@@ -18,7 +18,7 @@
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="fa fa-shopping-cart"></i> <span>Compra</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									
+
 									<li><a href="<?php echo base_url()?>add-buy" class="">Agrega compra fisica</a></li>
 									<li><a href="<?php echo base_url()?>add-element-buy" class="">Agrega elemento a compra</a></li>
 									<li><a href="<?php echo base_url()?>compras-pendientes" class="">Compras pendiente</a></li>
@@ -50,7 +50,7 @@
 								</ul>
 							</div>
 						</li>
-						
+
 						<!-- administrativo -->
 						<?php if($this->session->userdata('rol') == 'administrador' || $this->session->userdata('rol') == 'super usuario' ): ?>
 						<li>
@@ -58,6 +58,7 @@
 							<div id="subPages1" class="collapse ">
 								<ul class="nav">
 									<li><a href="<?php echo base_url()?>mantenimiento-administrativo" class="">Inventario administrativo</a></li>
+									<li><a href="<?php echo base_url()?>get-element" class="">Agregar a inventario</a></li>
 									<!--<li><a href="<?php //echo base_url()?>software-administrativo" class="">Editar software</a></li>-->
 
 								</ul>
@@ -90,7 +91,7 @@
 						</li>
 						<?php endif; ?>
 
-					<!-- Inventario de audio visuales  -->	
+					<!-- Inventario de audio visuales  -->
 					<?php if($this->session->userdata('rol') == 'administrador' || $this->session->userdata('rol') == 'super usuario' ): ?>
 
 						<li>

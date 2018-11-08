@@ -31,11 +31,10 @@
     <?php require 'application/views/Plantilla/panel.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL MENU DESPLEGABLE-->
 
     <!--CONTENIDO DE LA APLICACION-->
-	
-	
+
 
 	<?php foreach($detalle as $key) {?>
-	
+
 	<div class="content1">
 		<div class="row">
 			<div class="col-md-12">
@@ -84,26 +83,30 @@
 			</div>
 		</div>
 
-		<!--  Información sobre la compra -->
-		<div class="row">
-			<div class="col-md-12">
-				<center>
-					<h3>Información de Compra</h3>
-				</center>
-			</div>
-			<div class="col-md-4">
-				<div class="form-group">
-					<label>Fecha de compra</label>
-					<input type="text" id="fecha_compra" class="form-control" readonly="" value="<?php echo empty($key->fecha_compra) ?  'no disponible' :$key->fecha_compra ?>">
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="form-group">
-					<label>Numero de factura</label>
-					<input type="text" id="factura" class="form-control" readonly="" value="<?php echo empty($key->n_factura) ? 'no disponible' : $key->n_factura  ?>">
-				</div>
+
+
+	<!--  Información sobre la compra -->
+	<div class="row">
+		<div class="col-md-12">
+			<center>
+				<h3>Información de Compra</h3>
+			</center>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label>Fecha de compra</label>
+				<input type="text" id="fecha_compra" class="form-control" readonly="" value="<?php echo empty($key->fecha_compra) ?  'no disponible' :$key->fecha_compra ?>">
 			</div>
 		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label>Numero de factura</label>
+				<input type="text" id="factura" class="form-control" readonly="" value="<?php echo empty($key->n_factura) ? 'no disponible' : $key->n_factura  ?>">
+			</div>
+		</div>
+	</div>
+
+
 
 		<!--  Descripción del sistema que se encuentra en la tabla descripcion_sistema  -->
 		<div class="row">
@@ -299,7 +302,7 @@
 										<td>
 											<?php echo empty($perifericosAD[$i]['nombre']) ?  '<span style= "color:red">no disponible</span>' : $perifericosAD[$i]['nombre'] ; ?>
 										</td>
-										
+
 										<td>
 											<?php echo empty($perifericosAD[$i]['marca']) ? '<span style= "color:red">no disponible</span>' : $perifericosAD[$i]['marca'] ; ?>
 										</td>
