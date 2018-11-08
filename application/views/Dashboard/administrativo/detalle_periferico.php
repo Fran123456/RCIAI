@@ -132,6 +132,12 @@
 						<input type="text" class="form-control" id="destinoDDE" readonly="" value="<?php echo empty($key->destino[0]['unidad']) ? 'no disponible' : $key->destino[0]['unidad']  ?>">
 					</div>
 				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Equipo asignado</label>
+						<input type="text" class="form-control" id="destinoDDE" readonly="" value="<?php echo empty($key->pc_servidor_id) ? 'no disponible' : $key->pc_servidor_id  ?>">
+					</div>
+				</div>
 			</div>
 			<?php } ?>
 		<?php } else {?>
