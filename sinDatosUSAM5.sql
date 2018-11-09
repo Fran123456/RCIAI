@@ -434,7 +434,9 @@ INSERT INTO `unidad` (`id_unidad`, `unidad`) VALUES
 (33, 'Almacen y Bodega'),
 (34, 'Celula de Quimica'),
 (35, 'Proyecto USAID'),
-(36, 'Otros proyectos');
+(36, 'Otros proyectos'),
+(37, 'laboratorios'),
+(38, 'sin origen');
 
 -- --------------------------------------------------------
 
