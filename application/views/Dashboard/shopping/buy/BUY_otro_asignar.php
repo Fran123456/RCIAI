@@ -5,9 +5,17 @@
   .back{
     border: 1px solid red;
   }
+
+  .reds{
+    color: red;
+  }
 </style>
 
+
+
 <script type="text/javascript">
+
+
 
 
    var html = "";
@@ -234,6 +242,7 @@
                                   </div>
                         </div>
                         <div class="col-md-2">
+                          <input type="hidden" id="centinelita" >
                             <div class="form-group">
                                  <label>Asignar a PC</label>
                                  <select class="form-control" id="chek" onchange="cambioAsignar();"><option value="no">No asignar</option><option value="asignar">Asignar a PC</option></select>
@@ -254,11 +263,19 @@
             <button id="en" disabled="" type="submit" class="btn btn-success">Guardar</button>
 
       </div>
-   
+
    <input type="hidden" name="mejor" id="mejor" value="0">
 </form>
 
 <script type="text/javascript">
+
+
+
+
+
+
+
+
   $("#cm").val($('#codex0').val());
   function cambiar(){
 
@@ -307,10 +324,13 @@
   function cambioAsignar(){
     if($('#chek').val() == "asignar"){
         $('#mejor').val('1');
-            var html2 ='<div id="destroy" class="col-md-3"><div class="form-group"><label>PC disponibles</label><select id="unidadesU" name="unidadesU" class="form-control"></select></div></div>';
+            var html2 ='<div id="destroy" class="col-md-3"><div class="form-group"><label id="er">PC disponibles</label><select id="unidadesU" name="unidadesU" class="form-control"></select></div></div>';
         $('#temp').append(html2);
 
         pcDisponibles();
+
+
+
     }
     else{
        $('#mejor').val('0');
@@ -328,6 +348,7 @@
           data: {dato: dato},
           url: '<?php echo base_url()?>BUY_elements_Controller/pc_unidad',
           success: function(data){
+            $('#centinelita').val(data.length);
            for (var i = 0; i < data.length; i++) {
               html3 +=  '<option value="'+data[i].identificador+'">'+data[i].identificador+'</option>';
            }

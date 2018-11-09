@@ -149,6 +149,7 @@
                                   </div>
                          </div>
                          <div class="col-md-3">
+                           
                            <div class="form-group">
                                     <label>Equipos disponibles</label>
                                   <select name="selectQ" class="form-control">

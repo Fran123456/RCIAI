@@ -32,8 +32,8 @@
                 });
              }
         }
-         
-      
+
+
        },
        error: function(){
            alert("error");
@@ -43,11 +43,17 @@
   }
 
   function activar(){
-     
+
        $('#en').attr("disabled", false);
-      
+
   }
 </script>
+
+<style media="screen">
+  .reds{
+    color: red;
+  }
+</style>
 
 <form method="post" action="<?php echo base_url()?>BUY_elements_Controller/periferico_asignado_add">
   <div>
@@ -99,7 +105,7 @@
 
                           </div>
                         </div>
-                       
+
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Marca</label>
@@ -118,7 +124,7 @@
                             <input type="text" required="" class="form-control" name="nombre-0">
                           </div>
                         </div>
-                        
+
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Velocidad</label>
@@ -153,7 +159,8 @@
                          </div>
                          <div class="col-md-3">
                            <div class="form-group">
-                                    <label>Equipos disponibles</label>
+                             <input type="hidden" id="centinelita" value="<?php echo count($datos['todos']) ?>">
+                                    <label id="er">Equipos disponibles</label>
                                   <select name="selectQ" class="form-control">
                                      <?php for ($i=0; $i < count($datos['todos']) ; $i++):?>
                                          <option  value="<?php echo $datos['todos'][$i]['identificador']?>" ><?php echo $datos['todos'][$i]['identificador'] ?></option>
@@ -163,14 +170,19 @@
                               </div>
                          </div>
                         <div class="col-md-3">
-                          <br>  
-                          <button onclick="validar();" type="button" class="btn btn-info">Validar serial</button>
+                          <br>
+                          <button onclick="validar();" id="dx" type="button" class="btn btn-info">Validar serial</button>
                         </div>
                       </div>
-                    </div> 
+                    </div>
    </div>
    <button id="en" disabled="" type="submit" class="btn btn-success">Guardar</button>
 </form>
 
-
-                    
+<script type="text/javascript">
+  if($('#centinelita').val() =="0"){
+     $('#dx').attr('disabled', 'true');
+     $('#er').text('PC no disponible');
+      $('#er').addClass('reds');
+  }
+</script>
