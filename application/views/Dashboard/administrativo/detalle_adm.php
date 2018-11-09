@@ -32,7 +32,7 @@
 
     <!--CONTENIDO DE LA APLICACION-->
 
-
+<?php if($detalle != false) {?>
 	<?php foreach($detalle as $key) {?>
 
 	<div class="content1">
@@ -358,6 +358,9 @@
 			</div>
 		</div>
 	</div>
+<?php } ?>
+<?php }else{ ?>
+	<h1>SIN DATOS</h1>
 <?php } ?>
 
 

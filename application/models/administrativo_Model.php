@@ -61,16 +61,9 @@ class administrativo_Model extends CI_Model
 		
 	}//fin de showregistro
 
-	public function getRegistro($id){
-		//vamos a traer los datos de la tabla inventario_id
-		$this->db->select('adm.*, sis.*, base.*, red.*, video.*, alm.*, c.fecha_compra, c.n_factura');
-		$this->db->from('inventario_adm adm');
-		$this->db->join('descripcion_sistema sis','sis.pc_ids=adm.des_sistema_id');
-		$this->db->join('placa_base base','base.pc_id=adm.placa_base_id');
-		$this->db->join('adaptador_red red','red.pc_id=adm.adaptador_red_id');
-		$this->db->join('adaptador_video video','video.pc_id=adm.adaptador_video_id');
-		$this->db->join('almacenamiento alm','alm.pc_id=adm.almacenamiento_id');
-		$this->db->join('compras c','c.id_compra=adm.compra_id');
+	public function getCompra($id){
+		$this->db->select('compra_id');
+		$this->db->from('inventario_adm');
 		$this->db->where('identificador',$id);
 		$query=$this->db->get();
 
@@ -82,6 +75,56 @@ class administrativo_Model extends CI_Model
 			//si no hay registros devolvemos false
 			return false;
 		}
+	}
+
+	public function getRegistro($id){
+		$compra = $this->getCompra($id);var_dump($compra);
+
+		if($compra[0]->compra_id != null){
+			//vamos a traer los datos de la tabla inventario_id
+			$this->db->select('adm.*, sis.*, base.*, red.*, video.*, alm.*, c.fecha_compra, c.n_factura');
+			$this->db->from('inventario_adm adm');
+			$this->db->join('descripcion_sistema sis','sis.pc_ids=adm.des_sistema_id');
+			$this->db->join('placa_base base','base.pc_id=adm.placa_base_id');
+			$this->db->join('adaptador_red red','red.pc_id=adm.adaptador_red_id');
+			$this->db->join('adaptador_video video','video.pc_id=adm.adaptador_video_id');
+			$this->db->join('almacenamiento alm','alm.pc_id=adm.almacenamiento_id');
+			$this->db->join('compras c','c.id_compra=adm.compra_id');
+			$this->db->where('identificador',$id);
+			$query=$this->db->get();
+
+			//comprobamos
+			if($query->num_rows() > 0){
+				//si hay registros los devolvemos
+				return $query->result();
+			}else{
+				//si no hay registros devolvemos false
+				return false;
+			}
+		}else{
+			//vamos a traer los datos de la tabla inventario_id
+			$this->db->select('adm.*, sis.*, base.*, red.*, video.*, alm.*');
+			$this->db->from('inventario_adm adm');
+			$this->db->join('descripcion_sistema sis','sis.pc_ids=adm.des_sistema_id');
+			$this->db->join('placa_base base','base.pc_id=adm.placa_base_id');
+			$this->db->join('adaptador_red red','red.pc_id=adm.adaptador_red_id');
+			$this->db->join('adaptador_video video','video.pc_id=adm.adaptador_video_id');
+			$this->db->join('almacenamiento alm','alm.pc_id=adm.almacenamiento_id');
+			$this->db->where('identificador',$id);
+			$query=$this->db->get();
+
+			//comprobamos
+			if($query->num_rows() > 0){
+				//si hay registros los devolvemos
+				return $query->result();
+			}else{
+				//si no hay registros devolvemos false
+				return false;
+			}
+		}
+
+
+		
 	}//fin de getRegistro
 
 	//esta función nos permitira obtener el teclado y el mouse de una pc o servidor
