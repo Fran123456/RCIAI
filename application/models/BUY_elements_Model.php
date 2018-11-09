@@ -11,11 +11,11 @@ class BUY_elements_Model extends CI_Model
 
     }
      public function labxlab($ind){
-      
+
       $data = $this->db->where('lab', $ind)->get('inventario_lab')->result_array();
       return $data;
      }
-   
+
     function updatePeriferico($id , $data){
        $this->db->where('serial', $id)->update('inventario_bodega', $data);
     }
@@ -32,7 +32,7 @@ class BUY_elements_Model extends CI_Model
     }
 
     function pc_unidad($name){
-       $re = $this->db->select('identificador')->where('destino' , $name)->get('inventario_adm')->result_array();
+       $re = $this->db->select('identificador')->where('destino' , $name)->like('identificador', 'PC')->or_like('identificador', 'SVR')->get('inventario_adm')->result_array();
        return $re;
     }
 
@@ -52,19 +52,19 @@ class BUY_elements_Model extends CI_Model
     }
 
     function unidadxdata($compra, $id){
-      $res = $this->db->where('compra_id' , $compra)->where('unidad_id', $id)->get('compra_unidad')->result_array(); 
+      $res = $this->db->where('compra_id' , $compra)->where('unidad_id', $id)->get('compra_unidad')->result_array();
       return $res;
     }
 
     function getCodigos($id)
     {
-       $res = $this->db->where('identificador' ,$id)->get('inventario_adm')->result_array(); 
+       $res = $this->db->where('identificador' ,$id)->get('inventario_adm')->result_array();
       return $res;
     }
 
     function getCodigoslab($id)
     {
-       $res = $this->db->where('identificador_lab' ,$id)->get('inventario_lab')->result_array(); 
+       $res = $this->db->where('identificador_lab' ,$id)->get('inventario_lab')->result_array();
       return $res;
     }
 
@@ -84,7 +84,7 @@ function add_periferico_nuevo($data){
     }
 //END PERIFERICO NUEVO AGREGADO SIN ASIGNAR
 
-  //MODIFICAR COMPRA 
+  //MODIFICAR COMPRA
     function updateBUY($data, $id){
       $res = $this->db->where('id_compra', $id)->update('compras', $data);
     }
@@ -108,12 +108,12 @@ function add_periferico_nuevo($data){
       $this->db->insert('inventario_lab', $data);
 }
 
-//agregar informacion de pc 
+//agregar informacion de pc
   public function add_data($data, $table){
      $this->db->insert($table, $data);
   }
 
- 
+
 
 
     public function get_c($id){
@@ -167,7 +167,7 @@ function add_periferico_nuevo($data){
     public function validate_buy($factura){
         $data = $this->db->where('n_factura', $factura)->get('compras')->result_array();
         return $data;
-       
+
     }
 
     public function get_buy($id){

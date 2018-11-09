@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Agrega una PC</title>
-    <?php require 'application/views/Plantilla/Bootstrap.php'; ?> 
+    <?php require 'application/views/Plantilla/Bootstrap.php'; ?>
     <link rel="stylesheet" type="text/css" href=" <?php echo base_url()?>assets/css/app/shopping.css "><!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
     <script src=" <?php echo base_url() ?>assets/js/vue.js">  </script>
 
@@ -24,7 +24,7 @@
   .thead-d{
       background-color: black;
       color: white;
-      padding-top: 10px; 
+      padding-top: 10px;
       padding-bottom: 10px;
       text-align: center;
     }
@@ -43,11 +43,11 @@
 
 
 
-    
+
 
 
 <form method="post" action="<?php echo base_url()?>laboratorios_Controller/pc_nuevo_add">
- 
+
 <div class="col-md-12">
         <div class="thead-d">
           <h4>Descripción del sistema</h4>
@@ -68,49 +68,49 @@
               <option selected="" value="64 bits">64 bits</option>
               <option value="32 bits">32 bits</option>
              </select></td>
-            
+
           </tr>
           <tr>
             <td width="200">Paquete de versión:</td>
              <td><input type="text" name="des-4" id="des-version" class="form-control int"></td>
              <td width="200">Version:</td>
              <td><input type="text" name="des-5" id="des-usuario" class="form-control int"></td>
-             
+
           </tr>
           <tr>
             <td width="200">Usuario registrado:</td>
              <td><input type="text" name="des-6" id="des-usuario" class="form-control int"></td>
              <td width="200">Memoria física: </td>
              <td><input type="text" name="des-7" id="des-memoriaFisica" class="form-control int" value="4 GB"></td>
-             
+
           </tr>
           <tr>
             <td width="200">Dominio/ Grupo de trabajo: </td>
              <td><input type="text" name="des-8" id="des-dominio" class="form-control int" value="WORKGROUP"></td>
              <td width="200">Modelo:</td>
              <td><input type="text" name="des-9" id="des-modelo" class="form-control int"></td>
-             
+
           </tr>
           <tr>
             <td width="200">Número de serie:</td>
              <td><input type="text" name="des-10" id="des-serie" class="form-control int"></td>
              <td width="200">Organización:</td>
              <td><input type="text" name="des-11" id="des-org" class="form-control int"></td>
-             
+
           </tr>
           <tr>
             <td width="200">Idioma del sistema:</td>
              <td><input type="text" name="des-12" id="des-idioma" class="form-control int" value="Español (México)"></td>
              <td width="200">Zona horaria del sistema:</td>
             <td><input type="text" name="des-13" id="des-zona" class="form-control int" value="(GMT -06:00) Hora estándar, América Central"></td>
-            
+
           </tr>
           <tr>
              <td width="200">Usuario con sesión abierta:</td>
              <td><input type="text" name="des-14" id="des-sesion" class="form-control int"></td>
              <td width="200">Versión de Direct X:</td>
              <td><input type="text" name="des-15" id="des-zona" class="form-control int" value="12"></td>
-             
+
           </tr>
           <tr><td width="200">Caja del sistema:</td>
              <td><input type="text" name="des-16" id="des-sesion" class="form-control int" value="Desktop"></td></tr>
@@ -162,21 +162,21 @@
              <td><input type="text" name="placa-10" id="des-versionPlacaBase" class="form-control int"></td>
              <td width="200">Marca de RAM:</td>
              <td><input type="text" name="placa-11" class="form-control int"></td>
-             
+
           </tr>
           <tr>
             <td width="200">Ranura de memoria 0:</td>
              <td><textarea name="placa-12" class="form-control int"></textarea></td>
              <td width="200">Ranura de sistema 0:</td>
              <td><textarea name="placa-13" class="form-control int"></textarea></td>
-             
+
           </tr>
           <tr>
             <td width="200">Ranura de sistema 1:</td>
              <td><textarea name="placa-14" class="form-control int"></textarea></td>
              <td width="200">Ranura de sistema 2:</td>
              <td><textarea name="placa-15" class="form-control int"></textarea></td>
-             
+
           </tr>
            <tr>
             <td width="200">Ranura de sistema 3:</td>
@@ -329,15 +329,15 @@
                                 </select>
                                 <br>
                           </div>
-                          <div class="col-md-4"> 
-                          
+                          <div class="col-md-4">
+
                             <p>Aquí selecciona los elementos que componen a la PC</p>
                           </div>
                         </div>
                     </div>
                     <!--PARA PC-->
            </div>
-           
+
 
 
 <!-- PANEL DEFAULT -->
@@ -369,9 +369,9 @@
                             </div>
                             <div id="diverror" class="col-md-3">
                               <label id="errorlabel">Laboratorio</label>
-                              
+
                               <input type="text" id="codex" class="form-control"  readonly=""  value="{{op}}-PC{{num}}" name="lab">
-                              
+
                             </div>
                                 <div class="col-md-2">
                                   <div class="form-group">
@@ -387,7 +387,7 @@
                                     <input hidden type="text" value="37" name="destino-0">
                                   </div>
                                 </div>
-                              
+
                                 <div class="col-md-3">
                                   <div class="form-group">
                                     <label>Fecha ingreso</label>
@@ -409,14 +409,14 @@
                          <!--IMPORTANTE-->
                          <div class="row">
                            <div style="width: 12%;" v-for='(item2, index) in seleccionPC' class="col-md-2">
-                               
-                              
+
+
                                <button  type="button" id="w{{item.id - 1}}-{{item2}}-{{index}}" class="btn btn-primary space text-center {{item.id - 1}}-{{item2}}-{{index}}"   data-toggle="modal" data-target="#{{item.id - 1}}-{{item2}}-{{index}}">
                                   {{index}}
                                  </button>
                            </div>
                          </div>
-                         
+
                        <!-- Modal -->
                         <div v-for='(item3, index) in seleccionPC' class="modal fade" id="{{item.id - 1}}-{{item3}}-{{index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
@@ -438,12 +438,7 @@
                                       <input  type="text" id="serial-{{item.id - 1}}-{{item3}}-{{index}}" required class="form-control"  name="serial-{{item3}}-{{index}}">
                                     </div>
                                   </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">
-                                      <label>Nombre</label>
-                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="{{index}}" required class="form-control"  name="nombre-{{item3}}-{{index}}">
-                                    </div>
-                                  </div>
+
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>Marca</label>
@@ -458,8 +453,14 @@
                                   </div>
                                   <div class="col-md-4">
                                     <div class="form-group">
-                                      <label>Tipo</label>
+                                      <label>Tipo de periferico</label>
                                       <input type="text" value="{{index}}" readonly="" class="form-control"  name="tipo-{{item3}}-{{index}}">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label>Tipo</label>
+                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="" required class="form-control"  name="nombre-{{item3}}-{{index}}">
                                     </div>
                                   </div>
                                   <div class="col-md-4">
@@ -477,7 +478,7 @@
                                 </div>
                               </div>
                               <div class="modal-footer">
-                            
+
                                 <button type="button" id="{{item.id - 1}}-{{item3}}-{{index}}" onclick="color(this);" class="btn btn-primary">Guardar</button>
                               </div>
                             </div>
@@ -499,7 +500,7 @@
 
 
 
- 
+
    <button id="en" disabled="" type="submit" class="btn btn-success">Guardar</button>
 </form>
 
@@ -536,7 +537,7 @@
        dataType: 'json',
        success: function(data){
          datos = data;
-            
+
        },
        error: function(){
            alert("error");
@@ -546,7 +547,7 @@
     return datos;
   }
 
-   
+
     function codigo(){
     var dato1 = $('#codex').val();
     var dato = dato1;
@@ -616,7 +617,7 @@
 
 
         }else{
-              
+
                for (var w = 0; w < seriales1.length; w++) {
                  for (var q = 0; q < cantidad; q++) {
                    if(serialesPropias[q] == seriales1[w].serial){
@@ -652,7 +653,7 @@
                                }
 
                }
-  
+
         }
 
   }
@@ -689,14 +690,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-                    

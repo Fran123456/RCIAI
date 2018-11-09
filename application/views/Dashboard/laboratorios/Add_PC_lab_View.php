@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Agrega una PC para laboratorio</title>
-	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> 
+	<?php require 'application/views/Plantilla/Bootstrap.php'; ?>
 	<link rel="stylesheet" type="text/css" href=" <?php echo base_url()?>assets/css/app/shopping.css "><!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
   <script src=" <?php echo base_url() ?>assets/js/vue.js">  </script>
   <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
@@ -13,7 +13,7 @@
   	.thead-d{
   		background-color: black;
   		color: white;
-  		padding-top: 10px; 
+  		padding-top: 10px;
   		padding-bottom: 10px;
   		text-align: center;
   	}
@@ -23,7 +23,7 @@
 
   	}
   </style>
-	
+
 </head>
 <body>
     <?php require 'application/views/Plantilla/nav.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LA BARRA DE NAVEGACION-->
@@ -40,13 +40,13 @@
      			<h2>Registra una PC </h2>
      			<br>
      		</div>
-     		 
-			      
-			
+
+
+
 	    </div>
-      
+
      	<div class="col-md-12">
-     		
+
      		<div class="thead-d">
      			<h4>Descripción del sistema</h4>
 			 </div>
@@ -66,49 +66,49 @@
 			       	<option selected="" value="64bits">64 bits</option>
 			       	<option value="64 bits">64 bits</option>
 			       </select></td>
-			      
+
 			    </tr>
 			    <tr>
 			    	<td width="200">Paquete de versión:</td>
 			       <td><input type="text" name="des-4" id="des-version" class="form-control int" ></td>
 			       <td width="200">Version:</td>
 			       <td><input type="text" name="des-5" id="des-usuario" class="form-control int" ></td>
-			       
+
 			    </tr>
 			    <tr>
 			    	<td width="200">Usuario registrado:</td>
 			       <td><input type="text" name="des-6" id="des-usuario" class="form-control int" ></td>
 			       <td width="200">Memoria física: </td>
 			       <td><input type="text" name="des-7" id="des-memoriaFisica" class="form-control int" value="4 GB"></td>
-			       
+
 			    </tr>
 			    <tr>
 			    	<td width="200">Dominio/ Grupo de trabajo: </td>
 			       <td><input type="text" name="des-8" id="des-dominio" class="form-control int" value="WORKGROUP"></td>
 			       <td width="200">Modelo:</td>
 			       <td><input type="text" name="des-9" id="des-modelo" class="form-control int" ></td>
-			       
+
 			    </tr>
 			    <tr>
 			    	<td width="200">Número de serie:</td>
 			       <td><input type="text" name="des-10" id="des-serie" class="form-control int" ></td>
 			       <td width="200">Organización:</td>
 			       <td><input type="text" name="des-11" id="des-org" class="form-control int" ></td>
-			       
+
 			    </tr>
 			    <tr>
 			    	<td width="200">Idioma del sistema:</td>
 			       <td><input type="text" name="des-12" id="des-idioma" class="form-control int" value="Español (México)"></td>
 			       <td width="200">Zona horaria del sistema:</td>
 			    	<td><input type="text" name="des-13" id="des-zona" class="form-control int" value="(GMT -06:00) Hora estándar, América Central"></td>
-			    	
+
 			    </tr>
 			    <tr>
 			       <td width="200">Usuario con sesión abierta:</td>
 			       <td><input type="text" name="des-14" id="des-sesion" class="form-control int"></td>
 			       <td width="200">Versión de Direct X:</td>
 			       <td><input type="text" name="des-15" id="des-zona" class="form-control int" value="12"></td>
-			       
+
 			    </tr>
 			    <tr><td width="200">Caja del sistema:</td>
 			       <td><input type="text" name="des-16" id="des-sesion" class="form-control int" value="Desktop"></td></tr>
@@ -160,21 +160,21 @@
 			       <td><input type="text" name="placa-10" id="des-versionPlacaBase" class="form-control int" ></td>
 			       <td width="200">Marca de RAM:</td>
 			       <td><input type="text" name="placa-11"  class="form-control int" ></td>
-			       
+
 			    </tr>
 			    <tr>
 			    	<td width="200">Ranura de memoria 0:</td>
 			       <td><textarea name="placa-12" class="form-control int"></textarea></td>
 			       <td width="200">Ranura de sistema 0:</td>
 			       <td ><textarea name="placa-13" class="form-control int"></textarea></td>
-			       
+
 			    </tr>
 			    <tr>
 			    	<td width="200">Ranura de sistema 1:</td>
 			       <td><textarea name="placa-14" class="form-control int"></textarea></td>
 			       <td width="200">Ranura de sistema 2:</td>
 			       <td ><textarea name="placa-15" class="form-control int"></textarea></td>
-			       
+
 			    </tr>
 			     <tr>
 			     	<td width="200">Ranura de sistema 3:</td>
@@ -275,7 +275,7 @@
 			      <td><input type="text" name="almacenamiento-3" id="almacenamiento-version" class="form-control int"></td>
 			    </tr>
 			    <tr>
-			       <td width="200">Tamaño:</td>
+			       <td width="200">Tamaño disco duro:</td>
 			       <td><input type="text" name="almacenamiento-4" id="almacenamiento-resolucion" class="form-control int"></td>
 			       <td width="200">Espacio libre:</td>
 			       <td><input type="text" name="almacenamiento-5" id="almacenamiento-velocidad" class="form-control int" ></td>
@@ -289,7 +289,7 @@
 			  </tbody>
 			</table>
      	</div>
-     	
+
 
 
 
@@ -310,7 +310,7 @@
 		 		</tr>
 		 	</thead>
 		 	<tbody id="elementoTR">
-		 		
+
 		 	</tbody>
 		 </table>
 		 <div class="col-md-2">
@@ -326,8 +326,8 @@
 		 	</div>
 		 </div>
 		 </div>
-		
-		 
+
+
 		 <br>
 		 <br>
 		 <br>
@@ -344,19 +344,18 @@
 				          <!--PARA PC-->
 				          <div ><div  class="row" id="pc">
 		                      <div class="col-md-8">
-		                        
+
 		                           <select size="14" id="exampleFormControlSelect2" name="select-A" v-model='seleccionPC' class="form-control" multiple>
 		                              <option v-for="item in lists" selected value="{{item.keep}}">{{  item.keep}}</option>
 		                              <option value="AUDIFONOS" >AUDIFONOS</option>
-		                              <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option>
+		                             <!--  <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option>
 		                              <option value="IMPRESORES-MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
 		                              <option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option>
-		                              <option value="SCANNER">SCANNER</option>
+		                              <option value="SCANNER">SCANNER</option>-->
 		                              <option value="PARLANTES">PARLANTES</option>
 		                              <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
-		                              <option value="UPS">UPS</option>
-		                              <option value="WEBCAN">WEBCAN</option>
-		                              <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
+		                             <!-- <option value="UPS">UPS</option>-->
+		                             <!--   <option value="WEBCAN">WEBCAN</option>-->
 		                              <option value="MEMORIA-SD">MEMORIA-SD</option>
 		                              <option value="PROYECTOR">PROYECTOR</option>
 		                              <option value="FAX">FAX</option>
@@ -364,17 +363,17 @@
 		                              <option value="OTRO">OTRO</option>
 		                            </select>
 		                            <br>
-		                        
+
 		                      </div>
-		                      <div class="col-md-4"> 
-		                      
+		                      <div class="col-md-4">
+
 		                        <p>Aquí selecciona los elementos que componen a la PC</p>
 		                      </div>
 		                    </div>
 		                </div>
 		                <!--PARA PC-->
 		       </div>
-		       
+
 
 
 
@@ -441,7 +440,7 @@
                                     <input hidden type="text" value="37" name="destinoPC_Falso-1">
                                   </div>
                                 </div>
-                               
+
                                 <div class="col-md-3">
                                   <div class="form-group">
                                     <label>Fecha ingreso</label>
@@ -450,7 +449,7 @@
                                 </div>
                                 <div class="col-md-3">
                                   <div class="form-group">
-                                    
+
                                     <input  type="hidden"  class="form-control"  name="salida-1">
                                   </div>
                                 </div>
@@ -486,12 +485,7 @@
                                       <input  type="text" id="serial-{{item.id - 1}}-{{item3}}-{{index}}" required class="form-control"  name="serial-{{item3}}-{{index}}">
                                     </div>
                                   </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">
-                                      <label>Nombre</label>
-                                      <input type="text" value="{{index}}" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" required class="form-control"  name="nombre-{{item3}}-{{index}}">
-                                    </div>
-                                  </div>
+
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>Marca</label>
@@ -506,8 +500,14 @@
                                   </div>
                                   <div class="col-md-4">
                                     <div class="form-group">
-                                      <label>Tipo</label>
+                                      <label>Tipo de periferico</label>
                                       <input type="text" value="{{index}}" readonly="" class="form-control"  name="tipo-{{item3}}-{{index}}">
+                                    </div>
+                                  </div>
+																	<div class="col-md-4">
+                                    <div class="form-group">
+                                      <label>Tipo</label>
+                                      <input type="text" value="" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" required class="form-control"  name="nombre-{{item3}}-{{index}}">
                                     </div>
                                   </div>
                                   <div class="col-md-4">
@@ -565,7 +565,7 @@
 	     async: false,
 	     dataType: 'json',
 	     success: function(data){
-	     
+
 	       //html = data;
 	       if(data == ""){
 	       	if($('#codigopc').val() ==""){
@@ -579,9 +579,9 @@
 	       	{
 	       		controlador = 1;
 			   activar();
-	         
+
 	       	}
-              
+
 	       }
 	       else{
 	       swal({
@@ -609,7 +609,7 @@
 	}
 
 	</script>
-  
+
 
 
 

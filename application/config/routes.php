@@ -90,7 +90,7 @@ $route['showcompras'] = 'shopping/showComprasAjax';
 $route['editcompra'] = 'shopping/editComprasAjax';
 
 
-
+$route['bodega-add'] = 'AddBodega_Controller/add_PC';
 //sin compra para administracion
 $route['get-element'] = 'AddAdmin_Controller/add_PC';
 $route['element-add'] = 'AddAdmin_Controller/validate_buy';

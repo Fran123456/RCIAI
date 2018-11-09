@@ -111,12 +111,9 @@
   }
 </script>
 
-<form method="post" action="<?php echo base_url()?>BUY_elements_Controller/pc_nuevo_add">
+<form method="post" action="<?php echo base_url()?>AddBodega_Controller/pc_nuevo_add">
  <div>
-  <input type="hidden" name="idcompra" value="<?php echo $datos['data'][0]['id_compra'] ?>">
-  <input type="hidden" name="cantidad" value="<?php echo $datos['data'][0]['cantidad'] ?>">
-   <input type="hidden" name="rest" value="<?php echo $datos['data'][0]['rest'] ?>">
-   <input type="hidden" name="n_factura" value="<?php echo $datos['data'][0]['n_factura'] ?>">
+
    <input type="hidden" name="tipo" value="<?php echo $datos['tipo'] ?>">
 </div>
 <div class="col-md-12">
@@ -227,12 +224,7 @@
                                       <input  type="text" id="serial-{{item.id - 1}}-{{item3}}-{{index}}" required class="form-control"  name="serial-{{item3}}-{{index}}">
                                     </div>
                                   </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">
-                                      <label>Nombre</label>
-                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="{{index}}" required class="form-control"  name="nombre-{{item3}}-{{index}}">
-                                    </div>
-                                  </div>
+
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>Marca</label>
@@ -247,8 +239,15 @@
                                   </div>
                                   <div class="col-md-4">
                                     <div class="form-group">
-                                      <label>Tipo</label>
+                                      <label>Tipo de periferico</label>
                                       <input type="text" value="{{index}}" readonly="" class="form-control"  name="tipo-{{item3}}-{{index}}">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label>Tipo</label>
+                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value=""  class="form-control"  name="nombre-{{item3}}-{{index}}">
                                     </div>
                                   </div>
                                   <div class="col-md-4">
@@ -260,7 +259,11 @@
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>Estado</label>
-                                      <input type="text" value="nuevo" class="form-control"  name="estado-{{item3}}-{{index}}">
+                                      <select class="form-control" name="estado-{{item3}}-{{index}}" >
+                                        <option value="Disponible">Disponible</option>
+                                        <option value="Nuevo">Nuevo</option>
+                                      </select>
+
                                     </div>
                                   </div>
                                 </div>

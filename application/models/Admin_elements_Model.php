@@ -32,7 +32,7 @@ class Admin_elements_Model extends CI_Model
     }
 
     function pc_unidad($name){
-       $re = $this->db->select('identificador')->where('destino' , $name)->get('inventario_adm')->result_array();
+       $re = $this->db->select('identificador')->where('destino' , $name)->like('identificador', 'PC')->or_like('identificador', 'SVR')->get('inventario_adm')->result_array();
        return $re;
     }
 

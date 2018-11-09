@@ -3,8 +3,9 @@
 <head>
 	<title>Detalle</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
+	<script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
+	  <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.min.js"></script>
 
-	
 </head>
 <body>
     <?php require 'application/views/Plantilla/nav.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LA BARRA DE NAVEGACION-->
@@ -12,6 +13,14 @@
 <?php if($detalle!=false) {?>
     <!--CONTENIDO DE LA APLICACION-->
     <?php foreach($detalle as $key){ ?>
+			<?php if($this->session->flashdata('buyxx')): ?>
+				<script type="text/javascript">
+				swal({
+			     	 type: 'success',
+				   title: 'ELEMENTO AGREGADO CORRECTAMENTE',
+				   });
+				</script>
+		 <?php endif; ?>
 	<div class="content">
 			<div class="row">
 				<div class="col-md-3">
@@ -152,7 +161,8 @@
 					$('#fecha_ingreso').css("color",'red');
 				}
 				if($('#origen').val() == 'no disponible'){
-					$('#origen').css("color",'red');
+					$('#origen').val('Desconocido');
+					//$('#origen').css("color",'red');
 				}
 				if($('#fecha_salida').val() == 'no disponible'){
 					$('#fecha_salida').css("color",'red');
