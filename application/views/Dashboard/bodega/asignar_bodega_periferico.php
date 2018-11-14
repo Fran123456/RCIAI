@@ -41,7 +41,7 @@
 	     async: false,
 	     dataType: 'json',
 	     success: function(data){
-	       console.log(Object.values(data));
+	       
 	       //html = data;
 	       if( $("#vay").val() == 25 )
 	       {

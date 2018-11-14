@@ -100,8 +100,8 @@ class AddAdmin_Controller extends CI_Controller {
            $this->catch_info_pc();
            $this->generate_admin_pc();
 
-     //$this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
-      redirect(base_url());
+     $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
+      redirect(base_url().'mantenimiento-administrativo');
    }
 
 

@@ -114,16 +114,16 @@ class bodega_Model extends CI_Model{
 	}
 
 	public function get_code($dato){
-	    if($dato == 25){
+	    if($dato == 37){
 	     return  $this->db->where('destino' , $dato)->get('inventario_lab')->result_array();
 	    }else
 	    {
-	       return $this->db->where('destino' , $dato)->get('inventario_adm')->result_array();
+	       return $this->db->where('destino' , $dato)->like('identificador', 'PC')->or_like('identificador', 'SRV')->get('inventario_adm')->result_array();
 	    }
     }
 
 	public function get_u(){
-		$data = $this->db->where('id_unidad !=' ,'1')->where('id_unidad !=' ,'4')->get('unidad')->result_array();
+		$data = $this->db->where('id_unidad !=' ,'1')->where('id_unidad !=', '38')->where('id_unidad !=' ,'4')->get('unidad')->result_array();
 		return $data;
 	}
 	public function get_c($id){
@@ -189,7 +189,7 @@ class bodega_Model extends CI_Model{
 			 }
 	 }#fin de disponible*/
 	 public function disponible(){
-			 $this->db->select('bo.serial, bo.nombre, bo.fecha_ingreso');
+			 $this->db->select('bo.serial, bo.nombre, bo.fecha_ingreso, bo.tipo');
 			 $this->db->from('inventario_bodega bo');
 			 $this->db->where('destino', 1);
 			 $this->db->where('estatus !=','arruinado');

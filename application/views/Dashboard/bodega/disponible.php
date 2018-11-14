@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Perifericos disponibles</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/jquery.dataTables.min.css">
 	<script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>assets/js/jquery.dataTables.min.js" ></script>
@@ -30,7 +30,7 @@
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Serial</th>
-				<th scope="col">Nombre</th>
+				<th scope="col">Periferico</th>
 				<th scope="col">Fecha de ingreso</th>
 				<th scope="col">Asignar</th>
 			</tr>
@@ -39,7 +39,7 @@
 			<?php foreach ($detalle as $key ) { ?>
 				<tr>
 					<th><?php echo empty($key->serial) ? '<span style= "color:red">no disponible</span>' : $key->serial ?></th>
-					<td><?php echo empty($key->nombre) ? '<span style= "color:red">no disponible</span>' : $key->nombre ?></td>
+					<td><?php echo empty($key->tipo) ? '<span style= "color:red">no disponible</span>' : $key->tipo ?></td>
 					<td><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso ?></td>
 					<td><a href="<?php base_url();?>validar-periferico/<?php echo $key->serial;?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 				</tr>

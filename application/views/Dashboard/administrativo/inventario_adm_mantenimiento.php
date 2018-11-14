@@ -34,6 +34,13 @@
     <div class="row">
     	<h3><?php echo $mensaje; ?></h3>
     </div>
+
+
+     
+
+
+
+
     <div class="row">
     		<a class="btn btn-info" href="<?php echo base_url('listado-elementos/'.$op=$this->uri->segment(2)) ?>">ATRAS</a>
     </div>

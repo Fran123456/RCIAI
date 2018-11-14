@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Area administrativa</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 
 	
@@ -9,6 +9,8 @@
 <body>
     <?php require 'application/views/Plantilla/nav.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LA BARRA DE NAVEGACION-->
     <?php require 'application/views/Plantilla/panel.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL MENU DESPLEGABLE-->
+    <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
+   <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.min.js"></script>
 
     <!--CONTENIDO DE LA APLICACION-->
 
@@ -23,6 +25,18 @@
 	  
 	</ul>
     <!--NAVEGACIÓN ADMINISTRATIVA-->
+
+    <?php if($this->session->flashdata('buy')):  ?>
+        <script type="text/javascript">
+          swal({
+           type: 'success',
+           title: 'ELEMENTO AGREGADO CORRECTAMENTE',
+           });
+        </script>
+    <?php endif; ?>
+
+
+
 	
 	<div class="">
 		<div class="row">
