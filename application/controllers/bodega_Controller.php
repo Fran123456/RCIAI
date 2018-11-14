@@ -364,10 +364,12 @@ function showCodePC(){
 
       public function catch_asignacion_laptop(){
         $data = $this->catch_laptop_asignada();
+
         print_r($data);
+        
        
        //hardware, disk, etccatch_laptop_asignada()
-        $table = array('descripcion_sistema','placa_base','adaptador_red','adaptador_video', 'almacenamiento');
+   /*     $table = array('descripcion_sistema','placa_base','adaptador_red','adaptador_video', 'almacenamiento');
         $array = array('actualizacion_descripcion','actualizacion_placa','actualizacion_adaptador','actualizacion_video', 'actualizacion_almacenamiento');
 
         //actualizacion de bodega
@@ -379,25 +381,22 @@ function showCodePC(){
         //admin
           $this->bod->add_('inventario_adm', $data['administrativo']);
         
-        //software
-        for ($ty=0; $ty <count($data['software']) ; $ty++) { 
-         	 $this->bod->add_('software', $data['software'][$ty]);
-        }
-       $this->session->set_flashdata('success','hola');
-       redirect(base_url().'administrativo_Controller/detalle/'.$data['codigo']);        
+      
+       $this->session->set_flashdata('buy','hola');
+       redirect(base_url());      */  
 	 }
 
 
 	public function catch_laptop_asignada(){
 		$laptopInfo = $this->bod->get_bodega($this->input->post('serial'));
-		$compraid = $laptopInfo[0]['compra_id'];
+		//$compraid = $laptopInfo[0]['compra_id'];
 		$destino = $this->bod->get_u_letra($this->input->post('unidad'));
 		$des = array();
 		$placa = array();
         $adaptador = array();
         $video = array();
         $almacenamiento = array();
-        $software = $this->software__();
+        
         $c = 0; $cc = 0;$ccc=0;
         $names = array('nombre','fabricante','sistema_operativo','nucleo','usuario_registrado','memoria_fisica','serie');
 	    $nameshard = array('procesador','velocidad_reloj','fabricante_procesador','modelo_placa','marca_ram');
@@ -432,7 +431,7 @@ function showCodePC(){
 			}
 		}
 		$bodega = array(
-         'estatus'=> 'en uso',
+         'estatus'=> 'En uso',
          'origen'=> 4,
          'fecha_salida' => $this->input->post('fecha'),
          'destino' =>$this->input->post('unidad') ,
@@ -460,7 +459,6 @@ function showCodePC(){
          'actualizacion_adaptador' => $adaptador,
          'actualizacion_video' => $video,
          'actualizacion_almacenamiento' => $almacenamiento,
-         'software' => $software,
          'administrativo' => $administrativo,
          'codigo' => $this->input->post('codigopc'),
          

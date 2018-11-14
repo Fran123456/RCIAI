@@ -75,6 +75,7 @@
                                         <option value="TECLADO">TECLADO</option>
                                         <option value="MONITOR">MONITOR</option>
                                         <option value="DISCO DURO EXTERNO">DISCO DURO EXTERNO</option>
+                                        <option value="LAPTOP">LAPTOP</option>
                                         <option value="ACCES POINT RADIO U MASFERRER">ACCES POINT RADIO U MASFERRER</option>
                                         <option value="USB">USB</option>
                                         <option value="MEMORIA SD">MEMORIA SD</option>

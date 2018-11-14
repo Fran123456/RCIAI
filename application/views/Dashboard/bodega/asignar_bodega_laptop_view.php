@@ -188,73 +188,37 @@
 			    <tr >
 			      <td width="200" >Tarjetas extra:</td>
 			      <td><input type="text"  name="o-6" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >Marca monitor:</td>
-			      <td><input type="text"  name="o-7" id="des-nombre" class="form-control int" ></td>
+			      <td width="200" >dvd:</td>
+			      <td><input type="text"  name="o-13" id="des-nombre" class="form-control int" ></td>
+			      <!--<td><input type="text"  name="o-7" id="des-nombre" class="form-control int" ></td>-->
 			    </tr>
-			    <tr >
+			    <input type="hidden"  name="o-8" id="des-nombre" class="form-control int" >
+			    <input type="hidden"   name="o-9" id="des-nombre" class="form-control int" >
+			    <!--<tr >
+			    	<td><input type="text"  name="o-7" id="des-nombre" class="form-control int" ></td>
 			      <td width="200" >Tipo monitor:</td>
 			      <td><input type="text"  name="o-8" id="des-nombre" class="form-control int" ></td>
 			      <td width="200" >Modelo y serie monitor:</td>
 			      <td><input type="text"   name="o-9" id="des-nombre" class="form-control int" ></td>
-			    </tr>
+			    </tr>-->
 			    <tr >
 			      <td width="200" >Disco disico 1:</td>
-			      <td><input type="text"  name="o-10" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >Capacidad (GB):</td>
+			      <td><input type="number" value="1" min="0"  name="o-10" id="des-nombre" class="form-control int" ></td>
+			      <td width="200" >Capacidad de disco:</td>
 			      <td><input type="text"  name="o-11" id="des-nombre" class="form-control int" ></td>
 			    </tr>
 			    <tr >
 			      <td width="200" >Marca disco:</td>
 			      <td><input type="text"  name="o-12" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >dvd:</td>
-			      <td><input type="text"  name="o-13" id="des-nombre" class="form-control int" ></td>
+			     
+			      
 			    </tr>
 			  </tbody>
 			</table>
      	</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-12">
-      	<br>
-      	<div class="thead-d">
-			   <h4>SOFTWARE</h4>
-		 </div>
-		 <input type="text" hidden="" value="0" id="softwareCONT" name="softwareCONT">
-		 <table id="tab" class="table">
-		 	<thead>
-		 		<tr>
-		 			<th>DESCRIPCION</th>
-		 			<th>EMPRESA</th>
-		 			<th>NOMBRE DE LA CARPETA</th>
-		 			<th>VERSIÓN</th>
-		 			<th>NOMBRE DEL ARCHIVO</th>
-		 		</tr>
-		 	</thead>
-		 	<tbody id="elementoTR">
-		 		
-		 	</tbody>
-		 </table>
-		 <div class="col-md-2">
-		 	 <div class="row">
-		 	<div class="col-md-4 text-center">
-		 		<button type="button" class="btn btn-danger" onclick="add_software();"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-		 	</div>
-		 	<div class="col-md-4 text-center">
-		 		<button type="button" class="btn btn-success" onclick="delete_software();"><i class="fa fa-trash" aria-hidden="true"></i></button>
-		 	</div>
-		 	<div class="col-md-4 text-center">
-		 		<button type="button" class="btn btn-info" onclick="delete_();">ALL<i class="fa fa-ban" aria-hidden="true"></i></button>
-		 	</div>
-		 </div>
-		 </div>
 		
-		 
-		 <br>
-		 <br>
-		 <br>
-      </div>
-		</div>
 
 	    <div class="row border" >
 	    	<div class="text-center">
@@ -279,7 +243,7 @@
 	       <div id="col" class="col-md-2">
 	       	 <div id="cont" class="form-group">
 	       	 	<label>Estado:</label>
-	       	 	<input id="asi" type="text" class="form-control" value="sin asignar" name="">
+	       	 	<input id="asi" readonly="" type="text" class="form-control" value="sin asignar" name="">
 	       	 </div>
 	       </div>
 	       <div id="col" class="col-md-4">
@@ -291,13 +255,13 @@
 	       <div id="col" class="col-md-4">
 	       	 <div id="cont" class="form-group">
 	       	 	<label>Serial:</label>
-	       	 	<input id="asi" type="text" class="form-control" name="serial"  value="<?php echo $idpc ?>">
+	       	 	<input id="asi" type="text" readonly="" class="form-control" name="serial"  value="<?php echo $idpc ?>">
 	       	 </div>
 	       </div>
 	       
            <div class="col-md-4">
            	 <div id="cont" class="form-group">
-	       	 	<label>Codigo PC</label>
+	       	 	<label>Codigo laptop</label>
 	       	 	<input id="codigopc" type="text" class="form-control"  name="codigopc">
 	       	 </div>
            </div>

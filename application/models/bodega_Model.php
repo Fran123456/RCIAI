@@ -237,8 +237,8 @@ class bodega_Model extends CI_Model{
 
   //metodo que trae todas las laptops de bodega que estan disponibles
 		    public function disponibleLaptop(){
-		    	$this->db->select('bo.serial, bo.fecha_ingreso, c.n_factura');
-		        $this->db->from('inventario_bodega bo')->join('compras c' , 'c.id_compra=bo.compra_id');
+		    	$this->db->select('bo.serial, bo.fecha_ingreso, bo.tipo');
+		        $this->db->from('inventario_bodega bo');
 		        $this->db->where('destino',1);
 		        $this->db->where('bo.tipo','LAPTOP');
 		        $query=$this->db->get();
