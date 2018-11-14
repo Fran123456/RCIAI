@@ -14,6 +14,21 @@ class bodega_Controller extends CI_Controller {
 		require 'application/plus/noty.php';
 
 	}
+  
+  
+	public function _token()
+     {
+        $variable = "";
+        $parte1 = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
+        $parte2 = rand(100000, 999999). "-" . rand(1000, 9999);
+        $parte3 = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
+
+        
+       
+          $variable = 'token--'. $parte1 . $parte2 . $parte3 ;
+        
+        return $variable;
+    }
 
 	public function index(){
 		//vamos a obtener los datos del modelo
@@ -262,7 +277,7 @@ function showCodePC(){
 
       //actualizacion en bodega
       $dataUpdate = array(
-            'estatus' => 'en uso',
+            'estatus' => 'En uso',
             'origen' => 1,
             'fecha_salida'=> $this->input->post('fecha'),
             'destino' => $dataPC[0]['destino'],
@@ -277,25 +292,22 @@ function showCodePC(){
 	       if($validator == true)
 	       {
 		    
-		         //validamos si es para administracion o para laboratorios
-			     if(substr($pc, 0,2) == 'PC'){
-			       $dataPeriferico = array(
-			       	'serie' => $serial,
-			       	'nombre' => $data[0]['nombre'],
-			       	'tipo' => $data[0]['tipo'],
-			       	'marca' => $data[0]['marca'],
-			       	'PC_id' => $pc,
-			       );
-			     }
-			     else{
-		            $dataPeriferico = array(
-			       	'serie' => $serial,
-			       	'nombre' => $data[0]['nombre'],
-			       	'tipo' => $data[0]['tipo'],
-			       	'marca' => $data[0]['marca'],
-			       	'PC_lab_id' => $pc,
-			       );
-			     }
+			     $mov = array(
+			     	'token' => $this->_token(),
+                    'fecha_cambio' => $this->input->post('fecha'),
+                    'codigo_id' => $pc,
+                    'unidad_pertenece_id' => 1,
+                    'unidad_traslado_id' => $dataPC[0]['destino'],
+                    'cambio' => $this->input->post('cambio'),
+                    'descripcion_cambio' => $this->input->post('desMov'),
+                    'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
+                    'encargado' => $this->input->post('encargado'),
+                    'tecnico' => $this->input->post('tecnico'),
+                    'tipoHardSoft'=> 'HARDWARE_EXTERNO',
+                    'tipo_movimiento' => 'Asignación-bodega',
+			     );
+
+			     $this->bod->movimiento_add($mov);
 
 
                  if($this->input->post('unidad')=="37"){

@@ -133,19 +133,19 @@
 			<div class="col-md-2">
 				<div class="form-group">
 					<label class="control-label">Tipo de periferico</label>
-					<input type="text" readonly="" class="form-control" value="<?php echo $data[0]['tipo'] ?>">
+					<input type="text"  readonly="" class="form-control" value="<?php echo $data[0]['tipo'] ?>">
 				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
 					<label class="control-label">Tipo</label>
-					<input type="text" readonly="" class="form-control" value="<?php echo $data[0]['nombre']?>">
+					<input type="text" id="a" readonly="" class="form-control" value="<?php echo $data[0]['nombre']?>">
 				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
 					<label class="control-label">Marca</label>
-					<input type="text" readonly="" class="form-control" value="<?php echo $data[0]['marca'] ?>">
+					<input type="text" readonly="" id="b" class="form-control" value="<?php echo $data[0]['marca'] ?>">
 				</div>
 			</div>
 			<?php if($data[0]['pc_servidor_id'] != ''): ?>
@@ -192,7 +192,7 @@
 	       <div id="col" class="col-md-3">
 	       	 <div id="cont" class="form-group">
 	       	 	<label>Estado:</label>
-	       	 	<input id="asi" type="text" class="form-control" value="sin asignar" name="">
+	       	 	<input id="asi" type="text" readonly="" class="form-control" value="sin asignar" name="">
 	       	 </div>
 	       </div>
 	       <div id="col" class="col-md-3">
@@ -202,8 +202,36 @@
 	       	 </div>
 	       </div>
 	    </div>
-	    <div class="row">
-	       
+	    <br>
+	    <div class="row border">
+	       <div class="text-center">
+				<label><u>Movimiento</u></label>
+			</div>
+			<br>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>Titulo movimiento</label>
+					<input required type="text" name="cambio" class="form-control" value="">
+				</div>
+				<div class="form-group">
+					<label>Descripción del  equipo</label>
+					<input type="text" name="desequipo" class="form-control" value="">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label>Descripción del movimiento</label>
+				<textarea required="" class="form-control" rows="4" name="desMov"></textarea>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>Encargado</label>
+					<input required="" type="text" name="encargado" class="form-control" value="">
+				</div>
+				<div class="form-group">
+					<label>Tecnico</label>
+					<input type="text" name="tecnico" class="form-control" value="">
+				</div>
+			</div>
 	    </div>
 	</div>
 	<br>
@@ -216,6 +244,7 @@
     
 
     </script>-->
+
 
 
 	

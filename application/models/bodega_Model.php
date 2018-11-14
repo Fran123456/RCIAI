@@ -113,6 +113,10 @@ class bodega_Model extends CI_Model{
 	    }
 	}
 
+	public function movimiento_add($data){
+       $this->db->insert('movimiento', $data);
+	}
+
 	public function get_code($dato){
 	    if($dato == 37){
 	     return  $this->db->where('destino' , $dato)->get('inventario_lab')->result_array();
