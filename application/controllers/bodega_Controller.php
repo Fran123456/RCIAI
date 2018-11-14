@@ -298,20 +298,15 @@ function showCodePC(){
 			     }
 
 
-		         //Agregamos los perifericos
-		         if($data[0]['tipo'] == "IMPRESORES MATRICIALES" || $data[0]['tipo'] == "IMPRESORES MULTIFUNCIONALES" || $data[0]['tipo'] == "IMPRESOR DESJEKT" || $data[0]['tipo'] == "IMPRESOR DESJEKT" || $data[0]['tipo'] == "WEBCAN" || $data[0]['tipo'] == "WEBCAN" || $data[0]['tipo'] == "PARLANTES" || $data[0]['tipo'] == "LECTOR PARA MEMORIA SD"){
-					 $this->bod->add_periferico_Out($dataPeriferico);
-
-		         }else{
-		            $this->bod->add_periferico_Adicional($dataPeriferico);
-		         }
-
-		         $this->session->set_flashdata('update' , 'Asignación realizada correctamente');
-		          if(substr($pc, 0,2) == 'PC'){
-		          	 redirect(base_url().'administrativo_Controller/detalle/'.$pc ,'refresh');
-		          }else{
-		             redirect(base_url().'lab_lista_Controller/detalle/'.$pc,'refresh');
-		          }
+                 if($this->input->post('unidad')=="37"){
+					 $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
+		             redirect(base_url().'detalle-lab/'.$pc);
+                 }else{
+                     $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
+		             redirect(base_url().'mantenimiento-administrativo');
+                 }
+		         
+		          
 
 	       }
 	       else

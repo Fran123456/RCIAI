@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>PC laboratorio</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 
 	<style type="text/css" media="screen">
@@ -25,12 +25,25 @@
 		}
 	</style>
 	<link rel="stylesheet" type="text/css" href=" <?php echo base_url()?>assets/css/app/shopping.css ">
+
+	<script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
+    <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.min.js"></script>
 </head>
 <body>
     <?php require 'application/views/Plantilla/nav.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LA BARRA DE NAVEGACION-->
     <?php require 'application/views/Plantilla/panel.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL MENU DESPLEGABLE-->
 
     <!--CONTENIDO DE LA APLICACION-->
+
+
+     <?php if($this->session->flashdata('buy')):  ?>
+        <script type="text/javascript">
+          swal({
+           type: 'success',
+           title: 'ELEMENTO ASIGNADO CORRECTAMENTE',
+           });
+        </script>
+        <?php endif; ?>
 
 	<?php foreach($detalle as $key) {?>
 	<div class="content1">
@@ -583,8 +596,8 @@
 							<thead class="thead-dark">
 								<tr>
 									<th style="width: 200px" scope="col">Serial</th>
-									<th style="width: 200px" scope="col">Nombre</th>
 									<th style="width: 200px" scope="col">Tipo</th>
+									<th style="width: 200px" scope="col">Tipo de periferico</th>
 									<th style="width: 200px" scope="col">Marca</th>
 								</tr>
 							</thead>

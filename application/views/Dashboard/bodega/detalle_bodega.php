@@ -31,7 +31,7 @@
 				</div>
 				<div class="col-md-3">
 					<div class="form-group">
-						<label>Nombre</label>
+						<label>Tipo</label>
 						<input type="text" class="form-control" readonly="" id="nombre" value="<?php echo empty($key->nombre) ? 'no disponible' : $key->nombre  ?>">
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 				</div>
 				<div class="col-md-3">
 					<div class="form-group">
-						<label>Tipo</label>
+						<label>Tipo de periferico</label>
 						<input type="text" class="form-control" readonly="" id=tipo value="<?php echo empty($key->tipo) ? 'no disponible' : $key->tipo  ?>">
 					</div>
 				</div>

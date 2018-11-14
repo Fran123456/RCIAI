@@ -43,7 +43,7 @@
 	     success: function(data){
 	       
 	       //html = data;
-	       if( $("#vay").val() == 25 )
+	       if( $("#vay").val() == 37 )
 	       {
 	       			for(i=0;i<data.length;i++){
 			          html +="<option value="+data[i].identificador_lab+">"+data[i].identificador_lab+"</option>";
@@ -132,13 +132,13 @@
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
-					<label class="control-label">Tipo</label>
+					<label class="control-label">Tipo de periferico</label>
 					<input type="text" readonly="" class="form-control" value="<?php echo $data[0]['tipo'] ?>">
 				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
-					<label class="control-label">Nombre</label>
+					<label class="control-label">Tipo</label>
 					<input type="text" readonly="" class="form-control" value="<?php echo $data[0]['nombre']?>">
 				</div>
 			</div>
