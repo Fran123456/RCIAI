@@ -296,15 +296,18 @@ function showCodePC(){
 			     	'token' => $this->_token(),
                     'fecha_cambio' => $this->input->post('fecha'),
                     'codigo_id' => $pc,
-                    'unidad_pertenece_id' => 1,
-                    'unidad_traslado_id' => $dataPC[0]['destino'],
+                    //'unidad_pertenece_id' => 1,
+                    //'unidad_traslado_id' => $dataPC[0]['destino'],
                     'cambio' => $this->input->post('cambio'),
                     'descripcion_cambio' => $this->input->post('desMov'),
+                    'origen_nuevoEquipo_id' => 1,
+                    'destino_nuevoEquipo_id' =>  $dataPC[0]['destino'],
                     'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
                     'encargado' => $this->input->post('encargado'),
                     'tecnico' => $this->input->post('tecnico'),
                     'tipoHardSoft'=> 'HARDWARE_EXTERNO',
                     'tipo_movimiento' => 'Asignación-bodega',
+                    'serial_nuevo' => $serial,
 			     );
 
 			     $this->bod->movimiento_add($mov);
