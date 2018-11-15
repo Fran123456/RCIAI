@@ -7,7 +7,7 @@
 
    <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
 	<script src="<?php echo base_url()?>assets/package/dist/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="sweetalert2.min.css">
+    
 
 
 
@@ -42,8 +42,14 @@
 	let html = "";
 	var controlador = 0;
 	 function Obtener_pc_ID(){
-	  var dato1 = $('#codigopc').val();
+	  
+	  var codigoxw = $('#a').val() + $('#b').val() + $('#c').val();
+	  var dato1 = $('#d').val();
+	  $('#d').val(codigoxw);
 	  var dato = dato1;
+
+	  if($('#b').val() != ""){
+
 	  $.ajax({
 	     type: 'ajax',
 	     method: 'post',
@@ -89,6 +95,13 @@
 	     }
 
 	  });
+
+	}else{
+		swal({
+				  type: 'warning',
+				  title: 'debe llenar el campo codigo',
+				})
+	}
 	}
 
 	function activar(){
@@ -143,17 +156,19 @@
 			      <td width="200" >Sistema operativo:</td>
 			      <td><input type="text" name="des-2" id="des-nombre" class="form-control int" ></td>
 			      <td width="200">Nucleo:</td>
-			      <td><input type="text" name="des-3" id="des-fabricante" class="form-control int"></td>
+			      <td><select id="des-fabricante" class="form-control int" name="des-3"><option value="64 bits">64 bits</option><option value="32 bits">32 bits</option></select></td>
 			    </tr>
 			    <tr >
 			      <td width="200" >Usuario registrado:</td>
 			      <td><input type="text"  name="des-4" id="des-nombre" class="form-control int" ></td>
-			      <td width="200">Memoria física:</td>
-			      <td><input type="text" name="des-5" id="des-fabricante" class="form-control int"></td>
+			      <td width="200">Memoria física GB:</td>
+			      <td><input type="number" min="0"  name="des-5" id="des-fabricante" class="form-control int"></td>
 			    </tr>
 			    <tr >
 			      <td width="200" >Número de serie:</td>
 			      <td><input type="text" name="des-6" id="des-nombre" class="form-control int" ></td>
+			      <td width="200" >Dominio:</td>
+			      <td><input type="text" name="des-7" id="des-don" class="form-control int" ></td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -258,12 +273,24 @@
 	       	 	<input id="asi" type="text" readonly="" class="form-control" name="serial"  value="<?php echo $idpc ?>">
 	       	 </div>
 	       </div>
-	       
-           <div class="col-md-4">
+	        <div class="col-md-1">
            	 <div id="cont" class="form-group">
-	       	 	<label>Codigo laptop</label>
-	       	 	<input id="codigopc" type="text" class="form-control"  name="codigopc">
+	       	 	<label></label>
+	       	 	<input readonly="" value="LAP" id="a" type="text" class="form-control"  >
 	       	 </div>
+           </div>
+           <div class="col-md-2">
+           	 <div id="cont" class="form-group">
+	       	 	<label>Codigo</label>
+	       	 	<input id="b" type="number" min="0" class="form-control"  >
+	       	 </div>
+           </div>
+            <div class="col-md-1">
+           	 <div id="cont" class="form-group">
+	       	 	<label></label>
+	       	 	<input id="c" type="text" readonly="" value="USAM" class="form-control"  >
+	       	 </div>
+	       	 <input id="d" type="hidden" name="codigopc">
            </div>
 
 	       <div class="col-md-2">
@@ -271,6 +298,45 @@
 	       	 <button type="button" class="btn btn-danger" onclick="Obtener_pc_ID();">Validar codigo</button>
 	       </div>
 	    </div>
+
+
+
+
+<br>
+   <div class="row border">
+	       <div class="text-center">
+				<label><u>Movimiento</u></label>
+			</div>
+			<br>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>Titulo movimiento</label>
+					<input required type="text" name="cambio" class="form-control" value="">
+				</div>
+				<div class="form-group">
+					<label>Descripción del  equipo</label>
+					<input type="text" name="desequipo" class="form-control" value="">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label>Descripción del movimiento</label>
+				<textarea required="" class="form-control" rows="4" name="desMov"></textarea>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>Encargado del movimiento</label>
+					<input required="" type="text" name="encargado" class="form-control" value="">
+				</div>
+				<div class="form-group">
+					<label>Tecnico</label>
+					<input type="text" name="tecnico" class="form-control" value="">
+				</div>
+			</div>
+	    </div>
+
+
+
+
 	</div>
 	<br>
 	<button type="submit" id="final" class="btn btn-success" disabled="">Asignar</button>

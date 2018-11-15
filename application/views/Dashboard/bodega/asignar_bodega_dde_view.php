@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Asignación de perifericos</title>
+	<title>Asignación de disco duro externo</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 
    <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
@@ -30,8 +30,12 @@
 	let html = "";
 	var controlador = 0;
 	 function Obtener_pc_ID(){
-	  var dato1 = $('#codigopc').val();
+	  var codiguito = $('#a').val()+$('#b').val()+$('#c').val();
+	  $('#d').val(codiguito);
+	  var dato1 = codiguito;
 	  var dato = dato1;
+
+	  if($('#b').val() != ""){
 	  $.ajax({
 	     type: 'ajax',
 	     method: 'post',
@@ -77,6 +81,14 @@
 	     }
 
 	  });
+
+	}
+	else{
+		swal({
+				  type: 'warning',
+				  title: 'el campo codigo no debe estar vacio',
+				})
+	}
 	}
 
 	function activar(){
@@ -107,12 +119,12 @@
     <form method="post" action="<?php echo base_url()?>move-DDE">
 	<div class="">
 		<div class="text-center">
-			<h3>Asignar elemento</h3>
+			<h3>Asignar disco duro externo</h3>
 		</div>
 		
 		<div class="row border">
 			<div class="text-center">
-				<label><u>Información sobre el periferico que se va asignar</u></label>
+				<label><u>Información sobre el disco duro externo que se va asignar</u></label>
 			</div>
 			<br>
 			<div class="col-md-3">
@@ -123,13 +135,13 @@
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<label class="control-label">Tipo</label>
+					<label class="control-label">Tipo elemento</label>
 					<input type="text" readonly="" class="form-control" value="<?php echo $data[0]['tipo'] ?>">
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<label class="control-label">Nombre</label>
+					<label class="control-label">Tipo</label>
 					<input type="text" readonly="" class="form-control" value="<?php echo $data[0]['nombre']?>">
 				</div>
 			</div>
@@ -142,6 +154,7 @@
 			
 			
 		</div>
+		<br>
 		<div class="row border" >
 	    	<div class="text-center">
 				<label><u>Asignación</u></label>
@@ -174,12 +187,31 @@
 	       	 	<input id="asi" type="text" class="form-control" name="enc" >
 	       	 </div>
 	       </div>
-           <div class="col-md-4">
+
+	       <div class="col-md-1">
            	 <div id="cont" class="form-group">
-	       	 	<label>Codigo</label>
-	       	 	<input id="codigopc" type="text" class="form-control"  name="codigopc">
+	       	 	<label></label>
+	       	 	<input id="a" readonly="" value="DDE" type="text" class="form-control"  >
 	       	 </div>
            </div>
+
+
+           <div class="col-md-2">
+           	 <div id="cont" class="form-group">
+	       	 	<label>Codigo</label>
+	       	 	<input id="b" type="number" class="form-control"  >
+	       	 </div>
+           </div>
+
+           <div class="col-md-1">
+           	 <div id="cont" class="form-group">
+	       	 	<label></label>
+	       	 	<input id="c" type="text" readonly="" value="USAM" class="form-control"  >
+
+	       	 </div>
+           </div> 
+          <input id="d" type="hidden"  name="codigopc">
+
 
 	       <div class="col-md-2">
 	       	<br>
@@ -187,6 +219,37 @@
 	       </div>
 	    </div>
 		<br>
+		
+		<div class="row border">
+	       <div class="text-center">
+				<label><u>Movimiento</u></label>
+			</div>
+			<br>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>Titulo movimiento</label>
+					<input required type="text" name="cambio" class="form-control" value="">
+				</div>
+				<div class="form-group">
+					<label>Descripción del  equipo</label>
+					<input type="text" name="desequipo" class="form-control" value="">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label>Descripción del movimiento</label>
+				<textarea required="" class="form-control" rows="4" name="desMov"></textarea>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>Encargado del movimiento</label>
+					<input required="" type="text" name="encargado" class="form-control" value="">
+				</div>
+				<div class="form-group">
+					<label>Tecnico</label>
+					<input type="text" name="tecnico" class="form-control" value="">
+				</div>
+			</div>
+	    </div>
 	    
 	    
 	</div>

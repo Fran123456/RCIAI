@@ -227,12 +227,7 @@
                                       <input  type="text" id="serial-{{item.id - 1}}-{{item3}}-{{index}}" required class="form-control"  name="serial-{{item3}}-{{index}}">
                                     </div>
                                   </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">
-                                      <label>Nombre</label>
-                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="{{index}}" required class="form-control"  name="nombre-{{item3}}-{{index}}">
-                                    </div>
-                                  </div>
+                                  
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>Marca</label>
@@ -247,8 +242,14 @@
                                   </div>
                                   <div class="col-md-4">
                                     <div class="form-group">
-                                      <label>Tipo</label>
+                                      <label>Tipo de periferico</label>
                                       <input type="text" value="{{index}}" readonly="" class="form-control"  name="tipo-{{item3}}-{{index}}">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label>Tipo</label>
+                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}"   class="form-control"  name="nombre-{{item3}}-{{index}}">
                                     </div>
                                   </div>
                                   <div class="col-md-4">

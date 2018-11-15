@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Laptop</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 
 <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
@@ -228,30 +228,9 @@
 					<input type="text" class="form-control" id="tarjeta" readonly="" value="<?php echo  empty($key->tarjeta_extra) ? 'no disponible' : $key->tarjeta_extra   ?>">
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label>Marca monitor</label>
-					<input type="text" class="form-control" id="monitor" readonly="" value="<?php echo  empty($key->monitor_marca) ? 'no disponible' : $key->monitor_marca   ?>">
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label>Tipo monitor</label>
-					<input type="text" class="form-control" id="tipo" readonly="" value="<?php echo  empty($key->tipo) ? 'no disponible' : $key->tipo   ?>">
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label>Tipo monitor</label>
-					<input type="text" class="form-control" id="tipo" readonly="" value="<?php echo empty($key->tipo) ? 'no disponible' : $key->tipo  ?>">
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label>Modelo del monitor</label>
-					<input type="text" class="form-control" id="modelo" readonly="" value="<?php echo empty($key->modelo) ? 'no disponible' : $key->modelo  ?>">
-				</div>
-			</div>
+			
+			
+		
 			<div class="col-md-3">
 				<div class="form-group">
 					<label >Disco fisico 1</label>
@@ -260,7 +239,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<label >Capacidad (GB)</label>
+					<label >Capacidad de disco duro</label>
 					<input type="text" class="form-control" id="capacidad" readonly="" value="<?php echo  empty($key->capacidad) ? 'no disponible' : $key->capacidad   ?>">
 				</div>
 			</div>
@@ -330,5 +309,11 @@
 <a class="btn btn-success" href="<?php echo base_url('listado/'.$op=$unidad.'/'.$origen=$equipo)?>">ATRAS</a>
 <?php require 'application/views/Plantilla/footer.php';?><!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL FOOTER-->
     <script src=" <?php echo base_url()?>assets/js/administrativo/administrativo.js"></script>
+
+    <script type="text/javascript">
+    	var code = $('#identificador').val();
+    	var code = code.substr(0,3);
+    	
+    </script>
 </body>
 </html>

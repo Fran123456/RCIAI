@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Periferico</title>
+	<title>Detalle de un elemento</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 
 	<style type="text/css" media="screen">
@@ -120,12 +120,12 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-3">
+				<!--<div class="col-md-3">
 					<div class="form-group">
 						<label>Fecha salida</label>
 						<input type="text" class="form-control" id="f_salidaDDE" readonly="" value="<?php echo empty($key->fecha_salida) ? 'no disponible' : $key->fecha_salida  ?>">
 					</div>
-				</div>
+				</div>-->
 				<div class="col-md-3">
 					<div class="form-group">
 						<label>Destino</label>
