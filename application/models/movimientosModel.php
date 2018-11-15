@@ -24,5 +24,39 @@ class MovimientosModel extends CI_Model
 			//si no hay registros, devolvemos un false
 			return false;
 		}
-	}
-}
+	}//fin de getAsignacion
+
+	#función que nos trae la consulta de los campos asociados a un movimiento por medio de su id_Cambio
+	public function getDetalleAsig($id)
+	{
+		#hacemos la consulta de los datos
+		$this->db->select('*');
+		$this->db->from('movimiento');
+		$this->db->where('tipo_movimiento','Asignacion-bodega');
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result();
+		}else{
+			//si no hay registros, devolvemos un false
+			return false;
+		}
+	}// fin de getDetalleAsig($id)
+
+
+	//obtenemos los origenes y destinos de la tabla 
+  public function getOrigen_destino($unidad){
+    $this->db->select('u. unidad');
+    $this->db->from('unidad u');
+    $this->db->where('id_unidad',$unidad);
+    $result=$this->db->get();
+
+    if($result->num_rows() > 0){
+      return $result->result_array();
+    }else{
+      return false;
+    }
+  }#fin de getOrigen
+
+}//fin de la clase

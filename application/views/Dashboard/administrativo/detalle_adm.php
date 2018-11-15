@@ -35,7 +35,7 @@
 <?php if($detalle != false) {?>
 	<?php foreach($detalle as $key) {?>
 
-	<div class="content1">
+	<div class="content">
 		<div class="row">
 			<div class="col-md-12">
 				<center>
@@ -45,7 +45,7 @@
 			<div class="col-md-3">
 				<div class="form-group">
 					<label >Identificador</label>
-					<input type="text" class="form-control" id="identificador" id='identificador' readonly="" value="<?php echo empty($key->identificador) ? 'no disponible' : $key->identificador ?>">
+					<input type="text" class="form-control" id="identificador"  readonly="" value="<?php echo empty($key->identificador) ? 'no disponible' : $key->identificador ?>">
 				</div>
 			</div>
 			<div class="col-md-3">

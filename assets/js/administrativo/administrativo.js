@@ -1,14 +1,9 @@
 $(document).ready(function(){
 	verificar();
 
-	$("#tabla").dataTable({
-		 responsive: true,
-    "language": {
-      "url": "assets/js/lenguaje.js"
-    }
-  }); 
+});
 
-	function verificar(){
+function verificar(){
 	///////////////// detalle_adm //////////////////////////////
 		if($('#identificador').val()=='no disponible'){
 			$('#identificador').css('color','red');
@@ -147,6 +142,3 @@ $(document).ready(function(){
 
 
 	}//fin de la funcion
-
-
-});
