@@ -111,7 +111,23 @@
 					<?php endif; ?>
 					<!-- fin del inventario audiovisuales-->
 
+					<!-- Notificaciones-->
+					
+						<li>
+							<a href="#subPages4" data-toggle="collapse" class="collapsed"><i class="fa fa-paper-plane"></i> <span>Movimientos</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages4" class="collapse ">
+								<ul class="nav">
+									<li><a href="<?php echo base_url('Movimientos') ?>">Control de movimientos</a></li>
+								</ul>
+
+							</div>
+						</li>
+
+
+
+					<!-- fin del Root-->
 					<?php endif; ?>
+
 					</ul>
 				</nav>
 			</div>

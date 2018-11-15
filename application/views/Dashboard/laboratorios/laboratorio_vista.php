@@ -41,7 +41,7 @@
 					<td scope="row"><?php echo $key->identificador_lab; ?></td>
 					<td scope="row"><?php echo $key->fecha_ingreso; ?></td>
 					<td><a href="<?php echo base_url('detalle-lab/'.$id=$key->identificador_lab);?>" class="btn btn-success item-view" data="<?php echo $key->identificador_lab ?>"><i class="fa fa-eye" aria-hidden="true"></i></a> </td>
-					<td><a href="<?php echo base_url('lab_lista_Controller/mostrarSW/'.$id=$key->identificador_lab);?>" id="editar" class="btn btn-primary item-edit" data="<?php echo $key->identificador_lab ?>"><i class="fa fa-tasks" aria-hidden="true"></i></a> </td>
+					<td><a href="<?php echo base_url('lab_lista_Controller/mostrarSW/'.$id=$key->identificador_lab);?>" id="editar" class="btn btn-primary item-edit" data="<?php echo $key->identificador_lab ?>"><i class="fa fa-file-text" aria-hidden="true"></i></a> </td>
 				</tr>
 	  		<?php }?>
 
