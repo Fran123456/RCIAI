@@ -255,8 +255,8 @@ class bodega_Model extends CI_Model{
 
 		    //metodo para traer todos los DDE de bodega que estan disponibles
 		    public function disponibleDDE(){
-		    	$this->db->select('bo.serial, bo.fecha_ingreso, c.n_factura ');
-		        $this->db->from('inventario_bodega bo')->join('compras c' , 'c.id_compra=bo.compra_id');
+		    	$this->db->select('bo.serial, bo.fecha_ingreso');
+		        $this->db->from('inventario_bodega bo');
 		        $this->db->where('destino',1);
 		        $this->db->where('bo.tipo','DISCO DURO EXTERNO');
 		        $query=$this->db->get();

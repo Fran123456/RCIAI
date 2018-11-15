@@ -236,7 +236,7 @@ function showCodePC(){
 
 		 //actualizacion en bodega
         $dataUpdate = array(
-            'estatus' => 'en uso',
+            'estatus' => 'En uso',
             'origen' => 1,
             'fecha_salida'=> $this->input->post('fecha'),
             'destino' => $this->input->post('unidad'),
@@ -248,20 +248,44 @@ function showCodePC(){
         'fecha_ingreso' => $this->input->post('fecha'),
         'origen' => 1,
         'destino' => $this->input->post('unidad'),
-        'compra_id' => $compraid[0]['compra_id'],
         'lugar_name' => $unidad[0]['unidad'],
         'serial' => $this->input->post('serial'),
          );
-        
+
+
+         $mov = array(
+            'token' => $this->_token(),
+                    'fecha_cambio' => $this->input->post('fecha'),
+                    'codigo_id' => $this->input->post('codigopc'),
+                    //'unidad_pertenece_id' => 1,
+                    //'unidad_traslado_id' => $dataPC[0]['destino'],
+                    'cambio' => $this->input->post('cambio'),
+                    'descripcion_cambio' => $this->input->post('desMov'),
+                    'origen_nuevoEquipo_id' => 1,
+                    'destino_nuevoEquipo_id' =>  $this->input->post('unidad'),
+                    'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
+                    'encargado' => $this->input->post('encargado'),
+                    'tecnico' => $this->input->post('tecnico'),
+                    'tipoHardSoft'=> 'HARDWARE_EXTERNO',
+                    'tipo_movimiento' => 'Asignacion-bodega',
+                    'serial_nuevo' =>  $this->input->post('serial'),
+           );
+
+      
         //print_r($admin);
         #actualizamos el inventario de bodega
         $this->bod->update_('inventario_bodega', 'serial' ,$this->input->post('serial'), $dataUpdate);
         #agregamos al inventario administrativo
         $this->bod->add_('inventario_adm',$admin);
+        $this->bod->add_('movimiento',$mov);
 
-        $this->session->set_flashdata('success','correcto');
-        redirect(base_url().'administrativo_Controller/detalle/'.$this->input->post('codigopc'));
-       
+                if($this->input->post('unidad')=="37"){
+                 $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
+                 redirect(base_url().'detalle-lab/'.$pc);
+                 }else{
+                     $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
+                 redirect(base_url().'mantenimiento-administrativo');
+                 }
 	}
 
 
@@ -306,7 +330,7 @@ function showCodePC(){
                     'encargado' => $this->input->post('encargado'),
                     'tecnico' => $this->input->post('tecnico'),
                     'tipoHardSoft'=> 'HARDWARE_EXTERNO',
-                    'tipo_movimiento' => 'Asignación-bodega',
+                    'tipo_movimiento' => 'Asignacion-bodega',
                     'serial_nuevo' => $serial,
 			     );
 
@@ -314,7 +338,7 @@ function showCodePC(){
 
 
                  if($this->input->post('unidad')=="37"){
-					 $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
+					       $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
 		             redirect(base_url().'detalle-lab/'.$pc);
                  }else{
                      $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
@@ -470,7 +494,7 @@ function showCodePC(){
                     'encargado' => $this->input->post('encargado'),
                     'tecnico' => $this->input->post('tecnico'),
                     'tipoHardSoft'=> 'HARDWARE_EXTERNO',
-                    'tipo_movimiento' => 'Asignación-bodega',
+                    'tipo_movimiento' => 'Asignacion-bodega',
                     'serial_nuevo' => $this->input->post('serial'),
 		);
       

@@ -31,7 +31,7 @@
 			<tr>
 				<th scope="col">Serial</th>
 				<th scope="col">Fecha de ingreso</th>
-				<th scope="col">N° de factura</th>
+				
 				<th scope="col">Asignar</th>
 			</tr>
 		</thead>
@@ -40,7 +40,7 @@
 				<tr>
 					<th><?php echo empty($key->serial) ? '<span style= "color:red">no disponible</span>' : $key->serial ?></th>
 					<td><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso ?></td>
-					<th><?php echo empty($key->n_factura) ? '<span style= "color:red">no disponible</span>' : $key->n_factura ?></th>
+					
 					<td><a href="<?php echo base_url();?>validar-DDE/<?php echo $key->serial;?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 				</tr>
 			<?php } ?>

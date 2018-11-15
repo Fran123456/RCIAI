@@ -42,8 +42,14 @@
 	let html = "";
 	var controlador = 0;
 	 function Obtener_pc_ID(){
-	  var dato1 = $('#codigopc').val();
+	  
+	  var codigoxw = $('#a').val() + $('#b').val() + $('#c').val();
+	  var dato1 = $('#d').val();
+	  $('#d').val(codigoxw);
 	  var dato = dato1;
+
+	  if($('#b').val() != ""){
+
 	  $.ajax({
 	     type: 'ajax',
 	     method: 'post',
@@ -89,6 +95,13 @@
 	     }
 
 	  });
+
+	}else{
+		swal({
+				  type: 'warning',
+				  title: 'debe llenar el campo codigo',
+				})
+	}
 	}
 
 	function activar(){
@@ -260,12 +273,24 @@
 	       	 	<input id="asi" type="text" readonly="" class="form-control" name="serial"  value="<?php echo $idpc ?>">
 	       	 </div>
 	       </div>
-	       
-           <div class="col-md-4">
+	        <div class="col-md-1">
            	 <div id="cont" class="form-group">
-	       	 	<label>Codigo laptop</label>
-	       	 	<input id="codigopc" type="text" class="form-control"  name="codigopc">
+	       	 	<label></label>
+	       	 	<input readonly="" value="LAP" id="a" type="text" class="form-control"  >
 	       	 </div>
+           </div>
+           <div class="col-md-2">
+           	 <div id="cont" class="form-group">
+	       	 	<label>Codigo</label>
+	       	 	<input id="b" type="number" min="0" class="form-control"  >
+	       	 </div>
+           </div>
+            <div class="col-md-1">
+           	 <div id="cont" class="form-group">
+	       	 	<label></label>
+	       	 	<input id="c" type="text" readonly="" value="USAM" class="form-control"  >
+	       	 </div>
+	       	 <input id="d" type="hidden" name="codigopc">
            </div>
 
 	       <div class="col-md-2">
