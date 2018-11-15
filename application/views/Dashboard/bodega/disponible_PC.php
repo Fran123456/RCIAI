@@ -33,7 +33,7 @@
 				
 				<th scope="col">Fecha de ingreso</th>
 				<th scope="col">Factura</th>
-				<th scope="col">Asignar</th>
+				<th scope="col">Asignar administrativo</th>
 			</tr>
 		</thead>
 		<tbody id="showdata">

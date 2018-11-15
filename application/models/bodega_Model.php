@@ -199,6 +199,8 @@ class bodega_Model extends CI_Model{
 			 $this->db->where('estatus !=','arruinado');
 			 $this->db->where('tipo !=', 'LAPTOP');
 			 $this->db->where('tipo !=', 'DISCO DURO EXTERNO');
+			
+
 			 //$this->db->where('pc_servidor_id',NULL);
 			 $query=$this->db->get();
 			 //comprobamos
@@ -301,7 +303,10 @@ class bodega_Model extends CI_Model{
 
 
 
-
+        public function obtener_laptop($id){
+          $data = $this->db->where('serial' , $id)->get('inventario_bodega')->result_array();
+          return $data;
+        }
 
 
 

@@ -121,12 +121,13 @@
 		<div class="text-center">
 			<h3>Asignar disco duro externo</h3>
 		</div>
-		
+	
 		<div class="row border">
 			<div class="text-center">
 				<label><u>Información sobre el disco duro externo que se va asignar</u></label>
 			</div>
 			<br>
+			<input type="hidden" name="comprac" value="<?php echo $datos[0]['compra_id'] ?>">
 			<div class="col-md-3">
 				<div class="form-group">
 					<label class="control-label">Serial</label>
@@ -227,16 +228,18 @@
 			<br>
 			<div class="col-md-4">
 				<div class="form-group">
-					<label>Titulo movimiento</label>
-					<input required type="text" name="cambio" class="form-control" value="">
+					<label>¿Qué cambio sufrio el equipo?</label>
+				    <textarea name="cambio" class="form-control" required></textarea>
+					
 				</div>
 				<div class="form-group">
-					<label>Descripción del  equipo</label>
-					<input type="text" name="desequipo" class="form-control" value="">
+					<label> Caracteristicas de equipo que queda en función con ese código de inventario</label>
+					<textarea name="desequipo" class="form-control" ></textarea>
+					
 				</div>
 			</div>
 			<div class="col-md-4">
-				<label>Descripción del movimiento</label>
+				<label>Breve descripción porque se hizo el cambio</label>
 				<textarea required="" class="form-control" rows="4" name="desMov"></textarea>
 			</div>
 			<div class="col-md-4">
@@ -250,6 +253,7 @@
 				</div>
 			</div>
 	    </div>
+
 	    
 	    
 	</div>

@@ -130,7 +130,7 @@
 				    <tr style="color: white">
 				      <th scope="col">#</th>
 				      <th scope="col">serial</th>
-				      <th scope="col">nombre</th>
+				      <th scope="col">tipo de periferico</th>
 				      <th scope="col">tipo</th>
 				      <th scope="col">fecha ingreso</th>
 				    </tr>
@@ -139,9 +139,10 @@
 				  	<?php for ($i=0; $i <count($elementos); $i++) { ?>
 				    <tr>
 				      <th scope="row"><?php echo ($i+1) ?></th>
-				      <td> <input type="text" class="int form-control" name="<?php echo "s-".$i ?>" value="<?php echo $elementos[$i]['serial']?>"> </td>
-				      <td><?php echo $elementos[$i]['nombre'] ?></td>
+				      <td> <input type="text" class="int form-control" readonly="" name="<?php echo "s-".$i ?>" value="<?php echo $elementos[$i]['serial']?>"> </td>
 				      <td><?php echo $elementos[$i]['tipo'] ?></td>
+				      <td><?php echo $elementos[$i]['nombre'] ?></td>
+				      
 				      <td><?php echo $elementos[$i]['fecha_ingreso'] ?></td>
 				    </tr>
 				    <?php } ?>
@@ -150,6 +151,17 @@
 				</table>
 		</div>
 		<br>
+		<?php 
+		  $deter = null;
+            for ($i=0; $i <count($elementos) ; $i++) { 
+            	if($elementos[$i]['tipo'] == "MONITOR"){
+                   $deter = $i;
+            	}
+
+            }
+
+
+		?>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -168,13 +180,13 @@
 			      <td width="200" >Sistema operativo:</td>
 			      <td><input type="text" name="des-2" id="des-nombre" class="form-control int" ></td>
 			      <td width="200">Nucleo:</td>
-			      <td><input type="text" name="des-3" id="des-fabricante" class="form-control int"></td>
+			      <td><select class="form-control int" name="des-3" id="des-fabricante"><option value="64 bits">64 bits</option><option value="32 bits">32 bits</option></select></td>
 			    </tr>
 			    <tr >
 			      <td width="200" >Usuario registrado:</td>
 			      <td><input type="text"  name="des-4" id="des-nombre" class="form-control int" ></td>
-			      <td width="200">Memoria física:</td>
-			      <td><input type="text" name="des-5" id="des-fabricante" class="form-control int"></td>
+			      <td width="200">Memoria física GB:</td>
+			      <td><input type="number" min="0" step="0.1" name="des-5"  id="des-fabricante" class="form-control int"></td>
 			    </tr>
 			    <tr >
 			      <td width="200" >Número de serie:</td>
@@ -206,7 +218,7 @@
 			    </tr>
 			    <tr >
 			      <td width="200" >Marca RAM:</td>
-			      <td><input type="text"   name="o-4" id="des-nombre" class="form-control int" ></td>
+			      <td><input type="text"   name="o-4"  id="des-nombre" class="form-control int" ></td>
 			      <td width="200">IP:</td>
 			      <td><input type="text" name="o-5" id="des-fabricante" class="form-control int"></td>
 			    </tr>
@@ -214,18 +226,18 @@
 			      <td width="200" >Tarjetas extra:</td>
 			      <td><input type="text"  name="o-6" id="des-nombre" class="form-control int" ></td>
 			      <td width="200" >Marca monitor:</td>
-			      <td><input type="text"  name="o-7" id="des-nombre" class="form-control int" ></td>
+			      <td><input type="text"  name="o-7" value="<?php echo $elementos[$deter]['marca'] ?>" id="des-nombre" class="form-control int" ></td>
 			    </tr>
 			    <tr >
 			      <td width="200" >Tipo monitor:</td>
-			      <td><input type="text"  name="o-8" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >Modelo y serie monitor:</td>
+			      <td><input type="text" value="<?php echo $elementos[$deter]['nombre'] ?>" name="o-8" id="des-nombre" class="form-control int" ></td>
+			      <td width="200" >Modelo monitor:</td>
 			      <td><input type="text"   name="o-9" id="des-nombre" class="form-control int" ></td>
 			    </tr>
 			    <tr >
-			      <td width="200" >Disco disico 1:</td>
+			      <td width="200" >Disco fisico:</td>
 			      <td><input type="text"  name="o-10" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >Capacidad (GB):</td>
+			      <td width="200" >Capacidad disco duro:</td>
 			      <td><input type="text"  name="o-11" id="des-nombre" class="form-control int" ></td>
 			    </tr>
 			    <tr >
@@ -239,47 +251,7 @@
      	</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-12">
-      	<br>
-      	<div class="thead-d">
-			   <h4>SOFTWARE</h4>
-		 </div>
-		 <input type="text" hidden="" value="0" id="softwareCONT" name="softwareCONT">
-		 <table id="tab" class="table">
-		 	<thead>
-		 		<tr>
-		 			<th>DESCRIPCION</th>
-		 			<th>EMPRESA</th>
-		 			<th>NOMBRE DE LA CARPETA</th>
-		 			<th>VERSIÓN</th>
-		 			<th>NOMBRE DEL ARCHIVO</th>
-		 		</tr>
-		 	</thead>
-		 	<tbody id="elementoTR">
-		 		
-		 	</tbody>
-		 </table>
-		 <div class="col-md-2">
-		 	 <div class="row">
-		 	<div class="col-md-4 text-center">
-		 		<button type="button" class="btn btn-danger" onclick="add_software();"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-		 	</div>
-		 	<div class="col-md-4 text-center">
-		 		<button type="button" class="btn btn-success" onclick="delete_software();"><i class="fa fa-trash" aria-hidden="true"></i></button>
-		 	</div>
-		 	<div class="col-md-4 text-center">
-		 		<button type="button" class="btn btn-info" onclick="delete_();">ALL<i class="fa fa-ban" aria-hidden="true"></i></button>
-		 	</div>
-		 </div>
-		 </div>
 		
-		 
-		 <br>
-		 <br>
-		 <br>
-      </div>
-		</div>
 
 	    <div class="row border" >
 	    	<div class="text-center">
@@ -325,6 +297,46 @@
 	       	 <button type="button" class="btn btn-danger" onclick="Obtener_pc_ID();">Validar codigo</button>
 	       </div>
 	    </div>
+
+<br>
+<div class="row border">
+	       <div class="text-center">
+				<label><u>Movimiento</u></label>
+			</div>
+			<br>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>¿Qué cambio sufrio el equipo?</label>
+				    <textarea name="cambio" class="form-control" required></textarea>
+					
+				</div>
+				<div class="form-group">
+					<label> Caracteristicas de equipo que queda en función con ese código de inventario</label>
+					<textarea name="desequipo" class="form-control" ></textarea>
+					
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label>Breve descripción porque se hizo el cambio</label>
+				<textarea required="" class="form-control" rows="4" name="desMov"></textarea>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>Encargado del movimiento</label>
+					<input required="" type="text" name="encargado" class="form-control" value="">
+				</div>
+				<div class="form-group">
+					<label>Tecnico</label>
+					<input type="text" name="tecnico" class="form-control" value="">
+				</div>
+			</div>
+	    </div>
+
+
+
+
+
+
 	</div>
 	<br>
 	<button type="submit" id="final" class="btn btn-success" disabled="">Asignar</button>
