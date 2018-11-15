@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Asignación de disco duro externo</title>
+	<title>Asignación</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 
    <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
@@ -116,15 +116,15 @@
 
 
     <!--CONTENIDO DE LA APLICACION-->
-    <form method="post" action="<?php echo base_url()?>move-DDE">
+    <form method="post" action="<?php echo base_url()?>move-otro">
 	<div class="">
 		<div class="text-center">
-			<h3>Asignar disco duro externo</h3>
+			<h3>Asignar elemento</h3>
 		</div>
-	
+	   <input type="hidden" name="compraidc" value="<?php $datos[0]['compra_id'] ?>">
 		<div class="row border">
 			<div class="text-center">
-				<label><u>Información sobre el disco duro externo que se va asignar</u></label>
+				<label><u>Información sobre el elemento para asignar</u></label>
 			</div>
 			<br>
 			<input type="hidden" name="comprac" value="<?php echo $datos[0]['compra_id'] ?>">
@@ -163,7 +163,7 @@
 	       <div class="col-md-3">
 	       	 <div class="form-group">
 	       	 	<label>Unidad a la que se asignara</label>
-	       	 	<select id="vay" class="form-control" name="unidad">
+	       	 	<select onchange="cambio();" id="vay" class="form-control" name="unidad">
 	       	 		<?php for($k =0; $k<count($unidades); $k++): ?>
 	       	 		<option value="<?php echo $unidades[$k]['id_unidad'] ?>"><?php echo $unidades[$k]['unidad']  ?></option>
 	       	 	   <?php endfor; ?>
@@ -272,5 +272,14 @@
 	
     <script type="text/javascript" charset="utf8" src="<?php echo base_url()?>assets/js/bodega/bodega.js" ></script>
     <?php require 'application/views/Plantilla/footer.php';?><!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL FOOTER-->
+
+    <script type="text/javascript">
+    	var cambio = $('vay').val();
+
+    	if(cambio == 37){
+
+    	}
+    </script>
 </body>
 </html>
+

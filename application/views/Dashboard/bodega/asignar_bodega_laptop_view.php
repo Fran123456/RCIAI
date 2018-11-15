@@ -136,7 +136,7 @@
 			<h3>Asignar laptop</h3>
 		</div>
 
-		
+		<input type="hidden" name="buyx" value="<?php echo $datos[0]['compra_id'] ?>">
 		<br>
 
 		<div class="row">
@@ -310,16 +310,18 @@
 			<br>
 			<div class="col-md-4">
 				<div class="form-group">
-					<label>Titulo movimiento</label>
-					<input required type="text" name="cambio" class="form-control" value="">
+					<label>¿Qué cambio sufrio el equipo?</label>
+				    <textarea name="cambio" class="form-control" required></textarea>
+					
 				</div>
 				<div class="form-group">
-					<label>Descripción del  equipo</label>
-					<input type="text" name="desequipo" class="form-control" value="">
+					<label> Caracteristicas de equipo que queda en función con ese código de inventario</label>
+					<textarea name="desequipo" class="form-control" ></textarea>
+					
 				</div>
 			</div>
 			<div class="col-md-4">
-				<label>Descripción del movimiento</label>
+				<label>Breve descripción porque se hizo el cambio</label>
 				<textarea required="" class="form-control" rows="4" name="desMov"></textarea>
 			</div>
 			<div class="col-md-4">
