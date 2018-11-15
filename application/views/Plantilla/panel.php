@@ -46,6 +46,7 @@
 									<li><a href="<?php echo base_url()?>computadoras-disponibles" class="">Asignar PC</a></li>
 									<li><a href="<?php echo base_url()?>laptops-disponibles" class="">Asignar Laptop</a></li>
 									<li><a href="<?php echo base_url()?>DDE-disponibles" class="">Asignar DDE</a></li>
+									<li><a href="<?php echo base_url()?>otros-disponibles" class="">Asignar otros</a></li>
 									<li><a href="<?php echo base_url()?>bodega-add" class="">Agregar a bodega</a></li>
 									<?php endif; ?>
 								</ul>

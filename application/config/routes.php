@@ -174,6 +174,8 @@ $route['validar-periferico/(:any)'] = 'bodega_Controller/validar_elemento';
 $route['validar-pc/(:any)'] = 'bodega_Controller/asignar_pc_View';
 $route['validar-DDE/(:any)'] = 'bodega_Controller/asignar_dde_View';
 $route['validar-laptop/(:any)'] = 'bodega_Controller/asignar_laptop_View';
+$route['validar-otro/(:any)'] = 'bodega_Controller/asignar_otro_View';
+
 
 $route['get_pcs'] = 'bodega_Controller/showCodePC';
 //$route['asignar-periferico/(:any)'] = 'bodega_Controller/asignar_elemento';
@@ -184,6 +186,7 @@ $route['move'] = 'bodega_Controller/catch_asignacion';
 $route['move-pc'] = 'bodega_Controller/catch_asignacion_pc';
 $route['move-DDE'] = 'bodega_Controller/catch_asignacion_dde';
 $route['move-laptop'] = 'bodega_Controller/catch_asignacion_laptop';
+$route['move-otro'] = 'bodega_Controller/catch_asignacion_otro';
 
 $route['computadoras-disponibles'] = 'bodega_Controller/pc_disponible';
 
@@ -194,6 +197,8 @@ $route['elementos-disponibles'] = 'bodega_Controller/mostrar_disponible/$1';
 
 $route['laptops-disponibles'] = 'bodega_Controller/laptop_disponible';
 $route['DDE-disponibles'] = 'bodega_Controller/dde_disponible';
+$route['otros-disponibles'] = 'bodega_Controller/otros_disponible';
+
 $route['cambiarpass'] = 'profile_Controller/cambiar_pass';
 
 #rutas para los laboratorios

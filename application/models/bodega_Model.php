@@ -199,8 +199,12 @@ class bodega_Model extends CI_Model{
 			 $this->db->where('estatus !=','arruinado');
 			 $this->db->where('tipo !=', 'LAPTOP');
 			 $this->db->where('tipo !=', 'DISCO DURO EXTERNO');
-			
-
+			 $this->db->where('tipo !=', 'ACCES POINT RADIO U MASFERRER');
+			 $this->db->where('tipo !=', 'IMPRESORES MATRICIALES');
+			 $this->db->where('tipo !=', 'IMPRESORES MULTIFUNCIONALES');
+			  $this->db->where('tipo !=', 'IMPRESOR DESJEKT');
+ $this->db->where('tipo !=', 'SCANNER');
+ $this->db->where('tipo !=', 'WEBCAN');
 			 //$this->db->where('pc_servidor_id',NULL);
 			 $query=$this->db->get();
 			 //comprobamos
@@ -261,6 +265,30 @@ class bodega_Model extends CI_Model{
 		        $this->db->from('inventario_bodega bo');
 		        $this->db->where('destino',1);
 		        $this->db->where('bo.tipo','DISCO DURO EXTERNO');
+		        $query=$this->db->get();
+		        //comprobamos
+		        if($query->num_rows() > 0){
+		            //si hay registros los devolvemos
+		            return $query->result();
+		            //return false;
+		        }else{
+		            //si no hay registros devolvemos false
+		            return false;
+		        }
+		    }
+
+		    public function todo(){
+		    	$data = $this->db->where('id_unidad !=', 4)->where('id_unidad !=', 38)->get('unidad')->result_array();
+		    	return $data;
+		    }
+
+
+		    public function disponibleotros(){
+		    	$this->db->select('bo.serial, bo.fecha_ingreso, bo.tipo');
+		        $this->db->from('inventario_bodega bo');
+		        $this->db->where('destino',1);
+		        $this->db->where('bo.tipo','ACCES POINT RADIO U MASFERRER');
+		        $this->db->or_where('bo.tipo','IMPRESORES MATRICIALES');
 		        $query=$this->db->get();
 		        //comprobamos
 		        if($query->num_rows() > 0){

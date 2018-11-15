@@ -4,7 +4,7 @@
 <head>
 	<title>Asignación de pc</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
-
+  <script src=" <?php echo base_url() ?>assets/js/vue.js">  </script>
    <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
 	<script src="<?php echo base_url()?>assets/package/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
@@ -42,8 +42,15 @@
 	let html = "";
 	var controlador = 0;
 	 function Obtener_pc_ID(){
-	  var dato1 = $('#codigopc').val();
+
+      var cod = $('#a').val() + $('#b').val() + $('#c').val();
+      $('#d').val(cod);
+
+	  var dato1 = cod;
 	  var dato = dato1;
+
+
+if($('#b').val() != ""){
 	  $.ajax({
 	     type: 'ajax',
 	     method: 'post',
@@ -52,7 +59,6 @@
 	     async: false,
 	     dataType: 'json',
 	     success: function(data){
-	      console.log(Object.values(data));
 	       //html = data;
 	       if(data == ""){
 	       	if($('#codigopc').val() ==""){
@@ -89,6 +95,13 @@
 	     }
 
 	  });
+
+	}else{
+              swal({
+				  type: 'warning',
+				  title: 'El campo codigo no puede estar vacio',
+				})
+	}
 	}
 
 	function activar(){
@@ -99,9 +112,89 @@
       }
 	}
 
+
+
+
+	function select(){
+
+		$.ajax({
+         type: 'ajax',
+	     method: 'post',
+	     url: '<?php echo base_url() ?>bodega_Controller/unidadesajax',
+	     dataType: 'json',
+	     success: function(data){
+            console.log(data);
+            hrml ="";
+            for (var i = 0; i < data.length; i++) {
+            	 html = html + '<option value="'+data[i].id_unidad+'" >'+data[i].unidad+'</option>';
+
+            }
+            $('#vay').append(html);
+	     },
+	     error: function(){
+
+	     }
+		});
+	}
+
+	select();
+
+
+	function cambioc(){
+	   var cambio =	$('#vay').val();
+	   if(cambio == 37){
+         $('#delete').remove();
+         var htmls ='<div id="delete"><div class="col-md-2">'+
+                            '<label>Codigo</label>'+
+                             '<select  name="cod1" class="form-control int">'+
+                              '<option selected="" value="LAB1">LAB1</option>'+
+                              '<option value="LAB2">LAB2</option>'+
+                              '<option value="LAB3">LAB3</option>'+
+                              '<option value="LAB4">LAB4</option>'+
+                              '<option value="LAB5">LAB5</option>'+
+                              '<option value="HW">HW</option>'+
+                              '<option value="RED">RED</option>'+
+                            '</select>'+
+                            '</div>'+
+                         '<div class="col-md-1">'+
+                              '<label>N°</label>'+
+                              '<input  type="number" value="1" min="1" class="form-control" name="cod2">'+
+                            '</div>'+
+                           '</div>';
+            $('#ele').append(htmls);
+
+	   }
+
+	   if(cambio != 37){
+
+	   	$('#delete').remove();
+	   	var html5t = 	'<div id="delete">'+
+	       		'<div class="col-md-1 ">'+
+           	    '<div id="cont" class="form-group">'+
+	       	 	  '<label></label>'+
+	       	 	   '<input readonly="" value="PC" id="a" type="text" class="form-control"  >'+
+	       	    '</div>'+
+               '</div>'+
+               '<div class="col-md-2">'+
+           	    '<div id="cont" class="form-group">'+
+	       	 	  '<label>Codigo PC</label>'+
+	       	 	   '<input id="b" min="0"  type="number" class="form-control"  >'+
+	       	    '</div>'+
+               '</div>'+
+               '<div class="col-md-1 ">'+
+           	    '<div id="cont" class="form-group">'+
+	       	 	 ' <label></label>'+
+	       	 	   '<input id="c" value="USAM" readonly="" type="text" class="form-control">'+
+	       	    '</div>'+
+               '</div>'+
+	       	'</div>';
+	       	 $('#ele').append(html5t);
+	   }
+	}
+
 	</script>
 </head>
-<body>
+<body id="compra">
     <?php require 'application/views/Plantilla/nav.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LA BARRA DE NAVEGACION-->
     <?php require 'application/views/Plantilla/panel.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL MENU DESPLEGABLE-->
 
@@ -260,10 +353,8 @@
 	       <div class="col-md-3">
 	       	 <div class="form-group">
 	       	 	<label>Unidad a la que se asignara</label>
-	       	 	<select id="vay" class="form-control" name="unidad">
-	       	 		<?php for($k =0; $k<count($unidades); $k++): ?>
-	       	 		<option value="<?php echo $unidades[$k]['id_unidad'] ?>"><?php echo $unidades[$k]['unidad']  ?></option>
-	       	 	   <?php endfor; ?>
+	       	 	<select id="vay" onchange="cambioc();" class="form-control" name="unidad">
+	       	 		
 	       	 	</select>
 	       	 </div>
 	       </div>
@@ -285,12 +376,31 @@
 	       	 	<input id="asi" type="text" class="form-control" name="enc" >
 	       	 </div>
 	       </div>
-           <div class="col-md-4">
-           	 <div id="cont" class="form-group">
-	       	 	<label>Codigo PC</label>
-	       	 	<input id="codigopc" type="text" class="form-control"  name="codigopc">
-	       	 </div>
-           </div>
+	       <div id="ele">
+	       	<div id="delete">
+	       		<div class="col-md-1 ">
+           	    <div id="cont" class="form-group">
+	       	 	  <label></label>
+	       	 	   <input readonly="" value="PC" id="a" type="text" class="form-control"  >
+	       	    </div>
+               </div>
+               <div class="col-md-2">
+           	    <div id="cont" class="form-group">
+	       	 	  <label>Codigo PC</label>
+	       	 	   <input id="b" min="0"  type="number" class="form-control"  >
+	       	    </div>
+               </div>
+               <div class="col-md-1 ">
+           	    <div id="cont" class="form-group">
+	       	 	  <label></label>
+	       	 	   <input id="c" value="USAM" readonly="" type="text" class="form-control">
+	       	    </div>
+               </div>
+	       	</div>
+	       	   
+	       </div>
+           <input id="d" type="text"  name="codigopc">
+           <input id="centinela" type="text" value="admin" name="centinela">
 
 	       <div class="col-md-2">
 	       	<br>

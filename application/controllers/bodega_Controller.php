@@ -104,6 +104,15 @@ class bodega_Controller extends CI_Controller {
 
 
 
+
+      public function otros_disponible(){
+      $dato['detalle'] = $this->bod->disponibleotros();
+        $dato['titulo'] = "DDE's disponibles en Bodega";
+        $this->load->view('Dashboard/bodega/disponible_otros',$dato);
+    }
+
+
+
 		//función para mostrar la tabla que tiene los elementos en bodega que no han sido asignados
 	public function mostrar_disponible(){
 			//función en el modelo para obtener los elementos que no son asignados
@@ -218,6 +227,19 @@ function showCodePC(){
 		    $this->load->view('Dashboard/bodega/asignar_bodega_dde_view', compact('data','unidades','idpc', 'datos'));
 	}
 
+
+
+  public function asignar_otro_View(){
+        $idpc = $this->uri->segment(2);
+        $data = $this->bod->get_dde($idpc);
+        $unidades = $this->bod->get_u();
+        $datos = $this->bod->obtener_laptop($idpc);
+        $this->load->view('Dashboard/bodega/asignar_bodega_otros_view', compact('data','unidades','idpc', 'datos'));
+  }
+
+
+
+
       public function asignar_laptop_View(){
 
          $idpc = $this->uri->segment(2);
@@ -226,6 +248,11 @@ function showCodePC(){
 		$this->load->view('Dashboard/bodega/asignar_bodega_laptop_View', compact('unidades','idpc','datos'));
 	 }
 
+
+function unidadesajax(){
+  $data = $this->bod->todo();
+  echo json_encode($data);
+}
 
 	
 
@@ -297,6 +324,99 @@ function showCodePC(){
                  redirect(base_url().'mantenimiento-administrativo');
                  }
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+public function catch_asignacion_otro(){
+    $comx = null;
+     if($this->input->post('comprac') != ""){
+      $comx = $this->input->post('comprac');
+     }
+   
+  
+
+     $serial = $this->input->post('serial');
+     $data = $this->bod->get_element_bodega($serial);
+     $unidad= $this->bod->get_u_letra($this->input->post('unidad'));
+     $compraid = $this->bod->get_bodega($this->input->post('serial'));
+
+     //actualizacion en bodega
+        $dataUpdate = array(
+            'estatus' => 'En uso',
+            'origen' => 1,
+            'fecha_salida'=> $this->input->post('fecha'),
+            'destino' => $this->input->post('unidad'),
+        );
+
+        $admin = array(
+        'identificador' => $this->input->post('codigopc'),
+        'encargado_puesto' => $this->input->post('enc'),
+        'fecha_ingreso' => $this->input->post('fecha'),
+        'origen' => 1,
+        'destino' => $this->input->post('unidad'),
+        'compra_id' => $comx,
+        'lugar_name' => $unidad[0]['unidad'],
+        'serial' => $this->input->post('serial'),
+         );
+
+
+         $mov = array(
+            'token' => $this->_token(),
+                    'fecha_cambio' => $this->input->post('fecha'),
+                    'codigo_id' => $this->input->post('codigopc'),
+                    //'unidad_pertenece_id' => 1,
+                    //'unidad_traslado_id' => $dataPC[0]['destino'],
+                    'cambio' => $this->input->post('cambio'),
+                    'descripcion_cambio' => $this->input->post('desMov'),
+                    'origen_nuevoEquipo_id' => 1,
+                    'destino_nuevoEquipo_id' =>  $this->input->post('unidad'),
+                    'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
+                    'encargado' => $this->input->post('encargado'),
+                    'tecnico' => $this->input->post('tecnico'),
+                    'tipoHardSoft'=> 'HARDWARE_EXTERNO',
+                    'tipo_movimiento' => 'Asignacion-bodega',
+                    'serial_nuevo' =>  $this->input->post('serial'),
+           );
+
+      
+        //print_r($admin);
+        #actualizamos el inventario de bodega
+        $this->bod->update_('inventario_bodega', 'serial' ,$this->input->post('serial'), $dataUpdate);
+        #agregamos al inventario administrativo
+        $this->bod->add_('inventario_adm',$admin);
+        $this->bod->add_('movimiento',$mov);
+
+                if($this->input->post('unidad')=="37"){
+                 $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
+                 redirect(base_url().'detalle-lab/'.$pc);
+                 }else{
+                     $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
+                 redirect(base_url().'mantenimiento-administrativo');
+                 }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

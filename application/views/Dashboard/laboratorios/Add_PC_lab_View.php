@@ -7,7 +7,7 @@
   <script src=" <?php echo base_url() ?>assets/js/vue.js">  </script>
   <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
 	<script src="<?php echo base_url()?>assets/package/dist/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="sweetalert2.min.css">
+    <
 
   <style type="text/css" media="screen">
   	.thead-d{
