@@ -62,7 +62,7 @@
 									<h3 class="panel-title">Disco duro externo</h3>
 								</div>
 								<div class="panel-body text-center">
-									<a href="<?php echo base_url('listado/'.$op=$unidad.'/'.$elemento='DD')?>"><i class="fa fa-inbox fa-4x" aria-hidden="true"></i></a>
+									<a href="<?php echo base_url('listado/'.$op=$unidad.'/'.$elemento='DD')?>"><i class="fa fa-hdd-o fa-4x" aria-hidden="true"></i></a>
 								</div>
 						</div>
 				<!-- END PANEL HEADLINE -->

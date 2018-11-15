@@ -211,3 +211,8 @@ $route['redireccionar'] = 'lab_lista_Controller/redireccionar/$1';
 
 
 $route['translate_uri_dashes'] = FALSE;
+
+////////////////////////////////////////////////////////////////////////////////////////////
+#Rutas para Movimientos
+$route['Movimientos'] = 'movimientosController/index';
+$route['listado-asignaciones'] = 'movimientosController/asignaciones';
