@@ -78,7 +78,7 @@
                             <select class="form-control" name="tipo-0">
                                         <option value="MOUSE">MOUSE</option>
                                         <option value="TECLADO">TECLADO</option>
-                                        <option value="MOUSE">MONITOR</option>
+                                        <option value="MONITOR">MONITOR</option>
                                         <option value="USB">USB</option>
                                         <option value="MEMORIA SD">MEMORIA SD</option>
                                         <option value="LECTOR DVD/CD">LECTOR DVD/CD</option>
