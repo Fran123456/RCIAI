@@ -164,7 +164,7 @@
 	       	 <div class="form-group">
 	       	 	<label>Unidad a la que se asignara</label>
 	       	 	<select id="vay" class="form-control" name="unidad">
-	       	 		<?php for($k =0; $k<count($unidades); $k++): ?>
+	       	 		<?php for($k =0; $k<count($unidades)-1; $k++): ?>
 	       	 		<option value="<?php echo $unidades[$k]['id_unidad'] ?>"><?php echo $unidades[$k]['unidad']  ?></option>
 	       	 	   <?php endfor; ?>
 	       	 	</select>
@@ -229,27 +229,28 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					<label>¿Qué cambio sufrio el equipo?</label>
-				    <textarea name="cambio" class="form-control" required></textarea>
+				    <textarea name="cambio" rows="5" class="form-control" required></textarea>
 					
 				</div>
-				<div class="form-group">
-					<label> Caracteristicas de equipo que queda en función con ese código de inventario</label>
-					<textarea name="desequipo" class="form-control" ></textarea>
-					
-				</div>
+				
 			</div>
 			<div class="col-md-4">
 				<label>Breve descripción porque se hizo el cambio</label>
 				<textarea required="" class="form-control" rows="4" name="desMov"></textarea>
 			</div>
 			<div class="col-md-4">
-				<div class="form-group">
+				<!--<div class="form-group">
 					<label>Encargado del movimiento</label>
 					<input required="" type="text" name="encargado" class="form-control" value="">
-				</div>
+				</div>-->
 				<div class="form-group">
 					<label>Tecnico</label>
 					<input type="text" name="tecnico" class="form-control" value="">
+				</div>
+				<div class="form-group">
+					<label> Caracteristicas de equipo que queda en función con ese código de inventario</label>
+					<textarea name="desequipo" class="form-control" ></textarea>
+					
 				</div>
 			</div>
 	    </div>

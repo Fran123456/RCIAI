@@ -42,11 +42,11 @@
 								<ul class="nav">
 									<li><a href="<?php echo base_url()?>inventario-bodega" class="">Inventario Bodega</a></li>
 									<?php if($this->session->userdata('rol') == 'administrador' || $this->session->userdata('rol') == 'super usuario'): ?>
-									<li><a href="<?php echo base_url()?>elementos-disponibles" class="">Asignar periferico</a></li>
-									<li><a href="<?php echo base_url()?>computadoras-disponibles" class="">Asignar PC</a></li>
-									<li><a href="<?php echo base_url()?>laptops-disponibles" class="">Asignar Laptop</a></li>
+									<li><a href="<?php echo base_url()?>elementos-disponibles" class="">Asignar monitor</a></li>
+								<!--	<li><a href="<?php echo base_url()?>computadoras-disponibles" class="">Asignar PC</a></li>
+									<li><a href="<?php echo base_url()?>laptops-disponibles" class="">Asignar Laptop</a></li>-->
 									<li><a href="<?php echo base_url()?>DDE-disponibles" class="">Asignar DDE</a></li>
-									<li><a href="<?php echo base_url()?>otros-disponibles" class="">Asignar otros</a></li>
+									<!--<li><a href="<?php echo base_url()?>otros-disponibles" class="">Asignar otros</a></li>-->
 									<li><a href="<?php echo base_url()?>bodega-add" class="">Agregar a bodega</a></li>
 									<?php endif; ?>
 								</ul>

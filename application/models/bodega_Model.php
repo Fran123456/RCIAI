@@ -119,7 +119,7 @@ class bodega_Model extends CI_Model{
 
 	public function get_code($dato){
 	    if($dato == 37){
-	     return  $this->db->where('destino' , $dato)->get('inventario_lab')->result_array();
+	     return  $this->db->where('destino' , $dato)->like('identificador_lab', 'PC')->get('inventario_lab')->result_array();
 	    }else
 	    {
 	       return $this->db->where('destino' , $dato)->like('identificador', 'PC')->or_like('identificador', 'SRV')->get('inventario_adm')->result_array();
@@ -203,13 +203,13 @@ class bodega_Model extends CI_Model{
 			 $this->db->from('inventario_bodega bo');
 			 $this->db->where('destino', 1);
 			 $this->db->where('estatus !=','arruinado');
-			 $this->db->where('tipo !=', 'LAPTOP');
-			 $this->db->where('tipo !=', 'DISCO DURO EXTERNO');
-			 $this->db->where('tipo !=', 'ACCES POINT RADIO U MASFERRER');
-			 $this->db->where('tipo !=', 'IMPRESORES MATRICIALES');
-			 $this->db->where('tipo !=', 'IMPRESORES MULTIFUNCIONALES');
-			  $this->db->where('tipo !=', 'IMPRESOR DESJEKT');
- $this->db->where('tipo !=', 'SCANNER');
+			 $this->db->where('tipo', 'MONITOR');
+		//	 $this->db->where('tipo !=', 'DISCO DURO EXTERNO');
+		//	 $this->db->where('tipo !=', 'ACCES POINT RADIO U MASFERRER');
+		//	 $this->db->where('tipo !=', 'IMPRESORES MATRICIALES');
+		//	 $this->db->where('tipo !=', 'IMPRESORES MULTIFUNCIONALES');
+		//	  $this->db->where('tipo !=', 'IMPRESOR DESJEKT');
+ //$this->db->where('tipo !=', 'SCANNER');
 
 			 //$this->db->where('pc_servidor_id',NULL);
 			 $query=$this->db->get();

@@ -239,7 +239,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
-					<label>Encargado del movimiento</label>
+					<label>Encargado del equipo</label>
 					<input required="" type="text" name="encargado" class="form-control" value="">
 				</div>
 				<div class="form-group">

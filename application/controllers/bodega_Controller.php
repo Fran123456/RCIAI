@@ -314,7 +314,7 @@ function unidadesajax(){
                     'origen_nuevoEquipo_id' => 1,
                     'destino_nuevoEquipo_id' =>  $this->input->post('unidad'),
                     'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
-                    'encargado' => $this->input->post('encargado'),
+                    'encargado' => $this->input->post('enc'),
                     'tecnico' => $this->input->post('tecnico'),
                     'tipoHardSoft'=> 'HARDWARE_EXTERNO',
                     'tipo_movimiento' => 'Asignacion-bodega',
