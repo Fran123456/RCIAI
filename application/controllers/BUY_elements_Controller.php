@@ -306,7 +306,7 @@ public function otro_asignado_add_new(){
        'origen' => '4',
        'destino' =>$this->input->post('destino-0'),
         'compra_id' =>$this->input->post('idcompra'),
-        'pc_servidor_id' => $servidorPC,
+        'pc_servidor_id' => $this->input->post('unidadesU'),
       );
        $this->element->add_data($data, 'inventario_bodega');
     }

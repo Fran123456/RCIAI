@@ -189,10 +189,14 @@
 	       	 </div>
 	       </div>
 
-	       <div class="col-md-1">
-           	 <div id="cont" class="form-group">
+	       <div class="col-md-2">
+           	 <div id="cont"  class="form-group">
 	       	 	<label></label>
-	       	 	<input id="a" readonly="" value="DDE" type="text" class="form-control"  >
+	       	 	<select id="a" class="form-control"> <option selected="" value="UPS">UPS</option>
+                                      <option value="APRADIO">APRADIO</option>
+                                      <option value="WEBCAM">WEBCAM</option>
+                                      <option value="IMPR">IMPR</option></select>
+	       	 	<!--<input id="a" readonly="" value="DDE" type="text" class="form-control"  >-->
 	       	 </div>
            </div>
 
@@ -212,6 +216,9 @@
 	       	 </div>
            </div> 
           <input id="d" type="hidden"  name="codigopc">
+
+
+
 
 
 	       <div class="col-md-2">

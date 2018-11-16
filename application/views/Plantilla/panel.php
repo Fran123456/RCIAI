@@ -96,7 +96,7 @@
 					<!-- Inventario de audio visuales  -->
 					<?php if($this->session->userdata('rol') == 'administrador' || $this->session->userdata('rol') == 'super usuario' ): ?>
 
-						<li>
+						<!--<li>
 							<a href="#subPages3" data-toggle="collapse" class="collapsed"><i class="fa fa-paint-brush"></i> <span>Audio visuales</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages3" class="collapse ">
 								<ul class="nav">
@@ -106,7 +106,7 @@
 								</ul>
 
 							</div>
-						</li>
+						</li>-->
 
 
 					<?php endif; ?>
@@ -119,6 +119,19 @@
 							<div id="subPages4" class="collapse ">
 								<ul class="nav">
 									<li><a href="<?php echo base_url('Movimientos') ?>">Control de movimientos</a></li>
+								</ul>
+
+							</div>
+						</li>
+
+
+
+
+						<li>
+							<a href="#subPagesyt" data-toggle="collapse" class="collapsed"><i class="fa fa-laptop" aria-hidden="true"></i> <span>Hardware</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPagesyt" class="collapse ">
+								<ul class="nav">
+									<li><a href="<?php echo base_url('Movimientos') ?>">Adaptadores de red</a></li>
 								</ul>
 
 							</div>

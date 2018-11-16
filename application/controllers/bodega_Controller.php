@@ -11,6 +11,7 @@ class bodega_Controller extends CI_Controller {
 		}
 		$this->load->model('dashboard_Model');
 		$this->load->model('bodega_Model','bod');
+    $this->load->model('BUY_elements_Model','element');
 		require 'application/plus/noty.php';
 
 	}
@@ -178,6 +179,18 @@ function showCodePC(){
 		$codigos = $this->bod->get_c($id);
 		echo json_encode($codigos);
 	}
+
+
+public function get_codigosLAB(){
+    $id = filter_input(INPUT_POST,'dato');
+    $codigos = $this->bod->get_lab($id);
+    echo json_encode($codigos);
+  }
+
+
+
+
+
 
 	public function add_periferito_to_Bodega(){
        $campos = array('serial', 'nombre', 'marca','capacidad','tipo','velocidad' ,'estatus','fecha_ingreso','origen','fecha_salida','destino');
@@ -411,18 +424,62 @@ public function catch_asignacion_otro(){
 
 
 
-
-
-
-
-
-
-
-
-
-
 #ASIGNACION PARA PERIFERICOS 
 	function catch_asignacion(){
+    $centinela = $this->input->post('fantasma');
+    $codexGea = $this->input->post('fantasma2');
+    $desty = $this->bod->get_u_letra($this->input->post('unidad'));
+
+    if($this->input->post('compraid') ==""){
+      $comprita = null;
+    }else{
+      $comprita = $this->input->post('compraid');
+    }
+
+    if($centinela == "concodigo"){
+      $codigochidito = $this->input->post('cod1').$this->input->post('cod2').$this->input->post('cod3');
+      if($codexGea == "admin"){
+        $administrativo = array(
+          'identificador' => $codigochidito,
+          'encargado_puesto' => $this->input->post('enc'),
+          'fecha_ingreso' =>  $this->input->post('fecha'),
+          'origen' =>  1,
+          'destino' => $this->input->post('unidad'),
+          'compra_id' => $comprita,
+          'lugar_name' => $desty[0]['unidad'],
+          'serial' => $this->input->post('serial'),
+    );
+        $this->bod->add_('inventario_adm', $administrativo);
+      }else{
+        //lab
+           $datalab = "";
+          $lab = $this->input->post('cod3');
+          if($lab == 'LAB1'){$datalab = 'lab-01';}
+          if($lab == 'LAB2'){$datalab = 'lab-02';}
+          if($lab == 'LAB3'){$datalab = 'lab-03';}
+          if($lab == 'LAB4'){$datalab = 'lab-04';}
+          if($lab == 'LAB5'){$datalab = 'lab-05';}
+          if($lab == 'HW'){$datalab = 'lab-hw';}
+          if($lab == 'RED'){$datalab = 'lab-red';}
+
+
+          $administrativo = array(
+          'identificador_lab' => $codigochidito,
+          'fecha_ingreso' =>  $this->input->post('fecha'),
+          'origen' =>  1,
+          'destino' => $this->input->post('unidad'),
+          'serial' => $this->input->post('serial'),
+          'lab' => $datalab ,
+          'compra_id' => $comprita,
+
+    );
+          $this->bod->add_('inventario_lab', $administrativo);
+      }
+
+
+    }
+
+
       $serial = $this->input->post('serial');
       $pc = $this->input->post('op');
 
@@ -483,6 +540,10 @@ public function catch_asignacion_otro(){
 	       		$this->session->set_flashdata('error_update' , 'Asignación no se ha podido realizar');
 	       		redirect(base_url() ,'refresh');
 	       }
+
+
+
+
 	}
 
 	public function catch_asignacion_pc(){
@@ -500,14 +561,19 @@ public function catch_asignacion_otro(){
            $this->bod->add_($table[$w], $data[$array[$w]]);
         }
         //admin
+
+        if($this->input->post('centinela') == "admin"){
          $this->bod->add_('inventario_adm', $data['administrativo']);
+        }if($this->input->post('centinela') == "lab"){
+           $this->bod->add_('inventario_lab', $data['administrativo']);
+        }
+
         $this->bod->add_('movimiento', $data['mov']);
        
 
-
                 if($this->input->post('unidad')=="37"){
                   $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
-                 redirect(base_url().'detalle-lab/'.$pc);
+                 redirect(base_url().'detalle-lab/'.$this->input->post('codigopc'));
                  }else{
                      $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
                  redirect(base_url().'mantenimiento-administrativo');
@@ -517,7 +583,7 @@ public function catch_asignacion_otro(){
       public function catch_asignacion_laptop(){
         $data = $this->catch_laptop_asignada();
 
-        print_r($data);
+  
       //hardware, disk, etccatch_laptop_asignada()
        $table = array('descripcion_sistema','placa_base','adaptador_red','adaptador_video', 'almacenamiento');
         $array = array('actualizacion_descripcion','actualizacion_placa','actualizacion_adaptador','actualizacion_video', 'actualizacion_almacenamiento');
@@ -720,7 +786,36 @@ public function catch_asignacion_otro(){
 			}
 		}
 
-		$administrativo = array(
+
+    if($this->input->post('centinela') == 'lab'){
+          $datalab = "";
+          $lab = $this->input->post('cod1');
+          if($lab == 'LAB1'){$datalab = 'lab-01';}
+          if($lab == 'LAB2'){$datalab = 'lab-02';}
+          if($lab == 'LAB3'){$datalab = 'lab-03';}
+          if($lab == 'LAB4'){$datalab = 'lab-04';}
+          if($lab == 'LAB5'){$datalab = 'lab-05';}
+          if($lab == 'HW'){$datalab = 'lab-hw';}
+          if($lab == 'RED'){$datalab = 'lab-red';}
+
+
+
+          $administrativo = array(
+          'identificador_lab' => $this->input->post('codigopc'),
+          'descripcion_sistema_id' => $this->input->post('codigopc'),
+          'placa_base_id' => $this->input->post('codigopc'),
+          'adaptador_red_id' => $this->input->post('codigopc'),
+          'adaptador_video_id' => $this->input->post('codigopc'),
+          'almacenamiento_id' => $this->input->post('codigopc'),
+          'fecha_ingreso' =>  $this->input->post('fecha'),
+          'origen' =>  1,
+          'destino' => $this->input->post('unidad'),
+          'lab' => $datalab ,
+          'compra_id' => $infoSerialesUP[0][0]['compra_id'],
+    );
+    }
+    if($this->input->post('centinela') == 'admin'){
+      $administrativo = array(
           'identificador' => $this->input->post('codigopc'),
           'encargado_puesto' => $this->input->post('enc'),
           'des_sistema_id' => $this->input->post('codigopc'),
@@ -733,7 +828,10 @@ public function catch_asignacion_otro(){
           'destino' => $this->input->post('unidad'),
           'compra_id' => $infoSerialesUP[0][0]['compra_id'],
           'lugar_name' => $destino[0]['unidad'],
-		);
+    );
+    }
+
+		
 
 
     $mov = array(

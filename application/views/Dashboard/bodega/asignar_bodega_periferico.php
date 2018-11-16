@@ -96,6 +96,14 @@
       	$('#final').attr("disabled", true);
       }
 	}
+
+
+
+
+
+
+
+	
 	</script>
 </head>
 <body>
@@ -117,7 +125,7 @@
 	<div class="">
 		<div class="text-center">
 			<h3>Asignar elemento</h3>
-		</div>
+		</div><input type="hidden" name="compraid" value="<?php echo $data[0]['compra_id'] ?>">
 
 		<div class="row border">
 			<div class="text-center">
@@ -133,7 +141,7 @@
 			<div class="col-md-2">
 				<div class="form-group">
 					<label class="control-label">Tipo de periferico</label>
-					<input type="text"  readonly="" class="form-control" value="<?php echo $data[0]['tipo'] ?>">
+					<input type="text"  readonly="" class="form-control" id="go" value="<?php echo $data[0]['tipo'] ?>">
 				</div>
 			</div>
 			<div class="col-md-2">
@@ -173,7 +181,7 @@
 	       <div class="col-md-4">
 	       	 <div class="form-group">
 	       	 	<label>Unidad a la que se asignara</label>
-	       	 	<select id="vay" class="form-control" name="unidad">
+	       	 	<select  onchange="cambios();" id="vay" class="form-control" name="unidad">
 	       	 		<?php for($k =0; $k<count($unidades); $k++): ?>
 	       	 		<option value="<?php echo $unidades[$k]['id_unidad'] ?>"><?php echo $unidades[$k]['unidad'] ?></option>
 	       	 	   <?php endfor; ?>
@@ -201,9 +209,12 @@
 	       	 	<input id="asi" required=""  type="date" class="form-control"  name="fecha">
 	       	 </div>
 	       </div>
+	       <div id="contenidoAux">
+
+	       </div>
 	    </div>
-	    <br>
-	    
+	    <br><input type="hidden" id="fantasma" value="sincodigo" name="fantasma">
+	    <input type="hidden" id="fantasma2" value="admin" name="fantasma2">
 
 	    <div class="row border">
 	       <div class="text-center">
@@ -254,5 +265,84 @@
 	
     <script type="text/javascript" charset="utf8" src="<?php echo base_url()?>assets/js/bodega/bodega.js" ></script>
     <?php require 'application/views/Plantilla/footer.php';?><!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL FOOTER-->
+
+    <script type="text/javascript">
+    	if($('#go').val() == 'UPS'){
+		htmlc = '<div id="delx">'+'<div id="encargadox" class="col-md-4"><label>Encargado</label><input type="text" name="enc" class="form-control"></div>'+
+	       		'<div id="aux1" class="col-md-1">'+
+	       	        '<div id="cont" class="form-group">'+
+	       	 	      '<label></label>'+
+	       	 	      '<input id="asi" readonly="" type="text" class="form-control"  name="cod1" value="UPS">'+
+	       	     '</div>'+
+	          '</div>'+
+	          '<div id="aux2" class="col-md-2 col-sm-2 ">'+
+                           '<label id="errorlabel">Codigo</label>'+
+                            '<input type="number" min="0" required=""  id="cod2" class="form-control" name="cod2">'+
+                '</div>'+
+                '<div id="aux3" class="col-md-2 col-sm-2 ">'+
+                           '<label id="errorlabel"></label>'+
+                            '<select onchange="cambioUSAM();" class="form-control" id="cod3" name="cod3"><option value="USAM">USAM</option><option value="LAB1">LAB1</option><option value="LAB2">LAB2</option><option value="LAB3">LAB3</option><option value="LAB4">LAB4</option><option value="LAB5">LAB5</option><option value="HW">HW</option><option value="RED">RED</option></select>'+
+                '</div>'+
+	       	'</div>';
+
+	       	$('#contenidoAux').append(htmlc);
+
+	       	$('#fantasma').val('concodigo');
+
+	}
+
+
+	 	if($('#go').val() == 'WEBCAN'){
+		htmlc = '<div id="delx">'+'<div id="encargadox" class="col-md-3"><label>Encargado</label><input type="text" name="enc" class="form-control"></div>'+
+	       		'<div id="aux1" class="col-md-2">'+
+	       	        '<div id="cont" class="form-group">'+
+	       	 	      '<label></label>'+
+	       	 	      '<input id="asi" readonly="" type="text" class="form-control"  name="cod1" value="WEBCAM">'+
+	       	     '</div>'+
+	          '</div>'+
+	          '<div id="aux2" class="col-md-2 col-sm-2 ">'+
+                           '<label id="errorlabel">Codigo</label>'+
+                            '<input type="number" min="0" required=""  id="cod2" class="form-control" name="cod2">'+
+                '</div>'+
+                '<div id="aux3" class="col-md-2 col-sm-2 ">'+
+                           '<label id="errorlabel"></label>'+
+                            '<select onchange="cambioUSAM();" class="form-control" id="cod3" name="cod3"><option value="USAM">USAM</option><option value="LAB1">LAB1</option><option value="LAB2">LAB2</option><option value="LAB3">LAB3</option><option value="LAB4">LAB4</option><option value="LAB5">LAB5</option><option value="HW">HW</option><option value="RED">RED</option></select>'+
+                '</div>'+
+	       	'</div>';
+
+	       	$('#contenidoAux').append(htmlc);
+
+	       	$('#fantasma').val('concodigo');
+
+	}
+
+
+
+	function cambios(){
+		if($('#vay').val() == 37){
+			$('#encargadox').remove();
+			$('#fantasma2').val('lab');
+		}else{
+			$('#encargadox').remove();
+			$('#delx').append('<div id="encargadox" class="col-md-4"><label>Encargado</label><input type="text" name="enc" class="form-control"></div>');
+		}
+      
+	}
+
+	function cambioUSAM(){
+       var aver = $('#cod3').val();
+       if(aver =="USAM"){
+       	$('#fantasma2').val('admin');
+       }
+
+
+       if(aver != "USAM"){
+       	$('#fantasma2').val('lab');
+       }
+
+
+
+	}
+    </script>
 </body>
 </html>

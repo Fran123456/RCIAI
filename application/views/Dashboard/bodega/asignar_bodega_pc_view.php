@@ -43,9 +43,18 @@
 	var controlador = 0;
 	 function Obtener_pc_ID(){
 
-      var cod = $('#a').val() + $('#b').val() + $('#c').val();
-      $('#d').val(cod);
+	 	if($('#vay').val() == 37){
+         var cod =   $('#cod1').val()+"-PC"+$('#cod2').val();
+         var url = 'bodega_Controller/get_codigosLAB';
 
+	 	}
+	 	if($('#vay').val() != 37){
+	 		var cod =   $('#a').val() + $('#b').val() + $('#c').val();
+	 		var url = 'bodega_Controller/get_codigos';
+	 	}
+
+      $('#d').val(cod);
+     
 	  var dato1 = cod;
 	  var dato = dato1;
 
@@ -54,7 +63,7 @@ if($('#b').val() != ""){
 	  $.ajax({
 	     type: 'ajax',
 	     method: 'post',
-	     url: '<?php echo base_url() ?>bodega_Controller/get_codigos',
+	     url: '<?php echo base_url() ?>'+url,
 	     data: {dato: dato},
 	     async: false,
 	     dataType: 'json',
@@ -146,7 +155,7 @@ if($('#b').val() != ""){
          $('#delete').remove();
          var htmls ='<div id="delete"><div class="col-md-2">'+
                             '<label>Codigo</label>'+
-                             '<select  name="cod1" class="form-control int">'+
+                             '<select id="cod1"  name="cod1" class="form-control int">'+
                               '<option selected="" value="LAB1">LAB1</option>'+
                               '<option value="LAB2">LAB2</option>'+
                               '<option value="LAB3">LAB3</option>'+
@@ -158,10 +167,14 @@ if($('#b').val() != ""){
                             '</div>'+
                          '<div class="col-md-1">'+
                               '<label>N°</label>'+
-                              '<input  type="number" value="1" min="1" class="form-control" name="cod2">'+
+                              '<input id="cod2" type="number" value="1" min="1" class="form-control" name="cod2">'+
                             '</div>'+
                            '</div>';
             $('#ele').append(htmls);
+            $('#centinela').val('lab');
+
+
+            $('#groupencargado').remove();
 
 	   }
 
@@ -189,6 +202,11 @@ if($('#b').val() != ""){
                '</div>'+
 	       	'</div>';
 	       	 $('#ele').append(html5t);
+	       	 $('#centinela').val('admin');
+
+
+             $('#groupencargado').remove();
+	       	 $('#divencargado').append('<div id="groupencargado" class="form-group"><label>Encargado:</label><input id="asi" type="text" class="form-control" name="enc" ></div>');
 	   }
 	}
 
@@ -370,8 +388,8 @@ if($('#b').val() != ""){
 	       	 	<input id="asi" type="text" class="form-control" value="sin asignar" name="">
 	       	 </div>
 	       </div>
-	       <div id="col" class="col-md-4">
-	       	 <div id="cont" class="form-group">
+	       <div id="divencargado" class="col-md-4">
+	       	 <div id="groupencargado" class="form-group">
 	       	 	<label>Encargado:</label>
 	       	 	<input id="asi" type="text" class="form-control" name="enc" >
 	       	 </div>
@@ -399,14 +417,17 @@ if($('#b').val() != ""){
 	       	</div>
 	       	   
 	       </div>
-           <input id="d" type="text"  name="codigopc">
-           <input id="centinela" type="text" value="admin" name="centinela">
-
-	       <div class="col-md-2">
-	       	<br>
-	       	 <button type="button" class="btn btn-danger" onclick="Obtener_pc_ID();">Validar codigo</button>
-	       </div>
+           <input id="d" type="hidden"  name="codigopc">
+           <input id="centinela" type="hidden" value="admin" name="centinela">
+      	 
+      	  <div class="row">
+      	  	<div class="col-md-12">
+      	  		<button style="margin-left: 20px;" type="button" class="btn btn-danger" onclick="Obtener_pc_ID();">Validar codigo</button>
+      	  	</div>
+      	  </div>
+	       
 	    </div>
+	    
 
 <br>
 <div class="row border">

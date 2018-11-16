@@ -135,6 +135,12 @@ class bodega_Model extends CI_Model{
 		return $data;
 	}
 
+
+	public function get_lab($id){
+		$data = $this->db->where('identificador_lab' ,$id)->get('inventario_lab')->result_array();
+		return $data;
+	}
+
 	function add_bodega_periferico($data){ //agrega la relacion entre el anuncio y el usuario que lo realizo
 			$this->db->insert('inventario_bodega',$data);
 			if($this->db->affected_rows() > 0){
@@ -204,7 +210,7 @@ class bodega_Model extends CI_Model{
 			 $this->db->where('tipo !=', 'IMPRESORES MULTIFUNCIONALES');
 			  $this->db->where('tipo !=', 'IMPRESOR DESJEKT');
  $this->db->where('tipo !=', 'SCANNER');
- $this->db->where('tipo !=', 'WEBCAN');
+
 			 //$this->db->where('pc_servidor_id',NULL);
 			 $query=$this->db->get();
 			 //comprobamos
@@ -278,7 +284,7 @@ class bodega_Model extends CI_Model{
 		    }
 
 		    public function todo(){
-		    	$data = $this->db->where('id_unidad !=', 4)->where('id_unidad !=', 38)->get('unidad')->result_array();
+		    	$data = $this->db->where('id_unidad !=', 4)->where('id_unidad !=', 38)->where('id_unidad !=', 1)->get('unidad')->result_array();
 		    	return $data;
 		    }
 

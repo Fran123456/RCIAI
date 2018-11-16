@@ -33,6 +33,7 @@ class MovimientosModel extends CI_Model
 		$this->db->select('*');
 		$this->db->from('movimiento');
 		$this->db->where('tipo_movimiento','Asignacion-bodega');
+		$this->db->where('id_cambio',$id);
 		$query = $this->db->get();
 
 		if($query->num_rows() > 0){

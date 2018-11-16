@@ -149,9 +149,9 @@
                                     <input type="text" required=""   id="codex" class="form-control" name="codex">
                                   </div>
                                 </div>
-                                 <div id="diverror" class="col-md-2 col-sm-2">
+                                 <div id="arriba" class="col-md-2 col-sm-2">
                                   <label >&nbsp;</label>
-                                  <div id="cod" class="form-group">
+                                  <div id="pacman" class="form-group">
                                     <input type="text" required="" value="USAM" id="codex1" class="form-control" name="codex1">
                                   </div>
                                 </div>
