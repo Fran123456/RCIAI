@@ -37,6 +37,57 @@
 						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->codigo_id ?>">
 					</div>
 				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label >Origen del equipo asignado</label>
+						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->origen_nuevoEquipo_id[0]['unidad'] ?>">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label >Destino del equipo asignado</label>
+						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->destino_nuevoEquipo_id[0]['unidad'] ?>">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Tipo de cambio que sufrio el equipo</label>
+						<input type="text" class="form-control" readonly="" value="<?php echo $d->cambio ?>">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label >Encargado</label>
+						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->encargado ?>">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label >Tecnico</label>
+						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->tecnico ?>">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Descripción del cambio</label>
+						<textarea name="" id="" cols="30" readonly="" rows="3"> <?php echo $d->descripcion_cambio ?> </textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Descripción del equipo asignado</label>
+						<textarea name="" id="" cols="30" readonly="" rows="3"> <?php echo $d->descripcion_equipoNuevo ?> </textarea>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!--fin del foreach-->
@@ -51,6 +102,8 @@
 		</div>
 	<?php } ?>
 
+	<!-- boton para regresar atras-->
+	<a class="btn btn-success" href="<?php echo base_url('listado-asignaciones')?>">ATRAS</a>
 
 
     <!--FIN CONTENIDO DE LA APLICACION-->
