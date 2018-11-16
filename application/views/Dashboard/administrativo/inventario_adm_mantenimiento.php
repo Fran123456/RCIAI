@@ -36,13 +36,8 @@
     </div>
 
 
-     
-
-
-
-
     <div class="row">
-    		<a class="btn btn-info" href="<?php echo base_url('listado-elementos/'.$op=$this->uri->segment(2)) ?>">ATRAS</a>
+    	<a class="btn btn-info" href="<?php echo base_url('listado-elementos/'.$op=$this->uri->segment(2)) ?>">ATRAS</a>
     </div>
     <br>
     <div class="row">
@@ -51,14 +46,14 @@
 	    <table id="tabla" class="table table-dark table-hover">
 			<thead class="thead-dark">
 			   	<tr>
-					      <th style="width: 200px" scope="col">Identificador</th>
-					      <th style="width: 250px" scope="col">Encargado</th>
-					      <th style="width: 250px" scope="col">Fecha de ingreso</th>
-					      <th style="width: 60px">Ver</th>
-					      <th style="width: 60px">Softwere</th>
-					      <!--<th style="width: 60px">editar</th>
-					      <th style="width: 60px">eliminar</th>-->
-				    	</tr>
+			      <th style="width: 200px" scope="col">Identificador</th>
+			      <th style="width: 250px" scope="col">Encargado</th>
+			      <th style="width: 250px" scope="col">Fecha de ingreso</th>
+			      <th style="width: 60px">Ver</th>
+			      <th style="width: 60px">Softwere</th>
+			      <!--<th style="width: 60px">editar</th>
+			      <th style="width: 60px">eliminar</th>-->
+		    	</tr>
 			</thead>
 		  	<tbody id='showdata'>
 		  		<?php foreach ($registro as $key){?>
@@ -68,8 +63,8 @@
 						<td scope="row"><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso ; ?></td>
 				
 						
-						<td><a href="<?php echo base_url('detalle/'.$id=$key->identificador.'/'.$unidad=$this->uri->segment(2));?>" class="btn btn-success item-view" ><i class="fa fa-eye" aria-hidden="true"></i></a> </td>
-						<td><a href="<?php echo base_url('sotfware/'.$id=$key->identificador.'/'.$unidad=$this->uri->segment(2));?>" id="sw" class="btn btn-primary item-sw" data="<?php echo $key->identificador ?>"><i class="fa fa-file-text" aria-hidden="true"></i></a> </td>
+						<td> <a href="<?php echo base_url('detalle/'.$id=$key->identificador.'/'.$unidad=$this->uri->segment(2));?>" class="btn btn-success item-view" ><i class="fa fa-eye" aria-hidden="true"></i></a> </td>
+						<td> <a href="<?php echo base_url('sotfware/'.$id=$key->identificador.'/'.$unidad=$this->uri->segment(2));?>" id="sw" class="btn btn-primary item-sw" data="<?php echo $key->identificador ?>"><i class="fa fa-file-text" aria-hidden="true"></i></a> </td>
 						<!--<td><a href="" class="btn btn-info item-edit" data=""><i class="fa fa-pencil" aria-hidden="true"></i></a> </td>
 						<td><a href="" class="btn btn-danger item-delete" data=""><i class="fa fa-trash" aria-hidden="true"></i> </a> </td>-->
 					</tr>
@@ -85,6 +80,16 @@
     </div>
 
     <!--FIN CONTENIDO DE LA APLICACION-->
+
+    <script>
+    	$(document).ready(function(){
+			$("#tabla").dataTable({
+		    	"language": {
+		      		"url": "<?php echo base_url() ?> assets/js/lenguaje.js"
+		    	}
+		  	});
+		});
+    </script>
 
 	
 	<script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>assets/js/administrativo/administrativo.js" ></script>

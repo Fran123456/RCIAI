@@ -221,3 +221,4 @@ $route['translate_uri_dashes'] = FALSE;
 #Rutas para Movimientos
 $route['Movimientos'] = 'movimientosController/index';
 $route['listado-asignaciones'] = 'movimientosController/asignaciones';
+$route['detalle-asignacion/(:any)'] = 'movimientosController/detalleAsignacion/$1';
