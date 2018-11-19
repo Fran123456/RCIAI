@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  *
  */
-class MovimientosModel extends CI_Model
+class Movimientos_model extends CI_Model
 {
 
 	#funcion para trae la consulta de la tabla movimiento

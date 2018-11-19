@@ -254,6 +254,12 @@ class lab_lista_Controller extends CI_Controller {
 	}//fin de updateSoftware
 ///////////////////////////////////////////////////////////////////////////////////////
 
+	//función para poder realizar prestamos de los equipos de laboratorio
+	public function prestamos()
+	{
+		$this->load->view('Dashboard/laboratorios/prestamos/prestamos_view');
+	}
+
 
 
 

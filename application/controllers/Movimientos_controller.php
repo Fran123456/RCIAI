@@ -1,7 +1,7 @@
 <?php 
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-class MovimientosController extends CI_Controller {
+class Movimientos_controller extends CI_Controller {
 
 	public function __construct(){
       parent::__construct();
@@ -10,7 +10,7 @@ class MovimientosController extends CI_Controller {
 			redirect(base_url());
 		}
 		$this->load->model('dashboard_Model');
-		$this->load->model('movimientosModel','mov');
+		$this->load->model('Movimientos_model','mov');
 		require 'application/plus/noty.php';
 
 	}
@@ -52,6 +52,12 @@ class MovimientosController extends CI_Controller {
 
 		#mandamos los datos a la vista que tendra el detalle
 		$this->load->view('Dashboard/movimientos/detalleAsignacion',$datos);
+	}
+
+	//función para el prestamos de equipo de laboratorio
+	public function prestamos()
+	{
+		echo "prestamo";
 	}
 
 }//fin de la clase lab_lista_Controller
