@@ -93,9 +93,13 @@ class Sustitucion_Controller extends CI_Controller {
 		echo "<br>";
 		print_r($datosSerialNueva);
 
-		$perifericoParaSustituir = array(
-         'serial' => "",
-         'pc_servidor_id' => ""
+		$perifericoDeRegreso = array(
+			'origen' => $unidad,
+			'fecha_salida' => null,
+			'destino' => 1,
+			'pc_servidor_id' => null,
+			'pc_servidor_antiguo_id' => $serialVieja[0]['pc_servidor_id'],
+
 		);
 		
 	}
