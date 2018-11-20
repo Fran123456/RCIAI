@@ -224,3 +224,8 @@ $route['listado-asignaciones'] = 'Movimientos_controller/asignaciones';
 $route['detalle-asignacion/(:any)'] = 'Movimientos_controller/detalleAsignacion/$1';
 $route['listado-prestamos'] = 'Movimientos_controller/prestamos';
 
+
+
+//SUSTITUCION RUTAS
+$route['remove-periferico/(:any)'] = 'Sustitucion_Controller/vista_sustituir_periferico/$1';
+$route['Sustituir-periferico'] = 'Sustitucion_Controller/perifericos_disponible';
