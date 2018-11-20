@@ -20,7 +20,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<center>
-						<h3>Detalle de movimiento de asiganación</h3>
+						<h3>Detalle de movimiento de asignación</h3>
 					</center>
 				</div>
 			</div>

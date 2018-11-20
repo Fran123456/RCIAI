@@ -213,12 +213,14 @@ $route['eliminar_todo'] = 'lab_lista_Controller/deleteAll';
 $route['detalle-lab/(:any)'] = 'lab_lista_Controller/detalle/$1';
 $route['redireccionar'] = 'lab_lista_Controller/redireccionar/$1';
 
-
+$route['prestamos'] = 'lab_lista_Controller/prestamos';
 
 $route['translate_uri_dashes'] = FALSE;
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 #Rutas para Movimientos
-$route['Movimientos'] = 'movimientosController/index';
-$route['listado-asignaciones'] = 'movimientosController/asignaciones';
-$route['detalle-asignacion/(:any)'] = 'movimientosController/detalleAsignacion/$1';
+$route['movimientos'] = 'Movimientos_controller/index';
+$route['listado-asignaciones'] = 'Movimientos_controller/asignaciones';
+$route['detalle-asignacion/(:any)'] = 'Movimientos_controller/detalleAsignacion/$1';
+$route['listado-prestamos'] = 'Movimientos_controller/prestamos';
+

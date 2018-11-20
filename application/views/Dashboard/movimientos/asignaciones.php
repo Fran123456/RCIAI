@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="row">
-		<a class="btn btn-info" href="<?php echo base_url() ?>Movimientos">ATRAS</a>
+		<a class="btn btn-info" href="<?php echo base_url() ?>movimientos">ATRAS</a>
 	</div>
 
 	<br>

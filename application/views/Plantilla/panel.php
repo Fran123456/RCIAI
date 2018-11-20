@@ -78,6 +78,7 @@
 									<!--<li><a href="<?php //echo base_url()?>add-buy-lab" class="">Agrega compra PC</a></li>-->
 									<!--<li><a href="<?php //echo base_url()?>add-PC-laboratorios-buy" class="">Agrega PC con compra</a></li>-->
 									<li><a href="<?php echo base_url()?>add-PC-laboratorios" class="">Agrega PC sin compra</a></li>
+									<li><a href="<?php echo base_url()?>prestamos" class="">Prestamos</a></li>
 								</ul>
 
 								<ul class="nav">
@@ -118,7 +119,7 @@
 							<a href="#subPages4" data-toggle="collapse" class="collapsed"><i class="fa fa-paper-plane"></i> <span>Movimientos</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages4" class="collapse ">
 								<ul class="nav">
-									<li><a href="<?php echo base_url('Movimientos') ?>">Control de movimientos</a></li>
+									<li><a href="<?php echo base_url('movimientos') ?>">Control de movimientos</a></li>
 								</ul>
 
 							</div>
