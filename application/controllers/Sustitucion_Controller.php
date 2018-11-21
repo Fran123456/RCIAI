@@ -35,7 +35,6 @@ class Sustitucion_Controller extends CI_Controller {
      }
 
 
-
      public function get_pc(){
       $id = filter_input(INPUT_POST,'dato');
       $pcs = $this->sus->likex2_where('inventario_adm' , $id  ,'destino', 'identificador', 'PC', 'SVR');
@@ -53,6 +52,40 @@ class Sustitucion_Controller extends CI_Controller {
      	$unidades = $this->sus->get_unidades();
      	return $unidades;
      }
+
+     public function get_movimiento($tablaInventario , $campoInventario){
+        $serialNueva = $this->input->post('serialNueva');
+		$serialVieja = $this->input->post('perichange');
+		
+        $infoCodigo = $this->sus->where_($tablaInventario, $this->input->post('cod'), $campoInventario);
+		$datosSerialNueva = $this->sus->where_('inventario_bodega', $serialNueva  ,'serial');
+		$datosSerialVieja = $this->sus->where_('inventario_bodega', $serialVieja ,'serial');
+
+
+     	$movimiento = array(
+          'token' => $this->_token(),
+          'fecha_retiro' => $this->input->post('fechaR'),
+          'fecha_cambio' => $this->input->post('fechaI'),
+          'codigo_id' =>  $this->input->post('cod'),
+           'unidad_pertenece_id' => $infoCodigo[0]['destino'],
+           'unidad_traslado_id' => $datosSerialNueva[0]['destino'],
+           'cambio' => $this->input->post('cambioA'),
+           'descripcion_cambio' => $this->input->post('descripcionA'),
+           'origen_nuevoEquipo_id' => 1,
+           'destino_nuevoEquipo_id' => $infoCodigo[0]['destino'],
+            'descripcion_equipoRetirado' => $this->input->post('desRetirado'),
+           'descripcion_equipoNuevo' => $this->input->post('desNew'),
+           'encargado' =>$this->input->post('encA'),
+           'tecnico' => $this->input->post('tec'),
+           'tipoHardSoft' => 'HARDWARE-EXTERNO',
+           'tipo_movimiento' => 'Sustitucion-bodega',
+           'serial_nuevo' => $serialNueva,
+     	);
+
+     	return $movimiento;
+     }
+
+
     
     //Metodos de utilidad
 
@@ -83,18 +116,18 @@ class Sustitucion_Controller extends CI_Controller {
 	public function sustituir_periferico_form(){
 		$serialNueva = $this->input->post('serialNueva');
 		$serialVieja = $this->input->post('perichange');
-		$codigoPC = $this->input->post('selectPC');
-		$unidad = $this->input->post('unidadS');
-
+		$codigoPC = $this->input->post('cod');
+		
+        $infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador');
 		$datosSerialNueva = $this->sus->where_('inventario_bodega', $serialNueva  ,'serial');
 		$datosSerialVieja = $this->sus->where_('inventario_bodega', $serialVieja ,'serial');
 
-		print_r($datosSerialVieja);
-		echo "<br>";
-		print_r($datosSerialNueva);
+
+     
 
 		$perifericoDeRegreso = array(
-			'origen' => $unidad,
+			'estatus' => $this->input->post('estado'),
+			'origen' => $infoCodigo[0]['destino'],
 			'fecha_salida' => null,
 			'destino' => 1,
 			'pc_servidor_id' => null,
@@ -102,13 +135,33 @@ class Sustitucion_Controller extends CI_Controller {
 		);
 
         $perifericoDeIda = array(
+        	'estatus' => 'En uso',
             'origen' => 1,
             'fecha_salida' => $this->input->post('fechaI'),
-            'destino' => $unidad,
+            'destino' => $infoCodigo[0]['destino'],
             'pc_servidor_id' => $datosSerialVieja[0]['pc_servidor_id'],
             'pc_servidor_antiguo_id' => $datosSerialNueva[0]['pc_servidor_id'],
         );
-		
+
+
+
+       //actualización del periferico arruinado 
+        $this->sus->update_(self::table, $serialVieja, 'serial' ,$perifericoDeRegreso);
+
+        //actualizacion del periferico nuevo
+		$this->sus->update_(self::table, $serialNueva, 'serial' ,$perifericoDeIda);
+
+		$mov = $this->get_movimiento('inventario_adm' , 'identificador');
+		$this->sus->add_('movimiento', $mov);
+
+	    $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
+        redirect(base_url().'mantenimiento-administrativo');
+
+
+
+        
+
+        
 	}
 
 

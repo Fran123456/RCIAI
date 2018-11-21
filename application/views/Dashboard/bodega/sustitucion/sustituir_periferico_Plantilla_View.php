@@ -95,12 +95,17 @@
     <div class="row">
       <div class="col-md-3">
       	<div class="form-group">
-      		<label>Codigo PC</label>
-      		<input id="cod" value="PC001USAM" type="text" class="form-control" name="cod">
-      	    <button type="button" onclick="perSelect();">Verificar</button>
+      		<label>Unidad</label>
+      		<select onchange="pcchange();" name="unidadS" id="unidadS" class="form-control">
+      			<?php for ($i=0; $i <count($unidades) ; $i++):?>
+                   <option value="<?php echo $unidades[$i]['id_unidad'] ?>"><?php echo $unidades[$i]['unidad'] ?></option>
+      			<?php endfor; ?>
+      		</select>
       	</div>
       </div>
-      
+      <div class="col-md-3" id="rest">
+      		
+      </div>
       <div class="col-md-3" id="g">
 
       </div>
@@ -117,28 +122,55 @@
 	<div id="dembele"></div>
 
 </div>
+
+
  
     <!--FIN CONTENIDO DE LA APLICACION-->
 </form>
 
-
-
-
-
-
   <script type="text/javascript">
+  	 var dato = $('#unidadS').val();
+     var pc = 0;
+  	 var html = "";
+  	 $.ajax({
+	     type: 'ajax',
+	     method: 'post',
+	     url: '<?php echo base_url() ?>Sustitucion_Controller/get_pc',
+	     data: {dato: dato},
+	     async: false,
+	     dataType: 'json',
+	     success: function(data){
+         if(data.length > 0){ //sentencia si la data tiene datos alv
+
+          $('#rest').append('<div id="contRest"><label>PC</label><select name="selectPC" onchange="perSelect();" class="form-control" id="selectPC"></select></div>');
+
+	      for (var i = 0; i < data.length; i++) {
+	      	html += '<option value="'+data[i].identificador+'">'+data[i].identificador+'</option>'
+	      }
+	      $('#selectPC').append(html);
+          pc = 1;
 
 
-  	function dela(){
-   	 $('#dembele').remove();
-   }
+	      }//sentencia si la data tiene datos alv
+	      else{ //sentencia si la data no tiene nada :'v mas solo que yo sin ella 
+
+            $('#rest').append('<div id="contRest"><br><span style="color:red;" >No hay PC o Servidores en esta unidad</span></div>')
+            $('#peri').remove();
+	      }
+
+	     },
+	     error: function(){
+	         alert("error");
+	     }
+	   });
 
 
-  	
-	 function perSelect(){
-           
-            $('#bt').remove();
-	  		var dato = $('#cod').val();
+             var dato = $('#selectPC').val();
+
+             if(dato == null){
+                dato = "1";
+             }
+              
 		  	 var html = "";
 		  	 $.ajax({
 			     type: 'ajax',
@@ -149,7 +181,108 @@
 			     dataType: 'json',
 			     success: function(data){
 		         if(data.length > 0){ //sentencia si la data tiene datos alv
-                   console.log(data);
+
+	              $('#peri').remove();
+		          $('#g').append('<div id="peri"><label>Perifericos</label><select onchange="dela()"  class="form-control" id="perichange" name="perichange"></select></div>');
+
+			      for (var i = 0; i < data.length; i++) {
+			      	html += '<option value="'+data[i].serial+'">'+data[i].tipo+'</option>'
+			      }
+			      $('#perichange').append(html);
+                   $('#b').append('<div id="bt"><br><button class="btn btn-info" onclick="formu();" type="button">Continuar</button></div>');
+                  send();
+			      }//sentencia si la data tiene datos alv
+			      else{ //sentencia si la data no tiene nada :'v mas solo que yo sin ella 
+			      	$('#peri').remove();
+			        $('#bt').remove();
+		            if(pc == 1){
+		            	$('#g').append('<div id="peri"><br><span style="color:red;">No hay perifericos asignados a esta PC</span></div>')
+		            }
+			      }
+
+			     },
+			     error: function(){
+			         alert("error");
+			     }
+			   });
+		  	
+
+
+
+
+
+  </script>
+
+
+
+  <script type="text/javascript">
+
+
+
+  	  function dela(){
+   	 $('#dembele').remove();
+   }
+
+
+  	function pcchange(){
+  		 $('#dembele').remove();
+          $('#bt').remove();
+  		 var dato = $('#unidadS').val();
+	  	 var html = "";
+	  	 $.ajax({
+		     type: 'ajax',
+		     method: 'post',
+		     url: '<?php echo base_url() ?>Sustitucion_Controller/get_pc',
+		     data: {dato: dato},
+		     async: false,
+		     dataType: 'json',
+		     success: function(data){
+	         if(data.length > 0){ //sentencia si la data tiene datos alv
+           
+              $('#contRest').remove();
+	          $('#rest').append('<div id="contRest"><label>PC</label><select onchange="perSelect();" class="form-control" id="selectPC" name="selectPC"></select></div>');
+
+		      for (var i = 0; i < data.length; i++) {
+		      	html += '<option value="'+data[i].identificador+'">'+data[i].identificador+'</option>'
+		      }
+		      $('#selectPC').append(html);
+		      
+
+               perSelect();
+		      }//sentencia si la data tiene datos alv
+		      else{ //sentencia si la data no tiene nada :'v mas solo que yo sin ella 
+		      	$('#peri').remove();
+		      	$('#contRest').remove();
+	            $('#rest').append('<div id="contRest"><br><span style="color:red;" >No hay PC o Servidores en esta unidad</span></div>')
+		      }
+
+		     },
+		     error: function(){
+		         alert("error");
+		     }
+		   });
+
+	  	
+	  	}
+
+
+
+
+
+	 function perSelect(){
+            $('#dembele').remove();
+	  		var dato = $('#selectPC').val();
+		  	 var html = "";
+		  	 $.ajax({
+			     type: 'ajax',
+			     method: 'post',
+			     url: '<?php echo base_url() ?>Sustitucion_Controller/get_perifericos_PC',
+			     data: {dato: dato},
+			     async: false,
+			     dataType: 'json',
+			     success: function(data){
+		         if(data.length > 0){ //sentencia si la data tiene datos alv
+
 	              $('#peri').remove();
 		          $('#g').append('<div id="peri"><label>Perifericos</label><select onchange="dela()" class="form-control" id="perichange" name="perichange"></select></div>');
 
@@ -162,8 +295,9 @@
 
 			      }//sentencia si la data tiene datos alv
 			      else{ //sentencia si la data no tiene nada :'v mas solo que yo sin ella 
-                    $('#peri').remove();
-		            $('#g').append('<div id="peri"><br><span style="color:red;">No se ha encontrado ningun PC con dicho codigo</span></div>')
+			      	$('#peri').remove();
+			        $('#bt').remove();
+		            $('#g').append('<div id="peri"><br><span style="color:red;">No hay perifericos asignados a esta PC</span></div>')
 			      }
 
 			     },
@@ -184,7 +318,6 @@
 		}
 
 		function send(){
-			$('#dembele').remove();
 			$('#exampleModalCenter').modal('hide');
 			 htmlSus = '<div id="dembele"><div class="card" style="border: 2px solid #D9D6D6;padding: 15px">'+
   '<div class="card-body">'+
@@ -194,45 +327,45 @@
       '<div class="col-md-2">'+
       	 '<div class="form-group">'+
       	 '<label>Fecha retiro</label>'+
-      	 	'<input type="date" required class="form-control" name="fechaR">'+
+      	 	'<input type="date" class="form-control" name="fechaR">'+
       	 '</div>'+
       	 '<div class="form-group">'+
-      	 	'<label>Fecha cambio</label>'+
-      	 	'<input type="date" required class="form-control" name="fechaI">'+
+      	 	'<label>Fecha ingreso</label>'+
+      	 	'<input type="date" class="form-control" name="fechaI">'+
       	 '</div>'+
       '</div>'+
       '<div class="col-md-4">'+
       	 '<div class="form-group">'+
       	 	'<label>Nombre del Encargado del Equipo.</label>'+
-      	 	'<input type="text" required name="encA" class="form-control" name="fechaR">'+
+      	 	'<input type="text" class="form-control" name="fechaR">'+
       	 '</div>'+
       	 '<div class="form-group">'+
       	 	'<label>Nombre de Técnico que reporta el cambio.</label>'+
-      	 	'<input type="text" name="tec" class="form-control" name="fechaR">'+
+      	 	'<input type="text" class="form-control" name="fechaR">'+
       	 '</div>'+
       '</div>'+
       '<div class="col-md-6">'+
       	 '<div class="form-group">'+
       	 	'<label>¿Qué cambio sufrio el equipo?</label>'+
-      	 	'<textarea rows="5" required  name="cambioA" class="form-control"></textarea>'+
+      	 	'<textarea rows="5" class="form-control"></textarea>'+
       	 '</div>'+
       '</div>'+
       '<div class="col-md-4">'+
       	 '<div class="form-group">'+
       	 	'<label>Breve descripción porque se hizo el cambio(Daño,obsoleto, etc.)</label>'+
-      	 	'<textarea rows="4" required name="descripcionA" class="form-control"></textarea>'+
+      	 	'<textarea rows="4" class="form-control"></textarea>'+
       	 '</div>'+
       '</div>'+
      '<div class="col-md-4">'+
       	 '<div class="form-group">'+
       	 	'<label>Características del equipo que se retira.</label>'+
-      	 	'<textarea rows="4" name="desRetirado" class="form-control"></textarea>'+
+      	 	'<textarea rows="4" class="form-control"></textarea>'+
       	 '</div>'+
       '</div>'+
       '<div class="col-md-4">'+
       	 '<div class="form-group">'+
       	 	'<label>Caracteristicas de equipo que queda en función con ese código de inventario.</label>'+
-      	 	'<textarea rows="4" name="desNew"  class="form-control"></textarea>'+
+      	 	'<textarea rows="4" class="form-control"></textarea>'+
       	 '</div>'+
       '</div>'+
       	'<div class="col-md-4">'+

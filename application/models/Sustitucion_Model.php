@@ -14,7 +14,7 @@ class Sustitucion_Model extends CI_Model
     }
 
     public function update_($table, $id, $campoCoparacion ,$data){
-      $this->db->where($id, $campoCoparacion)->update($table, $data);
+      $this->db->where($campoCoparacion,  $id)->update($table, $data);
     }
 
     public function select_($table){
@@ -41,15 +41,15 @@ class Sustitucion_Model extends CI_Model
 
      public function perifericos_disponible(){
 
-      $perifericos = array('MONITOR','MOUSE','CPU');
+      $perifericos = array('MONITOR','MOUSE','TECLADO','USB','MEMORIA SD','LECTOR DVD/CD','PARLANTES','LECTOR PARA MEMORIA SD','AUDIFONOS','PROYECTOR','FAX','MICROFONO');
+      $estados = array('Disponible');
        $this->db->select('bo.serial, bo.nombre, bo.fecha_ingreso, bo.tipo');
        $this->db->from('inventario_bodega bo');
-       $this->db->or_where('estatus !=','En uso');
-       $this->db->where('destino', 1);
-       //$this->db->or_where_in('destino', $perifericos);
-  //     $this->db->or_where('tipo', 'MONITOR');
-    //   $this->db->or_where('tipo', 'MOUSE');
-     // $this->db->or_where('tipo', 'TECLADO');
+        $this->db->where_in('tipo', $perifericos);
+        $this->db->where_in('estatus', $estados);
+       // $this->db->where('estatus !=','En uso');
+       // $this->db->where('estatus !=','Desechado');
+       //$this->db->where('destino', 1);
        $query=$this->db->get()->result_array();
       return $query;
     }

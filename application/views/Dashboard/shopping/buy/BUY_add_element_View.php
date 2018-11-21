@@ -11,7 +11,6 @@
 
 
 
-
   <style type="text/css" media="screen">
   	.thead-d{
   		background-color: black;
@@ -61,6 +60,10 @@
      
 
      	<?php 
+
+        //compra con sustitucion :v pacman
+     
+        
 	     	if($datos['tipo'] == 'Periferico' && $datos['unidad'][0]['id_unidad'] == '1'){
               require 'BUY_add_periferico_new.php';
         }  
@@ -119,7 +122,7 @@
             
           require 'BUY_otro_asignar_lab.php';
          }
-
+      
 
         
 

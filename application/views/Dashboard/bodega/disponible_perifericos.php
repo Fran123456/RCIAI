@@ -31,8 +31,9 @@
 			<tr>
 				<th scope="col">Serial</th>
 				<th scope="col">Periferico</th>
-				<th scope="col">Fecha de ingreso</th>
-				<th scope="col">Asignar</th>
+				<th scope="col">Sustituir/Admin</th>
+				<th scope="col">Asignar/admin</th>
+				<th scope="col">Sustituir/Lab</th>
 			</tr>
 		</thead>
 		<tbody id="showdata">
@@ -40,8 +41,9 @@
 				<tr>
 					<th><?php echo empty($data[$i]['serial']) ? '<span style= "color:red">no disponible</span>' :$data[$i]['serial'] ?></th>
 					<td><?php echo empty($data[$i]['tipo']) ? '<span style= "color:red">no disponible</span>' : $data[$i]['tipo'] ?></td>
-					<td><?php echo empty($data[$i]['fecha_ingreso']) ? '<span style= "color:red">no disponible</span>' : $data[$i]['fecha_ingreso'] ?></td>
-					<td><a href="<?php base_url();?>remove-periferico/<?php echo $data[$i]['serial'];?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+					<td><a href="<?php base_url();?>remove-periferico/<?php echo $data[$i]['serial'];?>" class="btn btn-danger item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+					<td><a href="<?php base_url();?>validar-periferico/<?php echo $data[$i]['serial'];?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+					<td><a href="" class="btn btn-info item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 				</tr>
 			<?php } ?>
 			

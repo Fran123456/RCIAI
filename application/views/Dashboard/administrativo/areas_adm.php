@@ -36,6 +36,15 @@
     <?php endif; ?>
 
 
+ <?php if($this->session->flashdata('change')):  ?>
+        <script type="text/javascript">
+          swal({
+           type: 'success',
+           title: 'ELEMENTO SUSTITUIDO CORRECTAMENTE',
+           });
+        </script>
+    <?php endif; ?>
+
 
 	
 	<div class="">

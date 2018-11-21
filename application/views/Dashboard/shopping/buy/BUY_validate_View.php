@@ -31,7 +31,7 @@
        dataType: 'JSON',
        url: '<?php echo base_url()?>BUY_elements_Controller/unidad',
        success: function(data){
-          for (var i = 0; i <data.length; i++) {
+          for (var i = 0; i <data.length-1; i++) {
           	html+='<option value="'+data[i].id_unidad+'">'+data[i].unidad+'</option>';
           }
           $('#uni').append(html);
@@ -97,7 +97,7 @@
 	        		</div>
               <div class="col-md-4">
                 <div class="form-group" >
-                  <label>Unidad para asignar</label>
+                  <label>Opciones para asignar o sustituir</label>
                                  <select  name="uni" id="uni" class="form-control">
                                     
                                  </select>
@@ -131,6 +131,9 @@
 <!--ESTE ELEMENTO PROPORCIONA LA VALIDACION SI UNA COMPRA EXISTE Y SI HAY AUN LUGAR PARA AGREGAR-->
 
 <script type="text/javascript">
+   //$('#uni').append('<option value="Sustituir">Sustituir</option>');
+
+
    select = "";
    $('#uni').change(function() {
     var dato = $('#uni').val();
@@ -151,7 +154,11 @@
     }
   });
 
+
+
+
 </script>
+
 
     <?php require 'application/views/Plantilla/footer.php';?><!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL FOOTER-->
 </body>
