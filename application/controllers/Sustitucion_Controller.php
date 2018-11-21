@@ -48,6 +48,14 @@ class Sustitucion_Controller extends CI_Controller {
       echo json_encode($perifericos);
      }
 
+
+     public function get_perifericos_PC_lab(){
+      $id = filter_input(INPUT_POST,'dato');
+      $arrayNot = array('CPU','DISCO DURO EXTERNO','LAPTOP','ACCES POINT RADIO U MASFERRER','IMPRESORES MATRICIALES','IMPRESORES MULTIFUNCIONALES','IMPRESOR DESJEKT','SCANNER','WEBCAN','UPS');
+      $perifericos = $this->sus->where_not('inventario_bodega', $id ,'pc_servidor_id', 'tipo', $arrayNot);
+      echo json_encode($perifericos);
+     }
+
      public function unidad_(){
      	$unidades = $this->sus->get_unidades();
      	return $unidades;
@@ -108,6 +116,14 @@ class Sustitucion_Controller extends CI_Controller {
      }
 
 
+       public function vista_sustituir_periferico_lab(){
+     	 $serial = $this->uri->segment(2);
+     	 $infoPeriferico = $this->sus->where_(self::table, $serial ,'serial');
+     	 $unidades = $this->unidad_();
+         $this->load->view('Dashboard/bodega/sustitucion/sustituir_periferico_lab_View', compact('infoPeriferico', 'unidades'));
+     }
+
+
      public function perifericos_disponible(){
 			$data  = $this->sus->perifericos_disponible();
 			$this->load->view('Dashboard/bodega/disponible_perifericos', compact('data'));
@@ -117,8 +133,22 @@ class Sustitucion_Controller extends CI_Controller {
 		$serialNueva = $this->input->post('serialNueva');
 		$serialVieja = $this->input->post('perichange');
 		$codigoPC = $this->input->post('cod');
+		$centinela = substr($codigoPC, 0,2);
 		
-        $infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador');
+
+		if($centinela == "LA"){
+			 $infoCodigo = $this->sus->where_('inventario_lab', $codigoPC, 'identificador_lab');
+		}
+		if($centinela == "PC"){
+			$infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador');
+		}
+		
+        
+        
+
+
+
+
 		$datosSerialNueva = $this->sus->where_('inventario_bodega', $serialNueva  ,'serial');
 		$datosSerialVieja = $this->sus->where_('inventario_bodega', $serialVieja ,'serial');
 
@@ -149,17 +179,22 @@ class Sustitucion_Controller extends CI_Controller {
         $this->sus->update_(self::table, $serialVieja, 'serial' ,$perifericoDeRegreso);
 
         //actualizacion del periferico nuevo
-		$this->sus->update_(self::table, $serialNueva, 'serial' ,$perifericoDeIda);
+	 	$this->sus->update_(self::table, $serialNueva, 'serial' ,$perifericoDeIda);
 
-		$mov = $this->get_movimiento('inventario_adm' , 'identificador');
-		$this->sus->add_('movimiento', $mov);
-
-	    $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
-        redirect(base_url().'mantenimiento-administrativo');
-
-
-
-        
+    if($centinela == "LA"){
+    	 $mov = $this->get_movimiento('inventario_lab' , 'identificador_lab');
+    	 $this->sus->add_('movimiento', $mov);
+    	  $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
+           redirect(base_url());
+    }
+    if($centinela == "PC"){
+       $mov = $this->get_movimiento('inventario_adm' , 'identificador');
+       $this->sus->add_('movimiento', $mov);
+       $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
+          redirect(base_url().'mantenimiento-administrativo');
+    }
+   
+          
 
         
 	}

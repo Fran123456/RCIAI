@@ -229,3 +229,7 @@ $route['listado-prestamos'] = 'Movimientos_controller/prestamos';
 //SUSTITUCION RUTAS
 $route['remove-periferico/(:any)'] = 'Sustitucion_Controller/vista_sustituir_periferico/$1';
 $route['Sustituir-periferico'] = 'Sustitucion_Controller/perifericos_disponible';
+
+
+$route['remove-periferico-lab/(:any)'] = 'Sustitucion_Controller/vista_sustituir_periferico_lab/$1';
+$route['Sustituir-periferico'] = 'Sustitucion_Controller/perifericos_disponible';

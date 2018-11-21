@@ -53,7 +53,7 @@
 
 
 
-
+<h2>Sustitución para area administrativa</h2>
 
 <form method="post" action="<?php echo base_url()?>Sustitucion_Controller/sustituir_periferico_form">
     <!--DATOS OCULTOS IMPORTANTES ALV :'v -->
@@ -96,7 +96,7 @@
       <div class="col-md-3">
       	<div class="form-group">
       		<label>Codigo PC</label>
-      		<input id="cod" value="PC001USAM" type="text" class="form-control" name="cod">
+      		<input id="cod" value="" type="text" class="form-control" name="cod">
       	    <button type="button" onclick="perSelect();">Verificar</button>
       	</div>
       </div>

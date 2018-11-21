@@ -31,9 +31,9 @@
 			<tr>
 				<th scope="col">Serial</th>
 				<th scope="col">Periferico</th>
-				<th scope="col">Sustituir/Admin</th>
-				<th scope="col">Asignar/admin</th>
-				<th scope="col">Sustituir/Lab</th>
+				<th scope="col">Sustitución</th>
+				<th scope="col">Asignar</th>
+			
 			</tr>
 		</thead>
 		<tbody id="showdata">
@@ -43,7 +43,7 @@
 					<td><?php echo empty($data[$i]['tipo']) ? '<span style= "color:red">no disponible</span>' : $data[$i]['tipo'] ?></td>
 					<td><a href="<?php base_url();?>remove-periferico/<?php echo $data[$i]['serial'];?>" class="btn btn-danger item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 					<td><a href="<?php base_url();?>validar-periferico/<?php echo $data[$i]['serial'];?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
-					<td><a href="" class="btn btn-info item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+					<!--<td><a href="<?php base_url();?>remove-periferico-lab/<?php echo $data[$i]['serial'];?>" class="btn btn-info item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>-->
 				</tr>
 			<?php } ?>
 			
