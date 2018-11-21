@@ -44,9 +44,9 @@ class Sustitucion_Model extends CI_Model
       $perifericos = array('MONITOR','MOUSE','CPU');
        $this->db->select('bo.serial, bo.nombre, bo.fecha_ingreso, bo.tipo');
        $this->db->from('inventario_bodega bo');
-    //   $this->db->or_where('estatus !=','En uso');
+       $this->db->or_where('estatus !=','En uso');
        $this->db->where('destino', 1);
-       $this->db->or_where_in('destino', $perifericos);
+       //$this->db->or_where_in('destino', $perifericos);
   //     $this->db->or_where('tipo', 'MONITOR');
     //   $this->db->or_where('tipo', 'MOUSE');
      // $this->db->or_where('tipo', 'TECLADO');

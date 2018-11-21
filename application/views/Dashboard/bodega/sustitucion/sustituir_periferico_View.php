@@ -320,7 +320,7 @@
       	 '</div>'+
       	 '<div class="form-group">'+
       	 	'<label>Fecha ingreso</label>'+
-      	 	'<input type="date" class="form-control" name="fechaR">'+
+      	 	'<input type="date" class="form-control" name="fechaI">'+
       	 '</div>'+
       '</div>'+
       '<div class="col-md-4">'+

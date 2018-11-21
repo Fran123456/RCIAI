@@ -98,9 +98,16 @@ class Sustitucion_Controller extends CI_Controller {
 			'fecha_salida' => null,
 			'destino' => 1,
 			'pc_servidor_id' => null,
-			'pc_servidor_antiguo_id' => $serialVieja[0]['pc_servidor_id'],
-
+			'pc_servidor_antiguo_id' => $datosSerialVieja[0]['pc_servidor_id'],
 		);
+
+        $perifericoDeIda = array(
+            'origen' => 1,
+            'fecha_salida' => $this->input->post('fechaI'),
+            'destino' => $unidad,
+            'pc_servidor_id' => $datosSerialVieja[0]['pc_servidor_id'],
+            'pc_servidor_antiguo_id' => $datosSerialNueva[0]['pc_servidor_id'],
+        );
 		
 	}
 
