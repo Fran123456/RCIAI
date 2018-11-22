@@ -167,9 +167,6 @@ class Sustitucion_Controller extends CI_Controller {
 
 
 
-
-
-
      
 //sustitucion sin codigo
 	public function sustituir_periferico_form(){
@@ -182,7 +179,7 @@ class Sustitucion_Controller extends CI_Controller {
 		if($centinela == "LA"){
 			 $infoCodigo = $this->sus->where_('inventario_lab', $codigoPC, 'identificador_lab');
 		}
-		if($centinela == "PC"){
+		if($centinela == "PC" || $centinela == "SV"){
 			$infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador');
 		}
 		
@@ -219,7 +216,7 @@ class Sustitucion_Controller extends CI_Controller {
     	  $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
            redirect(base_url());
     }
-    if($centinela == "PC"){
+    if($centinela == "PC" || $centinela == "SV"){
        $mov = $this->get_movimiento('inventario_adm' , 'identificador');
        $this->sus->add_('movimiento', $mov);
        $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
@@ -246,7 +243,7 @@ class Sustitucion_Controller extends CI_Controller {
     if($centinela == "LA"){
        $infoCodigo = $this->sus->where_('inventario_lab', $codigoPC, 'identificador_lab');
     }
-    if($centinela == "PC"){
+    if($centinela == "PC" || $centinela == "SV"){
       $infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador');
     }
     
@@ -292,7 +289,7 @@ class Sustitucion_Controller extends CI_Controller {
        $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
        redirect(base_url());
     }
-    if($centinela == "PC"){
+    if($centinela == "PC" || $centinela == "SV"){
        $this->sus->update_('inventario_adm', $serialVieja, 'serial' ,$inventario);
        $mov = $this->get_movimiento('inventario_adm' , 'identificador');
        $this->sus->add_('movimiento', $mov);
@@ -307,18 +304,22 @@ class Sustitucion_Controller extends CI_Controller {
 
   //sustitucion con codigo y unidad :v
   public function sustituir_periferico_form_code_unidad(){
+    $centi = "lab";
     $serialNueva = $this->input->post('serialNueva');
     $serialVieja = $this->input->post('perichange');
     $codigoPC = $this->input->post('cod');
     $centinela = substr($codigoPC, 0,2);
 
 
-    if($centinela == "LA"){
+ 
        $infoCodigo = $this->sus->where_('inventario_lab', $codigoPC, 'identificador_lab');
-    }
-    if($centinela == "PC"){
-      $infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador');
-    }
+       if(count($infoCodigo) == 0){
+              $infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador');
+              $centi = "admin";
+       }
+   
+
+    
     
     $datosSerialNueva = $this->sus->where_('inventario_bodega', $serialNueva  ,'serial');
     $datosSerialVieja = $this->sus->where_('inventario_bodega', $serialVieja ,'serial');
@@ -347,30 +348,32 @@ class Sustitucion_Controller extends CI_Controller {
        'serial' => $serialNueva,
      );
 
+   
 
 
   
 
-   /*   //actualización del periferico arruinado 
+      //actualización del periferico arruinado 
         $this->sus->update_(self::table, $serialVieja, 'serial' ,$perifericoDeRegreso);
 
         //actualizacion del periferico nuevo
        $this->sus->update_(self::table, $serialNueva, 'serial' ,$perifericoDeIda);
 
-     if($centinela == "LA"){
+     if($centi == "lab"){
        $this->sus->update_('inventario_lab', $serialVieja, 'serial' ,$inventario);
        $mov = $this->get_movimiento('inventario_lab' , 'identificador_lab');
        $this->sus->add_('movimiento', $mov);
        $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
        redirect(base_url());
      }
-      if($centinela == "PC"){
+
+      if($centi == "admin"){
        $this->sus->update_('inventario_adm', $serialVieja, 'serial' ,$inventario);
        $mov = $this->get_movimiento('inventario_adm' , 'identificador');
        $this->sus->add_('movimiento', $mov);
        $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
          redirect(base_url().'mantenimiento-administrativo');
-     }*/
+     }
         
   }
 
