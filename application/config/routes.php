@@ -223,6 +223,8 @@ $route['movimientos'] = 'Movimientos_controller/index';
 $route['listado-asignaciones'] = 'Movimientos_controller/asignaciones';
 $route['detalle-asignacion/(:any)'] = 'Movimientos_controller/detalleAsignacion/$1';
 $route['listado-prestamos'] = 'Movimientos_controller/prestamos';
+$route['listado-sustituciones'] = 'Movimientos_controller/sustituciones';
+$route['detalle-sustitucion/(:any)'] = 'Movimientos_controller/detalleSustitucion/$1';
 
 
 
