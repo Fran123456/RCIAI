@@ -45,6 +45,15 @@
         </script>
     <?php endif; ?>
 
+     <?php if($this->session->flashdata('sus')):  ?>
+        <script type="text/javascript">
+          swal({
+           type: 'success',
+           title: 'ELEMENTO ASIGNADO CORRECTAMENTE',
+           });
+        </script>
+    <?php endif; ?>
+
 
 	
 	<div class="">

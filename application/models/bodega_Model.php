@@ -137,6 +137,17 @@ class bodega_Model extends CI_Model{
 	}
 
 
+
+	public function get_all($id){
+		$data = $this->db->where('identificador' ,$id)->get('inventario_adm')->result_array();
+
+		if(count($data) == 0){
+			$data = $this->db->where('identificador_lab' ,$id)->get('inventario_lab')->result_array();
+		}
+		return $data;
+	}
+
+
 	public function get_lab($id){
 		$data = $this->db->where('identificador_lab' ,$id)->get('inventario_lab')->result_array();
 		return $data;

@@ -351,8 +351,6 @@ class Sustitucion_Controller extends CI_Controller {
    
 
 
-  
-
       //actualización del periferico arruinado 
         $this->sus->update_(self::table, $serialVieja, 'serial' ,$perifericoDeRegreso);
 

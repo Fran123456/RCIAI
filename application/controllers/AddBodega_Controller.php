@@ -415,7 +415,7 @@ public function otro_asignado_add_new(){
        'velocidad' =>$this->input->post('velocidad-0'),
        'estatus' =>$this->input->post('estatus-0'),
        'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
-       'origen' =>$deter,
+       'origen' =>38,
        'destino' =>$this->input->post('destino-0'),
      );
      $this->element->add_periferico_nuevo($data);

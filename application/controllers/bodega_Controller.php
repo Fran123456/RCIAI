@@ -181,6 +181,15 @@ function showCodePC(){
 	}
 
 
+
+
+  public function get_codigos_todos(){
+    $id = filter_input(INPUT_POST,'dato');
+    $codigos = $this->bod->get_all($id);
+    echo json_encode($codigos);
+  }
+
+
 public function get_codigosLAB(){
     $id = filter_input(INPUT_POST,'dato');
     $codigos = $this->bod->get_lab($id);
@@ -272,16 +281,19 @@ function unidadesajax(){
 
 	public function catch_asignacion_dde(){
     $comx = null;
+    $lab_adm = null;
      if($this->input->post('comprac') != ""){
       $comx = $this->input->post('comprac');
      }
-   
-  
+    
 
 		 $serial = $this->input->post('serial');
 		 $data = $this->bod->get_element_bodega($serial);
 		 $unidad= $this->bod->get_u_letra($this->input->post('unidad'));
 		 $compraid = $this->bod->get_bodega($this->input->post('serial'));
+
+
+  
 
 		 //actualizacion en bodega
         $dataUpdate = array(
@@ -290,17 +302,43 @@ function unidadesajax(){
             'fecha_salida'=> $this->input->post('fecha'),
             'destino' => $this->input->post('unidad'),
         );
+       
 
-        $admin = array(
-        'identificador' => $this->input->post('codigopc'),
-        'encargado_puesto' => $this->input->post('enc'),
-        'fecha_ingreso' => $this->input->post('fecha'),
-        'origen' => 1,
-        'destino' => $this->input->post('unidad'),
-        'compra_id' => $comx,
-        'lugar_name' => $unidad[0]['unidad'],
-        'serial' => $this->input->post('serial'),
-         );
+        if($this->input->post('cd') == "0"){
+                  $admin = array(
+                  'identificador' => $this->input->post('codigopc'),
+                  'encargado_puesto' => $this->input->post('enc'),
+                  'fecha_ingreso' => $this->input->post('fecha'),
+                  'origen' => 1,
+                  'destino' => $unidad[0]['id_unidad'],
+                  'compra_id' => $comx,
+                  'lugar_name' => $unidad[0]['unidad'],
+                  'serial' => $this->input->post('serial'),
+                   );
+        }else{
+
+              $lab = $this->input->post('labo');
+              if($lab == 'LAB1'){$datalab = 'lab-01';}
+              if($lab == 'LAB2'){$datalab = 'lab-02';}
+              if($lab == 'LAB3'){$datalab = 'lab-03';}
+              if($lab == 'LAB4'){$datalab = 'lab-04';}
+              if($lab == 'LAB5'){$datalab = 'lab-05';}
+              if($lab == 'HW'){$datalab = 'lab-hw';}
+              if($lab == 'RED'){$datalab = 'lab-red';}
+
+                $admin = array(
+                  'identificador_lab' => $this->input->post('codigopc'),
+                  'fecha_ingreso' => $this->input->post('fecha'),
+                  'origen' => 1,
+                  'destino' => $unidad[0]['id_unidad'],
+                  'serial' => $this->input->post('serial'),
+                  'lab' => $datalab,
+                  'compra_id' => $comx,
+                   );
+
+        }
+
+       
 
 
          $mov = array(
@@ -325,25 +363,18 @@ function unidadesajax(){
         //print_r($admin);
         #actualizamos el inventario de bodega
         $this->bod->update_('inventario_bodega', 'serial' ,$this->input->post('serial'), $dataUpdate);
-        #agregamos al inventario administrativo
-        $this->bod->add_('inventario_adm',$admin);
-        $this->bod->add_('movimiento',$mov);
 
-                if($this->input->post('unidad')=="37"){
-                 $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
-                 redirect(base_url().'detalle-lab/'.$pc);
-                 }else{
-                     $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
-                 redirect(base_url().'mantenimiento-administrativo');
-                 }
+        if($this->input->post('unidad')=="37"){
+          $this->bod->add_('inventario_lab',$admin);
+          $this->session->set_flashdata('sus' , 'Asignación realizada correctamente');
+                 redirect(base_url());
+        }else{
+          $this->bod->add_('movimiento',$mov);
+          $this->bod->add_('inventario_adm',$admin);
+          $this->session->set_flashdata('sus' , 'Asignación realizada correctamente');
+          redirect(base_url().'mantenimiento-administrativo');
+        }         
 	}
-
-
-
-
-
-
-
 
 
 
@@ -531,8 +562,7 @@ public function catch_asignacion_otro(){
                      $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
 		             redirect(base_url().'mantenimiento-administrativo');
                  }
-		         
-		          
+		        
 
 	       }
 	       else

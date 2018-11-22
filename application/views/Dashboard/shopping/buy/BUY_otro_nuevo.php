@@ -162,7 +162,7 @@
                                       <option value="ACCES POINT RADIO U MASFERRER">ACCES POINT RADIO U MASFERRER</option>
                                       <option value="WEBCAM">WEB CAM</option>
                                       <option value="IMPRESOR">IMPRESOR</option>
-                                      <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option><option value="IMPRESORES-MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option><option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option><option value="SCANNER">SCANNER</option>
+                                      <option value="IMPRESORES MATRICIALES">IMPRESORES MATRICIALES</option><option value="IMPRESORES MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option><option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option><option value="SCANNER">SCANNER</option>
                                     </select>
                                   </div>
                                 </div>
