@@ -288,7 +288,7 @@
 
 
     if($('#codex0').val() == "WEBCAM"){
-        $('#cm').val('WEB CAM');
+        $('#cm').val('WEBCAM');
  
     }
 

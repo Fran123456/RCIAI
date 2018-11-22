@@ -21,7 +21,7 @@
     <?php require 'application/views/Plantilla/panel.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL MENU DESPLEGABLE-->
 
     <!--CONTENIDO DE LA APLICACION-->
-	<h3>Inventario de Bodega</h3>
+	<h3>Inventario de Bodega </h3>
 <?php if($detalle!=false) {?>
 	<!--Creamos la tabla donde vamos a mostrar nuestros registros de inventario Bodega-->
 	<table id="tabla" class="table table-dark table-hover">
@@ -30,23 +30,38 @@
 				<th scope="col">Serial</th>
 				<th scope="col">Periferico</th>
 				<th scope="col">Fecha de ingreso</th>
+				<th scope="col">Estado</th>
 				<th scope="col">ver</th>
 				<!--<th scope="col">editar</th>
 				<th scope="col">eliminar</th>-->
 			</tr>
 		</thead>
 		<tbody id="showdata">
-			<?php foreach ($detalle as $key ) { ?>
-				<tr>
+			<?php foreach ($detalle as $key ): ?>
+                <?php if($key->estatus == 'Desechado'): ?>
+				<tr style="color: white;background-color: #F88B8B;">
 					<th><?php echo empty($key->serial) ? '<span style= "color:red">no disponible</span>' : $key->serial ?></th>
 					<td><?php echo empty($key->tipo) ? '<span style= "color:red">no disponible</span>' : $key->tipo ?></td>
 					<td><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso ?></td>
+					<td><?php echo empty($key->estatus) ? '<span style= "color:red">no disponible</span>' : $key->estatus ?></td>
 					<td><a href="<?php echo base_url('bodega_Controller/detalle/'.$id=$key->serial);?>"  data='<?php echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
 					<!--<td><a  href="javascript:;"  data='<?php //echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>-->
 				<!--	<td><a  href="javascript:;"  data='<?php// echo $key->serial ?>' class="btn btn-info item-edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 					<td><a  href="javascript:;"  data='<?php// echo $key->serial ?>' class="btn btn-danger item-delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
 				</tr>
-			<?php } ?>
+				<?php else: ?>
+				<tr>
+					<th><?php echo empty($key->serial) ? '<span style= "color:red">no disponible</span>' : $key->serial ?></th>
+					<td><?php echo empty($key->tipo) ? '<span style= "color:red">no disponible</span>' : $key->tipo ?></td>
+					<td><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso ?></td>
+					<td><?php echo empty($key->estatus) ? '<span style= "color:red">no disponible</span>' : $key->estatus ?></td>
+					<td><a href="<?php echo base_url('bodega_Controller/detalle/'.$id=$key->serial);?>"  data='<?php echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+					<!--<td><a  href="javascript:;"  data='<?php //echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>-->
+				<!--	<td><a  href="javascript:;"  data='<?php// echo $key->serial ?>' class="btn btn-info item-edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+					<td><a  href="javascript:;"  data='<?php// echo $key->serial ?>' class="btn btn-danger item-delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
+				</tr>
+			    <?php endif; ?>
+			<?php endforeach; ?>
 			
 		</tbody>
 	</table>
