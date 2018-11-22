@@ -64,13 +64,36 @@ class Sustitucion_Model extends CI_Model
         $this->db->where_in('estatus', $estados);
        $query=$this->db->get()->result_array();
       return $query;
+
     }
 
 
    public function get_unidades(){
-     $unidades =  $this->db->where('id_unidad !=' , 1 )->where('id_unidad !=' , 4 )->where('id_unidad !=' , 37 )->where('id_unidad !=' , 38 )->get('unidad')->result_array();
+     $unidades =  $this->db->where('id_unidad !=' , 1 )->where('id_unidad !=' , 4 )->where('id_unidad !=' , 38 )->get('unidad')->result_array();
      return $unidades;
    }
+
+   public function join_admin($id){
+
+       $this->db->select('*');
+    $this->db->from('inventario_adm');
+    $this->db->join('inventario_bodega', 'inventario_bodega.serial = inventario_adm.serial');
+    $this->db->where('inventario_adm.identificador', $id);
+    $query = $this->db->get()->result_array();
+   // $query = $this->db->query('select * from inventario_adm join inventario_bodega on inventario_bodega.serial = inventario_adm.serial where inventario_adm.identificador = "WEBCAM001USAM"')->result_array();
+    return $query;
+   }
+
+
+    public function join_lanb($id){
+    $this->db->select('*');
+    $this->db->from('inventario_lab');
+    $this->db->join('inventario_bodega', 'inventario_bodega.serial = inventario_lab.serial');
+    $this->db->where('inventario_lab.identificado_lab', $id);
+    $query = $this->db->get()->result();
+    return $query;
+   }
+    
     
 
 

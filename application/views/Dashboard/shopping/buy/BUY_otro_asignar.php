@@ -298,7 +298,7 @@
 
 
     if($('#codex0').val() == "WEBCAM"){
-        $('#cm').val('WEB CAM');
+        $('#cm').val('WEBCAM');
       //  $('#tipoP').remove();
       //  $('#divtipo').append('<div id="tipoP" class="form-group"><label>Tipo de periferico</label><input class="form-control" id="cm" readonly="" name="tipo-0" type="text" ></div>');
     }

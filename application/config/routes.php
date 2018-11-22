@@ -232,6 +232,11 @@ $route['Sustituir-periferico'] = 'Sustitucion_Controller/perifericos_disponible'
 
 $route['Sustituir-periferico-code'] = 'Sustitucion_Controller/perifericos_disponible_code';
 $route['remove-periferico-code/(:any)'] = 'Sustitucion_Controller/vista_sustituir_periferico_code/$1';
+$route['remove-periferico-code-unidad/(:any)'] = 'Sustitucion_Controller/vista_sustituir_periferico_code_unidad/$1';
+
+
+
+
 
 $route['remove-periferico-lab/(:any)'] = 'Sustitucion_Controller/vista_sustituir_periferico_lab/$1';
 $route['Sustituir-periferico'] = 'Sustitucion_Controller/perifericos_disponible';
