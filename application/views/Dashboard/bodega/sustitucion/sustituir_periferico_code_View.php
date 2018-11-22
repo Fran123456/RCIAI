@@ -52,10 +52,10 @@
 
 
 
-<h2>Sustitución para laboratorios</h2>
 
+<h2>Sustitución para area administrativa de perifericos con codigo</h2>
 
-<form method="post" action="<?php echo base_url()?>Sustitucion_Controller/sustituir_periferico_form">
+<form method="post" action="<?php echo base_url()?>Sustitucion_Controller/sustituir_periferico_form_code">
     <!--DATOS OCULTOS IMPORTANTES ALV :'v -->
 	<input type="hidden" value="<?php echo $infoPeriferico[0]['serial'] ?>" id="xx" name="serialNueva">
     <input type="hidden" value="<?php echo $infoPeriferico[0]['tipo'] ?>" id="xxx" name="tipoNueva">
@@ -95,10 +95,9 @@
     <div class="row">
       <div class="col-md-3">
       	<div class="form-group">
-      		<label>Codigo PC lab</label>
+      		<label>Codigo PC</label>
       		<input id="cod" value="" type="text" class="form-control" name="cod">
-          <br>
-      	    <button type="button" class="btn btn-warning" onclick="perSelect();">Verificar</button>
+      	    <button type="button" onclick="perSelect();">Verificar</button>
       	</div>
       </div>
       
@@ -144,7 +143,7 @@
 		  	 $.ajax({
 			     type: 'ajax',
 			     method: 'post',
-			     url: '<?php echo base_url() ?>Sustitucion_Controller/get_perifericos_PC_lab',
+			     url: '<?php echo base_url() ?>Sustitucion_Controller/get_perifericos_PC',
 			     data: {dato: dato},
 			     async: false,
 			     dataType: 'json',

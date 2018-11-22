@@ -115,20 +115,30 @@ class Sustitucion_Controller extends CI_Controller {
          $this->load->view('Dashboard/bodega/sustitucion/sustituir_periferico_View', compact('infoPeriferico', 'unidades'));
      }
 
-
-       public function vista_sustituir_periferico_lab(){
-     	 $serial = $this->uri->segment(2);
-     	 $infoPeriferico = $this->sus->where_(self::table, $serial ,'serial');
-     	 $unidades = $this->unidad_();
-         $this->load->view('Dashboard/bodega/sustitucion/sustituir_periferico_lab_View', compact('infoPeriferico', 'unidades'));
+     public function perifericos_disponible(){
+      $data  = $this->sus->perifericos_disponible();
+      $this->load->view('Dashboard/bodega/disponible_perifericos', compact('data'));
      }
 
 
-     public function perifericos_disponible(){
-			$data  = $this->sus->perifericos_disponible();
-			$this->load->view('Dashboard/bodega/disponible_perifericos', compact('data'));
-	}
 
+ //--------------------------------------------------------------------------------------
+       public function vista_sustituir_periferico_code(){
+       $serial = $this->uri->segment(2);
+       $infoPeriferico = $this->sus->where_(self::table, $serial ,'serial');
+       $unidades = $this->unidad_();
+         $this->load->view('Dashboard/bodega/sustitucion/sustituir_periferico_code_View', compact('infoPeriferico', 'unidades'));
+       }
+
+     
+      public function perifericos_disponible_code(){
+        $data  = $this->sus->perifericos_disponible_code();
+        $this->load->view('Dashboard/bodega/disponible_perifericos_code', compact('data'));
+       }
+
+
+     
+//sustitucion sin codigo
 	public function sustituir_periferico_form(){
 		$serialNueva = $this->input->post('serialNueva');
 		$serialVieja = $this->input->post('perichange');
@@ -143,17 +153,8 @@ class Sustitucion_Controller extends CI_Controller {
 			$infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador');
 		}
 		
-        
-        
-
-
-
-
 		$datosSerialNueva = $this->sus->where_('inventario_bodega', $serialNueva  ,'serial');
 		$datosSerialVieja = $this->sus->where_('inventario_bodega', $serialVieja ,'serial');
-
-
-     
 
 		$perifericoDeRegreso = array(
 			'estatus' => $this->input->post('estado'),
@@ -164,22 +165,20 @@ class Sustitucion_Controller extends CI_Controller {
 			'pc_servidor_antiguo_id' => $datosSerialVieja[0]['pc_servidor_id'],
 		);
 
-        $perifericoDeIda = array(
-        	'estatus' => 'En uso',
-            'origen' => 1,
-            'fecha_salida' => $this->input->post('fechaI'),
-            'destino' => $infoCodigo[0]['destino'],
-            'pc_servidor_id' => $datosSerialVieja[0]['pc_servidor_id'],
-            'pc_servidor_antiguo_id' => $datosSerialNueva[0]['pc_servidor_id'],
-        );
-
-
+    $perifericoDeIda = array(
+        'estatus' => 'En uso',
+        'origen' => 1,
+        'fecha_salida' => $this->input->post('fechaI'),
+        'destino' => $infoCodigo[0]['destino'],
+        'pc_servidor_id' => $datosSerialVieja[0]['pc_servidor_id'],
+        'pc_servidor_antiguo_id' => $datosSerialNueva[0]['pc_servidor_id'],
+       );
 
        //actualización del periferico arruinado 
         $this->sus->update_(self::table, $serialVieja, 'serial' ,$perifericoDeRegreso);
 
         //actualizacion del periferico nuevo
-	 	$this->sus->update_(self::table, $serialNueva, 'serial' ,$perifericoDeIda);
+	     	$this->sus->update_(self::table, $serialNueva, 'serial' ,$perifericoDeIda);
 
     if($centinela == "LA"){
     	 $mov = $this->get_movimiento('inventario_lab' , 'identificador_lab');
@@ -193,11 +192,83 @@ class Sustitucion_Controller extends CI_Controller {
        $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
           redirect(base_url().'mantenimiento-administrativo');
     }
-   
-          
-
         
 	}
+
+
+
+
+
+
+
+
+  //sustitucion sin codigo
+  public function sustituir_periferico_form_code(){
+    $serialNueva = $this->input->post('serialNueva');
+    $serialVieja = $this->input->post('perichange');
+    $codigoPC = $this->input->post('cod');
+    $centinela = substr($codigoPC, 0,2);
+
+
+    if($centinela == "LA"){
+       $infoCodigo = $this->sus->where_('inventario_lab', $codigoPC, 'identificador_lab');
+    }
+    if($centinela == "PC"){
+      $infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador');
+    }
+    
+    $datosSerialNueva = $this->sus->where_('inventario_bodega', $serialNueva  ,'serial');
+    $datosSerialVieja = $this->sus->where_('inventario_bodega', $serialVieja ,'serial');
+
+    $perifericoDeRegreso = array(
+      'estatus' => $this->input->post('estado'),
+      'origen' => $infoCodigo[0]['destino'],
+      'fecha_salida' => null,
+      'destino' => 1,
+      'pc_servidor_id' => null,
+      'pc_servidor_antiguo_id' => $datosSerialVieja[0]['pc_servidor_id'],
+    );
+
+    $perifericoDeIda = array(
+        'estatus' => 'En uso',
+        'origen' => 1,
+        'fecha_salida' => $this->input->post('fechaI'),
+        'destino' => $infoCodigo[0]['destino'],
+        'pc_servidor_id' => $datosSerialVieja[0]['pc_servidor_id'],
+        'pc_servidor_antiguo_id' => $datosSerialNueva[0]['pc_servidor_id'],
+       );
+     
+     $inventario = array(
+       'origen' => 1,
+       'compra_id' => $datosSerialNueva[0]['compra_id'],
+       'serial' => $serialNueva,
+     );
+
+  
+
+       //actualización del periferico arruinado 
+        $this->sus->update_(self::table, $serialVieja, 'serial' ,$perifericoDeRegreso);
+
+        //actualizacion del periferico nuevo
+       $this->sus->update_(self::table, $serialNueva, 'serial' ,$perifericoDeIda);
+
+    if($centinela == "LA"){
+       $this->sus->update_('inventario_lab', $serialVieja, 'serial' ,$inventario);
+       $mov = $this->get_movimiento('inventario_lab' , 'identificador_lab');
+       $this->sus->add_('movimiento', $mov);
+       $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
+       redirect(base_url());
+    }
+    if($centinela == "PC"){
+       $this->sus->update_('inventario_adm', $serialVieja, 'serial' ,$inventario);
+       $mov = $this->get_movimiento('inventario_adm' , 'identificador');
+       $this->sus->add_('movimiento', $mov);
+       $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
+         redirect(base_url().'mantenimiento-administrativo');
+    }
+        
+  }
+
 
 
      //metodos para ver vistas de sustitucion 

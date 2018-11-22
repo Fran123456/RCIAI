@@ -86,7 +86,7 @@
                                         <option value="IMPRESORES MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
                                         <option value="IMPRESOR DESJEKT">IMPRESOR DESJEKT</option>
                                         <option value="SCANNER">SCANNER</option>
-                                        <option value="WEBCAN">WEBCAN</option>
+                                        <option value="WEBCAM">WEBCAM</option>
                                         <option value="PARLANTES">PARLANTES</option>
                                         <option value="LECTOR PARA MEMORIA SD">LECTOR PARA MEMORIA SD</option>
                                         <option value="UPS">UPS</option>

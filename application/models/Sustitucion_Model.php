@@ -42,7 +42,7 @@ class Sustitucion_Model extends CI_Model
      public function perifericos_disponible(){
 
       $perifericos = array('MONITOR','MOUSE','TECLADO','USB','MEMORIA SD','LECTOR DVD/CD','PARLANTES','LECTOR PARA MEMORIA SD','AUDIFONOS','PROYECTOR','FAX','MICROFONO');
-      $estados = array('Disponible');
+      $estados = array('Disponible','nuevo');
        $this->db->select('bo.serial, bo.nombre, bo.fecha_ingreso, bo.tipo');
        $this->db->from('inventario_bodega bo');
         $this->db->where_in('tipo', $perifericos);
@@ -50,6 +50,18 @@ class Sustitucion_Model extends CI_Model
        // $this->db->where('estatus !=','En uso');
        // $this->db->where('estatus !=','Desechado');
        //$this->db->where('destino', 1);
+       $query=$this->db->get()->result_array();
+      return $query;
+    }
+
+       public function perifericos_disponible_code(){
+
+      $perifericos = array('WEBCAM','UPS','ACCES POINT RADIO U MASFERRER','IMPRESORES-MATRICIALES','IMPRESOR-DESJEKT','SCANNER');
+       $estados = array('Disponible','nuevo');
+       $this->db->select('bo.serial, bo.nombre, bo.fecha_ingreso, bo.tipo');
+       $this->db->from('inventario_bodega bo');
+        $this->db->where_in('tipo', $perifericos);
+        $this->db->where_in('estatus', $estados);
        $query=$this->db->get()->result_array();
       return $query;
     }
