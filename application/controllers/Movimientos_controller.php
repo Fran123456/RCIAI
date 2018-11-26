@@ -53,11 +53,49 @@ class Movimientos_controller extends CI_Controller {
 		#mandamos los datos a la vista que tendra el detalle
 		$this->load->view('Dashboard/movimientos/detalleAsignacion',$datos);
 	}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//función que muestra el listado de los movimientos de sustitución
+	public function sustituciones()
+	{
+		#getSustitucion() nos traera la consulta con los datos a mostrar en la tabla
+		$datos['detalle'] = $this->mov->getSustitucion();
+		$this->load->view('Dashboard/movimientos/sustituciones',$datos);
+	}
 
 	//función para el prestamos de equipo de laboratorio
 	public function prestamos()
 	{
 		echo "prestamo";
+	}
+
+	//función para obtener el detalle de la Sustitucion
+	public function detalleSustitucion($id)
+	{
+		#getDetalleAsig($id) nos trae los campos necesarios 
+		#donde $id es id_cambio
+		$resultado = $this->mov->getDetalleSus($id);
+		if($resultado){
+		//vamos a obtener las unidades
+			foreach ($resultado as $u) {
+				//equipo nuevo
+				$origen = $this->mov->getOrigen_destino($u->origen_nuevoEquipo_id);
+				$u->origen_nuevoEquipo_id = $origen;
+				$destino = $this->mov->getOrigen_destino($u->destino_nuevoEquipo_id);
+				$u->destino_nuevoEquipo_id = $destino;
+
+				//equipo viejo
+				$origenViejo = $this->mov->getOrigen_destino($u->unidad_pertenece_id);
+				$u->unidad_pertenece_id = $origenViejo;
+				$destinoViejo = $this->mov->getOrigen_destino($u->unidad_traslado_id);
+				$u->unidad_traslado_id = $destinoViejo;
+			}
+		}
+		$datos['detalle'] = $resultado;
+		//print_r($datos['detalle']);
+
+		#mandamos los datos a la vista que tendra el detalle
+		$this->load->view('Dashboard/movimientos/detalleSustitucion',$datos);
 	}
 
 }//fin de la clase lab_lista_Controller

@@ -28,7 +28,7 @@
 							<h3 class="panel-title">Sustituciones</h3>
 						</div>
 						<div class="panel-body text-center">
-							<a href=""><i class="fa fa-refresh fa-4x" aria-hidden="true"></i></a>
+							<a href="<?php echo base_url('listado-sustituciones')?>"><i class="fa fa-refresh fa-4x" aria-hidden="true"></i></a>
 						</div>
 				</div>
 		<!-- END PANEL HEADLINE -->
