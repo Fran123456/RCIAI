@@ -38,7 +38,7 @@
 		function openModalEdit(id){
 			$('#ModalEdit').modal('show');
 			console.log(id);
-			//vamos hacer una petición ajax para poderagregar valores a los input
+			//vamos hacer una petición ajax para poder agregar valores a los input
 
 			$.ajax({
 				type: 'post',
