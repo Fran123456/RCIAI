@@ -139,99 +139,40 @@
 		<input type="hidden" name="buyx" value="<?php echo $datos[0]['compra_id'] ?>">
 		<br>
 
-		<div class="row">
+
+
+		
+	<div class="row">
 			<div class="col-md-12">
      		<div class="thead-d">
-     			<h4>Descripción del sistema</h4>
+     			<h4>Información general de PC</h4>
 			 </div>
      		<table class="table">
 			  <tbody>
 			    <tr >
-			      <td width="200" >Nombre del equipo:</td>
-			      <td><input type="text"  name="des-0" id="des-nombre" class="form-control int" ></td>
-			      <td width="200">Fabricante:</td>
-			      <td><input type="text" name="des-1" id="des-fabricante" class="form-control int"></td>
-			    </tr>
-			    <tr >
 			      <td width="200" >Sistema operativo:</td>
-			      <td><input type="text" name="des-2" id="des-nombre" class="form-control int" ></td>
+			      <td><input type="text" readonly="" value="<?php echo $info['descripcionSistema'][0]['sistema_operativo'] ?>"  class="form-control int" ></td>
 			      <td width="200">Nucleo:</td>
-			      <td><select id="des-fabricante" class="form-control int" name="des-3"><option value="64 bits">64 bits</option><option value="32 bits">32 bits</option></select></td>
+			      <td><input class="form-control int" value="<?php echo $info['descripcionSistema'][0]['nucleo'] ?>" ></td>
 			    </tr>
 			    <tr >
-			      <td width="200" >Usuario registrado:</td>
-			      <td><input type="text"  name="des-4" id="des-nombre" class="form-control int" ></td>
+			      <td width="200" >Procesador:</td>
+			      <td><input type="text" readonly="" value="<?php echo $info['placa_base'][0]['procesador'] ?>"   class="form-control int" ></td>
 			      <td width="200">Memoria física GB:</td>
-			      <td><input type="number" min="0"  name="des-5" id="des-fabricante" class="form-control int"></td>
+			      <td><input type="text" readonly="" value="<?php echo  $info['descripcionSistema'][0]['memoria_fisica'] . ' GB' ?>" class="form-control int"></td>
 			    </tr>
 			    <tr >
-			      <td width="200" >Número de serie:</td>
-			      <td><input type="text" name="des-6" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >Dominio:</td>
-			      <td><input type="text" name="des-7" id="des-don" class="form-control int" ></td>
+			      <td width="200" >Velocidad de reloj:</td>
+			      <td><input type="text" readonly="" value="<?php echo $info['placa_base'][0]['velocidad_reloj'] ?>"  class="form-control int" ></td>
+			      <td width="200">Capacidad disco duro:</td>
+			      <td><input type="text" readonly="" value="<?php echo  $info['almacenamiento'][0]['capacidad'] ?>" class="form-control int"></td>
 			    </tr>
 			  </tbody>
 			</table>
      	</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-12">
-     		<div class="thead-d">
-     			<h4>Hardware, adaptadores y almacenamiento</h4>
-			 </div>
-     		<table class="table">
-			  <tbody>
-			    <tr >
-			      <td width="200" >Procesador:</td>
-			      <td><input type="text"  name="o-0" id="des-nombre" class="form-control int" ></td>
-			      <td width="200">Velocidad de reloj (GHZ):</td>
-			      <td><input type="text" name="o-1" id="des-fabricante" class="form-control int"></td>
-			    </tr>
-			    <tr >
-			      <td width="200" >Fabricante procesador:</td>
-			      <td><input type="text"  name="o-2" id="des-nombre" class="form-control int" ></td>
-			      <td width="200">Modelo motherboard:</td>
-			      <td><input type="text" name="o-3" id="des-fabricante" class="form-control int"></td>
-			    </tr>
-			    <tr >
-			      <td width="200" >Marca RAM:</td>
-			      <td><input type="text"   name="o-4" id="des-nombre" class="form-control int" ></td>
-			      <td width="200">IP:</td>
-			      <td><input type="text" name="o-5" id="des-fabricante" class="form-control int"></td>
-			    </tr>
-			    <tr >
-			      <td width="200" >Tarjetas extra:</td>
-			      <td><input type="text"  name="o-6" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >dvd:</td>
-			      <td><input type="text"  name="o-13" id="des-nombre" class="form-control int" ></td>
-			      <!--<td><input type="text"  name="o-7" id="des-nombre" class="form-control int" ></td>-->
-			    </tr>
-			    <input type="hidden"  name="o-8" id="des-nombre" class="form-control int" >
-			    <input type="hidden"   name="o-9" id="des-nombre" class="form-control int" >
-			    <!--<tr >
-			    	<td><input type="text"  name="o-7" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >Tipo monitor:</td>
-			      <td><input type="text"  name="o-8" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >Modelo y serie monitor:</td>
-			      <td><input type="text"   name="o-9" id="des-nombre" class="form-control int" ></td>
-			    </tr>-->
-			    <tr >
-			      <td width="200" >Disco disico 1:</td>
-			      <td><input type="number" value="1" min="0"  name="o-10" id="des-nombre" class="form-control int" ></td>
-			      <td width="200" >Capacidad de disco:</td>
-			      <td><input type="text"  name="o-11" id="des-nombre" class="form-control int" ></td>
-			    </tr>
-			    <tr >
-			      <td width="200" >Marca disco:</td>
-			      <td><input type="text"  name="o-12" id="des-nombre" class="form-control int" ></td>
-			     
-			      
-			    </tr>
-			  </tbody>
-			</table>
-     	</div>
-		</div>
+
 
 		
 
@@ -243,7 +184,7 @@
 	       	 <div class="form-group">
 	       	 	<label>Unidad a la que se asignara</label>
 	       	 	<select id="vay" class="form-control" name="unidad">
-	       	 		<?php for($k =0; $k<count($unidades); $k++): ?>
+	       	 		<?php for($k =0; $k<count($unidades)-1; $k++): ?>
 	       	 		<option value="<?php echo $unidades[$k]['id_unidad'] ?>"><?php echo $unidades[$k]['unidad']  ?></option>
 	       	 	   <?php endfor; ?>
 	       	 	</select>

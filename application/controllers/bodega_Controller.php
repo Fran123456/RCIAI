@@ -272,15 +272,21 @@ public function get_codigosLAB(){
   }
 
 
-
-
       public function asignar_laptop_View(){
-
          $idpc = $this->uri->segment(2);
-		$unidades = $this->bod->get_u();
-    $datos = $this->bod->obtener_laptop($idpc);
-		$this->load->view('Dashboard/bodega/asignar_bodega_laptop_View', compact('unidades','idpc','datos'));
-	 }
+		   $unidades = $this->bod->get_u();
+       $datos = $this->bod->obtener_laptop($idpc);
+
+
+          $info = array(
+            'descripcionSistema' => $this->bod->descripcion_Sistema($datos[0]['pc_servidor_id']),
+            'placa_base' => $this->bod->placa($datos[0]['pc_servidor_id']),
+            'almacenamiento' => $this->bod->almacenamiento($datos[0]['pc_servidor_id']),
+          );
+
+
+		   $this->load->view('Dashboard/bodega/asignar_bodega_laptop_View', compact('unidades','idpc','datos','info'));
+	   }
 
 
 function unidadesajax(){
@@ -632,31 +638,37 @@ public function catch_asignacion_otro(){
 
       public function catch_asignacion_laptop(){
         $data = $this->catch_laptop_asignada();
+        
 
-  
-      //hardware, disk, etccatch_laptop_asignada()
-       $table = array('descripcion_sistema','placa_base','adaptador_red','adaptador_video', 'almacenamiento');
-        $array = array('actualizacion_descripcion','actualizacion_placa','actualizacion_adaptador','actualizacion_video', 'actualizacion_almacenamiento');
+
+        $idpcanterior =  $data['laptopInfo'][0]['pc_servidor_id'];
+        $codigoActual = $this->input->post('codigopc');
+         
+
+        //Actualizamos las tablas relacionadas al pc
+       $datos = array('pc_id' => $codigoActual,);
+        $datos2 = array('pc_ids' => $codigoActual,);
+        $table = array('adaptador_red','adaptador_video','almacenamiento','placa_base');
+        for ($i=0; $i <count($table) ; $i++) { 
+          $this->bod->update_pc('pc_id', $idpcanterior, $table[$i], $datos);
+        }
+          $this->bod->update_pc('pc_ids', $idpcanterior, 'descripcion_sistema', $datos2);
+        //actualizamos las pc relacionadas al pc 
+
 
         //actualizacion de bodega
         $this->bod->update_('inventario_bodega', 'serial' ,$data['serial'], $data['bodega']);
 
-        for ($w=0; $w <5 ; $w++) { 
-           $this->bod->add_($table[$w], $data[$array[$w]]);
-        }
-
+       
         //admin
           $this->bod->add_('inventario_adm', $data['administrativo']);
           $this->bod->add_('movimiento', $data['mov']);
         
       
-                 if($this->input->post('unidad')=="37"){
-					        $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
-		             redirect(base_url().'detalle-lab/'.$pc);
-                 }else{
-                     $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
-		             redirect(base_url().'mantenimiento-administrativo');
-                 }   
+               
+               $this->session->set_flashdata('buy' , 'Asignación realizada correctamente');
+		            redirect(base_url().'mantenimiento-administrativo');
+                 
                  
 	 }
 
@@ -714,9 +726,11 @@ public function catch_asignacion_otro(){
 		}
 		$bodega = array(
          'estatus'=> 'En uso',
-         'origen'=> 4,
+         'origen'=> 1,
          'fecha_salida' => $this->input->post('fecha'),
          'destino' =>$this->input->post('unidad') ,
+         'pc_servidor_id' => $this->input->post('codigopc'),
+         'pc_servidor_antiguo_id' => $laptopInfo[0]['pc_servidor_id'],
 		);
 
 		$administrativo = array(
@@ -732,6 +746,7 @@ public function catch_asignacion_otro(){
           'destino' => $this->input->post('unidad'),
           'compra_id' => $compraVal,
           'lugar_name' => $destino[0]['unidad'],
+          'serial' => $this->input->post('serial'),
 		);
 
 		 $mov = array(
@@ -763,6 +778,7 @@ public function catch_asignacion_otro(){
          'codigo' => $this->input->post('codigopc'),
          'bodega' =>$bodega,
          'mov' => $mov,
+         'laptopInfo' => $laptopInfo,
        );
       return $data;
 
