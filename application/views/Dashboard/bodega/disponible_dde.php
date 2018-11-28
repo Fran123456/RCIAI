@@ -33,6 +33,7 @@
 				<th scope="col">Fecha de ingreso</th>
 				
 				<th scope="col">Asignar</th>
+				<th scope="col">Sustituir</th>
 			</tr>
 		</thead>
 		<tbody id="showdata">
@@ -42,6 +43,8 @@
 					<td><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso ?></td>
 					
 					<td><a href="<?php echo base_url();?>validar-DDE/<?php echo $key->serial;?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+
+					<td><a href="<?php echo base_url();?>remove-periferico-code-unidad/<?php echo $key->serial;?>" class="btn btn-warning item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 				</tr>
 			<?php } ?>
 			
