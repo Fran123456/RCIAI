@@ -54,8 +54,11 @@ class BUY_elements_Controller extends CI_Controller {
           $parte4 = "servidor--";
           $variable = $parte4 .$parte1 . $parte2 . $parte3 ;
         }
-        elseif('PC'){
+        elseif($tipo =='PC'){
           $parte4 = "PC--";
+          $variable = $parte4. $parte1 . $parte2 . $parte3 ;
+        }elseif($tipo =="LAP"){
+          $parte4 = "LAP--";
           $variable = $parte4. $parte1 . $parte2 . $parte3 ;
         }
         return $variable;
@@ -174,7 +177,7 @@ public function laptop_nuevo_add(){
 }
 
 
-  public function pc_nuevo_add(){
+   public function pc_nuevo_add(){
     $cantidad = $this->input->post('cantidadTotal');
 
     if($this->input->post('codigopc')  != null){
@@ -434,6 +437,71 @@ public function otro_asignado_add_new(){
 
 
 
+
+
+//metodo nuevo 28/11/2018 para guardar laptop nueva pero en bodeha con su info 
+
+
+ public function laptop_new(){
+
+    
+       $pcservidor = $this->__idElemento('LAP');
+    
+     $data = array(
+       'serial' =>$this->input->post('serial-0'),
+       'nombre' =>$this->input->post('nombre-0'),
+       'marca' =>$this->input->post('marca-0'),
+       'capacidad' =>$this->input->post('capacidad-0'),
+        'tipo' =>$this->input->post('tipo-0'),
+       'velocidad' =>$this->input->post('velocidad-0'),
+       'estatus' =>$this->input->post('estatus-0'),
+       'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
+       'origen' =>$this->input->post('origen-0'),
+       'destino' =>$this->input->post('destino-0'),
+       'compra_id' =>$this->input->post('idcompra'),
+       'pc_servidor_id' => $pcservidor,
+     );
+       $this->element->add_periferico_nuevo($data);
+       $this->catch_info_pc($pcservidor);
+      
+
+     $unidadxdata = $this->element->unidadxdata($this->input->post('idcompra'), $this->input->post('destino-0'));
+
+   if( count($unidadxdata) == 0){
+         $this->unidadxdata_add();
+         $this->buy_edit();
+     }
+     else{
+         $this->unidadxdata_update();
+          $this->buy_edit();
+     }
+    $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
+     redirect(base_url().'add-element-buy');
+   }
+
+
+//metodo nuevo 28/11/2018 para guardar laptop nueva pero en bodeha con su info :'v'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  public function periferico_nuevo_add(){
      $data = array(
        'serial' =>$this->input->post('serial-0'),
@@ -572,7 +640,7 @@ public function disco_asignado_add(){
       'lugar_name' =>$this->input->post('destinoPC-1')
     );
     $this->element->admin_pc($data);
-
+      
    }
 
   public function catch_info_pc($codigo){
@@ -624,6 +692,7 @@ public function disco_asignado_add(){
         $this->element->add_data($video,'adaptador_video');
         $this->element->add_data($almacenamiento,'almacenamiento');
        $this->element->add_data($placaBase,'placa_base');
+    
 
   }
 

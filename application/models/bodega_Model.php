@@ -244,6 +244,7 @@ class bodega_Model extends CI_Model{
 		        $this->db->where('destino',1);
 		        $this->db->where('pc_servidor_id !=',NULL);
 		        $this->db->where('pc_servidor_id !=',"");
+		        $this->db->where('bo.tipo !=',"LAPTOP");
 		        $this->db->group_by("pc_servidor_id");
 		        $query=$this->db->get();
 		        //comprobamos
@@ -352,6 +353,28 @@ class bodega_Model extends CI_Model{
         public function obtener_laptop($id){
           $data = $this->db->where('serial' , $id)->get('inventario_bodega')->result_array();
           return $data;
+        }
+
+        //METODOS FRANCISCO 28/11/2018
+        //PARA OBTENER INFO DE ASIGNACION DE PC COMPLETA ALV 
+
+        public function descripcion_Sistema($id){
+           $data = $this->db->where('pc_ids' , $id)->get('descripcion_sistema')->result_array();
+           return $data;
+        }
+
+        public function placa($id){
+           $data = $this->db->where('pc_id' , $id)->get('placa_base')->result_array();
+           return $data;
+        }
+
+        public function almacenamiento($id){
+           $data = $this->db->where('pc_id' , $id)->get('almacenamiento')->result_array();
+           return $data;
+        }
+
+        public function update_pc($campoComparacion, $datoComparacion, $table, $data){
+            $this->db->where($campoComparacion, $datoComparacion)->update($table, $data);
         }
 
 
