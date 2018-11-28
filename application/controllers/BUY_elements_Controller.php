@@ -213,9 +213,13 @@ public function laptop_nuevo_add(){
           $this->buy_edit();
      }
 
+    
+
+    $this->catch_info_pc($pcservidor);
+
+
     if($this->input->post('codigopc')  != null)
     {
-          $this->catch_info_pc();
           $this->generate_admin_pc();
     }
 
@@ -571,9 +575,9 @@ public function disco_asignado_add(){
 
    }
 
-  public function catch_info_pc(){
+  public function catch_info_pc($codigo){
     $descripcion = array(
-      'pc_ids' => $this->input->post('codex3'),
+      'pc_ids' => $codigo,
       'nombre' => $this->input->post('0-e'),
       'fabricante' => $this->input->post('3-e'),
         'sistema_operativo' => $this->input->post('4-e'),
@@ -585,20 +589,20 @@ public function disco_asignado_add(){
     );
 
     $red = array(
-      'pc_id' => $this->input->post('codex3'),
+      'pc_id' => $codigo,
       'direccion_ip' => $this->input->post('5-c'),
       'tarjeta_extra' => $this->input->post('6-c'),
     );
 
     $video = array(
-       'pc_id' => $this->input->post('codex3'),
+       'pc_id' => $codigo,
        'monitor_marca' =>$this->input->post('7-c') ,
       'modelo' => $this->input->post('8-c'),
       'serie' => $this->input->post('9-c'),
     );
 
     $almacenamiento = array(
-       'pc_id' => $this->input->post('codex3'),
+       'pc_id' => $codigo,
        'disco_fisico1' => $this->input->post('10-c'),
        'capacidad' => $this->input->post('11-c'),
         'marca_disco' => $this->input->post('12-c'),
@@ -606,7 +610,7 @@ public function disco_asignado_add(){
     );
 
        $placaBase= array(
-        'pc_id' => $this->input->post('codex3'),
+        'pc_id' => $codigo,
        'procesador' => $this->input->post('0-c'),
        'velocidad_reloj' => $this->input->post('1-c'),
        'fabricante_procesador ' => $this->input->post('2-c'),
