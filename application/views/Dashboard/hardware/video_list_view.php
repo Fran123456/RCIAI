@@ -22,7 +22,7 @@
 
     <!--CONTENIDO DE LA APLICACION-->
 
-	<h3> ADAPTADORES DE RED </h3>
+	<h3> ADAPTADORES DE VIDEO</h3>
 <!--verificamos si la variable no viene vacia -->
 <?php if(count($info) > 0) {?>
 	<!--Creamos la tabla donde vamos a mostrar nuestros registros de inventario Bodega-->
@@ -40,7 +40,7 @@
 					 <td> <?php echo $i+1 ?></td>
 					<th><?php echo empty($info[$i]['pc_id']) ? '<span style= "color:red">no disponible</span>' : $info[$i]['pc_id'] ?></th>
 					
-					<td><a href="<?php echo base_url();?>adaptadores-red/edit-red/<?php echo $info[$i]['pc_id'];?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+					<td><a href="<?php echo base_url();?>adaptadores-video/edit-video/<?php echo $info[$i]['pc_id'];?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 
 				</tr>
 			<?php endfor; ?>

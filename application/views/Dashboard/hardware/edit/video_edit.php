@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>adaptador</title>
+	<title>video</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/jquery.dataTables.min.css">
 	<script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>assets/js/jquery.dataTables.min.js" ></script>
@@ -37,7 +37,7 @@
 
 
 
-     <form method="post" action="<?php echo base_url()?>Hardware_Controller/adaptador_update">
+     <form method="post" action="<?php echo base_url()?>Hardware_Controller/video_update">
        	  	<h3>Adaptadores de red - <?php echo $data[0]['pc_id'] ?></h3>
        	  	<div class="col-md-4">
        	  			<table class="table">
@@ -46,15 +46,40 @@
 					      <td>Codigo:</td>
 					      <td><input type="text" name="1" readonly="" class="form-control" value="<?php echo $data[0]['pc_id'] ?>"></td>
 					    </tr>    
-					    <tr><td>Dirección ip:</td>
-					      <td><input type="text" name="4" class="form-control" value="<?php echo $data[0]['direccion_ip'] ?>"></td></tr>
+					    <tr><td>Modelo:</td>
+					      <td><input type="text" name="4" class="form-control" value="<?php echo $data[0]['modelo'] ?>"></td></tr>
 					      <tr>
-					      	<td>Servidor primario:</td>
-					      <td><input type="text" name="7" class="form-control" value="<?php echo $data[0]['servidor_primario'] ?>"></td>
+					      	<td>Adaptador ram:</td>
+					      <td><input type="text" name="7" class="form-control" value="<?php echo $data[0]['adaptador_ram'] ?>"></td>
 					      </tr>
 					      <tr>
-					      	<td>Dirección mac:</td>
-					      <td><input type="text" name="10" class="form-control" value="<?php echo $data[0]['direccion_mac'] ?>"></td>
+					    	<td>Resolución de video:</td>
+					      <td><input type="text" name="10" class="form-control" value="<?php echo $data[0]['resolucion_video'] ?>"></td>
+					    </tr>
+					      
+					  </tbody>
+					</table>
+       	  	</div>
+
+
+       	  	<div class="col-md-4">
+       	  			<table class="table">
+					  <tbody>
+					    <tr>
+					      <td>Monitor_marca:</td>
+					      <td><input type="text" name="2" class="form-control" value="<?php echo $data[0]['monitor_marca'] ?>"></td>
+					    </tr>
+					    <tr>
+					      <td>Serie:</td>
+					      <td><input type="text" name="5" class="form-control" value="<?php echo $data[0]['serie'] ?>"></td>
+					    </tr>
+					    <tr>
+					      <td>Tipo DAC:</td>
+					      <td><input type="text" name="8" class="form-control" value="<?php echo $data[0]['tipo_dac'] ?>"></td>
+					    </tr>
+					    <tr>
+					      	<td>Velocidad:</td>
+					      <td><input type="text" name="11" class="form-control" value="<?php echo $data[0]['velocidad'] ?>"></td>
 					      </tr>
 					  </tbody>
 					</table>
@@ -65,42 +90,18 @@
        	  			<table class="table">
 					  <tbody>
 					    <tr>
-					      <td>adaptador 1:</td>
-					      <td><input type="text" name="2" class="form-control" value="<?php echo $data[0]['adaptador_1'] ?>"></td>
+					      <td>Tipo:</td>
+					      <td><input type="text" name="3" class="form-control" value="<?php echo $data[0]['tipo'] ?>"></td>
 					    </tr>
 					    <tr>
-					      <td>Subred ip:</td>
-					      <td><input type="text" name="5" class="form-control" value="<?php echo $data[0]['subred_ip'] ?>"></td>
-					    </tr>
-					    <tr>
-					      <td>Servidor DNS:</td>
-					      <td><input type="text" name="8" class="form-control" value="<?php echo $data[0]['servidor_dns'] ?>"></td>
+					    	<td>Adaptador 1:</td>
+					      <td><input type="text" name="6" class="form-control" value="<?php echo $data[0]['adaptador1'] ?>"></td>
 					    </tr>
 					     <tr>
-					      <td>Tarjeta Extra:</td>
-					      <td><input type="text" name="11" class="form-control" value="<?php echo $data[0]['tarjeta_extra'] ?>"></td>
+					      <td>Monitor pc:</td>
+					      <td><input type="text" name="9" class="form-control" value="<?php echo $data[0]['monitor_pc1'] ?>"></td>
 					    </tr>
 					    
-					  </tbody>
-					</table>
-       	  	</div>
-
-
-       	  	<div class="col-md-4">
-       	  			<table class="table">
-					  <tbody>
-					    <tr>
-					      <td>Tipo adaptador:</td>
-					      <td><input type="text" name="3" class="form-control" value="<?php echo $data[0]['tipo_adaptador'] ?>"></td>
-					    </tr>
-					    <tr>
-					    	<td>Gateway:</td>
-					      <td><input type="text" name="6" class="form-control" value="<?php echo $data[0]['gateway'] ?>"></td>
-					    </tr>
-					    <tr>
-					    	<td>Servidor dhcp:</td>
-					      <td><input type="text" name="9" class="form-control" value="<?php echo $data[0]['servidor_dhcp'] ?>"></td>
-					    </tr>
 					  </tbody>
 					</table>
        	  	</div>

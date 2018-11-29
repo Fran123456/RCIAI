@@ -44,26 +44,29 @@ class Hardware_Controller extends CI_Controller {
 //PARA VIDEO//
 	public function video_all()
 	{
-       $info = $this->hard->get_('adaptador_red');
-	   $this->load->view('Dashboard/hardware/adaptadores_list_view', compact('info'));
+       $info = $this->hard->get_('adaptador_video');
+	   $this->load->view('Dashboard/hardware/video_list_view', compact('info'));
 	}
 
 	public function video_edit(){
 		$code = $this->uri->segment(3);
-		$data = $this->sus->where_('adaptador_red', $code ,'pc_id');
-		$this->load->view('Dashboard/hardware/edit/adaptadores_edit', compact('data'));
+		$data = $this->sus->where_('adaptador_video', $code ,'pc_id');
+		$this->load->view('Dashboard/hardware/edit/video_edit', compact('data'));
 		
 	}
 	public function video_update(){
 		$codigo = $this->input->post('1');
-        $campos = array('adaptador_1','tipo_adaptador','direccion_ip','subred_ip','gateway','servidor_primario','servidor_dns','servidor_dhcp','direccion_mac','tarjeta_extra');
+        $campos = array('monitor_marca','tipo','modelo','serie','adaptador1','adaptador_ram','tipo_dac','monitor_pc1','resolucion_video','velocidad');
         $data = array();
 		for ($i=1; $i <=10 ; $i++) { 
 		    $data[$campos[$i-1]] = $this->input->post($i+1);
 		}
-		$this->sus->update_('adaptador_red', $codigo, 'pc_id' ,$data);
+
+		
+		
+		$this->sus->update_('adaptador_video', $codigo, 'pc_id' ,$data);
 		$this->session->set_flashdata('yupi', 'Actualización completada');
-		redirect(base_url().'adaptadores-red/edit-red/'.$codigo,'refresh');
+		redirect(base_url().'adaptadores-video/edit-video/'.$codigo,'refresh');
 	}
 	//PARA VIDEO
 	
