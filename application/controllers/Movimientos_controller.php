@@ -21,7 +21,10 @@ class Movimientos_controller extends CI_Controller {
 		$this->load->view('Dashboard/movimientos/movimientoGeneral');
 	}
 
-
+/**********************************************************************************************************************
+********************************  ASIGNACION **************************************************************************
+***********************************************************************************************************************/
+	
 	//muestra un listado de las asignaciones
 	public function asignaciones()
 	{
@@ -53,7 +56,11 @@ class Movimientos_controller extends CI_Controller {
 		#mandamos los datos a la vista que tendra el detalle
 		$this->load->view('Dashboard/movimientos/detalleAsignacion',$datos);
 	}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/**********************************************************************************************************************
+********************************  SUSTITUCIÓN **************************************************************************
+***********************************************************************************************************************/
 
 	//función que muestra el listado de los movimientos de sustitución
 	public function sustituciones()
@@ -63,11 +70,7 @@ class Movimientos_controller extends CI_Controller {
 		$this->load->view('Dashboard/movimientos/sustituciones',$datos);
 	}
 
-	//función para el prestamos de equipo de laboratorio
-	public function prestamos()
-	{
-		echo "prestamo";
-	}
+	
 
 	//función para obtener el detalle de la Sustitucion
 	public function detalleSustitucion($id)
@@ -96,6 +99,25 @@ class Movimientos_controller extends CI_Controller {
 
 		#mandamos los datos a la vista que tendra el detalle
 		$this->load->view('Dashboard/movimientos/detalleSustitucion',$datos);
+	}
+
+
+
+	/**********************************************************************************************************************
+********************************    PRESTAMOS     *************************************************************************
+***********************************************************************************************************************/
+//función para el prestamos de equipo de laboratorio
+	public function prestamos()
+	{
+		echo "prestamo";
+	}
+
+	//función que se encarga de verificar si el codigo existe en algún inventario
+	public function verificar_codigo()
+	{
+		$codigo = $this->input->post('codigo');
+		$valor = true;
+		echo json_encode($valor);
 	}
 
 }//fin de la clase lab_lista_Controller
