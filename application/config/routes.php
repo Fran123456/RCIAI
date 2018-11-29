@@ -245,9 +245,10 @@ $route['Sustituir-periferico'] = 'Sustitucion_Controller/perifericos_disponible'
 
 
 //HARDWARE
-$route['adaptadores-red'] = 'Hardware_Controller/adaptadores_all';
-$route['adaptadores-red/edit-red/(:any)'] = 'Hardware_Controller/adaptadores_edit/$1';
+$route['adaptadores-red'] = 'Hardware_Controller/video_all';
+$route['adaptadores-red/edit-red/(:any)'] = 'Hardware_Controller/video_edit/$1';
 
 
-
+$route['adaptadores-video'] = 'Hardware_Controller/video_all';
+$route['adaptadores-video/edit-video/(:any)'] = 'Hardware_Controller/video_edit/$1';
 

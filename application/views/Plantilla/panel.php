@@ -137,6 +137,7 @@
 							<div id="subPagesyt" class="collapse ">
 								<ul class="nav">
 									<li><a href="<?php echo base_url('adaptadores-red') ?>">Adaptador de red</a></li>
+									<li><a href="<?php echo base_url('adaptadores-video') ?>">Adaptador de video</a></li>
 								</ul>
 
 							</div>
