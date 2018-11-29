@@ -372,7 +372,7 @@ function unidadesajax(){
                     'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
                     'encargado' => $this->input->post('enc'),
                     'tecnico' => $this->input->post('tecnico'),
-                    'tipoHardSoft'=> 'HARDWARE_EXTERNO',
+                    'tipoHardSoft'=> 'HARDWARE-EXTERNO',
                     'tipo_movimiento' => 'Asignacion-bodega',
                     'serial_nuevo' =>  $this->input->post('serial'),
            );
@@ -444,7 +444,7 @@ public function catch_asignacion_otro(){
                     'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
                     'encargado' => $this->input->post('encargado'),
                     'tecnico' => $this->input->post('tecnico'),
-                    'tipoHardSoft'=> 'HARDWARE_EXTERNO',
+                    'tipoHardSoft'=> 'HARDWARE-EXTERNO',
                     'tipo_movimiento' => 'Asignacion-bodega',
                     'serial_nuevo' =>  $this->input->post('serial'),
            );
@@ -565,7 +565,7 @@ public function catch_asignacion_otro(){
                     'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
                     'encargado' => $this->input->post('encargado'),
                     'tecnico' => $this->input->post('tecnico'),
-                    'tipoHardSoft'=> 'HARDWARE_EXTERNO',
+                    'tipoHardSoft'=> 'HARDWARE-EXTERNO',
                     'tipo_movimiento' => 'Asignacion-bodega',
                     'serial_nuevo' => $serial,
 			     );
@@ -762,7 +762,7 @@ public function catch_asignacion_otro(){
                     'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
                     'encargado' => $this->input->post('encargado'),
                     'tecnico' => $this->input->post('tecnico'),
-                    'tipoHardSoft'=> 'HARDWARE_EXTERNO',
+                    'tipoHardSoft'=> 'HARDWARE-EXTERNO',
                     'tipo_movimiento' => 'Asignacion-bodega',
                     'serial_nuevo' => $this->input->post('serial'),
 		);
@@ -913,7 +913,7 @@ public function catch_asignacion_otro(){
                     'descripcion_equipoNuevo' =>  $this->input->post('desequipo'),
                     'encargado' => $this->input->post('encargado'),
                     'tecnico' => $this->input->post('tecnico'),
-                    'tipoHardSoft'=> 'HARDWARE_EXTERNO',
+                    'tipoHardSoft'=> 'HARDWARE-EXTERNO',
                     'tipo_movimiento' => 'Asignacion-bodega',
                     'serial_nuevo' => $serial,
     );

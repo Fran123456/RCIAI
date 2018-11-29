@@ -560,7 +560,7 @@
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>Tipo</label>
-                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="{{index}}" required class="form-control"  name="nombre-{{item3}}-{{index}}">
+                                      <input type="text" id="nombre-{{item.id - 1}}-{{item3}}-{{index}}" value="{{index}}" class="form-control"  name="nombre-{{item3}}-{{index}}">
                                     </div>
                                   </div>
                                   <div class="col-md-4">

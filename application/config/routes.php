@@ -237,8 +237,18 @@ $route['remove-periferico-code/(:any)'] = 'Sustitucion_Controller/vista_sustitui
 $route['remove-periferico-code-unidad/(:any)'] = 'Sustitucion_Controller/vista_sustituir_periferico_code_unidad/$1';
 
 
-
+$route['sustituir-laptop/(:any)'] = 'Sustitucion_Controller/vista_laptop_sustituir/$1';
 
 
 $route['remove-periferico-lab/(:any)'] = 'Sustitucion_Controller/vista_sustituir_periferico_lab/$1';
 $route['Sustituir-periferico'] = 'Sustitucion_Controller/perifericos_disponible';
+
+
+//HARDWARE
+$route['adaptadores-red'] = 'Hardware_Controller/video_all';
+$route['adaptadores-red/edit-red/(:any)'] = 'Hardware_Controller/video_edit/$1';
+
+
+$route['adaptadores-video'] = 'Hardware_Controller/video_all';
+$route['adaptadores-video/edit-video/(:any)'] = 'Hardware_Controller/video_edit/$1';
+

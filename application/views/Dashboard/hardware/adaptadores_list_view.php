@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Hardware</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/jquery.dataTables.min.css">
 	<script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>assets/js/jquery.dataTables.min.js" ></script>
@@ -22,30 +22,28 @@
 
     <!--CONTENIDO DE LA APLICACION-->
 
-	<h3> <?php echo $titulo ?> </h3>
+	<h3> ADAPTADORES DE RED </h3>
 <!--verificamos si la variable no viene vacia -->
-<?php if($detalle!=false) {?>
+<?php if(count($info) > 0) {?>
 	<!--Creamos la tabla donde vamos a mostrar nuestros registros de inventario Bodega-->
 	<table id="tabla" class="table table-dark table-hover">
 		<thead class="thead-dark">
 			<tr>
-				<th scope="col">Serial</th>
-				<th scope="col">Fecha de ingreso</th>
-				<th scope="col">Asignar</th>
-				<th scope="col">Sustituir</th>
+				<th scope="col">#</th>
+				<th scope="col">Codigo PC</th>
+				<th scope="col">Editar</th>
 			</tr>
 		</thead>
 		<tbody id="showdata">
-			<?php foreach ($detalle as $key ) { ?>
+			<?php for($i = 0 ; $i < count($info) ; $i++): ?>
 				<tr>
-					<th><?php echo empty($key->serial) ? '<span style= "color:red">no disponible</span>' : $key->serial ?></th>
-					<td><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso ?></td>
+					 <td> <?php echo $i+1 ?></td>
+					<th><?php echo empty($info[$i]['pc_id']) ? '<span style= "color:red">no disponible</span>' : $info[$i]['pc_id'] ?></th>
 					
-					<td><a href="<?php base_url();?>validar-laptop/<?php echo $key->serial;?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+					<td><a href="<?php echo base_url();?>adaptadores-red/edit-red/<?php echo $info[$i]['pc_id'];?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 
-					<td><a href="<?php base_url();?>sustituir-laptop/<?php echo $key->serial;?>" class="btn btn-warning item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 				</tr>
-			<?php } ?>
+			<?php endfor; ?>
 			
 		</tbody>
 	</table>
