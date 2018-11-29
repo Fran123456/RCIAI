@@ -20,3 +20,6 @@
 	<script src="<?php echo base_url()?>assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="<?php echo base_url()?>assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="<?php echo base_url()?>assets/scripts/klorofil-common.js"></script>
+
+	<!--librerias para usar sweetalert2-->
+	<script src="<?php echo base_url()?>assets/sweetalert.min.js"></script>

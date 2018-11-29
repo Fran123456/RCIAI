@@ -100,4 +100,26 @@ class Movimientos_model extends CI_Model
 		}
   	}
 
+
+  	//////////////////////////////// función para el prestamo ////////////////////////
+  	#esta función se encarga de verificar si el codigo existe en el inventario administrativo
+
+  	public function verificarAdmin($codigo)
+  	{
+  		$this->db->select('a.identificador');
+  		$this->db->from('inventario_adm a');
+  		$this->db->where('identificador',$codigo);
+  		$valor = $this->db->get();
+  		return $valor->result();
+  	}
+
+  	public function verificarLab($codigo)
+  	{
+  		$this->db->select('l.identificador_lab');
+  		$this->db->from('inventario_lab l');
+  		$this->db->where('identificador_lab',$codigo);
+  		$valor = $this->db->get();
+  		return $valor->result();
+  	}
+
 }//fin de la clase

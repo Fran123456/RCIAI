@@ -113,11 +113,31 @@ class Movimientos_controller extends CI_Controller {
 	}
 
 	//función que se encarga de verificar si el codigo existe en algún inventario
+	# devuelve 1 si esta en inventario_adm
+	# devuelve 2 si esta en inventario_lab
+	# devuelve 0 si no se encuentra en la base de datos
 	public function verificar_codigo()
 	{
-		$codigo = $this->input->post('codigo');
-		$valor = true;
-		echo json_encode($valor);
+		$codigo = $this->input->post('codigo');//obtenemos el codigo que mandamos de la función ajax
+		
+		#vamos primero a consultar en la tabla inventario_adm
+		$valor = $this->mov->verificarAdmin($codigo);
+
+		//verificamos si el codigo se encuentra en el inventario admin
+		if($valor)
+		{
+			$result = 1; #si esta en inventario_adm
+		}else{
+			//si el codigo no esta en el inventario_adm, consultamos en inventario_lab
+			$valor = $this->mov->verificarLab($codigo);
+			if($valor)
+			{
+				$result = 2; #si esta en inventario_lab 
+			}
+			else
+				$result = 0; #si no esta en ningún inventario
+		}
+		echo json_encode($result);
 	}
 
 }//fin de la clase lab_lista_Controller

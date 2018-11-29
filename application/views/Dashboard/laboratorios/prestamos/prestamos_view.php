@@ -3,6 +3,9 @@
 <head>
 	<title></title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
+
+	
+   
 	
 
 	
@@ -36,7 +39,7 @@
 
 	  <div class="form-row">
 		<div class="form-group col-md-3">
-		    <label for="inputAddress">Tipo de prestamo</label>
+		    <label>Tipo de prestamo</label>
 		    <select name="tipo_prestamo" id="tipo_prestamo" class="form-control">
 		    	<option value=1>PC Completa</option>
 		    	<option value=2>Periferico</option>
@@ -44,7 +47,7 @@
 		</div>
 		<div class="form-group col-md-3">
 			<label for="">Equipo al que se le hara el prestamo</label>
-			<input type="text" class="form-control" id="codigo" name="codigo" placeholder="Digite el codigo del equipo">
+			<input type="text" class="form-control" id="codigo" name="codigo" placeholder="Digite el código del equipo">
 		</div>
 		<div class="form-group col-md-6">
 		    <label for="desc_prestamo">Porque solicita el prestamo</label>
@@ -53,11 +56,15 @@
 		
 	  </div>
 
-
 	  <div class="form-row">
 	  	<div class="form-group col-md-3">
-			<button class="btn btn-info" id="verificar1"  onclick="verificar_codigo()">verificar</button>
+			<button class="btn btn-info" id="verificar1" type="button" onclick="verificar_codigo()">validar código</button>
 		</div>
+	  </div>
+
+	  <!--elementos que van a aparecer al presionar validar código -->
+	  <div class="form-row">
+	  	
 	  </div>
 
 	</form>
@@ -71,24 +78,18 @@
     <script>
     	$(document).ready(function()
     	{
-			/*//Siempre que salgamos de un campo de texto, se chequeará esta función
-			$("#prestamo input").keyup(function() 
-			{
-				var form = $(this).parents("#prestamo");
-				var check = checkCampos(form);
-		    	console.log(check);
-				if(check) {
-					$("#verificar1").prop("disabled", false);
-				}
-				else {
-					$("#verificar1").prop("disabled", true);
-				}
-			});*/
+			
+    		//función que quita color al escribir dentro del input
+    		$('#codigo').keydown(function(){
+    			$("#codigo").css("border-color","");
+    		})
 
 			$("#verificar1").prop("disabled", true);
+
 			$('#codigo').change(function(){
 				var valor = $(this).val();
-				if(value.length == 0)
+				console.log(valor);
+				if(valor.length == 0)
 				{
 					$("#verificar1").prop("disabled", true);
 				}else{
@@ -98,26 +99,6 @@
 			})
 			
 		})
-
-
-		//Función para comprobar los campos de texto
-		function checkCampos(obj) {
-			var camposRellenados = true;
-			obj.find("input").each(function() {
-			  	var $this = $(this);
-				if( $this.val().length <= 0 ) {
-					camposRellenados = false;
-					return false;
-				}
-			});
-			if(camposRellenados == false) {
-				return false;
-			}
-			else {
-				return true;
-			}
-		}
-
 
 
 		function verificar_codigo()
@@ -132,12 +113,29 @@
 				data: 'codigo='+codigo,
 				dataType: 'json',
 				success: function(valor){
-					if(valor == true)
+					//hacemos un switch para evaluar el valor retornado
+					switch(valor)
 					{
-						alert('codigo correcto');
-					}
-					else{
-						alert('ERROR');
+						case 0:
+							
+							swal({
+							  position: 'top-end',
+							  type: 'warning',
+							  title: 'El código del equipo no existe',
+							  showConfirmButton: false,
+							  timer: 1200
+							})
+							$("#codigo").val('');//limpiamos el input
+							$("#codigo").css("border-color","#a94442");//pone el border del input en color rojo
+							$("#codigo").focus();//ponemos el foco en el input del código
+
+							break;
+						case 1:
+							alert('esta en el inventario administrativo');
+							break;
+						case 2:
+							alert('esta en el inventario de laboratorio');
+							break;
 					}
 				}
 			})
