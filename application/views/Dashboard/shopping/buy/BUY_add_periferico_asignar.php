@@ -121,7 +121,7 @@
                          <div class="col-md-3">
                           <div class="form-group">
                             <label>Tipo</label>
-                            <input type="text" required="" class="form-control" name="nombre-0">
+                            <input type="text"  class="form-control" name="nombre-0">
                           </div>
                         </div>
 
