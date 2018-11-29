@@ -133,10 +133,10 @@
 
 
 						<li>
-							<a href="#subPagesyt" data-toggle="collapse" class="collapsed"><i class="fa fa-laptop" aria-hidden="true"></i> <span>Hardware</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#subPagesyt" data-toggle="collapse" class="collapsed"><i class="fa fa-laptop" aria-hidden="true"></i> <span>Hardware y más</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPagesyt" class="collapse ">
 								<ul class="nav">
-									<li><a href="<?php echo base_url('Movimientos') ?>">Adaptadores de red</a></li>
+									<li><a href="<?php echo base_url('adaptadores-red') ?>">Adaptador de red</a></li>
 								</ul>
 
 							</div>

@@ -244,4 +244,10 @@ $route['remove-periferico-lab/(:any)'] = 'Sustitucion_Controller/vista_sustituir
 $route['Sustituir-periferico'] = 'Sustitucion_Controller/perifericos_disponible';
 
 
+//HARDWARE
+$route['adaptadores-red'] = 'Hardware_Controller/adaptadores_all';
+$route['adaptadores-red/edit-red/(:any)'] = 'Hardware_Controller/adaptadores_edit/$1';
+
+
+
 
