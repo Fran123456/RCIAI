@@ -252,3 +252,6 @@ $route['adaptadores-red/edit-red/(:any)'] = 'Hardware_Controller/video_edit/$1';
 $route['adaptadores-video'] = 'Hardware_Controller/video_all';
 $route['adaptadores-video/edit-video/(:any)'] = 'Hardware_Controller/video_edit/$1';
 
+
+$route['almacenamiento'] = 'Hardware_Controller/almacenamiento_all';
+$route['almacenamiento/edit-almacenamiento/(:any)'] = 'Hardware_Controller/almacenamiento_edit/$1';

@@ -61,7 +61,6 @@ class Hardware_Controller extends CI_Controller {
 		for ($i=1; $i <=10 ; $i++) { 
 		    $data[$campos[$i-1]] = $this->input->post($i+1);
 		}
-
 		
 		
 		$this->sus->update_('adaptador_video', $codigo, 'pc_id' ,$data);
@@ -69,5 +68,35 @@ class Hardware_Controller extends CI_Controller {
 		redirect(base_url().'adaptadores-video/edit-video/'.$codigo,'refresh');
 	}
 	//PARA VIDEO
+
+//PARA ALMACENAMIENTO//
+	public function almacenamiento_all()
+	{
+       $info = $this->hard->get_('almacenamiento');
+	   $this->load->view('Dashboard/hardware/almacenamiento_list_view', compact('info'));
+	}
+
+	public function almacenamiento_edit(){
+		$code = $this->uri->segment(3);
+		$data = $this->sus->where_('almacenamiento', $code ,'pc_id');
+		$this->load->view('Dashboard/hardware/edit/almacenamiento_edit', compact('data'));
+		
+	}
+	public function almacenamiento_update(){
+		$codigo = $this->input->post('1');
+        $campos = array('disco_fisico1','capacidad','marca_disco','dvd1','disco_logico','sistema_archivos','tamaño','espacio_libre','letra_unidad');
+        $data = array();
+		for ($i=1; $i <=9 ; $i++) { 
+		    $data[$campos[$i-1]] = $this->input->post($i+1);
+		}
+		
+		$this->sus->update_('almacenamiento', $codigo, 'pc_id' ,$data);
+		$this->session->set_flashdata('yupi', 'Actualización completada');
+		redirect(base_url().'almacenamiento/edit-almacenamiento/'.$codigo,'refresh');
+	}
+	//PARA ALMACENAMIENTO
+
+
+
 	
 }
