@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2018 a las 21:50:32
+-- Tiempo de generación: 30-11-2018 a las 21:07:42
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -48,8 +48,9 @@ CREATE TABLE `adaptador_red` (
 --
 
 INSERT INTO `adaptador_red` (`id_red`, `pc_id`, `adaptador_1`, `tipo_adaptador`, `direccion_ip`, `subred_ip`, `gateway`, `servidor_primario`, `servidor_dns`, `servidor_dhcp`, `direccion_mac`, `tarjeta_extra`) VALUES
-(1, 'LAB1-PC1', 'no tiene', 'Ethernet', '12233.00000.1', 'no tiene subred', 'Gateway IP predeterminado', 'no existe servidor', '8.8.8.8', 'DJCD', 'MAC', NULL),
-(2, 'PC001USAM', NULL, NULL, '32424324-1', NULL, NULL, NULL, NULL, NULL, NULL, '');
+(1, 'LAP001USAM', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, 'SI'),
+(2, 'LAP--AerRC3XqdZ625378-40222H9uN', '11', '', '', '', '', '', '', '', '', 'NO'),
+(3, 'PC--QRqtVyAnBL255606-2871fzqRN', NULL, NULL, '192.168.3.96', NULL, NULL, NULL, NULL, NULL, NULL, 'no hay');
 
 -- --------------------------------------------------------
 
@@ -77,8 +78,9 @@ CREATE TABLE `adaptador_video` (
 --
 
 INSERT INTO `adaptador_video` (`id_video`, `pc_id`, `monitor_marca`, `tipo`, `modelo`, `serie`, `adaptador1`, `adaptador_ram`, `tipo_dac`, `monitor_pc1`, `resolucion_video`, `velocidad`) VALUES
-(1, 'LAB1-PC1', NULL, NULL, NULL, NULL, '1', 'no tiene adaptador de ram', 'dafd', '', '4k', 'vga'),
-(2, 'PC001USAM', 'dell', NULL, 'no tiene', 'GHCH2HA032676', NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 'LAP001USAM', 'SIS', 'Intel', '', '', '', 'ASUS', '', '', '60HZ', ''),
+(2, 'LAP--AerRC3XqdZ625378-40222H9uN', '', '1', '', '', '', '', '', '', 'HD', ''),
+(3, 'PC--QRqtVyAnBL255606-2871fzqRN', 'dell', NULL, 'no tiene', '', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -105,8 +107,9 @@ CREATE TABLE `almacenamiento` (
 --
 
 INSERT INTO `almacenamiento` (`id_almacenamiento`, `pc_id`, `disco_fisico1`, `capacidad`, `marca_disco`, `dvd1`, `disco_logico`, `sistema_archivos`, `tamaño`, `espacio_libre`, `letra_unidad`) VALUES
-(1, 'LAB1-PC1', 'intel disk celeron', '500 gb', NULL, 'LG', 'nel', 'c', '400', '200 GB', 'd:'),
-(2, 'PC001USAM', '1', '1 TB', 'WESTERN DIGITAL', 'si', NULL, NULL, NULL, NULL, NULL);
+(1, 'LAP001USAM', '1', '1 TB', 'WESTERN DIGITAL', 'LG 2', '', '', '', '', ''),
+(2, 'LAP--AerRC3XqdZ625378-40222H9uN', '2', '2 TB', 'WESTERN DIGITAL', 'LG', NULL, NULL, NULL, NULL, NULL),
+(3, 'PC--QRqtVyAnBL255606-2871fzqRN', '', '', 'WESTERN DIGITAL', 'si', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -136,7 +139,7 @@ CREATE TABLE `compras` (
 --
 
 INSERT INTO `compras` (`id_compra`, `tipo_compra`, `tipo`, `detalle`, `cantidad`, `rest`, `proveedor`, `n_factura`, `fecha_autorizacion`, `fecha_compra`, `garantia`, `total`, `observaciones`, `usuario_id`) VALUES
-('COMPRA-9tYiRqUFWZ-9378724-6993', 'fisica', ' PC', 'no tiene detalle', 10, 2, 'dell', '5421-112', '2018-11-13', '2018-11-13', '1 año', '500.00', '', 1);
+('COMPRA-9tYiRqUFWZ-9378724-6993', 'fisica', ' PC', 'no tiene detalle', 10, 3, 'dell', '5421-112', '2018-11-13', '2018-11-13', '1 año', '500.00', '', 1);
 
 -- --------------------------------------------------------
 
@@ -156,7 +159,7 @@ CREATE TABLE `compra_unidad` (
 --
 
 INSERT INTO `compra_unidad` (`id`, `compra_id`, `unidad_id`, `cantidad`) VALUES
-(1, 'COMPRA-9tYiRqUFWZ-9378724-6993', 37, 1);
+(1, 'COMPRA-9tYiRqUFWZ-9378724-6993', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -191,8 +194,9 @@ CREATE TABLE `descripcion_sistema` (
 --
 
 INSERT INTO `descripcion_sistema` (`id`, `pc_ids`, `nombre`, `fabricante`, `sistema_operativo`, `nucleo`, `paquete_servicio`, `version`, `usuario_registrado`, `memoria_fisica`, `dominio`, `modelo`, `serie_des`, `organizacion`, `idioma`, `zona_horaria`, `usuario_sesion`, `version_DirectX`, `caja_sistema`) VALUES
-(1, 'LAB1-PC1', 'Home-lab1', 'dell', 'windows 10', '64 bits', '7666666', '5.01', 'admin1', '4 GB', 'WORKGROUP', '5643-1', '222-222-222', 'sin organizacion', 'Español (México)', '(GMT -06:00) Hora estándar, América Central', 'admin 2', '12', 'Desktop'),
-(2, 'PC001USAM', 'home', 'Intel', 'Windows 10 Pro', '64 bits', NULL, NULL, 'admin', '4', 'Sin grupo', NULL, '12345FFDD', NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 'LAP001USAM', 'home', 'Intel', 'Windows 8 Pro', '64 bits', '', '6.9', 'admin', '4', 'Sin grupo', '', '12345FFDD', '', '', '', '', '', ''),
+(2, 'LAP--AerRC3XqdZ625378-40222H9uN', 'home', 'Intel', 'Windows 10 Pro', '64 bits', NULL, NULL, 'admin 2', '8', 'Sin grupo', NULL, '00000', NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'PC--QRqtVyAnBL255606-2871fzqRN', 'home', 'Intel', 'Windows 10 Pro', '64 bits', NULL, NULL, 'admin', '4', 'Sin grupo', NULL, '12345FFDD', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -223,7 +227,7 @@ CREATE TABLE `inventario_adm` (
 --
 
 INSERT INTO `inventario_adm` (`id_adm`, `identificador`, `encargado_puesto`, `des_sistema_id`, `placa_base_id`, `adaptador_red_id`, `adaptador_video_id`, `almacenamiento_id`, `fecha_ingreso`, `origen`, `fecha_salida`, `destino`, `compra_id`, `lugar_name`, `serial`) VALUES
-(1, 'PC001USAM', 'Karla', 'PC001USAM', 'PC001USAM', 'PC001USAM', 'PC001USAM', 'PC001USAM', '2018-11-16', 4, NULL, 2, NULL, 'Academica', NULL);
+(1, 'LAP001USAM', 'Karla Margarita', 'LAP001USAM', 'LAP001USAM', 'LAP001USAM', 'LAP001USAM', 'LAP001USAM', '2018-11-29', 1, NULL, 2, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'Academica', '53x-cx2-11-0');
 
 -- --------------------------------------------------------
 
@@ -277,14 +281,12 @@ CREATE TABLE `inventario_bodega` (
 --
 
 INSERT INTO `inventario_bodega` (`serial`, `nombre`, `marca`, `capacidad`, `tipo`, `velocidad`, `estatus`, `fecha_ingreso`, `origen`, `fecha_salida`, `destino`, `compra_id`, `pc_servidor_id`, `pc_servidor_antiguo_id`, `fecha_orden`) VALUES
-('00000003', 'usb', 'GENIUS', '', 'MOUSE', '', 'nuevo', '2018-11-16', 4, NULL, 37, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'LAB1-PC1', NULL, '2018-11-16 20:48:38'),
-('00000004', 'CPU', 'XTECH', '', 'CPU', '', 'nuevo', '2018-11-16', 4, NULL, 37, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'LAB1-PC1', NULL, '2018-11-16 20:48:38'),
-('0000001', 'vga', 'AOC', '', 'MONITOR', '', 'nuevo', '2018-11-16', 4, NULL, 37, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'LAB1-PC1', NULL, '2018-11-16 20:48:38'),
-('000002', 'usb', 'GENIUS', '', 'TECLADO', '', 'nuevo', '2018-11-16', 4, NULL, 37, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'LAB1-PC1', NULL, '2018-11-16 20:48:38'),
-('5556788h', 'usb', '', '', 'MOUSE', '', 'En uso', '2018-11-16', 4, NULL, 2, NULL, 'PC001USAM', NULL, '2018-11-16 20:50:22'),
-('66y775544444', '', '', '', 'CPU', '', 'En uso', '2018-11-16', 4, NULL, 2, NULL, 'PC001USAM', NULL, '2018-11-16 20:50:22'),
-('7567456-5555', '', '', '', 'TECLADO', '', 'En uso', '2018-11-16', 4, NULL, 2, NULL, 'PC001USAM', NULL, '2018-11-16 20:50:22'),
-('aaa-14565654566', 'vga', '', '', 'MONITOR', '', 'En uso', '2018-11-16', 4, NULL, 2, NULL, 'PC001USAM', NULL, '2018-11-16 20:50:22');
+('1-440000ccxxx-x', '', '', '', 'MOUSE', '', 'En uso', '2018-11-29', 4, NULL, 1, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'PC--QRqtVyAnBL255606-2871fzqRN', NULL, '2018-11-29 21:17:40'),
+('335-cxxx-35', '', '', '', 'MONITOR', '', 'En uso', '2018-11-29', 4, NULL, 1, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'PC--QRqtVyAnBL255606-2871fzqRN', NULL, '2018-11-29 21:17:40'),
+('53x-cx2-11-0', 'HDMI ', 'DELL', 'HD', 'LAPTOP', '', 'En uso', '2018-11-13', 1, '2018-11-29', 2, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'LAP001USAM', 'LAP--AerRC3XqdZ625378-40222H9uN', '2018-11-29 15:13:52'),
+('c-x-1223dxxzd', '', '', '', 'CPU', '', 'En uso', '2018-11-29', 4, NULL, 1, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'PC--QRqtVyAnBL255606-2871fzqRN', NULL, '2018-11-29 21:17:41'),
+('lap-000111', '', 'dell', '', 'LAPTOP', '', 'Disponible', '2018-11-13', 2, NULL, 1, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'LAP--AerRC3XqdZ625378-40222H9uN', 'LAP001USAM', '2018-11-29 14:29:24'),
+('xcc-46878832', '', '', '', 'TECLADO', '', 'En uso', '2018-11-29', 4, NULL, 1, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'PC--QRqtVyAnBL255606-2871fzqRN', NULL, '2018-11-29 21:17:40');
 
 -- --------------------------------------------------------
 
@@ -308,13 +310,6 @@ CREATE TABLE `inventario_lab` (
   `lab` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `compra_id` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `inventario_lab`
---
-
-INSERT INTO `inventario_lab` (`id_lab`, `identificador_lab`, `descripcion_sistema_id`, `placa_base_id`, `adaptador_red_id`, `adaptador_video_id`, `almacenamiento_id`, `fecha_ingreso`, `origen`, `fecha_salida`, `destino`, `serial`, `lab`, `compra_id`) VALUES
-(1, 'LAB1-PC1', 'LAB1-PC1', 'LAB1-PC1', 'LAB1-PC1', 'LAB1-PC1', 'LAB1-PC1', '2018-11-16', 4, NULL, 37, NULL, 'lab-01', 'COMPRA-9tYiRqUFWZ-9378724-6993');
 
 -- --------------------------------------------------------
 
@@ -342,6 +337,13 @@ CREATE TABLE `movimiento` (
   `tipo_movimiento` varchar(100) DEFAULT NULL,
   `serial_nuevo` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `movimiento`
+--
+
+INSERT INTO `movimiento` (`id_cambio`, `token`, `fecha_retiro`, `fecha_cambio`, `codigo_id`, `unidad_pertenece_id`, `unidad_traslado_id`, `cambio`, `descripcion_cambio`, `origen_nuevoEquipo_id`, `destino_nuevoEquipo_id`, `descripcion_equipoRetirado`, `descripcion_equipoNuevo`, `encargado`, `tecnico`, `tipoHardSoft`, `tipo_movimiento`, `serial_nuevo`) VALUES
+(1, 'token--ZgyYXBDE0C517967-5166SRrL8', NULL, '2018-11-29', 'LAP001USAM', NULL, NULL, 'Asignación de laptop', 'Porque necesitamos una laptop nueva', 1, 2, NULL, 'intel core i5 9900K 5.8GHZ intel graphics 9900 HD 2 GB', 'Karla Margarita', 'Carlos Garcia', 'HARDWARE-EXTERNO', 'Asignacion-bodega', 'lap-000111');
 
 -- --------------------------------------------------------
 
@@ -404,8 +406,9 @@ CREATE TABLE `placa_base` (
 --
 
 INSERT INTO `placa_base` (`id`, `pc_id`, `procesador`, `velocidad_reloj`, `fabricante_procesador`, `etiqueta_BIOS`, `fabricante_BIOS`, `version_BIOS`, `num_serie_BIOS`, `fecha_instalacion_BIOS`, `fabricante_placa`, `modelo_placa`, `version_placa`, `marca_ram`, `ranura_memoria`, `ranura_sistema_0`, `ranura_sistema_1`, `ranura_sistema_2`, `ranura_sistema_3`, `ranura_sistema_4`) VALUES
-(1, 'LAB1-PC1', 'intel core i5', '5.1', 'Intel', 'no tiene etiqueta', '4-54331-11-1', 'no tiene version', 'no tiene numero de serie la bios', '2018-11-16', 'ASUS', '544-asus-4k', 'no tiene version la placa', 'KINSTONG', '', '', '', '', '', ''),
-(2, 'PC001USAM', 'Core i3 7100', '5', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'ASUS', NULL, 'ADATA', NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 'LAP001USAM', 'Core i9 9100K', '7-8 GHZ', 'Intel ', '', '', '', '', '', '', 'ASUS', '', 'KIN', '', '', '', '', '', ''),
+(2, 'LAP--AerRC3XqdZ625378-40222H9uN', 'Core i3 7100', '6.7 GHZ', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'Sin grupo', NULL, 'Sin grupo', NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'PC--QRqtVyAnBL255606-2871fzqRN', 'Core i3 7100', '6.7 GHZ', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'ASUS', NULL, 'ADATA', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -662,19 +665,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `adaptador_red`
 --
 ALTER TABLE `adaptador_red`
-  MODIFY `id_red` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_red` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `adaptador_video`
 --
 ALTER TABLE `adaptador_video`
-  MODIFY `id_video` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_video` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `almacenamiento`
 --
 ALTER TABLE `almacenamiento`
-  MODIFY `id_almacenamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_almacenamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `compra_unidad`
@@ -686,7 +689,7 @@ ALTER TABLE `compra_unidad`
 -- AUTO_INCREMENT de la tabla `descripcion_sistema`
 --
 ALTER TABLE `descripcion_sistema`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario_adm`
@@ -698,13 +701,13 @@ ALTER TABLE `inventario_adm`
 -- AUTO_INCREMENT de la tabla `inventario_lab`
 --
 ALTER TABLE `inventario_lab`
-  MODIFY `id_lab` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_lab` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `movimiento`
 --
 ALTER TABLE `movimiento`
-  MODIFY `id_cambio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cambio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacion_usuario`
@@ -716,7 +719,7 @@ ALTER TABLE `notificacion_usuario`
 -- AUTO_INCREMENT de la tabla `placa_base`
 --
 ALTER TABLE `placa_base`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `software`
