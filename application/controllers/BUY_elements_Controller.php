@@ -185,6 +185,12 @@ public function laptop_nuevo_add(){
     }else{
        $pcservidor = $this->__idElemento($this->input->post('tipo'));
     }
+   if($this->input->post('OrigenPC_Falso-1') == "1"){
+    $da = "Nuevo";
+   }else{
+    $da = "En uso";
+   }
+
 
 
     for ($i=0; $i <$cantidad ; $i++) {
@@ -196,7 +202,7 @@ public function laptop_nuevo_add(){
         'capacidad' =>  $this->input->post('capacidad-'.$i.'-'.$tipoPeriferico),
         'tipo' =>  $this->input->post('tipo-'.$i.'-'.$tipoPeriferico),
         'velocidad' => $this->input->post('velocidad-'.$i.'-'.$tipoPeriferico),
-        'estatus' => 'En uso',
+        'estatus' => $da,
         'fecha_ingreso' => $this->input->post('ingreso-1'),
         'origen' =>$this->input->post('OrigenPC_Falso-1') ,
         'destino' => $this->input->post('destino-0'),
