@@ -139,6 +139,7 @@
 									<li><a href="<?php echo base_url('adaptadores-red') ?>">Adaptador de red</a></li>
 									<li><a href="<?php echo base_url('adaptadores-video') ?>">Adaptador de video</a></li>
 									<li><a href="<?php echo base_url('almacenamiento') ?>">Almacenamiento</a></li>
+									<li><a href="<?php echo base_url('sistema') ?>">Descripción de sistema</a></li>
 								</ul>
 
 							</div>

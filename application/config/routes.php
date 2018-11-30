@@ -255,3 +255,10 @@ $route['adaptadores-video/edit-video/(:any)'] = 'Hardware_Controller/video_edit/
 
 $route['almacenamiento'] = 'Hardware_Controller/almacenamiento_all';
 $route['almacenamiento/edit-almacenamiento/(:any)'] = 'Hardware_Controller/almacenamiento_edit/$1';
+
+
+$route['sistema'] = 'Hardware_Controller/sistema_all';
+$route['sistema/edit-sistema/(:any)'] = 'Hardware_Controller/sistema_edit/$1';
+
+$route['componentes'] = 'Hardware_Controller/componentes_all';
+$route['componentes/edit-componentes/(:any)'] = 'Hardware_Controller/componentes_edit/$1';

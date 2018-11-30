@@ -98,5 +98,36 @@ class Hardware_Controller extends CI_Controller {
 
 
 
+
+	//PARA ALMACENAMIENTO//
+	public function sistema_all()
+	{
+       $info = $this->hard->get_('descripcion_sistema');
+	   $this->load->view('Dashboard/hardware/sistema_list_view', compact('info'));
+	}
+
+	public function sistema_edit(){
+		$code = $this->uri->segment(3);
+		$data = $this->sus->where_('descripcion_sistema', $code ,'pc_ids');
+		$this->load->view('Dashboard/hardware/edit/sistema_edit', compact('data'));
+		
+	}
+	public function sistema_update(){
+		$codigo = $this->input->post('1');
+        $campos = array('nombre','fabricante','sistema_operativo','nucleo','paquete_servicio','version','usuario_registrado','memoria_fisica','dominio' ,'modelo','serie_des','organizacion','idioma','zona_horaria','usuario_sesion','version_DirectX', 'caja_sistema');
+        $data = array();
+		for ($i=1; $i <=count($campos) ; $i++) { 
+		    $data[$campos[$i-1]] = $this->input->post($i+1);
+		}
+		 
+		$this->sus->update_('descripcion_sistema', $codigo, 'pc_ids' ,$data);
+		$this->session->set_flashdata('yupi', 'Actualización completada');
+		redirect(base_url().'sistema/edit-sistema/'.$codigo,'refresh');
+	}
+	//PARA ALMACENAMIENTO
+
+
+
+
 	
 }
