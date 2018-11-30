@@ -78,7 +78,7 @@ class administrativo_Model extends CI_Model
 	}
 
 	public function getRegistro($id){
-		$compra = $this->getCompra($id);var_dump($compra);
+		$compra = $this->getCompra($id);
 
 		if($compra[0]->compra_id != null){
 			//vamos a traer los datos de la tabla inventario_id
