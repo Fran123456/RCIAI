@@ -99,7 +99,7 @@ class Hardware_Controller extends CI_Controller {
 
 
 
-	//PARA ALMACENAMIENTO//
+	//PARA SISTEMA//
 	public function sistema_all()
 	{
        $info = $this->hard->get_('descripcion_sistema');
@@ -124,7 +124,37 @@ class Hardware_Controller extends CI_Controller {
 		$this->session->set_flashdata('yupi', 'Actualización completada');
 		redirect(base_url().'sistema/edit-sistema/'.$codigo,'refresh');
 	}
-	//PARA ALMACENAMIENTO
+	//PARA SISTEMA
+
+
+
+  //PARA COMPONENTES//
+	public function componentes_all()
+	{
+       $info = $this->hard->get_('placa_base');
+	   $this->load->view('Dashboard/hardware/componentes_list_view', compact('info'));
+	}
+
+	public function componentes_edit(){
+		$code = $this->uri->segment(3);
+		$data = $this->sus->where_('placa_base', $code ,'pc_id');
+		$this->load->view('Dashboard/hardware/edit/componentes_edit', compact('data'));
+		
+	}
+	public function componentes_update(){
+		$codigo = $this->input->post('1');
+        $campos = array('procesador','velocidad_reloj','fabricante_procesador','etiqueta_BIOS','fabricante_BIOS','version_BIOS','num_serie_BIOS','fecha_instalacion_BIOS' ,'fabricante_placa','modelo_placa','version_placa','marca_ram','ranura_memoria','ranura_sistema_0','ranura_sistema_1', 'ranura_sistema_2','ranura_sistema_3','ranura_sistema_4');
+        $data = array();
+		for ($i=1; $i <=count($campos) ; $i++) { 
+		    $data[$campos[$i-1]] = $this->input->post($i+1);
+		}
+		 
+		$this->sus->update_('placa_base', $codigo, 'pc_id' ,$data);
+		$this->session->set_flashdata('yupi', 'Actualización completada');
+		redirect(base_url().'componentes/edit-componentes/'.$codigo,'refresh');
+	
+	}
+	//PARA COMPONENTES
 
 
 
