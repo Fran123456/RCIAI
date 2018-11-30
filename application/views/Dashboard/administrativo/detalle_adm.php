@@ -215,31 +215,32 @@
 					<input type="text" class="form-control" id="tarjeta" readonly="" value="<?php echo empty($key->tarjeta_extra) ? 'no disponible' : $key->tarjeta_extra  ?>">
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label>Marca monitor</label>
-					<input type="text" class="form-control" id="monitor" readonly="" value="<?php echo empty($key->monitor_marca) ? 'no disponible' : $key->monitor_marca  ?>">
-				</div>
-			</div>
+
 			<!--<div class="col-md-3">
 				<div class="form-group">
-					<label>Tipo monitor</label>
-					<input type="text" class="form-control" id="tipo" readonly="" value="<?php echo empty($key->tipo) ? 'no disponible' : $key->tipo  ?>">
+					<label>Marca monitor</label>
+					<input type="text" class="form-control" id="monitor" readonly="" value="<?php //echo empty($key->monitor_marca) ? 'no disponible' : $key->monitor_marca  ?>">
 				</div>
-			</div>-->
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Tipo monitor</label>
+					<input type="text" class="form-control" id="tipo" readonly="" value="<?php //echo empty($key->tipo) ? 'no disponible' : $key->tipo  ?>">
+				</div>
+			</div>
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Modelo del monitor</label>
-					<input type="text" class="form-control" id="modelo" readonly="" value="<?php echo empty($key->modelo) ? 'no disponible' : $key->modelo  ?>">
+					<input type="text" class="form-control" id="modelo" readonly="" value="<?php //echo empty($key->modelo) ? 'no disponible' : $key->modelo  ?>">
 				</div>
 			</div>
 
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Serie del monitor</label>
-					<input type="text" class="form-control" id="serie" readonly="" value="<?php echo empty($key->serie) ? 'no disponible' : $key->serie  ?>">
+					<input type="text" class="form-control" id="serie" readonly="" value="<?php //echo empty($key->serie) ? 'no disponible' : $key->serie  ?>">
 				</div>
-			</div>
+			</div>-->
 
 			<div class="col-md-3">
 				<div class="form-group">
