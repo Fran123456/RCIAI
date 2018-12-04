@@ -208,7 +208,7 @@
       	 '</div>'+
       	 '<div class="form-group">'+
       	 	'<label>Nombre de Técnico que reporta el cambio.</label>'+
-      	 	'<input type="text" name="tec" class="form-control" name="fechaR">'+
+      	 	'<input required type="text" name="tec" class="form-control" name="fechaR">'+
       	 '</div>'+
       '</div>'+
       '<div class="col-md-6">'+
@@ -226,13 +226,13 @@
      '<div class="col-md-4">'+
       	 '<div class="form-group">'+
       	 	'<label>Características del equipo que se retira.</label>'+
-      	 	'<textarea rows="4" name="desRetirado" class="form-control"></textarea>'+
+      	 	'<textarea required rows="4" name="desRetirado" class="form-control"></textarea>'+
       	 '</div>'+
       '</div>'+
       '<div class="col-md-4">'+
       	 '<div class="form-group">'+
       	 	'<label>Caracteristicas de equipo que queda en función con ese código de inventario.</label>'+
-      	 	'<textarea rows="4" name="desNew"  class="form-control"></textarea>'+
+      	 	'<textarea required  rows="4" name="desNew"  class="form-control"></textarea>'+
       	 '</div>'+
       '</div>'+
       	'<div class="col-md-4">'+
