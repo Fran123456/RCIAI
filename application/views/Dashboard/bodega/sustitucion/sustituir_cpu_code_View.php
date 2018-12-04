@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sustitución de laptop</title>
+	<title>Sustitución de cpu</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
   <style type="text/css">
   	.form-control2 {
@@ -53,22 +53,22 @@
 
 
 
-<h2>Sustitución para area administrativa de laptop</h2>
+<h2>Sustitución para area administrativa de CPU</h2>
 
-<form method="post" action="<?php echo base_url()?>Sustitucion_Controller/sustituir_laptop_chida">
+<form method="post" action="<?php echo base_url()?>Sustitucion_Controller/sustituir_cpu_sad">
     <!--DATOS OCULTOS IMPORTANTES ALV :'v -->
 	<input type="hidden" value="<?php echo $infoPeriferico[0]['serial'] ?>" id="xx" name="serialNueva">
     <input type="hidden" value="<?php echo $infoPeriferico[0]['tipo'] ?>" id="xxx" name="tipoNueva">
 <div class="card" style="border: 2px solid #D9D6D6;padding: 15px">
   <div class="card-body">
-    <h4 class="card-title">Información del periferico</h4>
+    <h4 class="card-title">Información del cpu</h4>
     
 	<table class="table">
 	  <thead class="thead-dark">
 	    <tr>
 	      <th scope="col">#</th>
 	      <th scope="col">Serial</th>
-	      <th scope="col">Tipo periferico</th>
+	      <th scope="col">Tipo</th>
 	      <th scope="col">Marca</th>
 	      <th scope="col">Estado</th>
 	    </tr>
@@ -114,14 +114,6 @@
       </div>
 
 
-
-
-
-
-
-
-
-
   </div>
 </div>
 <br>
@@ -133,7 +125,7 @@
     <div class="row">
       <div class="col-md-3">
       	<div class="form-group">
-      		<label>Codigo laptop a sustituir</label>
+      		<label>Codigo</label>
       		<input id="cod" value="" type="text" class="form-control" name="cod">
       	    <button type="button" onclick="perSelect();">Verificar</button>
       	</div>
@@ -181,7 +173,7 @@
 		  	 $.ajax({
 			     type: 'ajax',
 			     method: 'post',
-			     url: '<?php echo base_url() ?>Sustitucion_Controller/get_laptop',
+			     url: '<?php echo base_url() ?>Sustitucion_Controller/get_pc2',
 			     data: {dato: dato},
 			     async: false,
 			     dataType: 'json',
@@ -189,10 +181,10 @@
 		         if(data.length > 0){ //sentencia si la data tiene datos alv
                    console.log(data);
 	              $('#peri').remove();
-		          $('#g').append('<div id="peri"><label>Perifericos</label><select onchange="dela()" class="form-control" id="perichange" name="perichange"></select></div>');
+		          $('#g').append('<div id="peri"><label>PC encontrada</label><select onchange="dela()" class="form-control" id="perichange" name="perichange"></select></div>');
 
 			      for (var i = 0; i < data.length; i++) {
-			      	html += '<option value="'+data[i].serial+'">'+data[i].identificador+'</option>'
+			      	html += '<option value="'+data[i].identificador+'">'+data[i].identificador+'</option>'
 			      }
 			      $('#perichange').append(html);
                     $('#b').append('<div id="bt"><br><button class="btn btn-info" onclick="formu();" type="button">Continuar</button></div>');
@@ -201,7 +193,7 @@
 			      }//sentencia si la data tiene datos alv
 			      else{ //sentencia si la data no tiene nada :'v mas solo que yo sin ella 
                     $('#peri').remove();
-		            $('#g').append('<div id="peri"><br><span style="color:red;">No se ha encontrado ninguna laptop con dicho codigo</span></div>')
+		            $('#g').append('<div id="peri"><br><span style="color:red;">No se ha encontrado ningun CPU con dicho codigo</span></div>')
 			      }
 
 			     },
@@ -215,7 +207,7 @@
 		function formu(){
 			$('#ss').remove();
            $('#exampleModalCenter').modal('show');
-           var s = "<h4 id='ss'>" + $('select[name="perichange"] option:selected').text() + " con serial: " + $('#perichange').val() + " sera sustituido por " + $('#xxx').val()+ " con serial: " + $("#xx").val();+"</h4>"
+           var s = "<h4 id='ss'>Se hara un cambio de CPU en la PC: " + $('select[name="perichange"] option:selected').text()+"</h4>"
            $('#susti').append(s);
 
           

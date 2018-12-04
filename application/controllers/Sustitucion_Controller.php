@@ -42,6 +42,13 @@ class Sustitucion_Controller extends CI_Controller {
      }
 
 
+       public function get_pc2(){
+      $id = filter_input(INPUT_POST,'dato');
+      $pcs = $this->sus->a($id);
+      echo json_encode($pcs);
+     }
+
+
 
      
      public function get_perifericos_PC(){
@@ -393,6 +400,124 @@ class Sustitucion_Controller extends CI_Controller {
      
      $this->load->view('Dashboard/bodega/sustitucion/sustituir_laptop_code_View', compact('infoPeriferico', 'unidades', 'sistema', 'placa'));
    }
+
+
+
+
+  //sustitucion con codigo
+  public function sustituir_cpu_sad(){
+     $inv =  $this->sus->ecuacion_serial_matricial($this->input->post('cod'));
+
+
+
+    $serialNueva = $this->input->post('serialNueva');
+    $serialVieja = $inv[0]['serial'];
+    $codigoPC = $this->input->post('cod'); //viejo
+
+    //la info que tenemos es el codigo de pc a sustituir y la serial del nuevo cpu.
+    //con esto nos vamos a joder :'v porque debemos despejar de la ecuacion para encontrar
+    //la serial de el cpu viejo que se va. :( 
+  
+
+
+   $infoCodigo = $this->sus->where_('inventario_adm', $codigoPC, 'identificador'); //para actualizar admin
+
+
+    $datosSerialNueva = $this->sus->where_('inventario_bodega', $serialNueva  ,'serial');
+    $datosSerialVieja = $this->sus->where_('inventario_bodega', $serialVieja ,'serial');
+
+
+
+
+    $perifericoDeRegreso = array(
+      'estatus' => $this->input->post('estado'),
+      'origen' => $infoCodigo[0]['destino'],
+      'fecha_salida' => null,
+      'destino' => 1,
+      'pc_servidor_id' => $datosSerialNueva[0]['pc_servidor_id'],
+      'pc_servidor_antiguo_id' => $datosSerialVieja[0]['pc_servidor_id'],
+    );
+
+
+     
+       $perifericoDeIda = array(
+        'estatus' => 'En uso',
+        'origen' => 1,
+        'fecha_salida' => $this->input->post('fechaI'),
+        'destino' => $infoCodigo[0]['destino'],
+        'pc_servidor_id' => $datosSerialVieja[0]['pc_servidor_id'],
+        'pc_servidor_antiguo_id' => $datosSerialNueva[0]['pc_servidor_id'],
+       );
+
+
+
+      
+     $inventario = array(
+       'origen' => 1,
+       'compra_id' => $datosSerialNueva[0]['compra_id'],
+       'serial' => $serialNueva,
+     );
+
+     //Actualizacion de informacion de PC >:v si no va tronar alv 
+
+     $codigoAdmin =  $datosSerialVieja[0]['pc_servidor_id'];
+     $codigoBodega = $datosSerialNueva[0]['pc_servidor_id'];
+     
+     $ida = array('pc_id' => $codigoAdmin);
+     $regreso = array('pc_id' => $codigoBodega);
+
+       $this->actualizacion_info_red($codigoAdmin, $codigoBodega);
+       $this->actualizacion_info_video($codigoAdmin, $codigoBodega);
+       $this->actualizacion_info_almacenamiento($codigoAdmin, $codigoBodega);
+        $this->actualizacion_info_sistema($codigoAdmin, $codigoBodega);
+     
+       $this->actualizacion_info_placa($codigoAdmin, $codigoBodega);
+
+       //actualización del periferico arruinado 
+        $this->sus->update_(self::table, $serialVieja, 'serial' ,$perifericoDeRegreso);
+
+        //actualizacion del periferico nuevo
+       $this->sus->update_(self::table, $serialNueva, 'serial' ,$perifericoDeIda);
+    
+       $this->sus->update_('inventario_adm', $serialVieja, 'serial' ,$inventario);
+
+
+       $mov = $this->get_movimiento('inventario_adm' , 'identificador');
+    
+       $this->sus->add_('movimiento', $mov);
+
+      $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
+         redirect(base_url().'mantenimiento-administrativo');
+    
+        
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

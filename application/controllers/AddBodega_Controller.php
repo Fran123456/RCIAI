@@ -401,7 +401,7 @@ public function otro_asignado_add_new(){
 
  public function periferico_nuevo_add(){
 	 if($this->input->post('origen-0') == 'desconocido'){
-     $deter = null;
+     $deter = 38;
 	 }
 	 else{
 		 $deter = $input->post('origen-0') ;
