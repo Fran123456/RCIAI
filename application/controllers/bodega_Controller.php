@@ -88,6 +88,18 @@ class bodega_Controller extends CI_Controller {
        $this->load->view('Dashboard/bodega/disponible_PC',$dato);
     }
 
+
+    public function cpu_disponibles(){
+        $dato['detalle'] = $this->bod->disponiblePC();
+        $dato['titulo'] = 'CPU disponibles en Bodega';
+
+       $this->load->view('Dashboard/bodega/disponible_cpu',$dato);
+    }
+
+
+
+
+
     //función para mostrar las laptops disponibles
     public function laptop_disponible(){
         $dato['detalle'] = $this->bod->disponibleLaptop();

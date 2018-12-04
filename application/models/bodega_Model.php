@@ -239,7 +239,7 @@ class bodega_Model extends CI_Model{
 
 		//metodo que me traera todas las PC de bodega que estan disponibles
 		    public function disponiblePC(){
-		        $this->db->select('bo.pc_servidor_id, bo.fecha_ingreso, c.n_factura');
+		        $this->db->select('bo.pc_servidor_id, bo.fecha_ingreso, bo.serial,c.n_factura');
 		        $this->db->from('inventario_bodega bo')->join('compras c' , 'c.id_compra=bo.compra_id');
 		        $this->db->where('destino',1);
 		        $this->db->where('pc_servidor_id !=',NULL);

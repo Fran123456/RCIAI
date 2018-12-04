@@ -18,7 +18,6 @@
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="fa fa-shopping-cart"></i> <span>Compra</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-
 									<li><a href="<?php echo base_url()?>add-buy" class="">Agrega compra fisica</a></li>
 									<li><a href="<?php echo base_url()?>add-element-buy" class="">Agrega elemento a compra</a></li>
 									<li><a href="<?php echo base_url()?>compras-pendientes" class="">Compras pendiente</a></li>
@@ -49,6 +48,8 @@
 									<li><a href="<?php echo base_url()?>DDE-disponibles" class="">Disponibilidad de DDE</a></li>
 									<!--<li><a href="<?php echo base_url()?>otros-disponibles" class="">Asignar otros</a></li>-->
 									<li><a href="<?php echo base_url()?>Sustituir-periferico" class="">Disponibilidad de perifericos</a></li>
+
+									<li><a href="<?php echo base_url()?>cpu-disponibles" class="">Disponibilidad de CPU</a></li>
 
 									<li><a href="<?php echo base_url()?>Sustituir-periferico-code" class="">Disponibilidad de perifericos con codigo</a></li>
 									<li><a href="<?php echo base_url()?>bodega-add" class="">Agregar a bodega</a></li>

@@ -38,7 +38,7 @@
 
 
      <form method="post" action="<?php echo base_url()?>Hardware_Controller/video_update">
-       	  	<h3>Adaptadores de red - <?php echo $data[0]['pc_id'] ?></h3>
+       	  	<h3>Adaptadores de video - <?php echo $data[0]['pc_id'] ?></h3>
        	  	<div class="col-md-4">
        	  			<table class="table">
 					  <tbody>
@@ -46,9 +46,9 @@
 					      <td>Codigo:</td>
 					      <td><input type="text" name="1" readonly="" class="form-control" value="<?php echo $data[0]['pc_id'] ?>"></td>
 					    </tr>    
-					    <tr><td>Modelo:</td>
+					  <!--  <tr><td>Modelo:</td>
 					      <td><input type="text" name="4" class="form-control" value="<?php echo $data[0]['modelo'] ?>"></td></tr>
-					      <tr>
+					      <tr>-->
 					      	<td>Adaptador ram:</td>
 					      <td><input type="text" name="7" class="form-control" value="<?php echo $data[0]['adaptador_ram'] ?>"></td>
 					      </tr>
@@ -60,20 +60,23 @@
 					  </tbody>
 					</table>
        	  	</div>
-
+<input type="hidden" name="4" class="form-control" value="<?php echo $data[0]['modelo'] ?>">
+<input type="hidden" name="2" class="form-control" value="<?php echo $data[0]['monitor_marca'] ?>">
+<input type="hidden" name="5" class="form-control" value="<?php echo $data[0]['serie'] ?>">
+<input type="hidden" name="3" class="form-control" value="<?php echo $data[0]['tipo'] ?>">
 
        	  	<div class="col-md-4">
        	  			<table class="table">
 					  <tbody>
 					    <tr>
-					      <td>Monitor_marca:</td>
+					    <!--  <td>Monitor_marca:</td>
 					      <td><input type="text" name="2" class="form-control" value="<?php echo $data[0]['monitor_marca'] ?>"></td>
 					    </tr>
 					    <tr>
 					      <td>Serie:</td>
 					      <td><input type="text" name="5" class="form-control" value="<?php echo $data[0]['serie'] ?>"></td>
 					    </tr>
-					    <tr>
+					    <tr>-->
 					      <td>Tipo DAC:</td>
 					      <td><input type="text" name="8" class="form-control" value="<?php echo $data[0]['tipo_dac'] ?>"></td>
 					    </tr>
@@ -90,10 +93,10 @@
        	  			<table class="table">
 					  <tbody>
 					    <tr>
-					      <td>Tipo:</td>
+					    <!--  <td>Tipo:</td>
 					      <td><input type="text" name="3" class="form-control" value="<?php echo $data[0]['tipo'] ?>"></td>
 					    </tr>
-					    <tr>
+					    <tr>-->
 					    	<td>Adaptador 1:</td>
 					      <td><input type="text" name="6" class="form-control" value="<?php echo $data[0]['adaptador1'] ?>"></td>
 					    </tr>

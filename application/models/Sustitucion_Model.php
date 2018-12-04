@@ -37,6 +37,21 @@ class Sustitucion_Model extends CI_Model
       return $data;
     }
 
+    public function a($code){
+      $data = $this->db->where('identificador', $code)->get('inventario_adm')->result_array();
+      return $data;
+    }
+
+    public function lab($code){
+      $data = $this->db->where('identificador_lab', $code)->get('inventario_lab')->result_array();
+      return $data;
+    }
+
+    public function ecuacion_serial_matricial($id){
+       $data = $this->db->where('pc_servidor_id', $id)->where('tipo' , 'CPU')->get('inventario_bodega')->result_array();
+       return $data;
+    }
+
 
 
      public function perifericos_disponible(){

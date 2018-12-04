@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sustitución de periferico</title>
+	<title>Sustitución de cpu</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
   <style type="text/css">
   	.form-control2 {
@@ -53,22 +53,22 @@
 
 
 
-<h2>Sustitución para area administrativa</h2>
+<h2>Sustitución para area administrativa de CPU</h2>
 
-<form method="post" action="<?php echo base_url()?>Sustitucion_Controller/sustituir_periferico_form">
+<form method="post" action="<?php echo base_url()?>Sustitucion_Controller/sustituir_cpu_sad">
     <!--DATOS OCULTOS IMPORTANTES ALV :'v -->
 	<input type="hidden" value="<?php echo $infoPeriferico[0]['serial'] ?>" id="xx" name="serialNueva">
     <input type="hidden" value="<?php echo $infoPeriferico[0]['tipo'] ?>" id="xxx" name="tipoNueva">
 <div class="card" style="border: 2px solid #D9D6D6;padding: 15px">
   <div class="card-body">
-    <h4 class="card-title">Información del periferico</h4>
+    <h4 class="card-title">Información del cpu</h4>
     
 	<table class="table">
 	  <thead class="thead-dark">
 	    <tr>
 	      <th scope="col">#</th>
 	      <th scope="col">Serial</th>
-	      <th scope="col">Tipo periferico</th>
+	      <th scope="col">Tipo</th>
 	      <th scope="col">Marca</th>
 	      <th scope="col">Estado</th>
 	    </tr>
@@ -82,7 +82,37 @@
 	      <td><?php echo $infoPeriferico[0]['estatus'] ?></td>
 	    </tr>
 	  </tbody>
+
+    <br>
 	</table>
+
+
+
+      <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Información de sistema
+        </a>
+
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+          Hardware
+        </a>
+      </p>
+
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          Sistema operativo: <?php echo $sistema[0]['sistema_operativo'] ?><br>
+          Nucleo: <?php echo $sistema[0]['nucleo'] ?>
+        </div>
+      </div>
+
+      <div class="collapse" id="collapseExample2">
+        <div class="card card-body">
+          Procesador: <?php echo $placa[0]['procesador'] ?><br>
+          Velocidad de reloj: <?php echo $placa[0]['velocidad_reloj'] ?> <br>
+          Memoria fisica: <?php echo $sistema[0]['memoria_fisica'] ?> GB
+        </div>
+      </div>
+
 
   </div>
 </div>
@@ -95,7 +125,7 @@
     <div class="row">
       <div class="col-md-3">
       	<div class="form-group">
-      		<label>Codigo PC</label>
+      		<label>Codigo</label>
       		<input id="cod" value="" type="text" class="form-control" name="cod">
       	    <button type="button" onclick="perSelect();">Verificar</button>
       	</div>
@@ -143,7 +173,7 @@
 		  	 $.ajax({
 			     type: 'ajax',
 			     method: 'post',
-			     url: '<?php echo base_url() ?>Sustitucion_Controller/get_perifericos_PC',
+			     url: '<?php echo base_url() ?>Sustitucion_Controller/get_pc2',
 			     data: {dato: dato},
 			     async: false,
 			     dataType: 'json',
@@ -151,10 +181,10 @@
 		         if(data.length > 0){ //sentencia si la data tiene datos alv
                    console.log(data);
 	              $('#peri').remove();
-		          $('#g').append('<div id="peri"><label>Perifericos</label><select onchange="dela()" class="form-control" id="perichange" name="perichange"></select></div>');
+		          $('#g').append('<div id="peri"><label>PC encontrada</label><select onchange="dela()" class="form-control" id="perichange" name="perichange"></select></div>');
 
 			      for (var i = 0; i < data.length; i++) {
-			      	html += '<option value="'+data[i].serial+'">'+data[i].tipo+'</option>'
+			      	html += '<option value="'+data[i].identificador+'">'+data[i].identificador+'</option>'
 			      }
 			      $('#perichange').append(html);
                     $('#b').append('<div id="bt"><br><button class="btn btn-info" onclick="formu();" type="button">Continuar</button></div>');
@@ -163,7 +193,7 @@
 			      }//sentencia si la data tiene datos alv
 			      else{ //sentencia si la data no tiene nada :'v mas solo que yo sin ella 
                     $('#peri').remove();
-		            $('#g').append('<div id="peri"><br><span style="color:red;">No se ha encontrado ningun PC con dicho codigo</span></div>')
+		            $('#g').append('<div id="peri"><br><span style="color:red;">No se ha encontrado ningun CPU con dicho codigo</span></div>')
 			      }
 
 			     },
@@ -177,7 +207,7 @@
 		function formu(){
 			$('#ss').remove();
            $('#exampleModalCenter').modal('show');
-           var s = "<h4 id='ss'>El periferico: " + $('select[name="perichange"] option:selected').text().toLowerCase() + " con serial: " + $('#perichange').val() + " sera sustituido por el periferico " + $('#xxx').val().toLowerCase()+ " con serial: " + $("#xx").val();+"</h4>"
+           var s = "<h4 id='ss'>Se hara un cambio de CPU en la PC: " + $('select[name="perichange"] option:selected').text()+"</h4>"
            $('#susti').append(s);
 
           
@@ -208,7 +238,7 @@
       	 '</div>'+
       	 '<div class="form-group">'+
       	 	'<label>Nombre de Técnico que reporta el cambio.</label>'+
-      	 	'<input required type="text" name="tec" class="form-control" name="fechaR">'+
+      	 	'<input type="text" name="tec" class="form-control" name="fechaR">'+
       	 '</div>'+
       '</div>'+
       '<div class="col-md-6">'+
@@ -226,13 +256,13 @@
      '<div class="col-md-4">'+
       	 '<div class="form-group">'+
       	 	'<label>Características del equipo que se retira.</label>'+
-      	 	'<textarea required rows="4" name="desRetirado" class="form-control"></textarea>'+
+      	 	'<textarea rows="4" name="desRetirado" class="form-control"></textarea>'+
       	 '</div>'+
       '</div>'+
       '<div class="col-md-4">'+
       	 '<div class="form-group">'+
       	 	'<label>Caracteristicas de equipo que queda en función con ese código de inventario.</label>'+
-      	 	'<textarea required  rows="4" name="desNew"  class="form-control"></textarea>'+
+      	 	'<textarea rows="4" name="desNew"  class="form-control"></textarea>'+
       	 '</div>'+
       '</div>'+
       	'<div class="col-md-4">'+

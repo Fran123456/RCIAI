@@ -131,7 +131,7 @@
 
 
 <div class="col-md-12 panel">
-  <div class="panel-heading"><h3 class="panel-title">PC -  Descripción del sistema</h3><div class="right"><button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button></div></div>
+  <div class="panel-heading"><h3 class="panel-title">PC-  Descripción del sistema</h3><div class="right"><button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button></div></div>
   <div class="panel-body">
     <div class="row">
       <div class="es col-md-4">
@@ -204,7 +204,7 @@
         <label>Tarjetas extra:</label>
          <input type="text"   class="form-control"  name="6-c">
       </div>
-      <div class="es col-md-3">
+     <!-- <div class="es col-md-3">
         <label>Marca monitor:</label>
          <input type="text" class="form-control"  name="7-c">
       </div>
@@ -215,7 +215,10 @@
       <div class="es col-md-3">
         <label>serie monitor:</label>
         <input type="text" class="form-control"  name="9-c">
-      </div>
+      </div>-->
+      <input type="hidden" class="form-control" value=""  name="7-c">
+      <input type="hidden" class="form-control" value=""  name="8-c">
+      <input type="hidden" class="form-control" value=""  name="9-c">
       <div class="es col-md-3">
         <label>Disco físico 1:</label>
         <input type="number"  min="1" class="form-control"  name="10-c">
