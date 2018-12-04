@@ -696,6 +696,28 @@ class Sustitucion_Controller extends CI_Controller {
 
 
 
+
+/*SUSTITUCION DE PCU :'V QUE SED*/
+
+public function vista_cpu_sustituir(){
+     $serial = $this->uri->segment(2);
+
+      $infoPeriferico = $this->sus->where_(self::table, $serial ,'serial');
+      $unidades = $this->unidad_();
+      $codex = $infoPeriferico[0]['pc_servidor_id'];
+      $sistema = $this->sus->where_('descripcion_sistema', $codex ,'pc_ids');
+      $placa = $this->sus->where_('placa_base', $codex ,'pc_id');
+     
+     $this->load->view('Dashboard/bodega/sustitucion/sustituir_cpu_code_View', compact('infoPeriferico', 'unidades', 'sistema', 'placa'));
+   }
+
+
+
+
+
+
+
+
      //metodos para ver vistas de sustitucion 
      /*
      *

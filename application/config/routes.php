@@ -176,6 +176,8 @@ $route['validar-DDE/(:any)'] = 'bodega_Controller/asignar_dde_View';
 $route['validar-laptop/(:any)'] = 'bodega_Controller/asignar_laptop_View';
 $route['validar-otro/(:any)'] = 'bodega_Controller/asignar_otro_View';
 
+$route['validar-cpu/(:any)'] = 'Sustitucion_Controller/vista_cpu_sustituir';
+
 
 $route['get_pcs'] = 'bodega_Controller/showCodePC';
 //$route['asignar-periferico/(:any)'] = 'bodega_Controller/asignar_elemento';
@@ -190,6 +192,7 @@ $route['move-otro'] = 'bodega_Controller/catch_asignacion_otro';
 
 $route['computadoras-disponibles'] = 'bodega_Controller/pc_disponible';
 
+$route['cpu-disponibles'] = 'bodega_Controller/cpu_disponibles';
 
 
 #Rutas para bodega
