@@ -58,13 +58,55 @@
 
 	  <div class="form-row">
 	  	<div class="form-group col-md-3">
+		    <label>De donde se prestara el equipo</label>
+		    <select name="laboratorios" id="laboratorios" class="form-control">
+		    	<option value="" selected="">Seleccione un laboratorio</option>
+		    	<option value=LAB1>laboratorio 1</option>
+		    	<option value=LAB2>laboratorio 2</option>
+		    	<option value=LAB3>laboratorio 3</option>
+		    	<option value=LAB4>laboratorio 4</option>
+		    	<option value=LAB5>laboratorio 5</option>
+		    	<option value=HW>laboratorio de hardware</option>
+		    	<option value=RED>laboratorio de red</option>
+		    </select>
+		</div>
+
+		<div class="form-group col-md-3">
+	  		<label>Seleccione equipo a prestar</label>
+	  		<select name="equipo" id="equipo" class="form-control">
+	  			
+	  		</select>
+	  	</div>
+
+		<div id="periferico" class="form-group col-md-3">
+	  		
+	  	</div>
+
+	  </div>
+
+	  <div class="form-row">
+	  	<div class="form-group col-md-12">
 			<button class="btn btn-info" id="verificar1" type="button" onclick="verificar_codigo()">validar código</button>
 		</div>
 	  </div>
 
+	  
+
 	  <!--elementos que van a aparecer al presionar validar código -->
-	  <div class="form-row">
-	  	
+	  <div id="oculto">
+	  	<div class="form-row">
+		  	<div class="form-group col-md-6">
+			    <label for="caract_equipo_f">Caracteristicas del equipo que queda en función</label>
+			    <textarea name="caract_equipo_f" id="caract_equipo_f" class="form-control" cols="1" rows="1" placeholder="Nombre, Marca, Serial, etc"></textarea>
+			</div>
+		</div>
+
+		<div class="form-row">
+		  	<div class="form-group col-md-6">
+			    <label for="caract_equipo_prestamo">Caracteristicas de equipo que recibe prestamo</label>
+			    <textarea name="caract_equipo_prestamo" id="caract_equipo_prestamo" class="form-control" cols="1" rows="1" placeholder="Nombre, Marca, Serial, etc"></textarea>
+			</div>
+		</div>
 	  </div>
 
 	</form>
@@ -78,7 +120,8 @@
     <script>
     	$(document).ready(function()
     	{
-			
+			//ocultamos el div
+
     		//función que quita color al escribir dentro del input
     		$('#codigo').keydown(function(){
     			$("#codigo").css("border-color","");
@@ -88,8 +131,9 @@
 
 			$('#codigo').change(function(){
 				var valor = $(this).val();
-				console.log(valor);
-				if(valor.length == 0)
+				var eq = $('#equipo').val();
+				console.log(eq);
+				if((valor.length == 0) )
 				{
 					$("#verificar1").prop("disabled", true);
 				}else{
@@ -97,14 +141,73 @@
 
 				}
 			})
+
+
+			$('#laboratorios').change(function(){
+	    		//guardamos el select de equipos
+	    		var equipos = $('#equipo');
+
+	    		//guardamos el select de laboratorios
+	    		var lab = $(this);
+
+	    		if($(this).val() != '')
+	    		{
+	    			$.ajax({
+	    				data: {lab: lab.val()},
+	    				url: '<?php echo base_url()?>Movimientos_controller/obtener_equipo',
+	    				type: 'POST',
+	    				dataType: 'json',
+	    				async: false,
+	    				beforeSend: function()
+	    				{
+	    					equipos.prop('disabled', true);
+	    				},
+	    				success: function(r){
+	    					if(r!=false)
+	    					{
+	    						lab.prop('disabled', false);
+		    					//limpiamos el select de equipo
+		    					equipos.find('option').remove();
+
+		    					$(r).each(function(i,v){ //indice, valor
+		    						equipos.append('<option value="' + v.identificador_lab + '">' + v.identificador_lab + '</option>');
+		    					})
+		    					equipos.prop('disabled',false);
+
+
+
+	    					}else{
+	    						equipos.find('option').remove();
+	    						equipos.prop('disabled', true);		
+	    					}
+	    				},
+	    				error: function()
+	    				{
+	    					alert('Ocurrio un error en el servidor');
+
+	    				}
+	    			});
+	    		}
+	    		else
+	    		{
+	    			equipos.find('option').remove();
+	    			equipos.prop('disabled',true);
+	    		}
+
+	    	});
 			
 		})
+
+
+    	
 
 
 		function verificar_codigo()
 		{
 			//vamos a verificar el codigo digitado, si el codigo existe en el sistema
 			var codigo = $('#codigo').val();
+			var lab = $('#laboratorios').val();
+
 			//creamos un ajax el cual le mandaremos el codigo y verificara que si existe
 			$.ajax({
 				type: 'post',
@@ -123,7 +226,7 @@
 							  type: 'warning',
 							  title: 'El código del equipo no existe',
 							  showConfirmButton: false,
-							  timer: 1200
+							  timer: 1400
 							})
 							$("#codigo").val('');//limpiamos el input
 							$("#codigo").css("border-color","#a94442");//pone el border del input en color rojo
@@ -131,16 +234,28 @@
 
 							break;
 						case 1:
-							alert('esta en el inventario administrativo');
-							break;
 						case 2:
-							alert('esta en el inventario de laboratorio');
+							swal({
+							  position: 'top-end',
+							  type: 'success',
+							  title: 'Equipo encontrado',
+							  showConfirmButton: false,
+							  timer: 1400
+							})
+							$("#codigo").css("border-color","#66ff99");//pone el border del input en color rojo
+
+							var tipo = $('#tipo_prestamo option:selected').val();
+							if(tipo == 2)
+							{
+								$('#periferico').append('<label>Perifericos</label><select name="perifericos" id="perifericos" class="form-control"><option value=1 >Teclado</option><option value=2>Mouse</option></select>');
+							}
+			
 							break;
 					}
 				}
 			})
 
-			var tipo = $('#tipo_prestamo option:selected').val();
+			
 
 		}
     </script>

@@ -113,6 +113,7 @@ class Movimientos_model extends CI_Model
   		return $valor->result();
   	}
 
+  	//esta función se encarga de verificar si el codigo existe en el inventario de laboratorio
   	public function verificarLab($codigo)
   	{
   		$this->db->select('l.identificador_lab');
@@ -120,6 +121,17 @@ class Movimientos_model extends CI_Model
   		$this->db->where('identificador_lab',$codigo);
   		$valor = $this->db->get();
   		return $valor->result();
+  	}
+
+  	//función que obtiene los equipos de el laboratorio seleccionado
+  	public function obtener_equipo($laboratorio)
+  	{
+  		$this->db->select('identificador_lab');
+  		$this->db->from('inventario_lab');
+  		$this->db->like('identificador_lab',$laboratorio);
+  		$query = $this->db->get();
+
+  		return $query->result();
   	}
 
 }//fin de la clase

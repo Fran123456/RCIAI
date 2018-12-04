@@ -140,6 +140,20 @@ class Movimientos_controller extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	//función que verifica si hay equipos en el laboratorio seleccionado
+	public function obtener_equipo()
+	{
+		$laboratorio = $this->input->post('lab');
+		$resultado = $this->mov->obtener_equipo($laboratorio);
+
+		if($resultado)
+		{
+			echo json_encode($resultado);
+		}else{
+			echo json_encode(false);
+		}
+	}
+
 }//fin de la clase lab_lista_Controller
 
 
