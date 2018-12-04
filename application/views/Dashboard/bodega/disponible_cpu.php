@@ -34,7 +34,8 @@
 				
 				<th scope="col">Fecha de ingreso</th>
 				<th scope="col">Factura</th>
-				<th scope="col">Sustituir</th>
+				<th scope="col">Sustituir Admin</th>
+				<th scope="col">Sustituir Lab</th>
 			</tr>
 		</thead>
 		<tbody id="showdata">
@@ -44,6 +45,8 @@
 					<td><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso?></td>
 					<td><?php echo empty($key->n_factura) ? '<span style= "color:red">no disponible</span>' : $key->n_factura ?></td>
 					<td><a href="<?php base_url();?>validar-cpu/<?php echo $key->serial;?>" class="btn btn-danger item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+
+					<td><a href="<?php base_url();?>validar-cpu-lab/<?php echo $key->serial;?>" class="btn btn-warning item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 				</tr>
 			<?php } ?>
 			

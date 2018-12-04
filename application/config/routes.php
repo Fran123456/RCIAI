@@ -177,6 +177,7 @@ $route['validar-laptop/(:any)'] = 'bodega_Controller/asignar_laptop_View';
 $route['validar-otro/(:any)'] = 'bodega_Controller/asignar_otro_View';
 
 $route['validar-cpu/(:any)'] = 'Sustitucion_Controller/vista_cpu_sustituir';
+$route['validar-cpu-lab/(:any)'] = 'Sustitucion_Controller/vista_cpu_sustituir_lab';
 
 
 $route['get_pcs'] = 'bodega_Controller/showCodePC';
