@@ -266,3 +266,8 @@ $route['sistema/edit-sistema/(:any)'] = 'Hardware_Controller/sistema_edit/$1';
 
 $route['componentes'] = 'Hardware_Controller/componentes_all';
 $route['componentes/edit-componentes/(:any)'] = 'Hardware_Controller/componentes_edit/$1';
+
+
+
+//FORMULARIO DE MOVIMIENTOS..
+$route['formulario-movimientos'] = 'form_Controller/index';

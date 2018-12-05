@@ -125,6 +125,8 @@
 							<div id="subPages4" class="collapse ">
 								<ul class="nav">
 									<li><a href="<?php echo base_url('movimientos') ?>">Control de movimientos</a></li>
+									<li><a href="<?php echo base_url('formulario-movimientos') ?>">Crea un movimiento</a></li>
+									
 								</ul>
 
 							</div>
