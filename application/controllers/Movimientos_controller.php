@@ -106,11 +106,40 @@ class Movimientos_controller extends CI_Controller {
 	/**********************************************************************************************************************
 ********************************    PRESTAMOS     *************************************************************************
 ***********************************************************************************************************************/
-//función para el prestamos de equipo de laboratorio
+//función para efectuar el prestamos de equipo de laboratorio
 	public function prestamos()
 	{
-		echo "prestamo";
-	}
+		$fecha_retiro = $this->input->post('fecha_retiro');
+		$fecha_prestamo = $this->input->post('fecha_prestamo');
+		$encargado = $this->input->post('encargado');
+		$tecnico = $this->input->post('tecnico');
+		$tipo_prestamo = $this->input->post('tipo_prestamo');//tipo de prestamo si es una pc completa (1) o un periferico (2) 
+		$codigo = $this->input->post('codigo'); // codigo del equipo que recibe el prestamo
+		$desc_prestamo = $this->input->post('desc_prestamo');//descripción del porque se hace el prestamo
+		$laboratorios = $this->input->post('laboratorios'); // laboratorio de donde se sacara el equipo para hacer el prestamo
+		$equipo = $this->input->post('equipo'); //equipo del laboratorio que hara el prestamo
+		$perifericos = $this->input->post('perifericos');//tipo de periferico, estara activo si el tipo prestamo es periferico
+		$caract_equipo_f = $this->input->post('caract_equipo_f'); //descripción del equipo que queda en función
+		$caract_equipo_prestamo = $this->input->post('caract_equipo_prestamo'); //caracteristica del equipo que recibe el prestamo ( el equipo del codigo ingresado)
+		$prestamo = $this->input->post('prestamo'); //que clase de prestamo se hara, si es un prestamo con devolución o sustitución (el valor es devolucion,sustitucion)
+		$estado = $this->input->post('estado'); //el estado del equipo que se enviara a bodega
+
+
+		//vamos a verificar si es una PC Completa en el cambio
+		switch ($tipo_prestamo) {
+			case 1:
+				echo "PC completa";
+				break;
+			
+			case 2:
+				echo "periferico";
+				break;
+		}
+
+
+
+		
+	}//fin de prestamos
 
 	//función que se encarga de verificar si el codigo existe en algún inventario
 	# devuelve 1 si esta en inventario_adm
@@ -149,6 +178,22 @@ class Movimientos_controller extends CI_Controller {
 		if($resultado)
 		{
 			echo json_encode($resultado);
+		}else{
+			echo json_encode(false);
+		}
+	}
+
+	//función para verificar el periferico de la pc seleccionada de lab
+	public function verificar_periferico()
+	{
+		$equipo = $this->input->post('equipoLab');
+		$periferico  = $this->input->post('periferico');
+
+		$resultado = $this->mov->verificar_periferico($equipo, $periferico);
+		//print_r($resultado);
+		if($resultado)
+		{
+			echo json_encode(true);
 		}else{
 			echo json_encode(false);
 		}

@@ -17,29 +17,29 @@
     <!--CONTENIDO DE LA APLICACION-->
 	<!--Creamos el formulario para los prestamos-->
 
-	<form id="prestamo">
+	<form id="Form_prestamo" method="post" action="<?php echo base_url()?>prestamo">
 	  <div class="form-row">
 	    <div class="form-group col-md-3">
 	      <label for="fecha_retiro">Fecha de retiro de el equipo</label>
-	      <input type="date" class="form-control" id="fecha_retiro" name="fecha_retiro" placeholder="Email">
+	      <input type="date" class="form-control" id="fecha_retiro" name="fecha_retiro" required="" placeholder="Email">
 	    </div>
 	    <div class="form-group col-md-3">
 	      <label for="fecha_prestamo">Fecha que se da el prestamo</label>
-	      <input type="date" class="form-control" id="fecha_prestamo" name="fecha_prestamo" >
+	      <input type="date" class="form-control" id="fecha_prestamo" required="" name="fecha_prestamo" >
 	    </div>
 	    <div class="form-group col-md-3">
 	      <label for="encargado">Encargado del equipo</label>
-	      <input type="text" class="form-control" id="encargado" name="encargado" placeholder="Digite el nombre del encargado del equipo">
+	      <input type="text" class="form-control" id="encargado" name="encargado" required="" placeholder="Digite el nombre del encargado del equipo">
 	    </div>
 	    <div class="form-group col-md-3">
 	      <label for="tecnico">Técnico</label>
-	      <input type="text" class="form-control" id="tecnico" name="tecnico" placeholder="Digite el nombre del tecnico">
+	      <input type="text" class="form-control" id="tecnico" name="tecnico" required="" placeholder="Digite el nombre del tecnico">
 	    </div>
 	  </div>
 
 	  <div class="form-row">
 		<div class="form-group col-md-3">
-		    <label>Tipo de prestamo</label>
+		    <label>Elemento a prestamo</label>
 		    <select name="tipo_prestamo" id="tipo_prestamo" class="form-control">
 		    	<option value=1>PC Completa</option>
 		    	<option value=2>Periferico</option>
@@ -47,14 +47,15 @@
 		</div>
 		<div class="form-group col-md-3">
 			<label for="">Equipo al que se le hara el prestamo</label>
-			<input type="text" class="form-control" id="codigo" name="codigo" placeholder="Digite el código del equipo">
+			<input type="text" class="form-control" id="codigo" name="codigo" required="" placeholder="Digite el código del equipo">
 		</div>
 		<div class="form-group col-md-6">
 		    <label for="desc_prestamo">Porque solicita el prestamo</label>
-		    <textarea name="desc_prestamo" id="desc_prestamo" class="form-control" cols="1" rows="1" placeholder="Descripción del porque solicitad el cambio"></textarea>
+		    <textarea name="desc_prestamo" id="desc_prestamo" class="form-control" required="" cols="1" rows="1" placeholder="Descripción del porque solicitad el cambio"></textarea>
 		</div>
 		
 	  </div>
+
 
 	  <div class="form-row">
 	  	<div class="form-group col-md-3">
@@ -79,7 +80,20 @@
 	  	</div>
 
 		<div id="periferico" class="form-group col-md-3">
-	  		
+	  		<label id="lp">Perifericos</label>
+	  		<select name="perifericos" id="perifericos" class="form-control">
+	  			<option value="TECLADO">Teclado</option>
+	  			<option value="MOUSE">Mouse</option>
+	  			<option value="MONITOR">Monitor</option>
+	  			<option value="DISCO DURO EXTERNO">Disco duro externo</option>
+	  			<option value="UPS">UPS</option>
+	  			<option value="WEBCAM">Webcam</option>
+	  		</select>
+	  	</div>
+
+	  	<div id="verficarP" class="form-group col-md-3">
+	  		<label id="lv" class="label-control">Verificar periferico a prestar</label> <br>
+	  		<button class=" btn btn-info" id="verificar2" type="button" name="verificar2" onclick="verificarPeriferico()">Verificar</button>
 	  	</div>
 
 	  </div>
@@ -90,7 +104,9 @@
 		</div>
 	  </div>
 
-	  
+	  <div class="form row">
+	  	
+	  </div>
 
 	  <!--elementos que van a aparecer al presionar validar código -->
 	  <div id="oculto">
@@ -109,6 +125,32 @@
 		</div>
 	  </div>
 
+	  <div class="form-row">
+	  	<div class="form-group col-md-4">
+	  		<label for="">Tipo de prestamo</label>
+	  		<select class="form-control" name="prestamo" id="prestamo">
+	  			<option value="devolucion">Prestamo en devolución</option>
+	  			<option value="sustitucion">Prestamo en sustitución</option>
+	  		</select>
+	  	</div>
+
+	  	<!--este select se mostrara si se selecciona sustitucion-->
+		<div id="estado_equipo" class="form-group col-md-4">
+	  		<label for="">Estado del elemento que ira a bodega</label>
+	  		<select class="form-control" name="estado" id="estado">
+	  			<option value="Disponible">Disponible</option>
+	  			<option value="Desechado">Desechado</option>
+	  		</select>
+	  	</div>
+
+	  </div>
+
+	  <div class="form-row">
+	  	<div class="form-group col-md-12">
+	  		<button id="movimiento" class="btn btn-success">Realizar movimiento</button>
+	  	</div>
+	  </div>
+
 	</form>
 
 
@@ -120,14 +162,30 @@
     <script>
     	$(document).ready(function()
     	{
-			//ocultamos el div
+			//ocultamos los div
+			$('#verficarP').hide();
+			$('#periferico').hide();
+			$('#estado_equipo').hide();
 
     		//función que quita color al escribir dentro del input
     		$('#codigo').keydown(function(){
     			$("#codigo").css("border-color","");
     		})
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+    		$('#equipo').mousemove(function(){
+    			var equipo = $(this).val();
 
+    			if(equipo != null)
+    			{
+    				$('#movimiento').prop("disabled",false);
+    			}else{
+    				$('#movimiento').prop("disabled",true);
+    			}
+    		})
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+    		$('#movimiento').prop("disabled",true);
 			$("#verificar1").prop("disabled", true);
+			$("#verificar2").prop("disabled",true);
 
 			$('#codigo').change(function(){
 				var valor = $(this).val();
@@ -136,9 +194,32 @@
 				if((valor.length == 0) )
 				{
 					$("#verificar1").prop("disabled", true);
+					$("#movimiento").prop("disabled",true);
 				}else{
 					$("#verificar1").prop("disabled", false);
 
+				}
+			})
+
+			$('#prestamo').change(function(){
+				var prestamo = $(this).val();
+				if(prestamo == 'sustitucion')
+				{
+					$('#estado_equipo').show();
+				}else{
+					$('#estado_equipo').hide();
+				}
+			})
+
+			$('#tipo_prestamo').change(function(){
+				var tipo = $(this).val();
+				if(tipo == 2)
+				{
+					$('#verficarP').show();
+					$('#periferico').show();					
+				}else{
+					$('#verficarP').hide();
+					$('#periferico').hide();
 				}
 			})
 
@@ -146,6 +227,8 @@
 			$('#laboratorios').change(function(){
 	    		//guardamos el select de equipos
 	    		var equipos = $('#equipo');
+	    		//boton para verificar si el periferico existe
+	    		var ver2 = $('#verificar2');
 
 	    		//guardamos el select de laboratorios
 	    		var lab = $(this);
@@ -161,6 +244,7 @@
 	    				beforeSend: function()
 	    				{
 	    					equipos.prop('disabled', true);
+	    					ver2.prop('disabled',true);
 	    				},
 	    				success: function(r){
 	    					if(r!=false)
@@ -173,12 +257,15 @@
 		    						equipos.append('<option value="' + v.identificador_lab + '">' + v.identificador_lab + '</option>');
 		    					})
 		    					equipos.prop('disabled',false);
+		    					ver2.prop('disabled',false);
+		    					ver2.addClass('btn btn-info');
 
 
 
 	    					}else{
 	    						equipos.find('option').remove();
-	    						equipos.prop('disabled', true);		
+	    						equipos.prop('disabled', true);
+	    						ver2.prop('disabled',true);		
 	    					}
 	    				},
 	    				error: function()
@@ -192,15 +279,58 @@
 	    		{
 	    			equipos.find('option').remove();
 	    			equipos.prop('disabled',true);
+	    			ver2.prop('disabled',true);
 	    		}
 
 	    	});
 			
 		})
 
-
     	
 
+    	
+    	function verificarPeriferico()
+    	{
+    		//esta función verifica si el periferico seleccionado de un equipo de laboratorio existe
+    		var equipoLab = $('#equipo').val();
+    		var periferico = $('#perifericos').val();
+    		console.log(equipoLab);console.log(periferico);
+
+    		//creamos una función ajax para verificar si ese periferico existe
+    		$.ajax({
+				type: 'post',
+				async: false,
+				url: '<?php echo base_url()?>Movimientos_controller/verificar_periferico',
+				//data: 'equipoLab='+equipoLab,
+				data: {equipoLab: equipoLab, periferico: periferico},
+				dataType: 'json',
+				success: function(valor){
+					//hacemos un switch para evaluar el valor retornado
+					if(valor==true){
+						swal({
+							  position: 'bottom',
+							  type: 'success',
+							  title: 'El equipo '+ equipoLab +' contiene el periferico '+periferico,
+							  showConfirmButton: false,
+							  timer: 2400
+							})
+					}else{
+						swal({
+							  position: 'top-end',
+							  type: 'warning',
+							  title: 'El equipo '+ equipoLab +' NO contiene el periferico '+periferico,
+							  showConfirmButton: false,
+							  timer: 2380
+							})
+					}
+				},
+				error: function()
+				{
+					alert('error');
+				}
+			})
+
+    	}
 
 		function verificar_codigo()
 		{
@@ -231,6 +361,7 @@
 							$("#codigo").val('');//limpiamos el input
 							$("#codigo").css("border-color","#a94442");//pone el border del input en color rojo
 							$("#codigo").focus();//ponemos el foco en el input del código
+							$("#movimiento").prop("disabled",true);
 
 							break;
 						case 1:
@@ -243,20 +374,14 @@
 							  timer: 1400
 							})
 							$("#codigo").css("border-color","#66ff99");//pone el border del input en color rojo
-
-							var tipo = $('#tipo_prestamo option:selected').val();
-							if(tipo == 2)
-							{
-								$('#periferico').append('<label>Perifericos</label><select name="perifericos" id="perifericos" class="form-control"><option value=1 >Teclado</option><option value=2>Mouse</option></select>');
+							if($('#equipo').val() != null){
+								$("#movimiento").prop("disabled",false);
 							}
-			
+
 							break;
 					}
 				}
 			})
-
-			
-
 		}
     </script>
 
