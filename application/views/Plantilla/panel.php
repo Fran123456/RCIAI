@@ -94,7 +94,10 @@
 									<li><a href="<?php echo base_url('equipos/'.$id='lab-05');?>" class="">Laboratorio 5</a></li>
 									<li><a href="<?php echo base_url('equipos/'.$id='lab-HW');?>" class="">Laboratorio HW</a></li>
 									<li><a href="<?php echo base_url('equipos/'.$id='lab-red');?>" class="">Laboratorio de red</a></li>
+									<li><a href="<?php echo base_url()?>Devoluciones-list" class="">Devoluciones</a></li>
 								</ul>
+
+
 							</div>
 						</li>
 						<?php endif; ?>
