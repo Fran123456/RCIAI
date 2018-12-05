@@ -146,8 +146,10 @@
        	 <div class="form-group">
        	 	<label>Tipo de movimiento</label>
        	 	 <select class="form-control" name="tipoHardSoft">
+
        	 	 	<option value="HARDWARE-INTERNO">HARDWARE INTERNO</option>
        	 	 	<option value="SOFTWARE">SOFTWARE</option>
+                        <option value="HARDWARE-EXTERNO">HARDWARE-EXTERNO</option>
        	 	 </select>
        	 </div>
        </div>
