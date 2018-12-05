@@ -128,7 +128,7 @@
                             <label>Estado</label>
                             <select class="form-control" name="estatus-0" >
                               <option value="Disponible">Disponible</option>
-                              <option value="Nuevo">Nuevo</option>
+                           <!--  <option value="Nuevo">Nuevo</option>-->
                             </select>
 
                           </div>
@@ -144,7 +144,7 @@
                             <label>Origen</label>
                             <select name="origen-0" class="form-control" >
                               <option value="desconocido">desconocido</option>
-                              <option value="4">nuevo</option>
+                             <!-- <option value="4">nuevo</option>-->
                             </select>
                             <!--<input readonly="" type="text" value="nuevo" class="form-control" name="origenF-0">-->
                             <!--<input type="text" value="4" name="origen-0" hidden="">-->
