@@ -52,6 +52,17 @@ class Sustitucion_Model extends CI_Model
        return $data;
     }
 
+    public function where_Falso($serial){
+          $data = $this->db->where('serial', $serial )->get('inventario_adm')->result_array();
+          $data['centinela'] = "admin";
+
+          if(count($data) == 0){
+            $data =  $this->db->where('serial', $serial )->get('inventario_lab')->result_array();
+            $data['centinela'] = "Lab";
+          }
+          return $data;
+    }
+
 
 
      public function perifericos_disponible(){

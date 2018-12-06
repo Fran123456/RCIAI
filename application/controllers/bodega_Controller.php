@@ -283,6 +283,14 @@ public function get_codigosLAB(){
         $this->load->view('Dashboard/bodega/asignar_bodega_otros_view', compact('data','unidades','idpc', 'datos'));
   }
 
+    public function asignar_otro_pc_View(){
+        $idpc = $this->uri->segment(2);
+        $data = $this->bod->get_dde($idpc);
+        $unidades = $this->bod->get_u();
+        $datos = $this->bod->obtener_laptop($idpc);
+        $this->load->view('Dashboard/bodega/asignar_otros', compact('data','unidades','idpc', 'datos'));
+  }
+
 
       public function asignar_laptop_View(){
          $idpc = $this->uri->segment(2);
@@ -487,6 +495,10 @@ public function catch_asignacion_otro(){
 
 #ASIGNACION PARA PERIFERICOS 
 	function catch_asignacion(){
+
+  
+
+
     $centinela = $this->input->post('fantasma');
     $codexGea = $this->input->post('fantasma2');
     $desty = $this->bod->get_u_letra($this->input->post('unidad'));
