@@ -65,9 +65,14 @@
 
 					<?php endif;  ?>
 
+                     
+                     <?php if($data[$i]['tipo'] == 'ACCES POINT RADIO U MASFERRER'): ?>
+                     	<td>-</td>
+                      <?php else: ?>
+                      	<td><a href="<?php base_url();?>asignar-otro/<?php echo $data[$i]['serial'];?>" class="btn btn-info item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+                      <?php endif ?>
 
-
-					<td><a href="<?php base_url();?>asignar-otro/<?php echo $data[$i]['serial'];?>" class="btn btn-info item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+					
 				</tr>
 			<?php } ?>
 			
