@@ -108,7 +108,7 @@
 	        				<label>Tipo de elemento</label>
                                  <select  name="tipo" id="tipo" class="form-control">
                                       <option  selected value="Periferico">Perifericos</option>
-                                      <option value="PC">PC completa</option>
+                                      <option value="PC">PC completa / CPU</option>
                                       <option  value="Servidor">Servidor</option>
                                       <option value="Laptop">Laptop</option>
                                       <option value="Disco duro externo">Disco duro externo</option>
