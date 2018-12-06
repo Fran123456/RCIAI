@@ -68,6 +68,14 @@ class Sustitucion_Controller extends CI_Controller {
      }
 
 
+        public function get_perifericos_PC2(){
+      $id = filter_input(INPUT_POST,'dato');
+      $arrayNot = array('CPU','DISCO DURO EXTERNO','LAPTOP','MOUSE','TECLADO','MONITOR');
+      $perifericos = $this->sus->where_not('inventario_bodega', $id ,'pc_servidor_id', 'tipo', $arrayNot);
+      echo json_encode($perifericos);
+     }
+
+
 
       public function get_laptop(){
       $id = filter_input(INPUT_POST,'dato');
@@ -254,6 +262,28 @@ class Sustitucion_Controller extends CI_Controller {
 
   //sustitucion con codigo
   public function sustituir_periferico_form_code(){
+
+
+    $conCodex = $this->input->post('perichange');
+    $res = $this->sus->where_Falso($conCodex);
+    $nueva = $this->sus->where_('inventario_bodega', $conCodex ,'serial');
+
+    if(count($res) > 0 ){
+       $upc = array(
+        'compra_id' => $nueva[0]['compra_id'],
+        'serial' => $conCodex,
+       );
+
+       if($res['centinela'] == 'admin'){
+         $this->sus->update_('inventario_adm', $conCodex, 'serial' ,$upc);
+       }else{
+         $this->sus->update_('inventario_lab', $conCodex, 'serial' ,$upc);
+       }
+
+      
+    }
+
+
     $serialNueva = $this->input->post('serialNueva');
     $serialVieja = $this->input->post('perichange');
     $codigoPC = $this->input->post('cod');

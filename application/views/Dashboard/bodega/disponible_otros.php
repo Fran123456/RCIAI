@@ -22,7 +22,7 @@
 
     <!--CONTENIDO DE LA APLICACION-->
 
-	<h3> Elementos disponibles </h3>
+	<h3> Elementos disponibles</h3>
 <!--verificamos si la variable no viene vacia -->
 <?php if($detalle!=false) {?>
 	<!--Creamos la tabla donde vamos a mostrar nuestros registros de inventario Bodega-->

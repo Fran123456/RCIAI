@@ -136,7 +136,11 @@
         <label>Tarjetas extra:</label>
          <input type="text"   class="form-control"  name="6-c">
       </div>
-      <div class="es col-md-3">
+
+      <input type="hidden" value="" class="form-control"  name="7-c">
+      <input type="hidden" value="" class="form-control"  name="8-c">
+      <input type="hidden" value="" class="form-control"  name="9-c">
+      <!--<div class="es col-md-3">
         <label>Marca monitor:</label>
          <input type="text" class="form-control"  name="7-c">
       </div>
@@ -147,7 +151,7 @@
       <div class="es col-md-3">
         <label>serie monitor:</label>
         <input type="text" class="form-control"  name="9-c">
-      </div>
+      </div>-->
       <div class="es col-md-3">
         <label>Disco físico 1:</label>
         <input type="number"  min="1" class="form-control"  name="10-c">
@@ -203,7 +207,7 @@
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Tipo de elemento</label>
-                            <input class="form-control" type="text" value="LAPTOP" name="tipo-0">
+                            <input class="form-control" readonly="" type="text" value="LAPTOP" name="tipo-0">
                           </div>
                         </div>
                         

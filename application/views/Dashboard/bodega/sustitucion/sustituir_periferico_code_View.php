@@ -143,7 +143,7 @@
 		  	 $.ajax({
 			     type: 'ajax',
 			     method: 'post',
-			     url: '<?php echo base_url() ?>Sustitucion_Controller/get_perifericos_PC',
+			     url: '<?php echo base_url() ?>Sustitucion_Controller/get_perifericos_PC2',
 			     data: {dato: dato},
 			     async: false,
 			     dataType: 'json',

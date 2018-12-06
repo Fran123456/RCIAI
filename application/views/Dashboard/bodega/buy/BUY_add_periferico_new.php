@@ -79,9 +79,9 @@
                                         <option value="USB">USB</option>
                                         <option value="MEMORIA SD">MEMORIA SD</option>
                                         <option value="LECTOR DVD/CD">LECTOR DVD/CD</option>
-                                        <option value="IMPRESORES MATRICIALES">IMPRESORES MATRICIALES</option>
-                                        <option value="IMPRESORES MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
-                                        <option value="IMPRESOR DESJEKT">IMPRESOR DESJEKT</option>
+                                        <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option>
+                                        <option value="IMPRESORES-MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
+                                        <option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option>
                                         <option value="SCANNER">SCANNER</option>
                                         <option value="WEBCAM">WEBCAM</option>
                                         <option value="PARLANTES">PARLANTES</option>
@@ -128,7 +128,7 @@
                             <label>Estado</label>
                             <select class="form-control" name="estatus-0" >
                               <option value="Disponible">Disponible</option>
-                              <option value="Nuevo">Nuevo</option>
+                           <!--  <option value="Nuevo">Nuevo</option>-->
                             </select>
 
                           </div>
@@ -144,7 +144,7 @@
                             <label>Origen</label>
                             <select name="origen-0" class="form-control" >
                               <option value="desconocido">desconocido</option>
-                              <option value="4">nuevo</option>
+                             <!-- <option value="4">nuevo</option>-->
                             </select>
                             <!--<input readonly="" type="text" value="nuevo" class="form-control" name="origenF-0">-->
                             <!--<input type="text" value="4" name="origen-0" hidden="">-->

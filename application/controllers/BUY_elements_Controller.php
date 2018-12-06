@@ -144,8 +144,10 @@ class BUY_elements_Controller extends CI_Controller {
 
 public function laptop_nuevo_add(){
    $unidadxdata = $this->element->unidadxdata($this->input->post('idcompra'), $this->input->post('destino-0'));
+   $co = $this->input->post('codex3');
+   
 
-     if( count($unidadxdata) == 0){
+    if( count($unidadxdata) == 0){
          $this->unidadxdata_add();
          $this->buy_edit();
      }
@@ -163,13 +165,15 @@ public function laptop_nuevo_add(){
 		 'fecha_ingreso' => $this->input->post('ingreso-1'),
 		 'origen' => $this->input->post('OrigenPC_Falso-1'),
 		 'destino' => $this->input->post('destino-0'),
+     'compra_id' => $this->input->post('idcompra'),
+     'pc_servidor_id' => $co,
 
 	 );
 
 				$this->element->add_periferico_nuevo($data);
 
-       $this->catch_info_pc();
-       $this->generate_admin_pc();
+       $this->catch_info_pc($co);
+       $this->generate_admin_pc($this->input->post('serial'));
 
 
     $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
@@ -629,8 +633,7 @@ public function disco_asignado_add(){
 
 
 
-   public function generate_admin_pc(){
-
+   public function generate_admin_pc($serial = null){
     $data = array(
      'identificador' => $this->input->post('codex3'),
      'encargado_puesto' =>$this->input->post('encargado'),
@@ -643,7 +646,8 @@ public function disco_asignado_add(){
      'origen' => $this->input->post('OrigenPC_Falso-1'),
      'destino' => $this->input->post('destino-0'),
      'compra_id'=> $this->input->post('idcompra'),
-      'lugar_name' =>$this->input->post('destinoPC-1')
+      'lugar_name' =>$this->input->post('destinoPC-1'),
+      'serial' => $serial,
     );
     $this->element->admin_pc($data);
       

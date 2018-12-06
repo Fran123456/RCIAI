@@ -52,6 +52,17 @@ class Sustitucion_Model extends CI_Model
        return $data;
     }
 
+    public function where_Falso($serial){
+          $data = $this->db->where('serial', $serial )->get('inventario_adm')->result_array();
+          $data['centinela'] = "admin";
+
+          if(count($data) == 0){
+            $data =  $this->db->where('serial', $serial )->get('inventario_lab')->result_array();
+            $data['centinela'] = "Lab";
+          }
+          return $data;
+    }
+
 
 
      public function perifericos_disponible(){
@@ -71,7 +82,7 @@ class Sustitucion_Model extends CI_Model
 
        public function perifericos_disponible_code(){
 
-      $perifericos = array('DISCO DURO EXTERNO','WEBCAM','UPS','ACCES POINT RADIO U MASFERRER','IMPRESORES MATRICIALES','IMPRESOR DESJEKT','SCANNER');
+      $perifericos = array('DISCO DURO EXTERNO','WEBCAM','UPS','ACCES POINT RADIO U MASFERRER','IMPRESORES-MATRICIALES','IMPRESOR-DESJEKT','SCANNER','IMPRESORES-MULTIFUNCIONALES');
        $estados = array('Disponible','nuevo');
        $this->db->select('bo.serial, bo.nombre, bo.fecha_ingreso, bo.tipo');
        $this->db->from('inventario_bodega bo');
