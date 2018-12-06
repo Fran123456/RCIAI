@@ -230,6 +230,9 @@ $route['listado-prestamos'] = 'Movimientos_controller/prestamos';
 $route['listado-sustituciones'] = 'Movimientos_controller/sustituciones';
 $route['detalle-sustitucion/(:any)'] = 'Movimientos_controller/detalleSustitucion/$1';
 
+//prestamos
+$route['prestamo'] = 'Movimientos_controller/hacer_prestamos';
+
 
 
 //SUSTITUCION RUTAS
@@ -267,8 +270,6 @@ $route['sistema/edit-sistema/(:any)'] = 'Hardware_Controller/sistema_edit/$1';
 $route['componentes'] = 'Hardware_Controller/componentes_all';
 $route['componentes/edit-componentes/(:any)'] = 'Hardware_Controller/componentes_edit/$1';
 
-
-
 //FORMULARIO DE MOVIMIENTOS..
 $route['formulario-movimientos'] = 'form_Controller/index';
 
@@ -276,4 +277,5 @@ $route['formulario-movimientos'] = 'form_Controller/index';
 
 $route['Devoluciones-list'] = 'Devoluciones_Controller/index';
 $route['retornar/(:any)'] = 'Devoluciones_Controller/regreso/$1';
+$route['asignar-prestamo/(:any)'] = 'Devoluciones_Controller/no_regreso/$1';
 $route['asignar-prestamo/(:any)'] = 'Devoluciones_Controller/no_regreso/$1';

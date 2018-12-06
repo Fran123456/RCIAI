@@ -130,7 +130,17 @@ class Movimientos_model extends CI_Model
   		$this->db->from('inventario_lab');
   		$this->db->like('identificador_lab',$laboratorio);
   		$query = $this->db->get();
+  		return $query->result();
+  	}
 
+  	//función para verificar si el periferico seleccionado es del equipo solicitado
+  	public function verificar_periferico($equipo,$periferico)
+  	{
+  		$this->db->select('tipo');
+  		$this->db->from('inventario_bodega');
+  		$this->db->where('tipo',$periferico);
+  		$this->db->where('pc_servidor_id',$equipo);
+  		$query = $this->db->get();
   		return $query->result();
   	}
 
