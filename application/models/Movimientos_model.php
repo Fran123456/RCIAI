@@ -144,4 +144,43 @@ class Movimientos_model extends CI_Model
   		return $query->result();
   	}
 
+  	//vamos a obtener el origen del codigo
+  	public function origen_Codigo($codigo)
+  	{
+  		$this->db->select('destino');
+  		$this->db->from('inventario_adm');
+  		$this->db->where('identificador',$codigo);
+  		$query = $this->db->get();
+  		return $query->row();
+  	}
+
+  	//función para insertar los datos y crear un nuevo registro en la tabla de movimiento
+  	public function crear_prestamo($datos)
+  	{
+  		$this->db->insert('movimiento',$datos);
+  		if($this->db->affected_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+  	}
+
+  	//función para actualizar los campos en la tabla: inventario_bodega
+  	public function actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id)
+  	{
+  		$this->db->set('estatus','Prestado');
+  		$this->db->set('pc_servidor_antiguo_id',$equipo);
+  		$this->db->set('pc_servidor_id',$codigo);
+  		$this->db->set('origen',$origen_nuevoEquipo_id);
+  		$this->db->set('destino',$unidad_pertenece_id);
+  		$this->db->where('pc_servidor_id',$equipo);
+  		$this->db->where('tipo',$perifericos);
+  		$this->db->update('inventario_bodega');
+  		if($this->db->affected_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+  	}
+
 }//fin de la clase

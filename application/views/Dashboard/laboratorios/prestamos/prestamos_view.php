@@ -17,23 +17,33 @@
     <!--CONTENIDO DE LA APLICACION-->
 	<!--Creamos el formulario para los prestamos-->
 
+	<?php if($this->session->flashdata('exito')): ?>
+			<script>
+                swal(
+				  'Éxito!',
+				  'movimiento realizado!',
+				  'success'
+				)
+            </script>
+			<?php endif; ?>
+
 	<form id="Form_prestamo" method="post" action="<?php echo base_url()?>prestamo">
 	  <div class="form-row">
 	    <div class="form-group col-md-3">
 	      <label for="fecha_retiro">Fecha de retiro de el equipo</label>
-	      <input type="date" class="form-control" id="fecha_retiro" name="fecha_retiro" required="" placeholder="Email">
+	      <input type="date" class="form-control" id="fecha_retiro" name="fecha_retiro"  placeholder="Email">
 	    </div>
 	    <div class="form-group col-md-3">
 	      <label for="fecha_prestamo">Fecha que se da el prestamo</label>
-	      <input type="date" class="form-control" id="fecha_prestamo" required="" name="fecha_prestamo" >
+	      <input type="date" class="form-control" id="fecha_prestamo"  name="fecha_prestamo" >
 	    </div>
 	    <div class="form-group col-md-3">
 	      <label for="encargado">Encargado del equipo</label>
-	      <input type="text" class="form-control" id="encargado" name="encargado" required="" placeholder="Digite el nombre del encargado del equipo">
+	      <input type="text" class="form-control" id="encargado" name="encargado"  placeholder="Digite el nombre del encargado del equipo">
 	    </div>
 	    <div class="form-group col-md-3">
 	      <label for="tecnico">Técnico</label>
-	      <input type="text" class="form-control" id="tecnico" name="tecnico" required="" placeholder="Digite el nombre del tecnico">
+	      <input type="text" class="form-control" id="tecnico" name="tecnico"  placeholder="Digite el nombre del tecnico">
 	    </div>
 	  </div>
 
@@ -47,11 +57,11 @@
 		</div>
 		<div class="form-group col-md-3">
 			<label for="">Equipo al que se le hara el prestamo</label>
-			<input type="text" class="form-control" id="codigo" name="codigo" required="" placeholder="Digite el código del equipo">
+			<input type="text" class="form-control" id="codigo" name="codigo"  placeholder="Digite el código del equipo">
 		</div>
 		<div class="form-group col-md-6">
 		    <label for="desc_prestamo">Porque solicita el prestamo</label>
-		    <textarea name="desc_prestamo" id="desc_prestamo" class="form-control" required="" cols="1" rows="1" placeholder="Descripción del porque solicitad el cambio"></textarea>
+		    <textarea name="desc_prestamo" id="desc_prestamo" class="form-control"  cols="1" rows="1" placeholder="Descripción del porque solicitad el cambio"></textarea>
 		</div>
 		
 	  </div>

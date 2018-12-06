@@ -124,17 +124,125 @@ class Movimientos_controller extends CI_Controller {
 		$prestamo = $this->input->post('prestamo'); //que clase de prestamo se hara, si es un prestamo con devolución o sustitución (el valor es devolucion,sustitucion)
 		$estado = $this->input->post('estado'); //el estado del equipo que se enviara a bodega
 
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//camposa usar internamente
+		$origen_nuevoEquipo_id = 37; //origen del equipo a prestar, siempre es laboratorio
+		$tipoHardSoft = 'HARDWARE-EXTERNO'; // dato constante
+		$tipo_movimiento = 'Prestamo';
 
-		//vamos a verificar si es una PC Completa en el cambio
-		switch ($tipo_prestamo) {
-			case 1:
-				echo "PC completa";
+		//vamos a traer el origen del equipo que recibe el prestamo
+		$cad=substr($codigo,0,2);
+		if($cad == 'LA')//si es un equipo de laboratorio, asignamos laboratorio
+		{
+			$unidad_pertenece_id = 37;
+			$destino_nuevoEquipo_id = 37;
+		}
+		else
+		{
+			//si es de inventario administrativo, vamos a realizar la busqueda en el inventario administrativo
+			$destino = $this->mov->origen_Codigo($codigo);
+
+			$unidad_pertenece_id = $destino->destino;
+			$destino_nuevoEquipo_id = $destino->destino;
+
+		}
+
+		switch ([$prestamo, $tipo_prestamo]) {
+			case ['devolucion',1]:
+				//no se recibira nada a cambio por parte del equipo que recibe el prestamo
+				$cambio = "Prestamo de la PC $equipo al equipo $codigo";
+				
 				break;
 			
-			case 2:
-				echo "periferico";
+			case ['devolucion',2]:
+				//no se recibira nada a cambio por parte del equipo que recibe el prestamo
+				$cambio = "Prestamo de $perifericos del equipo $equipo a el equipo $codigo";
+				
+				//mandamos los campos que se van a insertar en la tabla movimiento
+				$datos = array('fecha_retiro' => $fecha_retiro,
+							   'fecha_cambio' => $fecha_prestamo,
+							   'codigo_id' => $codigo,
+							   'unidad_pertenece_id' => $unidad_pertenece_id,
+							   'cambio' => $cambio,
+							   'descripcion_cambio' => $desc_prestamo,
+							   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
+							   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
+							   'descripcion_equipoNuevo' => $caract_equipo_f,
+							   'encargado' => $encargado,
+							   'tecnico' => $tecnico,
+							   'tipoHardSoft' => $tipoHardSoft,
+							   'tipo_movimiento' => $tipo_movimiento,
+							   'laboratorio' => $laboratorios );
+
+				$respuesta1 = $this->mov->crear_prestamo($datos);
+
+				if($respuesta1)
+				{
+					//si es verdadero generamos la siguiente consulta
+					//actualizaremos los campos en la tabla inventario bodega
+					$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id);
+
+					if($respuesta2)
+					{
+						//si todo fue bien
+						$this->session->set_flashdata('exito','movimiento realizado');
+						redirect(base_url().'prestamos');
+
+					}
+
+				}
+				break;
+			case ['sustitucion',1]:
+				//se recibira el elemento por parte de el equipo que recibe el prestamo
+				$cambio = "Prestamo de la PC $equipo al equipo $codigo";
+				
+				break;
+			case ['sustitucion',2]:
+				//se recibira el elemento por parte de el equipo que recibe el prestamo
+				$cambio = "Prestamo de $perifericos del equipo $equipo a el equipo $codigo";
+				
 				break;
 		}
+
+
+		/*campos a usar si es pc completa 
+				***Tabla movimiento
+					- $fecha_retiro ............. fecha_retiro
+					- $fecha_prestamo ........... fecha_cambio
+					- $encargado ................ encargado
+					- $tecnico .................. tecnico
+					- $codigo ................... codigo_id
+					- $desc_prestamo ............ descripcion_cambio
+					- $laboratorios ............. laboratorio (de donde se saca el elemento para el prestamo)
+					- $caract_equipo_f .......... descripcion_equipoNuevo (del equipo del laboratorio)
+					- $caract_equipo_prestamo ... descripcion_equipoRetirado (si es prestamo en sustitución)
+
+					**** datos que se llenara por el sistema
+					campo ........ dato
+					¿que cambio sufrio el equipo?
+					- cambio ------------------- Prestamo de PC completa ¿que cambio sufrio el equipo?
+					- origen_nuevoEquipo_id ---- 37(laboratorio)
+					- destino_nuevoEquipo_id --- origen del codigo digitado ($codigo)
+					- tipoHardSoft ------------- HARDWARE-EXTERNO
+					- tipo_movimiento ---------- Prestamo
+					- serial ------------------- si es periferico
+					- unidad_pertenece_id ------ origen del codigo digitado ($codigo)
+					- unidad_traslado_id ------- bodega de informatica 1 si es prestamo en sustitucion $prestamo(sustitucion)
+											     null si es prestamo en devolucion $prestamo(devolucion)*/
+
+
+				/* tabla inventario_bodega 
+						el campo pc_servidor_antiguo_id----> tomara el valor de pc_servidor_id ($equipo)
+						y pc_Servidor_id----> tomara el origen del equipo del codigo digitado
+
+						el campo origen pasara a tener el valor 37(laboratorio) y destino el origen del codigo*/
+
+
+
+
+
+		
 
 
 
