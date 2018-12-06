@@ -278,3 +278,4 @@ $route['formulario-movimientos'] = 'form_Controller/index';
 $route['Devoluciones-list'] = 'Devoluciones_Controller/index';
 $route['retornar/(:any)'] = 'Devoluciones_Controller/regreso/$1';
 $route['asignar-prestamo/(:any)'] = 'Devoluciones_Controller/no_regreso/$1';
+$route['asignar-prestamo/(:any)'] = 'Devoluciones_Controller/no_regreso/$1';
