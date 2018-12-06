@@ -231,7 +231,7 @@ $route['listado-sustituciones'] = 'Movimientos_controller/sustituciones';
 $route['detalle-sustitucion/(:any)'] = 'Movimientos_controller/detalleSustitucion/$1';
 
 //prestamos
-//$route['prestamo'] = 'Movimientos_controller/prestamos';
+$route['prestamo'] = 'Movimientos_controller/hacer_prestamos';
 
 
 

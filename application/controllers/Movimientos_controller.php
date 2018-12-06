@@ -107,7 +107,7 @@ class Movimientos_controller extends CI_Controller {
 ********************************    PRESTAMOS     *************************************************************************
 ***********************************************************************************************************************/
 //función para efectuar el prestamos de equipo de laboratorio
-	public function prestamos()
+	public function hacer_prestamos()
 	{
 		$fecha_retiro = $this->input->post('fecha_retiro');
 		$fecha_prestamo = $this->input->post('fecha_prestamo');
