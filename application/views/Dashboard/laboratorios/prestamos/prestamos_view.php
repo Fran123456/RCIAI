@@ -172,7 +172,7 @@
     			$("#codigo").css("border-color","");
     		})
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-    		$('#equipo').mousemove(function(){
+    		/*$('#equipo').mousemove(function(){
     			var equipo = $(this).val();
 
     			if(equipo != null)
@@ -181,7 +181,7 @@
     			}else{
     				$('#movimiento').prop("disabled",true);
     			}
-    		})
+    		})*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
     		$('#movimiento').prop("disabled",true);
 			$("#verificar1").prop("disabled", true);
@@ -245,6 +245,8 @@
 	    				{
 	    					equipos.prop('disabled', true);
 	    					ver2.prop('disabled',true);
+	    					$('#movimiento').prop("disabled",true);
+
 	    				},
 	    				success: function(r){
 	    					if(r!=false)
@@ -259,13 +261,13 @@
 		    					equipos.prop('disabled',false);
 		    					ver2.prop('disabled',false);
 		    					ver2.addClass('btn btn-info');
-
-
+		    					$('#movimiento').prop("disabled",false);
 
 	    					}else{
 	    						equipos.find('option').remove();
 	    						equipos.prop('disabled', true);
-	    						ver2.prop('disabled',true);		
+	    						ver2.prop('disabled',true);
+	    						$('#movimiento').prop("disabled",true);
 	    					}
 	    				},
 	    				error: function()
@@ -280,6 +282,7 @@
 	    			equipos.find('option').remove();
 	    			equipos.prop('disabled',true);
 	    			ver2.prop('disabled',true);
+	    			$('#movimiento').prop("disabled",true);
 	    		}
 
 	    	});
