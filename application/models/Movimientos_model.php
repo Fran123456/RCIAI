@@ -102,6 +102,43 @@ class Movimientos_model extends CI_Model
 
 
   	//////////////////////////////// función para el prestamo ////////////////////////
+  	//listar los movimiento de prestamo
+  	public function getPrestamos()
+  	{
+  		#hacemos la consulta
+		$this->db->select('id_cambio,fecha_cambio,codigo_id,cambio');
+		$this->db->from('movimiento');
+		$this->db->where('tipo_movimiento','Prestamo');
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result();
+		}else{
+			//si no hay registros, devolvemos un false
+			return false;
+		}
+  	}
+
+  	//obtenemos el detalle del prestamo
+  	public function getDetallePres($id)
+  	{
+  		#hacemos la consulta de los datos
+		$this->db->select('*');
+		$this->db->from('movimiento');
+		$this->db->where('tipo_movimiento','Prestamo');
+		$this->db->where('id_cambio',$id);
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result();
+		}else{
+			//si no hay registros, devolvemos un false
+			return false;
+		}
+  	}
+
   	#esta función se encarga de verificar si el codigo existe en el inventario administrativo
 
   	public function verificarAdmin($codigo)

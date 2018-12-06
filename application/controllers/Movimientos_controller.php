@@ -106,6 +106,44 @@ class Movimientos_controller extends CI_Controller {
 	/**********************************************************************************************************************
 ********************************    PRESTAMOS     *************************************************************************
 ***********************************************************************************************************************/
+//función para listar los elementos prestados
+	public function prestamos()
+	{
+		#getSustitucion() nos traera la consulta con los datos a mostrar en la tabla
+		$datos['detalle'] = $this->mov->getPrestamos();
+		$this->load->view('Dashboard/movimientos/prestamo',$datos);
+	}
+
+	//función para obtener el detalle del prestamo
+	public function detallePrestamo($id)
+	{
+		#getDetallePres($id) nos trae los campos necesarios 
+		#donde $id es id_cambio
+		$resultado = $this->mov->getDetallePres($id);
+		if($resultado){
+		//vamos a obtener las unidades
+			foreach ($resultado as $u) {
+				//equipo nuevo
+				$origen = $this->mov->getOrigen_destino($u->origen_nuevoEquipo_id);
+				$u->origen_nuevoEquipo_id = $origen;
+				$destino = $this->mov->getOrigen_destino($u->destino_nuevoEquipo_id);
+				$u->destino_nuevoEquipo_id = $destino;
+
+				//equipo viejo
+				$origenViejo = $this->mov->getOrigen_destino($u->unidad_pertenece_id);
+				$u->unidad_pertenece_id = $origenViejo;
+				$destinoViejo = $this->mov->getOrigen_destino($u->unidad_traslado_id);
+				$u->unidad_traslado_id = $destinoViejo;
+			}
+		}
+		$datos['detalle'] = $resultado;
+		//print_r($datos['detalle']);
+
+		#mandamos los datos a la vista que tendra el detalle
+		$this->load->view('Dashboard/movimientos/detallePrestamo',$datos);
+	}
+
+
 //función para efectuar el prestamos de equipo de laboratorio
 	public function hacer_prestamos()
 	{

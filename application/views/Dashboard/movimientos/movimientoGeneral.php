@@ -67,7 +67,7 @@
 							<h3 class="panel-title">Prestamo</h3>
 						</div>
 						<div class="panel-body text-center">
-							<a href=""><i class="fa fa-share-alt fa-4x" aria-hidden="true"></i></a>
+							<a href="<?php echo base_url('listado-prestamos') ?>"><i class="fa fa-share-alt fa-4x" aria-hidden="true"></i></a>
 						</div>
 				</div>
 		<!-- END PANEL HEADLINE -->
