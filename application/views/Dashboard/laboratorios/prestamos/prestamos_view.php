@@ -51,7 +51,7 @@
 		<div class="form-group col-md-3">
 		    <label>Elemento a prestamo</label>
 		    <select name="tipo_prestamo" id="tipo_prestamo" class="form-control">
-		    	<option value=1>PC Completa</option>
+		    	<!--<option value=1>PC Completa</option>-->
 		    	<option value=2>Periferico</option>
 		    </select>
 		</div>
@@ -173,8 +173,8 @@
     	$(document).ready(function()
     	{
 			//ocultamos los div
-			$('#verficarP').hide();
-			$('#periferico').hide();
+			//$('#verficarP').hide();
+			//$('#periferico').hide();
 			$('#estado_equipo').hide();
 
     		//función que quita color al escribir dentro del input

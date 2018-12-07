@@ -196,10 +196,10 @@ class Movimientos_model extends CI_Model
   	{
   		$this->db->insert('movimiento',$datos);
   		if($this->db->affected_rows() > 0){
-			return true;
-		}else{
-			return false;
-		}
+				return true;
+			}else{
+				return false;
+			}
   	}
 
   	//función para actualizar los campos en la tabla: inventario_bodega

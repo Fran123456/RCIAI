@@ -218,7 +218,7 @@ class Movimientos_controller extends CI_Controller {
 							   'fecha_cambio' => $fecha_prestamo,
 							   'codigo_id' => $codigo,
 							   'unidad_pertenece_id' => $unidad_pertenece_id,
-							   'unidad_traslado_id' => 'ninguna',
+							   'unidad_traslado_id' => 38,
 							   'cambio' => $cambio,
 							   'descripcion_cambio' => $desc_prestamo,
 							   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
