@@ -144,6 +144,17 @@ class Movimientos_controller extends CI_Controller {
 	}
 
 
+	public function _token()
+     {
+        $variable = "";
+        $parte1 = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
+        $parte2 = rand(100000, 999999). "-" . rand(1000, 9999);
+        $parte3 = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
+        $variable = 'token--'. $parte1 . $parte2 . $parte3 ;
+        return $variable;
+     }
+
+
 //función para efectuar el prestamos de equipo de laboratorio
 	public function hacer_prestamos()
 	{
@@ -162,7 +173,7 @@ class Movimientos_controller extends CI_Controller {
 		$prestamo = $this->input->post('prestamo'); //que clase de prestamo se hara, si es un prestamo con devolución o sustitución (el valor es devolucion,sustitucion)
 		$estado = $this->input->post('estado'); //el estado del equipo que se enviara a bodega
 
-		
+		$token = $this->_token();
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//camposa usar internamente
 		$origen_nuevoEquipo_id = 37; //origen del equipo a prestar, siempre es laboratorio
@@ -197,8 +208,13 @@ class Movimientos_controller extends CI_Controller {
 				//no se recibira nada a cambio por parte del equipo que recibe el prestamo
 				$cambio = "Prestamo de $perifericos del equipo $equipo a el equipo $codigo";
 				
+				//obtenemos el serial del periferico que se esta prestando
+				$serial = $this->mov->serial_periferico($equipo,$perifericos);
+				$serial_nuevo = $serial->serial;
+
 				//mandamos los campos que se van a insertar en la tabla movimiento
-				$datos = array('fecha_retiro' => $fecha_retiro,
+				$datos = array('token' => $token,
+							   'fecha_retiro' => $fecha_retiro,
 							   'fecha_cambio' => $fecha_prestamo,
 							   'codigo_id' => $codigo,
 							   'unidad_pertenece_id' => $unidad_pertenece_id,
@@ -211,6 +227,7 @@ class Movimientos_controller extends CI_Controller {
 							   'tecnico' => $tecnico,
 							   'tipoHardSoft' => $tipoHardSoft,
 							   'tipo_movimiento' => $tipo_movimiento,
+							   'serial_nuevo' => $serial_nuevo,
 							   'laboratorio' => $laboratorios );
 
 				$respuesta1 = $this->mov->crear_prestamo($datos);
@@ -219,7 +236,7 @@ class Movimientos_controller extends CI_Controller {
 				{
 					//si es verdadero generamos la siguiente consulta
 					//actualizaremos los campos en la tabla inventario bodega
-					$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id);
+					$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo);
 
 					if($respuesta2)
 					{
@@ -231,6 +248,7 @@ class Movimientos_controller extends CI_Controller {
 
 				}
 				break;
+
 			case ['sustitucion',1]:
 				//se recibira el elemento por parte de el equipo que recibe el prestamo
 				$cambio = "Prestamo de la PC $equipo al equipo $codigo";
@@ -239,7 +257,58 @@ class Movimientos_controller extends CI_Controller {
 			case ['sustitucion',2]:
 				//se recibira el elemento por parte de el equipo que recibe el prestamo
 				$cambio = "Prestamo de $perifericos del equipo $equipo a el equipo $codigo";
-				
+
+				//obtenemos el serial del periferico que se esta prestando
+				$serial = $this->mov->serial_periferico($equipo,$perifericos);
+				$serial_nuevo = $serial->serial;
+
+				//serial del equipo que es sustiuido y regresa a bodega
+				$serial2 = $this->mov->serial_equipo_sustituido($codigo,$perifericos);
+				$serial_sustituido = $serial2->serial;
+				//mandamos los campos que se van a insertar en la tabla movimiento
+				$datos = array('token' => $token,
+							   'fecha_retiro' => $fecha_retiro,
+							   'fecha_cambio' => $fecha_prestamo,
+							   'codigo_id' => $codigo,
+							   'unidad_pertenece_id' => $unidad_pertenece_id,
+							   'cambio' => $cambio,
+							   'descripcion_cambio' => $desc_prestamo,
+							   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
+							   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
+							   'descripcion_equipoNuevo' => $caract_equipo_f,
+							   'encargado' => $encargado,
+							   'tecnico' => $tecnico,
+							   'tipoHardSoft' => $tipoHardSoft,
+							   'tipo_movimiento' => $tipo_movimiento,
+							   'serial_nuevo' => $serial_nuevo,
+							   'laboratorio' => $laboratorios );
+
+				$respuesta1 = $this->mov->crear_prestamo($datos);
+
+				if($respuesta1)
+				{
+					//si es verdadero generamos la siguiente consulta
+					//actualizaremos los campos en la tabla inventario bodega para el equipo que es prestado
+					$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo);
+					//actualizar periferico que es sustituido
+					$origen1 = $this->mov->origen_destino($serial_sustituido,'origen');
+					$destino1 = $this->mov->origen_destino($serial_sustituido,'destino');
+
+					$origenP = $origen1->origen;
+					$destinoP = $destino1->destino;
+
+					$respuesta3 = $this->mov->actualizarPeriferico($origenP,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido);
+
+					if($respuesta2 && $respuesta3)
+					{
+						//si todo fue bien
+						$this->session->set_flashdata('exito','movimiento realizado');
+						redirect(base_url().'prestamos');
+
+					}
+
+				}
+
 				break;
 		}
 

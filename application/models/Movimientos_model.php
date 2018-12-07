@@ -203,15 +203,66 @@ class Movimientos_model extends CI_Model
   	}
 
   	//función para actualizar los campos en la tabla: inventario_bodega
-  	public function actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id)
+  	public function actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo)
   	{
   		$this->db->set('estatus','Prestado');
   		$this->db->set('pc_servidor_antiguo_id',$equipo);
   		$this->db->set('pc_servidor_id',$codigo);
   		$this->db->set('origen',$origen_nuevoEquipo_id);
   		$this->db->set('destino',$unidad_pertenece_id);
+  		$this->db->set('fecha_salida',$fecha_prestamo);
   		$this->db->where('pc_servidor_id',$equipo);
   		$this->db->where('tipo',$perifericos);
+  		$this->db->update('inventario_bodega');
+  		if($this->db->affected_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+  	}
+
+  	//función para obtener la serial del equipo a prestar
+  	public function serial_periferico($equipo,$perifericos)
+  	{
+  		$this->db->select('serial');
+  		$this->db->from('inventario_bodega');
+  		$this->db->where('tipo',$perifericos);
+  		$this->db->where('pc_servidor_id',$equipo);
+  		$query = $this->db->get();
+  		return $query->row();
+  	}
+
+  	//función para obtener el serial del equipo que será sustituido
+  	public function serial_equipo_sustituido($codigo,$perifericos)
+  	{
+  		$this->db->select('serial');
+  		$this->db->from('inventario_bodega');
+  		$this->db->where('tipo',$perifericos);
+  		$this->db->where('pc_servidor_id',$codigo);
+  		$query = $this->db->get();
+  		return $query->row();
+  	}
+
+  	//función para obtener el origen y destino del equipo que es sustituido
+  	public function origen_destino($serial_sustituido,$O_D)
+  	{
+  		$this->db->select($O_D);
+  		$this->db->from('inventario_bodega');
+  		$this->db->where('serial',$serial_sustituido);
+  		$query = $this->db->get();
+  		return $query->row();
+  	}
+
+  	//función para actualizar periferico que es sustituido
+  	public function actualizarPeriferico($origenP,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido)
+  	{
+  		$this->db->set('origen',$destinoP);
+  		$this->db->set('destino',$origenP);
+  		$this->db->set('pc_servidor_id',null);
+  		$this->db->set('pc_servidor_antiguo_id',$codigo);
+  		$this->db->set('estatus',$estado);
+  		$this->db->set('fecha_salida',$fecha_prestamo);
+  		$this->db->where('serial',$serial_sustituido);
   		$this->db->update('inventario_bodega');
   		if($this->db->affected_rows() > 0){
 			return true;
