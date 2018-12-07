@@ -53,16 +53,16 @@
 				</div>
 				<div class="col-md-3">
 					<div class="form-group">
-						<label >Nombre de Técnico que reporta el cambio.</label>
+						<label >Nombre del Técnico.</label>
 						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->tecnico ?>">
 					</div>
 				</div>
 				
 			</div>
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<div class="form-group">
-						<label >codigo de equipo</label>
+						<label >codigo de equipo que recibe prestamo</label>
 						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->codigo_id ?>">
 					</div>
 				</div>
@@ -75,19 +75,19 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-						<label >Serial del elemento nuevo</label>
+						<label >Serial del elemento prestado</label>
 						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->serial_nuevo ?>">
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="form-group">
-						<label >Origen del elemento nuevo</label>
+						<label >Origen del elemento prestado</label>
 						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->origen_nuevoEquipo_id[0]['unidad'] ?>">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label >Destino del elemento nuevo</label>
+						<label >Destino del elemento prestado</label>
 						<input type="text" class="form-control" id=""  readonly="" value="<?php echo $d->destino_nuevoEquipo_id[0]['unidad'] ?>">
 					</div>
 				</div>
@@ -138,17 +138,17 @@
 
 			<div class="row">
 				
-				<div class="col-md-3">
+				<div class="col-md-6">
 					<div class="form-group">
 						<label>Tipo de cambio que sufrio el equipo</label>
 						<input type="text" class="form-control" readonly="" value="<?php echo $d->cambio ?>">
 					</div>
 				</div>
 
-				<div class="col-md-3">
+				<div class="col-md-6">
 					<div class="form-group">
 						<label>Breve descripción porque se hizo el cambio(Daño,obsoleto, etc.) </label>
-						<textarea name="" id="" cols="30" readonly="" rows="1"> <?php echo $d->descripcion_cambio ?> </textarea>
+						<textarea name="" id="" cols="30" readonly="" rows="2"> <?php echo $d->descripcion_cambio ?> </textarea>
 					</div>
 				</div>
 
@@ -170,7 +170,7 @@
 	<?php } ?>
 
 	<!-- boton para regresar atras-->
-	<a class="btn btn-success" href="<?php echo base_url('listado-sustituciones')?>">ATRAS</a>
+	<a class="btn btn-success" href="<?php echo base_url('listado-prestamos')?>">ATRAS</a>
 
 
     <!--FIN CONTENIDO DE LA APLICACION-->

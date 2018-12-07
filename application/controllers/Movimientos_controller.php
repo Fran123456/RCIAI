@@ -218,10 +218,12 @@ class Movimientos_controller extends CI_Controller {
 							   'fecha_cambio' => $fecha_prestamo,
 							   'codigo_id' => $codigo,
 							   'unidad_pertenece_id' => $unidad_pertenece_id,
+							   'unidad_traslado_id' => 'ninguna',
 							   'cambio' => $cambio,
 							   'descripcion_cambio' => $desc_prestamo,
 							   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
 							   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
+							   'descripcion_equipoRetirado' => 'ninguna',
 							   'descripcion_equipoNuevo' => $caract_equipo_f,
 							   'encargado' => $encargado,
 							   'tecnico' => $tecnico,
@@ -265,16 +267,24 @@ class Movimientos_controller extends CI_Controller {
 				//serial del equipo que es sustiuido y regresa a bodega
 				$serial2 = $this->mov->serial_equipo_sustituido($codigo,$perifericos);
 				$serial_sustituido = $serial2->serial;
+
+				$descripcionEquipo = $this->mov->descripcionEquipoRetirado($serial_sustituido);
+				//print_r($descripcionEquipo);
+				$descripcion_equipoRetirado = 'serial: '.$descripcionEquipo->serial.' '.'marca: '.$descripcionEquipo->marca.' '.'tipo: '.$descripcionEquipo->tipo;
+				//echo "<br>";
+				//print_r($descripcion_equipoRetirado);
 				//mandamos los campos que se van a insertar en la tabla movimiento
 				$datos = array('token' => $token,
 							   'fecha_retiro' => $fecha_retiro,
 							   'fecha_cambio' => $fecha_prestamo,
 							   'codigo_id' => $codigo,
 							   'unidad_pertenece_id' => $unidad_pertenece_id,
+							   'unidad_traslado_id' => 1,
 							   'cambio' => $cambio,
 							   'descripcion_cambio' => $desc_prestamo,
 							   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
 							   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
+							   'descripcion_equipoRetirado' => $descripcion_equipoRetirado,
 							   'descripcion_equipoNuevo' => $caract_equipo_f,
 							   'encargado' => $encargado,
 							   'tecnico' => $tecnico,

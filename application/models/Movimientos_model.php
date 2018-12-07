@@ -266,9 +266,19 @@ class Movimientos_model extends CI_Model
   		$this->db->update('inventario_bodega');
   		if($this->db->affected_rows() > 0){
 			return true;
-		}else{
-			return false;
-		}
+			}else{
+				return false;
+			}
+  	}
+
+  	//función para tener la descripción del equipo retirado
+  	public function descripcionEquipoRetirado($serial_sustituido)
+  	{
+  		$this->db->select('serial,marca,tipo');
+  		$this->db->from('inventario_bodega');
+  		$this->db->where('serial',$serial_sustituido);
+  		$query = $this->db->get();
+  		return $query->row();
   	}
 
 }//fin de la clase
