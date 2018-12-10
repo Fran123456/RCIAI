@@ -37,6 +37,11 @@ class GeneralReporte_Model extends CI_Model
       return $data;
     }
 
+    public function like__($campo, $valor, $table){
+      $data = $this->db->like($campo, $valor)->get($table)->result_array();
+      return $data;
+    }
+
 
      public function perifericos_disponible(){
 

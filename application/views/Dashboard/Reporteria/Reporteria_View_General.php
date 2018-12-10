@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Reporteria</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 	
 </head>
@@ -28,7 +28,7 @@
 								<div class="panel-body text-center">
 									<p>Reporte laptop que existen en el inventario</p>
 									<div class="row">
-											<a href=""><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></a>
+											<a target="_blank" href="<?php echo base_url()?>Reporte5_controller/reporte5"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></a>
 									</div>
 									
 									
