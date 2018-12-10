@@ -283,3 +283,8 @@ $route['Devoluciones-list'] = 'Devoluciones_Controller/index';
 $route['retornar/(:any)'] = 'Devoluciones_Controller/regreso/$1';
 $route['asignar-prestamo/(:any)'] = 'Devoluciones_Controller/no_regreso/$1';
 $route['asignar-prestamo/(:any)'] = 'Devoluciones_Controller/no_regreso/$1';
+
+
+
+//REPORTERIA FINAL MODULO :')
+$route['reporteria'] = 'dashboard_Controller/panel_report';

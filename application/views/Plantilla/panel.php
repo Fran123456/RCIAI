@@ -152,6 +152,10 @@
 							</div>
 						</li>
 
+						 <li><a href="<?php echo base_url()?>reporteria"><i class="far fa-file-alt"></i> <span>Reporteria</span></a></li>
+
+
+
 
 
 					<!-- fin del Root-->

@@ -33,7 +33,10 @@ class dashboard_Controller extends CI_Controller {
 
 	public function ob(){
 		$res = $this->dashboard_Model->n_bodega_elements();
-		
+	}
+
+	public function panel_report(){
+		$this->load->view('Dashboard/Reporteria/Reporteria_View_General');
 	}
 
 
