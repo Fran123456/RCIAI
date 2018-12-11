@@ -16,13 +16,16 @@ class Reporte5_controller extends CI_Controller {
 		$this->load->model('Reporte4_Model','R4');
 
 		require 'application/plus/noty.php';
+		require 'application/plus/Excel.php';
 		
 	}
 
 	//muestra la vista general de los movimientos que se pueden realizar
 	public function reporte5()
-	{
+	{  $ArrayColumnas = array('A1','B1', 'C1', 'D1', 'E1', 'F1', 'G1','H1','I1');
+	   $ArrayColumnasLetra = array('A','B', 'C', 'D', 'E', 'F', 'G','H','I');
 
+      //peticiiones de datos al a db
 		$laptops = $this->General->like__('identificador', 'LAP', 'inventario_adm');
 		for ($i=0; $i <count($laptops) ; $i++) { 
 			$areas[$i] = $this->General->where_('unidad', $laptops[$i]['destino'] ,'id_unidad');
@@ -33,22 +36,12 @@ class Reporte5_controller extends CI_Controller {
 			$video[$i] = $this->General->where_('adaptador_video', $laptops[$i]['identificador'], 'pc_id');
 		}
 
-     
+     //confinguraciones iniciales con clase Excel para reporte.
+          $spreadsheet = Excel::Create_Excel__(null, null);
+		  Excel::Header_format__(null , null,'A1:I1' , $spreadsheet);
+          Excel::Values_Header__($spreadsheet, 0, $ArrayColumnas, $ArrayTitulo = array('CODIGO','MARCA','MODELO','SERIAL','UNIDAD','DISCO DURO','RAM','PROCESADOR','SISTEMA OPERATIVO'));
 
-
-		$spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-
-		     $spreadsheet->getDefaultStyle()
-		    ->getFont()
-		    ->setName('Arial')
-		    ->setSize(10);
-
-
-          $spreadsheet->setActiveSheetIndex(0)
-		    ->setCellValue('A1', 'CODIGO  ')->setCellValue('B1', 'MARCA ')->setCellValue('C1', 'MODELO ')->setCellValue('D1', 'SERIAL ')
-		    ->setCellValue('E1', 'UNIDAD  ')->setCellValue('F1', 'DISCO DURO  ')->setCellValue('G1', 'RAM  ')->setCellValue('H1', 'PROCESADOR  ')->setCellValue('I1', 'SISTEMA OPERATIVO  ');
-
+        //impresion de datos.
            $cont = 1;
 		   for ($i=0; $i <count($laptops) ; $i++) { 
 		   	$cont++;
@@ -63,69 +56,17 @@ class Reporte5_controller extends CI_Controller {
 		      ->setCellValue('H'.$cont, $placa[$i][0]['procesador'])
 		      ->setCellValue('I'.$cont, $sistema[$i][0]['sistema_operativo']);
 		   }
+           
+		   Excel::borders__($spreadsheet, '686868', "A1:I".$cont);
 
-		    $spreadsheet->getActiveSheet()
-            ->getColumnDimension('A')
-            ->setAutoSize(true);
+         //AUTOTAMAÑO DE LAS COLUMNAS
+		  Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);
+		 //AUTOTAMAÑO DE LAS COLUMNAS
 
-             $spreadsheet->getActiveSheet()
-            ->getColumnDimension('B')
-            ->setAutoSize(true);
-
-             $spreadsheet->getActiveSheet()
-            ->getColumnDimension('C')
-            ->setAutoSize(true);
-
-             $spreadsheet->getActiveSheet()
-            ->getColumnDimension('D')
-            ->setAutoSize(true);
-
-            $spreadsheet->getActiveSheet()
-            ->getColumnDimension('E')
-            ->setAutoSize(true);
-
-             $spreadsheet->getActiveSheet()
-            ->getColumnDimension('F')
-            ->setAutoSize(true);
-
-             $spreadsheet->getActiveSheet()
-            ->getColumnDimension('G')
-            ->setAutoSize(true);
-
-             $spreadsheet->getActiveSheet()
-            ->getColumnDimension('H')
-            ->setAutoSize(true);
-
-             $spreadsheet->getActiveSheet()
-            ->getColumnDimension('I')
-            ->setAutoSize(true);
-		
-        $writer = new Xlsx($spreadsheet);
-        $filename = 'REPORTE-DE-LAPTOPS';
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
-        header('Cache-Control: max-age=0');
-        $writer->save('php://output'); // download file 
-
-      
-        
-	/*	$spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Hello World !');
-        
-        $writer = new Xlsx($spreadsheet);
- 
-        $filename = 'name-of-the-generated-file';
- 
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
-        header('Cache-Control: max-age=0');
-        
-        $writer->save('php://output'); // download file */
+		//SAVE
+        Excel::save__($spreadsheet,'Reporte-lapops');
+        //SAVE
 	}
 
-
 }
-
-
 ?>
