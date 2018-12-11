@@ -22,7 +22,8 @@ class Reporte6_controller extends CI_Controller {
 
 	//muestra la vista general de los movimientos que se pueden realizar
 	public function reporte6()
-	{  $ArrayTitulo = array('CODIGO','TIPO','ENCARGADO','PC');
+	{  
+	 $ArrayTitulo = array('CODIGO','TIPO','ENCARGADO','PC');
 	   $ArrayColumnas = array('A1','B1', 'C1', 'D1');
 	   $ArrayColumnasLetra = array('A','B', 'C', 'D');
 
@@ -30,10 +31,11 @@ class Reporte6_controller extends CI_Controller {
 
       //peticiiones de datos al a db
 		$impresores = $this->General->like__('identificador', 'IMPR', 'inventario_adm');
-		for ($i=0; $i <count($laptops) ; $i++) { 
+		for ($i=0; $i <count($impresores) ; $i++) { 
 			$bodega[$i] = $this->General->where_('inventario_bodega', $impresores[$i]['serial'], 'serial');
 		}
 
+	
 		
 
      //confinguraciones iniciales con clase Excel para reporte.
@@ -49,7 +51,7 @@ class Reporte6_controller extends CI_Controller {
 		      ->setCellValue('A'.$cont, $impresores[$i]['identificador'])
 		      ->setCellValue('B'.$cont, $bodega[$i][0]['tipo'])
 		      ->setCellValue('C'.$cont, $impresores[$i]['encargado_puesto'])
-		      ->setCellValue('D'.$cont, $bodega[$i][0]['pc_servidor_id'])
+		      ->setCellValue('D'.$cont, $bodega[$i][0]['pc_servidor_id']);
 		   }
            
 		   Excel::borders__($spreadsheet, '686868', "A1:D".$cont);
@@ -61,6 +63,9 @@ class Reporte6_controller extends CI_Controller {
 		//SAVE
         Excel::save__($spreadsheet,'Reporte-impresores');
         //SAVE*/
+
+        
+       
 	}
 
 }

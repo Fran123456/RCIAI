@@ -25,7 +25,7 @@ class Excel
 			        'bold' => $boldStyle,
 			    ],
 			    'alignment' => [
-			        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+			        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
 			    ],
 			    'borders' => [
 			     /*   'top' => [
@@ -42,7 +42,7 @@ class Excel
 			    ],
 			];
 
-        $spreadsheet->getActiveSheet()->getStyle('A1:I1')->applyFromArray($styleArray);
+        $spreadsheet->getActiveSheet()->getStyle($range)->applyFromArray($styleArray);
 	}
 
 	public static function borders__($spreadsheet, $color, $range){
@@ -99,6 +99,8 @@ class Excel
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
         header('Cache-Control: max-age=0');
         $writer->save('php://output'); // download file 
+
+        
 	}
 
 }

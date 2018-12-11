@@ -39,6 +39,28 @@
 			<!--REPORTE 5-->
 
 
+			<!--REPORTE 5-->
+				<div class="col-md-4">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title"><i class="fa fa-print" aria-hidden="true"></i> Reporte de impresores</h3>
+								</div>
+								<div class="panel-body text-center">
+									<p>Reporte impresores que existen en el inventario</p>
+									<div class="row">
+											<a target="_blank" href="<?php echo base_url()?>Reporte6_controller/reporte6"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></a>
+									</div>
+									
+									
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+		 		 </div>
+			<!--REPORTE 5-->
+
+
+
 
 		</div>
 	</div>
