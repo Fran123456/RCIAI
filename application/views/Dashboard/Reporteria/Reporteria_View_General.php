@@ -80,8 +80,36 @@
 				<!-- END PANEL HEADLINE -->
 		 		 </div>
 			<!--REPORTE 8-->
+
+
+			<!--REPORTE 8-->
+				<div class="col-md-4">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title"><i class="fa fa-desktop" aria-hidden="true"></i> Reporte general por unidad</h3>
+								</div>
+								<div class="panel-body text-center">
+									<p>Reporte total del inventario es decir como se cierra el año por departamento (PC)</p>
+									<div class="row">
+										<a target="_blank" href="<?php echo base_url()?>Reporte11_controller/reporte11"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></a>
+									</div>
+									
+									
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+		 		 </div>
+			<!--REPORTE 8-->
+
+
+
+
 		</div>
 	</div>
+
+
+
 
 
 

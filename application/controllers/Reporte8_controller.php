@@ -210,7 +210,6 @@ class Reporte8_controller extends CI_Controller {
        	$data = array();
        }
        
-
        return $data;
 	}
 
