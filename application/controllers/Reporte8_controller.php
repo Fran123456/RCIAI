@@ -57,7 +57,7 @@ class Reporte8_controller extends CI_Controller {
 
 		if(count($data) > 0){
 
-		    /*    //confinguraciones iniciales con clase Excel para reporte.
+		       //confinguraciones iniciales con clase Excel para reporte.
 		          $spreadsheet = Excel::Create_Excel__(null, 10);
 				  Excel::Header_format__(null , null,'A1:L1' , $spreadsheet);
 		          Excel::Values_Header__($spreadsheet, 0, $header[0], $header[1]);
@@ -109,7 +109,77 @@ class Reporte8_controller extends CI_Controller {
 				  //AUTOTAMAÑO DE LAS COLUMNAS
 
 				  //SAVE
-		          Excel::save__($spreadsheet,'Reporte-movimientos');
+		          Excel::save__($spreadsheet,'Reporte-movimientos-año-'.$year);
+		         //SAVE*/
+
+		}else{
+			redirect(base_url().'error-404-reporteria');
+		}
+	}
+
+
+
+	public function reporte8_mes()
+	{  
+		$year = $this->input->post('date');
+		$data = $this->data_factory_mouth($year);
+		$header = $this->header__();
+
+		if(count($data) > 0){
+
+		       //confinguraciones iniciales con clase Excel para reporte.
+		          $spreadsheet = Excel::Create_Excel__(null, 10);
+				  Excel::Header_format__(null , null,'A1:L1' , $spreadsheet);
+		          Excel::Values_Header__($spreadsheet, 0, $header[0], $header[1]);
+
+
+
+		         //impresion de datos.
+		           $cont = 1;
+				   for ($i=0; $i <count($data['movimientos']) ; $i++) { 
+				   	$cont++;
+				     $spreadsheet->setActiveSheetIndex(0)->setCellValue('A'.$cont, $data['movimientos'][$i]['fecha_retiro'])
+				     ->setCellValue('B'.$cont, $data['movimientos'][$i]['fecha_cambio'])
+				     ->setCellValue('C'.$cont, $data['movimientos'][$i]['codigo_id']);
+
+				     if(isset($data['unidad_pertenece_viejo'][$i][0]['unidad'])){	 
+				     	$spreadsheet->setActiveSheetIndex(0)->setCellValue('D'.$cont, $data['unidad_pertenece_viejo'][$i][0]['unidad']);
+				     }else{
+				       $spreadsheet->setActiveSheetIndex(0)->setCellValue('D'.$cont, "");
+				     }
+
+				     if(isset($data['unidad_traslado_viejo'][$i][0]['unidad'])){	 
+				     	$spreadsheet->setActiveSheetIndex(0)->setCellValue('E'.$cont, $data['unidad_traslado_viejo'][$i][0]['unidad']);
+				     }else{
+				       $spreadsheet->setActiveSheetIndex(0)->setCellValue('E'.$cont, "");
+				     }
+
+				     $spreadsheet->setActiveSheetIndex(0)->setCellValue('F'.$cont, $data['movimientos'][$i]['cambio'])
+				     ->setCellValue('G'.$cont, $data['movimientos'][$i]['descripcion_cambio']);
+
+
+				     if(isset($data['unidad_origen_nuevo'][$i][0]['unidad'])){	 
+				     	$spreadsheet->setActiveSheetIndex(0)->setCellValue('H'.$cont, $data['unidad_origen_nuevo'][$i][0]['unidad']);
+				     }else{
+				       $spreadsheet->setActiveSheetIndex(0)->setCellValue('H'.$cont, "");
+				     }
+
+
+				    $spreadsheet->setActiveSheetIndex(0)->setCellValue('I'.$cont, $data['movimientos'][$i]['descripcion_equipoRetirado'])
+				     ->setCellValue('J'.$cont, $data['movimientos'][$i]['descripcion_equipoNuevo'])
+				     ->setCellValue('K'.$cont, $data['movimientos'][$i]['encargado'])
+				     ->setCellValue('L'.$cont, $data['movimientos'][$i]['tecnico']);
+
+				   }
+		           
+				  Excel::borders__($spreadsheet, '686868', "A1:L".$cont);
+
+		          //AUTOTAMAÑO DE LAS COLUMNAS
+				   Excel::ColumnDimension_AutoSize__(true, $header[2], $spreadsheet);
+				  //AUTOTAMAÑO DE LAS COLUMNAS
+
+				  //SAVE
+		          Excel::save__($spreadsheet,'Reporte-movimientos-por-mes-'.$year);
 		         //SAVE*/
 
 		}else{
