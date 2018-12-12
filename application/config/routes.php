@@ -288,3 +288,4 @@ $route['asignar-prestamo/(:any)'] = 'Devoluciones_Controller/no_regreso/$1';
 
 //REPORTERIA FINAL MODULO :')
 $route['reporteria'] = 'dashboard_Controller/panel_report';
+$route['error-404-reporteria'] = 'Reporte8_controller/error_message__';

@@ -80,10 +80,6 @@
 				<!-- END PANEL HEADLINE -->
 		 		 </div>
 			<!--REPORTE 8-->
-
-
-
-
 		</div>
 	</div>
 
@@ -107,9 +103,7 @@
       </div>
       <div class="modal-body">
             <label>Ingrese un año:</label>
-      		<input class="form-control" type="text" name="year">
-      	
-        
+      		<input required="" class="form-control" type="text" name="year">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -134,7 +128,7 @@
       </div>
       <div class="modal-body"> 
            <label>Ingrese fecha</label>          
-          <input class="form-control" type="date" name="date">
+          <input required="" class="form-control" type="date" name="date">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -145,7 +139,6 @@
 </div>
 </form>
 <!--MODAL REPORTE 8-->
-
 
 
 
