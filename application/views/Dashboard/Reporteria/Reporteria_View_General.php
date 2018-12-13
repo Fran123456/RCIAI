@@ -17,8 +17,10 @@
 		<hr>
 	<div class="container" >
 		<div class="row">
+
 			
 			<!--REPORTE 5-->
+			<form method="post" action="<?php echo base_url()?>Reporte5_controller/reporte5">
 				<div class="col-md-4">
 		         <!-- PANEL HEADLINE -->
 						<div class="panel panel-headline">
@@ -27,15 +29,33 @@
 								</div>
 								<div class="panel-body text-center">
 									<p>Reporte laptop que existen en el inventario</p>
-									<div class="row">
-											<a target="_blank" href="<?php echo base_url()?>Reporte5_controller/reporte5"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></a>
-									</div>
 									
+									<div class="row">
+										<div class="col-md-8">
+											<label>Unidad</label>
+											<select name="unidad2" id="unidad2" class="form-control">
+										<script type="text/javascript"> $('#unidad2').append('<option value="todo">Todo</option>');</script>
+
+											<?php for ($i=0; $i <count($unidades)-2 ; $i++): ?>
+												
+												<?php if($unidades[$i]['id_unidad'] != 4 && $unidades[$i]['id_unidad'] != 1 && $unidades[$i]['id_unidad'] != 38): ?>
+												            <option value="<?php echo $unidades[$i]['id_unidad'] ?>"><?php echo $unidades[$i]['unidad'] ?></option>
+											<?php endif; ?>
+
+											<?php endfor; ?>
+											</select>
+										</div>
+										<div class="col-md-4" style="padding-top: 10px">
+											<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
+										</div>
+										
+									</div>
 									
 								</div>
 						</div>
 				<!-- END PANEL HEADLINE -->
 		 		 </div>
+		 		</form>
 			<!--REPORTE 5-->
 
 
@@ -47,7 +67,7 @@
 									<h3 class="panel-title"><i class="fa fa-print" aria-hidden="true"></i> Reporte de impresores</h3>
 								</div>
 								<div class="panel-body text-center">
-									<p>Reporte impresores que existen en el inventario</p>
+									<p>Reporte impresores que existen en el inventario</p><br>
 									<div class="row">
 											<a target="_blank" href="<?php echo base_url()?>Reporte6_controller/reporte6"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></a>
 									</div>
@@ -68,7 +88,7 @@
 									<h3 class="panel-title"><i class="fa fa-arrows" aria-hidden="true"></i> Reporte de movimientos</h3>
 								</div>
 								<div class="panel-body text-center">
-									<p>Reporte de todos los movimientos y asignaciones por año y por mes</p>
+									<p>Reporte de todos los movimientos y asignaciones por año y por mes</p><br>
 									<div class="row">
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalAno">Por año</button>
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalMes">Por mes</button>
@@ -93,9 +113,6 @@
 									<p>Reporte total del inventario es decir como se cierra el año por departamento (PC)</p>
 									<div class="row">
 										<div class="col-md-8">
-											
-												
-									
 											<label>Unidad</label>
 											<select name="unidad" id="unidad" class="form-control">
 											<?php for ($i=0; $i <count($unidades) ; $i++): ?>
@@ -129,6 +146,9 @@
    $('#unidad').append('<option value="lab-01">LAB-01</option><option value="lab-02">LAB-02</option>'+
    '<option value="lab-03">LAB-03</option><option value="lab-04">LAB-04</option><option value="lab-05">LAB-05</option>'+
    '<option value="lab-red">LAB-RED</option><option value="lab-hw">LAB-HW</option>');
+
+
+  
 
 </script>
 

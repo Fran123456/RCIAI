@@ -26,7 +26,19 @@ class Reporte5_controller extends CI_Controller {
 	   $ArrayColumnasLetra = array('A','B', 'C', 'D', 'E', 'F', 'G','H','I');
 
       //peticiiones de datos al a db
-		$laptops = $this->General->like__('identificador', 'LAP', 'inventario_adm');
+	   $unidad = $this->input->post('unidad2');
+	   if($unidad == 'todo'){
+          $laptops = $this->General->like__('identificador', 'LAP', 'inventario_adm');
+          $name = 'Reporte-laptops-'.$this->date();
+	   }else{
+	   	 //$laptops = $this->General->like__('identificador', 'LAP', 'inventario_adm');
+	   	$laptops = $this->General->like_where('inventario_adm' , $unidad  ,'destino', 'identificador', 'LAP');
+	   	$unidadFinal = $this->General->where_('unidad', $unidad, 'id_unidad');
+	   	$name = 'Reporte-laptops-'.$unidadFinal[0]['unidad'].'-'.$this->date();
+	   }
+		
+
+
 		for ($i=0; $i <count($laptops) ; $i++) { 
 			$areas[$i] = $this->General->where_('unidad', $laptops[$i]['destino'] ,'id_unidad');
 			$bodega[$i] = $this->General->where_('inventario_bodega', $laptops[$i]['serial'], 'serial');
@@ -39,7 +51,7 @@ class Reporte5_controller extends CI_Controller {
      //confinguraciones iniciales con clase Excel para reporte.
           $spreadsheet = Excel::Create_Excel__(null, null);
 		  Excel::Header_format__(null , null,'A1:I1' , $spreadsheet);
-          Excel::Values_Header__($spreadsheet, 0, $ArrayColumnas, $ArrayTitulo = array('CODIGO','MARCA','MODELO','SERIAL','UNIDAD','DISCO DURO','RAM','PROCESADOR','SISTEMA OPERATIVO'));
+          Excel::Values_Header__($spreadsheet, 0, $ArrayColumnas, $ArrayTitulo = array('  CODIGO  ','  MARCA ','  MODELO  ','  SERIAL  ','  UNIDAD  ','  DISCO DURO  ','  RAM  ','  PROCESADOR  ','  SISTEMA OPERATIVO  '));
 
         //impresion de datos.
            $cont = 1;
@@ -64,9 +76,19 @@ class Reporte5_controller extends CI_Controller {
 		 //AUTOTAMAÑO DE LAS COLUMNAS
 
 		//SAVE
-        Excel::save__($spreadsheet,'Reporte-lapops');
+        Excel::save__($spreadsheet,$name);
         //SAVE
 	}
+
+
+      public function date(){
+      	$hoy = getdate();
+      	$d = $hoy['mday'];
+        $m = $hoy['mon'];
+        $y = $hoy['year'];
+        $today = $d . "-". $m . "-". $y;
+        return $today;
+      }
 
 }
 ?>
