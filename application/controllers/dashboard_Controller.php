@@ -9,6 +9,7 @@ class dashboard_Controller extends CI_Controller {
       if (!$this->session->userdata('login')) {
 			redirect(base_url());
 		}
+		$this->load->model('GeneralReporte_Model', 'General');
 		$this->load->model('dashboard_Model');
 		require 'application/plus/noty.php';
 
@@ -36,8 +37,11 @@ class dashboard_Controller extends CI_Controller {
 	}
 
 	public function panel_report(){
-		$this->load->view('Dashboard/Reporteria/Reporteria_View_General');
+		$unidades = $this->General->select_('unidad');
+		$this->load->view('Dashboard/Reporteria/Reporteria_View_General', compact('unidades'));
 	}
+
+	
 
 
 }

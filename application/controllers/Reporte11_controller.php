@@ -22,168 +22,226 @@ class Reporte11_controller extends CI_Controller {
 
 
 	public function error_message__(){
-		$mensaje = "No hay registros.";
+		$mensaje = "No hay registro para el año o mes que ha proporcionado.";
 		$this->load->view('Dashboard/Reporteria/success', compact('mensaje'));
 	}
 
-	public function header__(){
-		       $ArrayTitulo = array(
-		       	'Codigo equipo',
-		       	'Encargado',
-		       	'Nombre equipo',
-		       	'Dominio', 
-		       	'Grupo de trabajo',
-		       	'Sistema operativo',
-		       	'Nucleos',
-		       	'RAM',
-		       	'Procesador',
-		       	'Motherboard',
-		       	'Modelo motherboard',
-		       	'Monitor serial',
-		       	'Monitor marca',
-                'Monitor tipo',
-                'Teclado serial',
-		       	'Teclado marca',
-                'Teclado tipo',
-                'Mouse serial',
-		       	'Mouse marca',
-                'Mouse tipo',
-                'Ups serial',
-		       	'Ups marca',
-                'Ups tipo',
-                'Impresor serial',
-		       	'Impresor marca',
-                'Impresor tipo',
-                'Webcam serial',
-		       	'Webcam marca',
-                'Webcam tipo',
+	public function header__Admin(){
+		        $ArrayTitulo = array(
+		       	' Codigo equipo ',
+		       	' Encargado ',
+		       	' Nombre equipo ',
+		       	' Dominio/grupo trabajo ', 
+		       	' Sistema operativo ',
+		       	' Nucleos ',
+		       	' RAM ',
+		       	' Procesador ',
+		       	' Modelo motherboard ',
+		       	' Monitor serial ',
+		       	' Monitor marca ',
+                ' Monitor tipo' ,
+                ' Teclado serial ',
+		       	' Teclado marca ',
+                ' Teclado tipo ',
+                ' Mouse serial ',
+		       	' Mouse marca ',
+                ' Mouse tipo ',
+                ' Ups serial ',
+		       	' Ups marca ',
+                ' Ups tipo ',
+                ' Impresor serial ',
+		       	' Impresor marca ',
+                ' Impresor tipo ',
+                ' Webcam serial ',
+		       	' Webcam marca ',
+                ' Webcam tipo ',
 		       );
-			   $ArrayColumnas = array('A1','B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'H1','I1', 'J1', 'K1', 'L1','M1','N1','O1','P1','Q1','R1','S1','T1','U1','V1','W1', 'X1', 'Y1', 'Z1', 'AA1', 'AB1','AC1');
-			   $ArrayColumnasLetra = array('A','B', 'C', 'D', 'E','F', 'G', 'H', 'I', 'J','K', 'L','M','N','O','P','Q','R','S','T','U','V','W', 'X', 'Y', 'Z', 'AA', 'AB','AC');
+			   $ArrayColumnas = array('A1','B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'H1','I1', 'J1', 'K1', 'L1','M1','N1','O1','P1','Q1','R1','S1','T1','U1','V1','W1', 'X1', 'Y1', 'Z1', 'AA1');
+			   $ArrayColumnasLetra = array('A','B', 'C', 'D', 'E','F', 'G', 'H', 'I', 'J','K', 'L','M','N','O','P','Q','R','S','T','U','V','W', 'X', 'Y', 'Z', 'AA');
 
                $Excel = array($ArrayColumnas, $ArrayTitulo, $ArrayColumnasLetra);
 			   return $Excel;
+
 
 	}
 
 	//muestra la vista general de los movimientos que se pueden realizar
 	public function reporte11()
 	{  
+       $unidad = $this->input->post('unidad');
 
-		$data = $this->reporte_data(2);
-	//	$header = $this->header__();
+       if($unidad == 37){
 
-		
- $spreadsheet = Excel::Create_Excel__(null, 10);
+       }elseif($unidad == 'lab-01' || $unidad == 'lab-02' || $unidad == 'lab-03' || $unidad == 'lab-04' || $unidad == 'lab-05' || $unidad == 'lab-red' || $unidad == 'lab-hw'){
+
+
+       }else{
+       	$this->reporte_admin($unidad);
+       }
+
+	}
+
+
+	public function reporte_admin($unidad){
+		$data = $this->reporte_data($unidad);
+		$header = $this->header__Admin();
+
 		if(count($data) > 0){
 
-		       //confinguraciones iniciales con clase Excel para reporte.
-		       //   $spreadsheet = Excel::Create_Excel__(null, 10);
-				 // Excel::Header_format__(null , null,'A1:AC1' , $spreadsheet);
-		        //  Excel::Values_Header__($spreadsheet, 0, $header[0], $header[1]);
-           
-                   
+	
 
-/*
-		         //impresion de datos.
-		           $cont = 1;
-				   for ($i=0; $i <count($data['movimientos']) ; $i++) { 
+			   //confinguraciones iniciales con clase Excel para reporte.
+		          $spreadsheet = Excel::Create_Excel__(null, 10);
+				  Excel::Header_format__(null , null,'A1:AC1' , $spreadsheet);
+		          Excel::Values_Header__($spreadsheet, 0, $header[0], $header[1]);
+
+                  $cont = 1;
+				   for ($i=0; $i <count($data['inventario']) ; $i++) { 
 				   	$cont++;
-				     $spreadsheet->setActiveSheetIndex(0)->setCellValue('A'.$cont, $data['movimientos'][$i]['fecha_retiro'])
-				     ->setCellValue('B'.$cont, $data['movimientos'][$i]['fecha_cambio'])
-				     ->setCellValue('C'.$cont, $data['movimientos'][$i]['codigo_id']);
+				    $spreadsheet->setActiveSheetIndex(0)->setCellValue('A'.$cont, $data['inventario'][$i]['identificador'])
+				     ->setCellValue('B'.$cont, $data['inventario'][$i]['encargado_puesto'])
+				     ->setCellValue('C'.$cont, $data['descripcion_sistema'][$i][0]['nombre'])
+				     ->setCellValue('D'.$cont, $data['descripcion_sistema'][$i][0]['dominio'])
+				     ->setCellValue('E'.$cont, $data['descripcion_sistema'][$i][0]['sistema_operativo'])
+				     ->setCellValue('F'.$cont, $data['descripcion_sistema'][$i][0]['nucleo'])				     
+				     ->setCellValue('H'.$cont, $data['descripcion_sistema'][$i][0]['memoria_fisica'])
+				     ->setCellValue('G'.$cont, $data['placa_base'][$i][0]['procesador'])
+				     ->setCellValue('I'.$cont, $data['placa_base'][$i][0]['modelo_placa']);
+                    
 
-				     if(isset($data['unidad_pertenece_viejo'][$i][0]['unidad'])){	 
-				     	$spreadsheet->setActiveSheetIndex(0)->setCellValue('D'.$cont, $data['unidad_pertenece_viejo'][$i][0]['unidad']);
-				     }else{
-				       $spreadsheet->setActiveSheetIndex(0)->setCellValue('D'.$cont, "");
-				     }
-
-				     if(isset($data['unidad_traslado_viejo'][$i][0]['unidad'])){	 
-				     	$spreadsheet->setActiveSheetIndex(0)->setCellValue('E'.$cont, $data['unidad_traslado_viejo'][$i][0]['unidad']);
-				     }else{
-				       $spreadsheet->setActiveSheetIndex(0)->setCellValue('E'.$cont, "");
-				     }
-
-				     $spreadsheet->setActiveSheetIndex(0)->setCellValue('F'.$cont, $data['movimientos'][$i]['cambio'])
-				     ->setCellValue('G'.$cont, $data['movimientos'][$i]['descripcion_cambio']);
-
-
-				     if(isset($data['unidad_origen_nuevo'][$i][0]['unidad'])){	 
-				     	$spreadsheet->setActiveSheetIndex(0)->setCellValue('H'.$cont, $data['unidad_origen_nuevo'][$i][0]['unidad']);
-				     }else{
-				       $spreadsheet->setActiveSheetIndex(0)->setCellValue('H'.$cont, "");
-				     }
+                      if(isset($data['monitor'][$i][0]['serial'])){	 
+                       $spreadsheet->setActiveSheetIndex(0)->setCellValue('J'.$cont, $data['monitor'][$i][0]['serial'])
+                       ->setCellValue('K'.$cont, $data['monitor'][$i][0]['marca'])
+                       ->setCellValue('L'.$cont, $data['monitor'][$i][0]['nombre']);
+				      }
+				      else{
+				      	$spreadsheet->setActiveSheetIndex(0)->setCellValue('J'.$cont, "")
+				      	->setCellValue('K'.$cont, "")
+				      	->setCellValue('L'.$cont, "");
+				      }
 
 
-				    $spreadsheet->setActiveSheetIndex(0)->setCellValue('I'.$cont, $data['movimientos'][$i]['descripcion_equipoRetirado'])
-				     ->setCellValue('J'.$cont, $data['movimientos'][$i]['descripcion_equipoNuevo'])
-				     ->setCellValue('K'.$cont, $data['movimientos'][$i]['encargado'])
-				     ->setCellValue('L'.$cont, $data['movimientos'][$i]['tecnico']);
+
+				      if(isset($data['teclado'][$i][0]['serial'])){	 
+                       $spreadsheet->setActiveSheetIndex(0)->setCellValue('M'.$cont, $data['teclado'][$i][0]['serial'])
+                       ->setCellValue('N'.$cont, $data['teclado'][$i][0]['marca'])
+                       ->setCellValue('O'.$cont, $data['teclado'][$i][0]['nombre']);
+				      }
+				      else{
+				      	$spreadsheet->setActiveSheetIndex(0)->setCellValue('M'.$cont, "")
+				      	->setCellValue('N'.$cont, "")
+				      	->setCellValue('O'.$cont, "");
+				      }
+
+
+				      if(isset($data['mouse'][$i][0]['serial'])){	 
+                       $spreadsheet->setActiveSheetIndex(0)->setCellValue('P'.$cont, $data['mouse'][$i][0]['serial'])
+                       ->setCellValue('Q'.$cont, $data['mouse'][$i][0]['marca'])
+                       ->setCellValue('R'.$cont, $data['mouse'][$i][0]['nombre']);
+				      }
+				      else{
+				      	$spreadsheet->setActiveSheetIndex(0)->setCellValue('P'.$cont, "")
+				      	->setCellValue('Q'.$cont, "")
+				      	->setCellValue('R'.$cont, "");
+				      }
+
+
+				      if(isset($data['ups'][$i][0]['serial'])){	 
+                       $spreadsheet->setActiveSheetIndex(0)->setCellValue('S'.$cont, $data['ups'][$i][0]['serial'])
+                       ->setCellValue('T'.$cont, $data['ups'][$i][0]['marca'])
+                       ->setCellValue('U'.$cont, $data['ups'][$i][0]['nombre']);
+				      }
+				      else{
+				      	$spreadsheet->setActiveSheetIndex(0)->setCellValue('S'.$cont, "")
+				      	->setCellValue('T'.$cont, "")
+				      	->setCellValue('U'.$cont, "");
+				      }
+
+
+				      if(isset($data['impresor'][$i][0]['serial'])){	 
+                       $spreadsheet->setActiveSheetIndex(0)->setCellValue('V'.$cont, $data['impresor'][$i][0]['serial'])
+                       ->setCellValue('W'.$cont, $data['impresor'][$i][0]['marca'])
+                       ->setCellValue('X'.$cont, $data['impresor'][$i][0]['nombre']);
+				      }
+				      else{
+				      	$spreadsheet->setActiveSheetIndex(0)->setCellValue('V'.$cont, "")
+				      	->setCellValue('W'.$cont, "")
+				      	->setCellValue('X'.$cont, "");
+				      }
+
+				       if(isset($data['webcam'][$i][0]['serial'])){	 
+                       $spreadsheet->setActiveSheetIndex(0)->setCellValue('Y'.$cont, $data['webcam'][$i][0]['serial'])
+                       ->setCellValue('Z'.$cont, $data['webcam'][$i][0]['marca'])
+                       ->setCellValue('AA'.$cont, $data['webcam'][$i][0]['nombre']);
+				      }
+				      else{
+				      	$spreadsheet->setActiveSheetIndex(0)->setCellValue('Y'.$cont, "")
+				      	->setCellValue('Z'.$cont, "")
+				      	->setCellValue('AA'.$cont, "");
+				      }
+
 
 				   }
-		           
-				  Excel::borders__($spreadsheet, '686868', "A1:AC".$cont);*/
+
+		          Excel::borders__($spreadsheet, '686868', "A1:AA".$cont);
 
 		          //AUTOTAMAÑO DE LAS COLUMNAS
-			//	   Excel::ColumnDimension_AutoSize__(true, $header[2], $spreadsheet);
+				   Excel::ColumnDimension_AutoSize__(true, $header[2], $spreadsheet);
 				  //AUTOTAMAÑO DE LAS COLUMNAS
 
+
 				  //SAVE
-		         
-		         //SAVE
-
-
+		          Excel::save__($spreadsheet,'Reporte-movimientos-año-');
+		         //SAVE*/
 
 		}else{
 			redirect(base_url().'error-404-reporteria');
 		}
-
-		 Excel::save__($spreadsheet,'nombre');
 	}
 
 
-	public function reporte_data($unidad){
 
-      if($unidad != 37){
-        $inventario = $this->General->like_where('inventario_adm' , $unidad  ,'destino', 'identificador', 'PC');
-        $campoCoparacion = "identificador";
-      }else{
-        $inventario = $this->General->select_('inventario_lab');
-        $campoCoparacion = "identificador_lab";
-      }
 
-      if(count($inventario) > 0)
-      {
-     	  //adaptadores, sistema y más
-	      for ($i=0; $i <count($inventario) ; $i++) {
-	      	$componentes['almacenamiento'] = $this->General->where_('almacenamiento', $inventario[$i][$campoCoparacion] ,'pc_id');
-	      	$componentes['descripcion_sistema'] = $this->General->where_('descripcion_sistema', $inventario[$i][$campoCoparacion] ,'pc_ids');
-	      	$componentes['placa_base'] = $this->General->where_('placa_base', $inventario[$i][$campoCoparacion] ,'pc_id');
+    public function reporte_data($unidad){
 
-	      	$componentes['teclado'] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'TECLADO', 'tipo');
-
-	      	$componentes['mouse'] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'MOUSE', 'tipo');
-
-	      	$componentes['monitor'] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'MONITOR', 'tipo');
-
-	      	$componentes['impresor'] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'IMPRESORES-MULTIFUNCIONALES', 'tipo');
-
-	      	$componentes['webcam'] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'WEBCAM', 'tipo');
-
-	      	$componentes['ups'] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'UPS', 'tipo');
+	      if($unidad != 37){
+	        $inventario = $this->General->like_where('inventario_adm' , $unidad  ,'destino', 'identificador', 'PC');
+	        $campoCoparacion = "identificador";
+	      }else{
+	        $inventario = $this->General->select_('inventario_lab');
+	        $campoCoparacion = "identificador_lab";
 	      }
 
-	      $componentes['inventario'] = $inventario;
-     }
-     else
-     {
-     	$componentes = array();
-     }
-    
-      return $componentes;
-	}
+	      if(count($inventario) > 0)
+	      {
+	     	  //adaptadores, sistema y más
+		      for ($i=0; $i <count($inventario) ; $i++) {
+		      	$componentes['almacenamiento'][$i] = $this->General->where_('almacenamiento', $inventario[$i][$campoCoparacion] ,'pc_id');
+		      	$componentes['descripcion_sistema'][$i] = $this->General->where_('descripcion_sistema', $inventario[$i][$campoCoparacion] ,'pc_ids');
+		      	$componentes['placa_base'][$i] = $this->General->where_('placa_base', $inventario[$i][$campoCoparacion] ,'pc_id');
+
+		      	$componentes['teclado'][$i] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'TECLADO', 'tipo');
+
+		      	$componentes['mouse'][$i] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'MOUSE', 'tipo');
+
+		      	$componentes['monitor'][$i] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'MONITOR', 'tipo');
+
+		      	$componentes['impresor'][$i] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'IMPRESORES-MULTIFUNCIONALES', 'tipo');
+
+		      	$componentes['webcam'][$i] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'WEBCAM', 'tipo');
+
+		      	$componentes['ups'][$i] =$this->General->where_x2('inventario_bodega', $inventario[$i][$campoCoparacion] ,'pc_servidor_id', 'UPS', 'tipo');
+		      }
+
+		      $componentes['inventario']= $inventario;
+	     }
+	     else
+	     {
+	     	$componentes = array();
+	     }
+	    
+	      return $componentes;
+      }
+	
 }
-
 ?>
-
