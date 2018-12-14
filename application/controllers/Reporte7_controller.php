@@ -53,17 +53,15 @@ class Reporte7_controller extends CI_Controller {
        if($unidad == 37){
        	  $unidadFinal = $this->General->where_('unidad', $unidad, 'id_unidad');
        	  $name = 'Reporte-ups-'.$unidadFinal[0]['unidad']."-".$this->date();
-       //   $this->reporte_laboratorio_All($unidad, $name);
+          $this->reporte_laboratorio_All($unidad, $name);
+
        }elseif($unidad == 'lab-01' || $unidad == 'lab-02' || $unidad == 'lab-03' || $unidad == 'lab-04' || $unidad == 'lab-05' || $unidad == 'lab-red' || $unidad == 'lab-hw'){
          	$name = 'Reporte-ups-'.$unidad."-".$this->date();
-         //  $this->reporte_laboratorio_All($unidad, $name);
-         	 $d =$this->reporte_data($unidad);
-       	print_r($d);
+           $this->reporte_laboratorio_All($unidad, $name);
+
        }
        else{
          //	$this->reporte_admin($unidad);
-        $d =$this->reporte_data($unidad);
-       	print_r($d);
        }
 
 	}
@@ -182,7 +180,7 @@ class Reporte7_controller extends CI_Controller {
 
     public function reporte_data($unidad){
 
-	      if($unidad != 37 && $unidad != 'lab-01' && $unidad != 'lab-02' && $unidad != 'lab-03' && $unidad != 'lab-04' && $unidad != 'lab-05' && $unidad != 'lab-red'&& $unidad != 'lab-hw'){
+	      if($unidad != 37 && $unidad != '01' && $unidad != '02' && $unidad != '03' && $unidad != '04' && $unidad != '05' && $unidad != 'red'&& $unidad != 'hw'){
 	        $inventario = $this->General->like_where('inventario_adm' , $unidad  ,'destino', 'identificador', 'UPS');
 	        $campoCoparacion = "identificador";
 
@@ -204,7 +202,7 @@ class Reporte7_controller extends CI_Controller {
 
 
 
-	      }elseif($unidad == 'lab-01' || $unidad == 'lab-02' || $unidad == 'lab-03' || $unidad == 'lab-04' || $unidad == 'lab-05' || $unidad == 'lab-red' || $unidad == 'lab-hw'){
+	      }elseif($unidad == '01' || $unidad == '02' || $unidad == '03' || $unidad == '04' || $unidad == '05' || $unidad == 'red' || $unidad == 'hw'){
 	      	    $inventario = $this->General->like_where('inventario_lab' , $unidad  ,'lab', 'identificador_lab', 'UPS');
                 $campoCoparacion = "identificador_lab";
 
@@ -214,7 +212,7 @@ class Reporte7_controller extends CI_Controller {
 		     	  //adaptadores, sistema y más
 			      for ($i=0; $i <count($inventario) ; $i++) {
 			      	$componentes['dataups'][$i] = $this->General->where_('inventario_bodega', $inventario[$i]['serial'] ,'serial');
-			      	$componentes['pc'][$i] = $this->General->where_('inventario_lab', $componentes['dataups'][$i][0]['pc_servidor_id'] ,'identificador');
+			      	$componentes['pc'][$i] = $this->General->where_('inventario_lab', $componentes['dataups'][$i][0]['pc_servidor_id'] ,'identificador_lab');
 			      	$componentes['descripcion'][$i] = $this->General->where_('descripcion_sistema', $componentes['dataups'][$i][0]['pc_servidor_id'] ,'pc_ids');
 			      }
 			       $componentes['inventario']= $inventario;
@@ -224,16 +222,25 @@ class Reporte7_controller extends CI_Controller {
 		     	$componentes = array();
 		     }
 
-
-
-
           } 
 	      else{
 	        $inventario = $this->General->like__('identificador_lab', 'UPS', 'inventario_lab');
 	        $campoCoparacion = "identificador_lab";
 
-
-
+	        if(count($inventario) > 0)
+		      {
+		     	  //adaptadores, sistema y más
+			      for ($i=0; $i <count($inventario) ; $i++) {
+			      	$componentes['dataups'][$i] = $this->General->where_('inventario_bodega', $inventario[$i]['serial'] ,'serial');
+			      	$componentes['pc'][$i] = $this->General->where_('inventario_lab', $componentes['dataups'][$i][0]['pc_servidor_id'] ,'identificador_lab');
+			      	$componentes['descripcion'][$i] = $this->General->where_('descripcion_sistema', $componentes['dataups'][$i][0]['pc_servidor_id'] ,'pc_ids');
+			      }
+			       $componentes['inventario']= $inventario;
+		     }
+		     else
+		     {
+		     	$componentes = array();
+		     }
 	      }
 
 

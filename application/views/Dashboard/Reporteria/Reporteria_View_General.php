@@ -204,9 +204,9 @@
    '<option value="lab-red">LAB-RED</option><option value="lab-hw">LAB-HW</option>');
 
 
-   $('#unidad4').append('<option value="lab-01">LAB-01</option><option value="lab-02">LAB-02</option>'+
-   '<option value="lab-03">LAB-03</option><option value="lab-04">LAB-04</option><option value="lab-05">LAB-05</option>'+
-   '<option value="lab-red">LAB-RED</option><option value="lab-hw">LAB-HW</option>');
+   $('#unidad4').append('<option value="01">LAB-01</option><option value="02">LAB-02</option>'+
+   '<option value="03">LAB-03</option><option value="04">LAB-04</option><option value="05">LAB-05</option>'+
+   '<option value="red">LAB-RED</option><option value="hw">LAB-HW</option>');
 
 
 
