@@ -119,8 +119,9 @@
 		 		 </div>
 			<!--REPORTE 8-->
 
-             <form method="post" action="<?php echo base_url()?>Reporte11_controller/reporte11">
-			<!--REPORTE 8-->
+             
+			<!--REPORTE 11-->
+			<form method="post" action="<?php echo base_url()?>Reporte11_controller/reporte11">
 				<div class="col-md-4">
 		         <!-- PANEL HEADLINE -->
 						<div class="panel panel-headline">
@@ -151,8 +152,45 @@
 						</div>
 				<!-- END PANEL HEADLINE -->
 		 		 </div>
-			<!--REPORTE 8-->
-			</form>
+		 		 </form>
+			<!--REPORTE 11-->
+			
+
+			<!--REPORTE 7-->
+			<form method="post" action="<?php echo base_url()?>Reporte11_controller/reporte11">
+				<div class="col-md-4">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title"><i class="fa fa-battery-full" aria-hidden="true"></i> Reporte de UPS unidad</h3>
+								</div>
+								<div class="panel-body text-center">
+									<p>Reporte general de todos los UPS por unidad - administrativo y laboratorios</p>
+									<div class="row">
+										<div class="col-md-8">
+											<label>Unidad</label>
+											<select name="unidad4" id="unidad4" class="form-control">
+											<?php for ($i=0; $i <count($unidades) ; $i++): ?>
+												
+												<?php if($unidades[$i]['id_unidad'] != 4 && $unidades[$i]['id_unidad'] != 1 && $unidades[$i]['id_unidad'] != 38): ?>
+												            <option value="<?php echo $unidades[$i]['id_unidad'] ?>"><?php echo $unidades[$i]['unidad'] ?></option>
+											<?php endif; ?>
+
+											<?php endfor; ?>
+											</select>
+										</div>
+										<div class="col-md-4" style="padding-top: 10px">
+											<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
+										</div>
+										
+									</div>
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+		 		 </div>
+		 		 </form>
+			<!--REPORTE 7-->
+			
 
 
 		</div>
@@ -164,6 +202,12 @@
    $('#unidad').append('<option value="lab-01">LAB-01</option><option value="lab-02">LAB-02</option>'+
    '<option value="lab-03">LAB-03</option><option value="lab-04">LAB-04</option><option value="lab-05">LAB-05</option>'+
    '<option value="lab-red">LAB-RED</option><option value="lab-hw">LAB-HW</option>');
+
+
+   $('#unidad4').append('<option value="lab-01">LAB-01</option><option value="lab-02">LAB-02</option>'+
+   '<option value="lab-03">LAB-03</option><option value="lab-04">LAB-04</option><option value="lab-05">LAB-05</option>'+
+   '<option value="lab-red">LAB-RED</option><option value="lab-hw">LAB-HW</option>');
+
 
 
   
