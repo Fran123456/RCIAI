@@ -27,16 +27,30 @@ class Reporte6_controller extends CI_Controller {
 	   $ArrayColumnas = array('A1','B1', 'C1', 'D1');
 	   $ArrayColumnasLetra = array('A','B', 'C', 'D');
 
-	   
 
       //peticiiones de datos al a db
-		$impresores = $this->General->like__('identificador', 'IMPR', 'inventario_adm');
+	//	$impresores = $this->General->like__('identificador', 'IMPR', 'inventario_adm');
+
+
+
+      //peticiiones de datos al a db
+	   $unidad = $this->input->post('unidad3');
+	   if($unidad == 'todo'){
+          $impresores = $this->General->like__('identificador', 'IMPR', 'inventario_adm');
+          $name = 'Reporte-impresores-'.$this->date();
+	   }else{
+	   	 //$laptops = $this->General->like__('identificador', 'LAP', 'inventario_adm');
+	   	$impresores = $this->General->like_where('inventario_adm' , $unidad  ,'destino', 'identificador', 'IMPR');
+	   	$unidadFinal = $this->General->where_('unidad', $unidad, 'id_unidad');
+	   	$name = 'Reporte-impresores-'.$unidadFinal[0]['unidad'].'-'.$this->date();
+	   }
+		
+
 		for ($i=0; $i <count($impresores) ; $i++) { 
 			$bodega[$i] = $this->General->where_('inventario_bodega', $impresores[$i]['serial'], 'serial');
 		}
 
-	
-		
+
 
      //confinguraciones iniciales con clase Excel para reporte.
           $spreadsheet = Excel::Create_Excel__(null, null);
@@ -61,12 +75,24 @@ class Reporte6_controller extends CI_Controller {
 		 //AUTOTAMAÑO DE LAS COLUMNAS
 
 		//SAVE
-        Excel::save__($spreadsheet,'Reporte-impresores');
+        Excel::save__($spreadsheet,$name);
         //SAVE*/
 
         
        
 	}
+
+
+
+
+      public function date(){
+      	$hoy = getdate();
+      	$d = $hoy['mday'];
+        $m = $hoy['mon'];
+        $y = $hoy['year'];
+        $today = $d . "-". $m . "-". $y;
+        return $today;
+      }
 
 }
 ?>

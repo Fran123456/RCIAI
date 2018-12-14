@@ -25,11 +25,10 @@
 		         <!-- PANEL HEADLINE -->
 						<div class="panel panel-headline">
 								<div class="panel-heading">
-									<h3 class="panel-title"><i class="fa fa-laptop" aria-hidden="true"></i> Reporte de laptop</h3>
+									<h3 class="panel-title"><i class="fa fa-laptop" aria-hidden="true"></i> Reporte de laptops</h3>
 								</div>
 								<div class="panel-body text-center">
 									<p>Reporte laptop que existen en el inventario</p>
-									
 									<div class="row">
 										<div class="col-md-8">
 											<label>Unidad</label>
@@ -59,7 +58,8 @@
 			<!--REPORTE 5-->
 
 
-			<!--REPORTE 5-->
+			<!--REPORTE 6-->
+			<form method="post" action="<?php echo base_url()?>Reporte6_controller/reporte6">
 				<div class="col-md-4">
 		         <!-- PANEL HEADLINE -->
 						<div class="panel panel-headline">
@@ -67,9 +67,26 @@
 									<h3 class="panel-title"><i class="fa fa-print" aria-hidden="true"></i> Reporte de impresores</h3>
 								</div>
 								<div class="panel-body text-center">
-									<p>Reporte impresores que existen en el inventario</p><br>
+									<p>Reporte impresores que existen en el inventario</p>
 									<div class="row">
-											<a target="_blank" href="<?php echo base_url()?>Reporte6_controller/reporte6"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></a>
+										<div class="col-md-8">
+											<label>Unidad</label>
+											<select name="unidad3" id="unidad3" class="form-control">
+										<script type="text/javascript"> $('#unidad3').append('<option value="todo">Todo</option>');</script>
+
+											<?php for ($i=0; $i <count($unidades)-2 ; $i++): ?>
+												
+												<?php if($unidades[$i]['id_unidad'] != 4 && $unidades[$i]['id_unidad'] != 1 && $unidades[$i]['id_unidad'] != 38): ?>
+												            <option value="<?php echo $unidades[$i]['id_unidad'] ?>"><?php echo $unidades[$i]['unidad'] ?></option>
+											<?php endif; ?>
+
+											<?php endfor; ?>
+											</select>
+										</div>
+										<div class="col-md-4" style="padding-top: 10px">
+											<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
+										</div>
+										
 									</div>
 									
 									
@@ -77,7 +94,8 @@
 						</div>
 				<!-- END PANEL HEADLINE -->
 		 		 </div>
-			<!--REPORTE 5-->
+		 		</form>
+			<!--REPORTE 6-->
 
 
 			<!--REPORTE 8-->
