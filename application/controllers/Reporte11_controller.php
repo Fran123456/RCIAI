@@ -125,38 +125,6 @@ class Reporte11_controller extends CI_Controller {
 				      	->setCellValue('Q'.$cont, "");
 				      }
 
-				      if(isset($data['ups'][$i][0]['serial'])){	 
-                       $spreadsheet->setActiveSheetIndex(0)->setCellValue('R'.$cont, $data['ups'][$i][0]['serial'])
-                       ->setCellValue('S'.$cont, $data['ups'][$i][0]['marca'])
-                       ->setCellValue('T'.$cont, $data['ups'][$i][0]['nombre']);
-				      }
-				      else{
-				      	$spreadsheet->setActiveSheetIndex(0)->setCellValue('R'.$cont, "")
-				      	->setCellValue('S'.$cont, "")
-				      	->setCellValue('T'.$cont, "");
-				      }
-
-				      if(isset($data['impresor'][$i][0]['serial'])){	 
-                       $spreadsheet->setActiveSheetIndex(0)->setCellValue('U'.$cont, $data['impresor'][$i][0]['serial'])
-                       ->setCellValue('V'.$cont, $data['impresor'][$i][0]['marca'])
-                       ->setCellValue('W'.$cont, $data['impresor'][$i][0]['nombre']);
-				      }
-				      else{
-				      	$spreadsheet->setActiveSheetIndex(0)->setCellValue('U'.$cont, "")
-				      	->setCellValue('V'.$cont, "")
-				      	->setCellValue('W'.$cont, "");
-				      }
-
-				       if(isset($data['webcam'][$i][0]['serial'])){	 
-                       $spreadsheet->setActiveSheetIndex(0)->setCellValue('X'.$cont, $data['webcam'][$i][0]['serial'])
-                       ->setCellValue('Y'.$cont, $data['webcam'][$i][0]['marca'])
-                       ->setCellValue('Z'.$cont, $data['webcam'][$i][0]['nombre']);
-				      }
-				      else{
-				      	$spreadsheet->setActiveSheetIndex(0)->setCellValue('X'.$cont, "")
-				      	->setCellValue('Y'.$cont, "")
-				      	->setCellValue('Z'.$cont, "");
-				      }
 
 				   }
 
@@ -175,7 +143,6 @@ class Reporte11_controller extends CI_Controller {
 		}
 
     }
-
 
 
 	public function reporte_admin($unidad){
@@ -291,7 +258,7 @@ class Reporte11_controller extends CI_Controller {
     public function reporte_data($unidad){
 
 	      if($unidad != 37 && $unidad != 'lab-01' && $unidad != 'lab-02' && $unidad != 'lab-03' && $unidad != 'lab-04' && $unidad != 'lab-05' && $unidad != 'lab-red'&& $unidad != 'lab-hw'){
-	        $inventario = $this->General->like_where('inventario_adm' , $unidad  ,'destino', 'identificador', 'PC');
+	        $inventario = $this->General->like_where('inventario_adm' , $unidad  ,'destino', 'identificador', 'UPS');
 	        $campoCoparacion = "identificador";
 
 	      }elseif($unidad == 'lab-01' || $unidad == 'lab-02' || $unidad == 'lab-03' || $unidad == 'lab-04' || $unidad == 'lab-05' || $unidad == 'lab-red' || $unidad == 'lab-hw'){
@@ -338,15 +305,11 @@ class Reporte11_controller extends CI_Controller {
       }
 
       public function date(){
-
       	$hoy = getdate();
-
-
       	$d = $hoy['mday'];
         $m = $hoy['mon'];
         $y = $hoy['year'];
         $today = $d . "-". $m . "-". $y;
-
         return $today;
       }
 	

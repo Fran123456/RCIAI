@@ -157,7 +157,7 @@
 			
 
 			<!--REPORTE 7-->
-			<form method="post" action="<?php echo base_url()?>Reporte11_controller/reporte11">
+			<form method="post" action="<?php echo base_url()?>Reporte7_controller/reporte7">
 				<div class="col-md-4">
 		         <!-- PANEL HEADLINE -->
 						<div class="panel panel-headline">
