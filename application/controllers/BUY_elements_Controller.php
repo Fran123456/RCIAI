@@ -333,25 +333,52 @@ public function otro_asignado_add_new(){
 
      if( count($unidadxdata) == 0){
 
-           $this->unidadxdata_add();
+         $this->unidadxdata_add();
            $this->buy_edit();
        }
        else{
            $this->unidadxdata_update();
-            $this->buy_edit();
+           $this->buy_edit();
        }
 
-       //agregamos a lab
+
+  //NUEVO CODIGO 14/12/2018
+      $varAux = "";
+       if($this->input->post('codex1') == "LAB1"){
+         $varAux = "01";
+       }
+       if($this->input->post('codex1') == "LAB2"){
+         $varAux = "02";
+       }if($this->input->post('codex1') == "LAB3"){
+         $varAux = "03";
+       }
+       if($this->input->post('codex1') == "LAB4"){
+         $varAux = "04";
+       }if($this->input->post('codex1') == "LAB5"){
+         $varAux = "05";
+       }
+       if($this->input->post('codex1') == "HW"){
+         $varAux = "hw";
+       }if($this->input->post('codex1') == "RED"){
+         $varAux = "red";
+       }
+
+//NUEVO CODIGO 14/12/2018
+
+
+      //agregamos a lab
        $labox = array(
         'identificador_lab' => $servidorPC,
         'fecha_ingreso' =>$this->input->post('fecha_ingreso-0'),
         'origen' => '4',
         'destino' =>$this->input->post('destino-0'),
          'serial' =>$this->input->post('serial-0'),
-         'lab' =>$this->input->post('codex0'),
+         'lab' => $varAux,
          'compra_id' => $this->input->post('idcompra'),
        );
        $this->element->labo_pc($labox);
+
+      
 
 
       $this->session->set_flashdata('buy', 'Elemento agregado a la compra correctamente');
