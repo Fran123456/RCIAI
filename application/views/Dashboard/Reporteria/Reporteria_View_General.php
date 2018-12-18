@@ -10,13 +10,18 @@
     <?php require 'application/views/Plantilla/panel.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL MENU DESPLEGABLE-->
 
     <!--CONTENIDO DE LA APLICACION-->
+    <style type="text/css">
+    	.color{
+    		color: red;
+    	}
+    </style>
 	
 	
 	<!-- vamos a crear un listado de cada uno de los elementos que tiene o tendria cada área-->
 		<h2>Reporteria </h2> 
 		<hr>
 	<div class="container" >
-		<div class="row">
+		<div class="row" >
 
 			
 			<!--REPORTE 5-->
@@ -156,7 +161,7 @@
 			<!--REPORTE 11-->
 			
 
-			<!--REPORTE 7-->
+			<!--REPORTE 7 por unidad-->
 			<form method="post" action="<?php echo base_url()?>Reporte7_controller/reporte7">
 				<div class="col-md-4">
 		         <!-- PANEL HEADLINE -->
@@ -189,7 +194,36 @@
 				<!-- END PANEL HEADLINE -->
 		 		 </div>
 		 		 </form>
-			<!--REPORTE 7-->
+			<!--REPORTE 7 por unidad-->
+
+
+				<!--REPORTE 7 por codigo-->
+		
+				<div class="col-md-4">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title"><i class="fa fa-battery-full" aria-hidden="true"></i> Consulta de UPS</h3>
+								</div>
+								<div class="panel-body text-center">
+									<p>Realiza una consulta para poder ver un UPS ingresando el codigo</p>
+									<div class="row">
+										<div class="col-md-8">
+											<label id="label"><span id="span">Codigo:</span></label>
+											<input type="text" class="form-control" name="cod" id="cod">
+										</div>
+										<div class="col-md-4" style="padding-top: 10px">
+											<br>
+											<button type="button" onclick="reporte7();" class="btn btn-info btn-xs">Consultar</button>
+										</div>
+										
+									</div>
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+		 		 </div>
+		 		 
+			<!--REPORTE 7 por codigo-->
 			
 
 
@@ -207,12 +241,108 @@
    $('#unidad4').append('<option value="01">LAB-01</option><option value="02">LAB-02</option>'+
    '<option value="03">LAB-03</option><option value="04">LAB-04</option><option value="05">LAB-05</option>'+
    '<option value="red">LAB-RED</option><option value="hw">LAB-HW</option>');
+</script>
 
 
+<script type="text/javascript">
+	
+	function reporte7() {
 
-  
+		$('#hijito').remove();
+		$('#mami').append('<div id="hijito"></div>');
+		
+		var codigo =  $('#cod').val();
+
+		if(codigo ==""){
+			$('#span').remove();
+			$('#label').append('<span id="span" class="color" >Codigo: Error</span>');
+		}else{
+	        $('#span').remove();
+			$('#label').append('<span id="span">Codigo:</span>');
+
+			                $.ajax({
+									type: 'ajax',
+									method: 'post',
+									url: '<?php echo base_url() ?>Reporte7_controller/reporte_code',
+									data: {dato: codigo},
+									async: false,
+									dataType: 'json',
+									success: function(data){
+										console.log(data);
+										if(data.centinela == "lab"){
+                                          $('#exampleModal').modal('show');
+                                          var html5 = '<h4>Codigo de PC: <strong>'+data.infoUPS[0].pc_servidor_id+'</strong></h4>'+
+                                          '<h4>Nombre del equipo: <strong>'+data.infoPC[0].nombre+'</strong></h4>'+
+                                          '<h4>Marca: <strong>'+data.infoUPS[0].marca+'</strong></h4>'+
+                                          '<h4>Modelo/tipo: <strong>'+data.infoUPS[0].nombre+'</strong></h4>'+
+                                          '<h4>Serial: <strong>'+data.infoUPS[0].serial+'</strong></h4>'+
+                                          '<h4>Codigo UPS: <strong>'+data.ups[0].identificador_lab+'</strong></h4>';
+                                          $('#hijito').append(html5);
+										}else{
+											$('#exampleModal').modal('show');
+                                          var html5 = '<h4>Codigo de PC: <strong>'+data.infoUPS[0].pc_servidor_id+'</strong></h4>'+
+                                          '<h4>Encargado: <strong>'+data.pc_inventario[0].encargado_puesto+'</strong></h4>'+
+                                          '<h4>Nombre del equipo: <strong>'+data.infoPC[0].nombre+'</strong></h4>'+
+                                          '<h4>Marca: <strong>'+data.infoUPS[0].marca+'</strong></h4>'+
+                                          '<h4>Modelo/tipo: <strong>'+data.infoUPS[0].nombre+'</strong></h4>'+
+                                          '<h4>Serial: <strong>'+data.infoUPS[0].serial+'</strong></h4>'+
+                                          '<h4>Codigo UPS: <strong>'+data.ups[0].identificador+'</strong></h4>';
+                                          $('#hijito').append(html5);
+										}
+									},
+									error: function(){
+										console.log('error');
+									}
+								});
+
+		}
+
+
+	}
 
 </script>
+
+
+
+<!--MODAL REPORTE 7 CODE -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Información</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="mami" class="modal-body">
+        <div id="hijito">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!--MODAL REPORTE 7 CODE -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--MODAL REPORTE 8-->

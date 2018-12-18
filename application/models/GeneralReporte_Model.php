@@ -22,6 +22,12 @@ class GeneralReporte_Model extends CI_Model
       return $data;
     }
 
+    public function where_select($camposSelect, $table , $id ,$campoCoparacion){
+       $this->db->select($camposSelect);
+       $query = $this->db->where( $campoCoparacion, $id)->get($table)->result_array();
+       return  $query;
+    }
+
     public function where_($table, $id ,$campoCoparacion){
       $data = $this->db->where( $campoCoparacion, $id)->get($table)->result_array();
       return $data;
