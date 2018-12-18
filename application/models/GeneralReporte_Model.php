@@ -59,6 +59,19 @@ class GeneralReporte_Model extends CI_Model
       return $data;
      }
 
+     public function join_where($idCompra){
+          $this->db->select('compra_unidad.* ,unidad.unidad');
+          $this->db->from('compra_unidad');
+          $this->db->join('unidad', 'compra_unidad.unidad_id = unidad.id_unidad');
+          $this->db->where('compra_id', $idCompra);
+          $query = $this->db->get()->result_array();
+
+          return $query;
+     }
+
+
+
+
 
 
   

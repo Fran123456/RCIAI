@@ -198,7 +198,6 @@
 
 
 				<!--REPORTE 7 por codigo-->
-		
 				<div class="col-md-4">
 		         <!-- PANEL HEADLINE -->
 						<div class="panel panel-headline">
@@ -212,7 +211,7 @@
 											<label id="label"><span id="span">Codigo:</span></label>
 											<input type="text" class="form-control" name="cod" id="cod">
 										</div>
-										<div class="col-md-4" style="padding-top: 10px">
+										<div class="col-md-4" style="padding-top: 10px; padding-bottom: 10px" >
 											<br>
 											<button type="button" onclick="reporte7();" class="btn btn-info btn-xs">Consultar</button>
 										</div>
@@ -222,8 +221,35 @@
 						</div>
 				<!-- END PANEL HEADLINE -->
 		 		 </div>
-		 		 
 			<!--REPORTE 7 por codigo-->
+
+
+			<!--REPORTE 4 por codigo-->
+				<div class="col-md-4">
+				<form method="post" action="<?php echo base_url()?>Reporte4_controller/reporte4">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title"><i class="fa fa-shopping-cart" aria-hidden="true"></i></i> Reporte de compras</h3>
+								</div>
+								<div class="panel-body text-center">
+									<p>Reporte de compras por año para administración y laboratorios</p>
+									<div class="row">
+										<div class="col-md-8">
+											<label id="label"><span id="span">Año:</span></label>
+											<input required="" type="text" class="form-control" name="year">
+										</div>
+										<div class="col-md-4" style="padding-top: 10px">
+											<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
+										</div>
+										
+									</div>
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+				</form>
+		 		 </div>
+			<!--REPORTE 4 por codigo-->
 			
 
 
@@ -269,6 +295,8 @@
 									dataType: 'json',
 									success: function(data){
 										console.log(data);
+
+								     if(data.infoUPS.length > 0){
 										if(data.centinela == "lab"){
                                           $('#exampleModal').modal('show');
                                           var html5 = '<h4>Codigo de PC: <strong>'+data.infoUPS[0].pc_servidor_id+'</strong></h4>'+
@@ -289,10 +317,16 @@
                                           '<h4>Codigo UPS: <strong>'+data.ups[0].identificador+'</strong></h4>';
                                           $('#hijito').append(html5);
 										}
+									  }else{
+									  	$('#span').remove();
+			                            $('#label').append('<span id="span" class="color" >Codigo: El codigo no existe</span>');
+									  }
 									},
 									error: function(){
-										console.log('error');
+										$('#span').remove();
+			                            $('#label').append('<span id="span" class="color" >Codigo: El codigo no existe</span>');
 									}
+
 								});
 
 		}
