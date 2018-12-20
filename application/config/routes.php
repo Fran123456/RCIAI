@@ -277,6 +277,9 @@ $route['componentes/edit-componentes/(:any)'] = 'Hardware_Controller/componentes
 //FORMULARIO DE MOVIMIENTOS..
 $route['formulario-movimientos'] = 'form_Controller/index';
 
+//Consultas
+$route['detalle-equipo'] = 'Consultas_Controller/vista_detalle_equipo';
+
 //devoluciones :v
 
 $route['Devoluciones-list'] = 'Devoluciones_Controller/index';

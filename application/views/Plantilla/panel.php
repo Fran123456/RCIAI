@@ -154,6 +154,18 @@
 
 						 <li><a href="<?php echo base_url()?>reporteria"><i class="far fa-file-alt"></i> <span>Reporteria</span></a></li>
 
+						 <li>
+						 	<a href="#consultas" data-toggle="collapse" class="collapsed"><i class="fa fa-search"></i> <span>Consultas</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						 	<div id="consultas" class="collapse ">
+								<ul class="nav">
+									<li><a href="<?php echo base_url('detalle-equipo') ?>">Detalle equipo por codigo</a></li>
+									<li><a href="<?php echo base_url('adaptadores-video') ?>">Inventario por unidad y laboratorio</a></li>
+									<li><a href="<?php echo base_url('almacenamiento') ?>">Compras por unidad o tipo de producto</a></li>
+								</ul>
+
+							</div>
+						 </li>
+
 
 
 
