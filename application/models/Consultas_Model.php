@@ -43,4 +43,22 @@ class Consultas_Model extends CI_Model
 			return false;
 		}
 	}
+
+	//función para obtener los perifericos de un equipo
+	public function get_perifericos($id)
+	{
+		$this->db->select('bod.*');
+		$this->db->from('inventario_bodega bod');
+		$this->db->where('bod.pc_servidor_id',$id);
+		$query=$this->db->get();
+
+		//comprobamos
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros devolvemos false
+			return false;
+		}
+	}
 }

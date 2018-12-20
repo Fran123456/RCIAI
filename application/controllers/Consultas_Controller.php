@@ -60,4 +60,12 @@ class Consultas_Controller extends CI_Controller {
 		}
 		echo json_encode($detalle);
 	}
+
+	#función para obtener los perifericos
+	public function get_perifericos()
+	{
+		$id = $this->input->post('codigo');
+		$perifericos = $this->consulta->get_perifericos($id);
+		echo json_encode($perifericos);
+	}
 }

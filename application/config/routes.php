@@ -281,6 +281,7 @@ $route['formulario-movimientos'] = 'form_Controller/index';
 //Consultas
 $route['detalle-equipo'] = 'Consultas_Controller/vista_detalle_equipo';
 $route['get_detalle'] = 'Consultas_Controller/get_detalle';
+$route['get_perifericos'] = 'Consultas_Controller/get_perifericos';
 
 //devoluciones :v
 

@@ -199,16 +199,8 @@
 											<th style="width: 200px" scope="col">Marca</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td></td>
-
-											<td></td>
-
-											<td></td>
-
-											<td></td>
-										</tr>
+									<tbody id="perifericos">
+										
 									</tbody>
 								</table>
 							</div>
@@ -349,6 +341,30 @@
     						$('#capacidad').val(data[0].capacidad);
     						$('#marca_dd').val(data[0].marca_disco);
     						$('#dvd').val(data[0].dvd1);
+
+    						//hacemos petición ajax para obtener los perifericos 
+    						$.ajax({
+    							type: 'post',
+    							url: '<?php echo base_url()?>get_perifericos',
+    							data: {codigo: codigo},
+    							async: false,
+    							dataType: 'json',
+    							success: function(data){
+    								var html='';
+    								var i;
+
+    								for(i=0;i<data.length;i++)
+    								{
+    									html += '<tr>'+
+    												'<td>'+data[i].serial+'</td>'+
+    												'<td>'+data[i].tipo+'</td>'+
+    												'<td>'+data[i].nombre+'</td>'+
+    												'<td>'+data[i].marca+'</td>'+
+    											'</tr>';
+    								}
+    								$('#perifericos').html(html);
+    							}
+    						});
     					}
     					else
     					{
