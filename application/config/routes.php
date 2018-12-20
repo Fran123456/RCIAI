@@ -236,6 +236,7 @@ $route['detalle-prestamo/(:any)'] = 'Movimientos_controller/detallePrestamo/$1';
 
 //prestamos
 $route['prestamo'] = 'Movimientos_controller/hacer_prestamos';
+$route['verificar'] = 'Movimientos_controller/verificar_codigo';
 
 
 
@@ -279,6 +280,7 @@ $route['formulario-movimientos'] = 'form_Controller/index';
 
 //Consultas
 $route['detalle-equipo'] = 'Consultas_Controller/vista_detalle_equipo';
+$route['get_detalle'] = 'Consultas_Controller/get_detalle';
 
 //devoluciones :v
 
