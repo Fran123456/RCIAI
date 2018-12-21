@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-12-2018 a las 21:48:03
+-- Tiempo de generación: 21-12-2018 a las 21:52:36
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -131,7 +131,7 @@ INSERT INTO `almacenamiento` (`id_almacenamiento`, `pc_id`, `disco_fisico1`, `ca
 (4, 'PC001USAM', '1', '1 TB', 'HP', 'si', NULL, NULL, NULL, NULL, NULL),
 (5, 'PC--CXhk174mMl722785-9441Md9UH', '1', '1 TB', 'HP', '1', NULL, NULL, NULL, NULL, NULL),
 (6, 'PC002USAM', '1', '1 TB', 'HP', 'Unidad Optica HP Interna', NULL, NULL, NULL, NULL, NULL),
-(7, 'LAB1-PC1', '1', '1TB', NULL, '1', 'C', 'NFFT', '1 TB', '90%', 'C'),
+(7, 'LAB1-PC1', '1', '1TB', 'hp', '1', 'C', 'NFFT', '1 TB', '90%', 'C'),
 (8, 'LAB1-PC2', '1', '1TB', NULL, '1', 'C', 'NFFT', '1 TB', '90%', 'D'),
 (9, 'PC--nuaW0cPj5F147089-21917XalC', '1', '1 TB', 'HP', '1', NULL, NULL, NULL, NULL, NULL),
 (10, 'PC004USAM', '1', '1 TB', 'HP', '1', NULL, NULL, NULL, NULL, NULL),
@@ -338,14 +338,15 @@ INSERT INTO `inventario_bodega` (`serial`, `nombre`, `marca`, `capacidad`, `tipo
 ('cpu5', 'CPU', 'Dell', '', 'CPU', '3.5', 'nuevo', '2018-12-07', 4, NULL, 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB5-PC1', NULL, '2018-12-07 19:48:47'),
 ('cpulab1-1', 'CPU', 'Dell', '', 'CPU', '', 'nuevo', '2018-12-07', 4, NULL, 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB1-PC1', NULL, '2018-12-07 17:44:12'),
 ('cpulab1-2', 'CPU', '', '', 'CPU', '', 'nuevo', '2018-12-07', 4, NULL, 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB1-PC2', NULL, '2018-12-07 17:47:43'),
+('IMPR0013USAM', 'matricial', 'HP', '', 'IMPRESORES-MATRICIALES', '', 'Disponible', '2018-12-03', 38, NULL, 1, NULL, NULL, NULL, '2018-12-21 20:45:08'),
 ('lap-000111', '', 'dell', '', 'LAPTOP', '', 'Disponible', '2018-11-13', 2, NULL, 1, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'LAP--AerRC3XqdZ625378-40222H9uN', 'LAP001USAM', '2018-11-29 20:29:24'),
 ('monitor_med04', 'LED', 'HP', '', 'MONITOR', '', 'En uso', '2018-12-07', 4, NULL, 10, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC004USAM', NULL, '2018-12-07 19:41:14'),
-('Monitor001', 'LED', 'HP', '', 'MONITOR', '', 'En uso', '2018-12-07', 1, '2018-12-07', 6, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC001USAM', NULL, '2018-12-07 17:35:52'),
+('Monitor001', 'LED', 'HP', '', 'MONITOR', '', 'En uso', '2018-12-07', 4, NULL, 6, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC001USAM', NULL, '2018-12-07 17:35:52'),
 ('monitor002', 'LED', 'HP', '', 'MONITOR', '', 'En uso', '2018-12-07', 4, NULL, 1, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC--CXhk174mMl722785-9441Md9UH', NULL, '2018-12-07 17:38:19'),
 ('monitor10', 'LED', 'HP', '', 'MONITOR', '', 'En uso', '2018-12-07', 4, NULL, 1, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC--nuaW0cPj5F147089-21917XalC', NULL, '2018-12-07 19:38:26'),
-('Monitor2', 'VGA', 'HP', '', 'MONITOR', '', 'En uso', '2018-12-07', 1, '2018-12-07', 6, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC001USAM', NULL, '2018-12-07 17:40:32'),
+('Monitor2', 'VGA', 'HP', '', 'MONITOR', '', 'Disponible', '2018-12-07', 10, '2018-12-07', 4, 'COMPRA-l9KBfLuU6M-8651805-5221', NULL, 'PC002USAM', '2018-12-07 17:40:32'),
 ('monitor4', 'MONITOR', 'Dell', '', 'MONITOR', '', 'nuevo', '2018-12-07', 4, NULL, 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB1-PC4', NULL, '2018-12-07 19:45:27'),
-('monitor5', 'MONITOR', 'Dell', '', 'MONITOR', '', 'nuevo', '2018-12-07', 4, NULL, 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB5-PC1', NULL, '2018-12-07 19:48:47'),
+('monitor5', 'MONITOR', 'Dell', '', 'MONITOR', '', 'Prestado', '2018-12-07', 37, '2018-12-07', 10, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC002USAM', 'LAB5-PC1', '2018-12-07 19:48:47'),
 ('MONITORlab1-1', 'MONITOR', 'HP', '', 'MONITOR', '', 'En uso', '2018-12-07', 10, '2018-12-07', 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB1-PC1', 'PC002USAM', '2018-12-07 17:44:12'),
 ('MONITORlab1-2', 'MONITOR', 'Dell', '', 'MONITOR', '', 'nuevo', '2018-12-07', 4, NULL, 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB1-PC2', NULL, '2018-12-07 17:47:43'),
 ('Mouse_med04', 'USB', 'HP', '', 'MOUSE', '', 'En uso', '2018-12-07', 4, NULL, 10, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC004USAM', NULL, '2018-12-07 19:41:14'),
@@ -363,10 +364,9 @@ INSERT INTO `inventario_bodega` (`serial`, `nombre`, `marca`, `capacidad`, `tipo
 ('Teclado10', 'USB', 'HP', '', 'TECLADO', '', 'En uso', '2018-12-07', 4, NULL, 1, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC--nuaW0cPj5F147089-21917XalC', NULL, '2018-12-07 19:38:26'),
 ('teclado2', 'USB', 'HP', '', 'TECLADO', '', 'En uso', '2018-12-07', 4, NULL, 10, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC002USAM', NULL, '2018-12-07 17:40:32'),
 ('teclado4', 'TECLADO', 'Dell', '', 'TECLADO', '', 'nuevo', '2018-12-07', 4, NULL, 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB1-PC4', NULL, '2018-12-07 19:45:27'),
-('teclado5', 'TECLADO', 'Dell', '', 'TECLADO', '', 'nuevo', '2018-12-07', 4, NULL, 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB5-PC1', NULL, '2018-12-07 19:48:47'),
+('teclado5', 'TECLADO', 'Dell', '', 'TECLADO', '', 'Prestado', '2018-12-07', 37, '2018-12-07', 10, 'COMPRA-l9KBfLuU6M-8651805-5221', 'PC002USAM', 'LAB5-PC1', '2018-12-07 19:48:47'),
 ('tecladolab1-1', 'USB', 'Dell', '', 'TECLADO', '', 'En uso', '2018-12-07', 10, '0000-00-00', 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB1-PC1', 'PC002USAM', '2018-12-07 17:44:12'),
 ('tecladolab1-2', 'TECLADO', 'HP', '', 'TECLADO', '', 'nuevo', '2018-12-07', 4, NULL, 37, 'COMPRA-l9KBfLuU6M-8651805-5221', 'LAB1-PC2', NULL, '2018-12-07 17:47:43'),
-('ups-33343250', 'generico', 'ups-system', '', 'UPS', '', 'Disponible', '2018-12-07', 38, NULL, 1, NULL, NULL, NULL, '2018-12-07 20:45:01'),
 ('xcc-46878832', '', '', '', 'TECLADO', '', 'En uso', '2018-11-29', 4, NULL, 1, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'PC--QRqtVyAnBL255606-2871fzqRN', NULL, '2018-11-30 03:17:40');
 
 -- --------------------------------------------------------
@@ -438,8 +438,8 @@ INSERT INTO `movimiento` (`id_cambio`, `token`, `fecha_retiro`, `fecha_cambio`, 
 (1, 'token--ZgyYXBDE0C517967-5166SRrL8', NULL, '2018-11-29', 'LAP001USAM', NULL, NULL, 'Asignación de laptop', 'Porque necesitamos una laptop nueva', 1, 2, NULL, 'intel core i5 9900K 5.8GHZ intel graphics 9900 HD 2 GB', 'Karla Margarita', 'Carlos Garcia', 'HARDWARE-EXTERNO', 'Asignacion-bodega', 'lap-000111', NULL),
 (9, 'token--GAr9PWjLId533817-1563E4IWQ', '', '', 'PC002USAM', 10, 38, 'Prestamo de TECLADO del equipo LAB1-PC1 a el equipo PC002USAM', 'actualización', 37, 10, 'ninguna', 'teclado', 'Lic Claudia Martinez', 'Técnico', 'HARDWARE-EXTERNO', 'Prestamo', 'tecladolab1-1', 'LAB1'),
 (10, 'token--e1GOLE4nMd869470-1058uhlap', '2018-12-07', '2018-12-07', 'PC002USAM', 10, 1, 'Prestamo de MONITOR del equipo LAB1-PC1 a el equipo PC002USAM', 'se arruino el monito', 37, 10, 'serial: Monitor2 marca: HP tipo: MONITOR', 'monitor', 'Juan Perez', 'Luigui', 'HARDWARE-EXTERNO', 'Prestamo', 'MONITORlab1-1', 'LAB1'),
-(11, 'token--6CjSvaAN0w923047-2395Nigem', '2018-12-07', '2018-12-07', 'PC001USAM', 6, 1, 'Monitor mas grande', 'Necesidades de un monitor mas grande', 1, 6, 'Monitor de 15 pulgadas', 'monitor de 24 pulgadas', 'Karla Martinez', 'Kevin', 'HARDWARE-EXTERNO', 'Sustitucion-bodega', 'Monitor2', NULL),
-(12, 'token--5eaI7JCVnq559054-355015T4Z', NULL, '2018-12-07', 'PC001USAM', NULL, NULL, 'Necesitamos un monitor extra', 'Necesidad de monitor', 1, 6, NULL, 'MOnitor de 24 pulgadas', 'Karla', 'Juan', 'HARDWARE-EXTERNO', 'Asignacion-bodega', 'Monitor001', NULL);
+(11, 'token--tlIDEV2A8F800486-7653a0Xfm', '2018-12-07', '2018-12-07', 'PC002USAM', 10, 38, 'Prestamo de TECLADO del equipo LAB5-PC1 a el equipo PC002USAM', '', 37, 10, 'ninguna', '', 'Dr Maldonado', 'Juan', 'HARDWARE-EXTERNO', 'Prestamo', 'teclado5', 'LAB5'),
+(12, 'token--IFmpslt4u0731418-2661aMgXh', '2018-12-07', '2018-12-07', 'PC002USAM', 10, 1, 'Prestamo de MONITOR del equipo LAB5-PC1 a el equipo PC002USAM', '', 37, 10, 'serial:  marca:  tipo: ', 'serial: monitor5, Marca: Dell, Tipo: monitor', 'Lic Claudia Martinez', 'Juan Perez', 'HARDWARE-EXTERNO', 'Prestamo', 'monitor5', 'LAB5');
 
 -- --------------------------------------------------------
 
@@ -508,7 +508,7 @@ INSERT INTO `placa_base` (`id`, `pc_id`, `procesador`, `velocidad_reloj`, `fabri
 (4, 'PC001USAM', 'Intel Quad-Core i3-8100', '3.4', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'HP', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
 (5, 'PC--CXhk174mMl722785-9441Md9UH', 'i7', '3.6', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'Optiplex GX270', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
 (6, 'PC002USAM', 'Intel Quad-Core i3-8100', '2.5', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'Optiplex GX270', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'LAB1-PC1', 'Intel - Core 3', '3.5', 'Intel', 'BIO star', 'Dell', '2.5', 'Dell-12', '2018-12-10', 'Dell', 'D-14', '14', '', '', '', '', '', '', ''),
+(7, 'LAB1-PC1', 'Intel - Core 3', '3.5', 'Intel', 'BIO star', 'Dell', '2.5', 'Dell-12', '2018-12-10', 'Dell', 'D-14', '14', 'lenovo', 'ranura_memoria', 'ranura_sistema_0', 'ranura_sistema_1', 'ranura_sistema_2', 'ranura_sistema_3', 'ranura_sistema_4'),
 (8, 'LAB1-PC2', 'Intel - Core 3', '3.5', 'Intel', 'BIO star', 'Dell', '', '5555555', '2006-12-12', 'Dell', 'D-14', '14', 'Dell', '', '', '', '', '', ''),
 (9, 'PC--nuaW0cPj5F147089-21917XalC', 'Intel Quad-Core i3-8100', '3.5', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'HP', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
 (10, 'PC004USAM', 'Intel Quad-Core i3-8100', '3.5', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'HP', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
@@ -531,6 +531,14 @@ CREATE TABLE `software` (
   `version` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `nom_archivo` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `software`
+--
+
+INSERT INTO `software` (`id`, `pc_id`, `PC_lab_id`, `nombre`, `empresa`, `nom_carpeta`, `version`, `nom_archivo`) VALUES
+(1, NULL, 'LAB1-PC1', 'sublimet text', 'sublimet', 'sublimet', '3', 'sublimet.exe'),
+(2, 'PC001USAM', NULL, 'Edge', NULL, NULL, '10', NULL);
 
 -- --------------------------------------------------------
 
@@ -830,7 +838,7 @@ ALTER TABLE `placa_base`
 -- AUTO_INCREMENT de la tabla `software`
 --
 ALTER TABLE `software`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad`
