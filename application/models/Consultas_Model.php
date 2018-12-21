@@ -79,4 +79,22 @@ class Consultas_Model extends CI_Model
 			return false;
 		}
 	}
+
+	//funcion para obtener el sw del lab
+	public function lab_software($id)
+	{
+		$this->db->select('*');
+		$this->db->from('software');
+		$this->db->where('PC_lab_id',$id);
+		$query=$this->db->get();
+
+		//comprobamos
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros devolvemos false
+			return false;
+		}
+	}
 }

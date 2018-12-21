@@ -491,13 +491,13 @@
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Disco logico/descripción</label>
-					<input type="text" class="form-control" readonly="" value="<?php echo isset($key->disco_fisico1) ? $key->disco_fisico1 : "no disponible"?>">
+					<input type="text" class="form-control" readonly="" value="<?php echo isset($key->disco_logico) ? $key->disco_logico : "no disponible"?>">
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Sistema de archivos</label>
-					<input type="text" class="form-control" readonly="" value="<?php echo isset($key->sistema_archivo) ? $key->sistema_archivo : "no disponible"?>">
+					<input type="text" class="form-control" readonly="" value="<?php echo isset($key->sistema_archivos) ? $key->sistema_archivos : "no disponible"?>">
 				</div>
 			</div>
 		</div>

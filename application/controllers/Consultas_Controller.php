@@ -69,11 +69,19 @@ class Consultas_Controller extends CI_Controller {
 		echo json_encode($perifericos);
 	}
 
-	#función para obtener el software instalado
+	#función para obtener el software instalado de adm
 	public function adm_software()
 	{
 		$id = $this->input->post('codigo');
 		$sw = $this->consulta->adm_software($id);
+		echo json_encode($sw);
+	}
+
+	#función para obtener el software instalado de lab
+	public function lab_software()
+	{
+		$id = $this->input->post('codigo');
+		$sw = $this->consulta->lab_software($id);
 		echo json_encode($sw);
 	}
 }

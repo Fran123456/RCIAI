@@ -283,6 +283,7 @@ $route['detalle-equipo'] = 'Consultas_Controller/vista_detalle_equipo';
 $route['get_detalle'] = 'Consultas_Controller/get_detalle';
 $route['get_perifericos'] = 'Consultas_Controller/get_perifericos';
 $route['adm_software'] = 'Consultas_Controller/adm_software';
+$route['lab_software'] = 'Consultas_Controller/lab_software';
 
 //devoluciones :v
 
