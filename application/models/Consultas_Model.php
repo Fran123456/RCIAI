@@ -61,4 +61,22 @@ class Consultas_Model extends CI_Model
 			return false;
 		}
 	}
+
+	//función para obtener el sw
+	public function adm_software($id)
+	{
+		$this->db->select('nombre,version');
+		$this->db->from('software');
+		$this->db->where('pc_id',$id);
+		$query=$this->db->get();
+
+		//comprobamos
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros devolvemos false
+			return false;
+		}
+	}
 }

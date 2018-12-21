@@ -190,19 +190,9 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<div class="form-tb" >
-								<table class="table table-dark table-bordered">
-									<thead class="thead-dark">
-										<tr>
-											<th style="width: 200px" scope="col">Serial</th>
-											<th style="width: 200px" scope="col">Tipo de periferico</th>
-											<th style="width: 200px" scope="col">Tipo</th>
-											<th style="width: 200px" scope="col">Marca</th>
-										</tr>
-									</thead>
-									<tbody id="perifericos">
-										
-									</tbody>
-								</table>
+								<div id="perifericos">
+									
+								</div>
 							</div>
 						</div>
 					</div>
@@ -217,20 +207,9 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<div class="form-tb" >
-								<table class="table table-dark table-bordered">
-									<thead class="thead-dark">
-										<tr>
-											<th style="width: 200px" scope="col">Nombre</th>
-											<th style="width: 200px" scope="col">Version</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td></td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
+								<div id="sw">
+									
+								</div>
 							</div>
 						</div>
 					</div>
@@ -350,19 +329,69 @@
     							async: false,
     							dataType: 'json',
     							success: function(data){
-    								var html='';
-    								var i;
-
-    								for(i=0;i<data.length;i++)
+    								if(data != false)
     								{
-    									html += '<tr>'+
-    												'<td>'+data[i].serial+'</td>'+
-    												'<td>'+data[i].tipo+'</td>'+
-    												'<td>'+data[i].nombre+'</td>'+
-    												'<td>'+data[i].marca+'</td>'+
-    											'</tr>';
+    									var html='<table class="table table-dark table-bordered"><thead class="thead-dark"><tr>'+
+												'<th style="width: 200px" scope="col">Serial</th>'+
+												'<th style="width: 200px" scope="col">Tipo de periferico</th>'+
+												'<th style="width: 200px" scope="col">Tipo</th>'+
+												'<th style="width: 200px" scope="col">Marca</th>'+
+											'</tr>'+
+										'</thead>'+
+										'<tbody>';
+	    								var i;
+
+	    								for(i=0;i<data.length;i++)
+	    								{
+	    									html += '<tr>'+
+	    												'<td>'+data[i].serial+'</td>'+
+	    												'<td>'+data[i].tipo+'</td>'+
+	    												'<td>'+data[i].nombre+'</td>'+
+	    												'<td>'+data[i].marca+'</td>'+
+	    											'</tr>';
+	    								}
+	    								html += '</tbody>'+
+									'</table>';
+
+	    								$('#perifericos').html(html);
+    								}else{
+    									$('#perifericos').html('<center><h3>Sin registros en la base de datos</h3></center>');
     								}
-    								$('#perifericos').html(html);
+    							}
+    						});
+
+    						//petición ajax para obtener el sw
+    						$.ajax({
+    							type: 'post',
+    							url: '<?php echo base_url()?>adm_software',
+    							data: {codigo: codigo},
+    							async: false,
+    							dataType: 'json',
+    							success: function(data){
+    								if(data != false)
+    								{
+    									var html='<table class="table table-dark table-bordered"><thead class="thead-dark"><tr>'+
+												'<th style="width: 200px" scope="col">Nombre</th>'+
+												'<th style="width: 200px" scope="col">Versión</th>'+
+											'</tr>'+
+										'</thead>'+
+										'<tbody>';
+	    								var i;
+
+	    								for(i=0;i<data.length;i++)
+	    								{
+	    									html += '<tr>'+
+	    												'<td>'+data[i].nombre+'</td>'+
+	    												'<td>'+data[i].version+'</td>'+
+	    											'</tr>';
+	    								}
+	    								html += '</tbody>'+
+									'</table>';
+
+	    								$('#sw').html(html);
+    								}else{
+    									$('#sw').html('<center><h3>Sin registros en la base de datos</h3></center>');
+    								}
     							}
     						});
     					}
@@ -372,7 +401,7 @@
     					}
     				},
     				error: function(){
-    					alert('');
+    					alert('error');
     				}
     			});
     		}
