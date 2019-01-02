@@ -36,10 +36,9 @@ class Reporte5_controller extends CI_Controller {
 	   	$unidadFinal = $this->General->where_('unidad', $unidad, 'id_unidad');
 	   	$name = 'Reporte-laptops-'.$unidadFinal[0]['unidad'].'-'.$this->date();
 	   }
-		
 
-
-		for ($i=0; $i <count($laptops) ; $i++) { 
+	   if(count($laptops) > 0){
+	   	   for ($i=0; $i <count($laptops) ; $i++) { 
 			$areas[$i] = $this->General->where_('unidad', $laptops[$i]['destino'] ,'id_unidad');
 			$bodega[$i] = $this->General->where_('inventario_bodega', $laptops[$i]['serial'], 'serial');
 			$placa[$i] = $this->General->where_('placa_base', $laptops[$i]['identificador'], 'pc_id');
@@ -78,6 +77,13 @@ class Reporte5_controller extends CI_Controller {
 		//SAVE
         Excel::save__($spreadsheet,$name);
         //SAVE
+	   }else{
+	    	redirect(base_url().'error-404-reporteria');
+	   }
+		
+
+
+		
 	}
 
 
