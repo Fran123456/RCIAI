@@ -126,7 +126,7 @@ class Reporte8_controller extends CI_Controller {
 		$header = $this->header__();
 
 		if(count($data) > 0){
-
+ 
 		       //confinguraciones iniciales con clase Excel para reporte.
 		          $spreadsheet = Excel::Create_Excel__(null, 10);
 				  Excel::Header_format__(null , null,'A1:L1' , $spreadsheet);
@@ -213,8 +213,8 @@ class Reporte8_controller extends CI_Controller {
        return $data;
 	}
 
-	public function data_factory_mouth(){
-      $mouth = '2018-12-07';
+	public function data_factory_mouth($mouth){
+     // $mouth = '2018-12-07';
       $mouth =substr($mouth, 0,7);
       $movimientoYears = $this->General->like__('fecha_cambio', $mouth, 'movimiento');
 
