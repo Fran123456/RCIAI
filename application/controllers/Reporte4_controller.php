@@ -30,7 +30,7 @@ class Reporte4_controller extends CI_Controller {
 
 
        
-       if(count($data) >0){
+       if(count($data['compra']) >0){
       
 	   $name = "Reporte-compras-". $year;
 
@@ -74,7 +74,7 @@ class Reporte4_controller extends CI_Controller {
         //SAVE*/
 
     } else{
-           $this->error_message__();
+           	redirect(base_url().'error-404-reporteria');
       }
 	}
 
