@@ -84,4 +84,36 @@ class Consultas_Controller extends CI_Controller {
 		$sw = $this->consulta->lab_software($id);
 		echo json_encode($sw);
 	}
+
+	/////////////////////// para inventario por unidad y laboratorio ///////////////////////
+	
+	#vista para consultar el detalle por unidad
+	public function vista_detalle_unidad()
+	{
+		$this->load->view('Dashboard/consultas/consulta_unidad_view');
+	}
+
+	public function get_detalle_unidad()
+	{
+		$unidad = $this->input->post('unidad');
+
+		//vamos a verificar si es una unidad administrativa o un laboratorio
+		switch ($unidad) {
+			case 'lab-01':
+			case 'lab-02':
+			case 'lab-03':
+			case 'lab-04':
+			case 'lab-05':
+			case 'lab-HW':
+			case 'lab-red':
+				$detalle = $this->consulta->get_detalle_lab($unidad);
+			break;
+			
+			default:
+				$detalle = $this->consulta->get_detalle_administrativo($unidad);
+			break;
+		}
+
+		echo json_encode($detalle);
+	}
 }

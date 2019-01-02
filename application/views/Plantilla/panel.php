@@ -159,7 +159,7 @@
 						 	<div id="consultas" class="collapse ">
 								<ul class="nav">
 									<li><a href="<?php echo base_url('detalle-equipo') ?>">Detalle equipo por codigo</a></li>
-									<li><a href="<?php echo base_url('adaptadores-video') ?>">Inventario por unidad y laboratorio</a></li>
+									<li><a href="<?php echo base_url('detalle-unidad') ?>">Inventario por unidad y laboratorio</a></li>
 									<li><a href="<?php echo base_url('almacenamiento') ?>">Compras por unidad o tipo de producto</a></li>
 								</ul>
 

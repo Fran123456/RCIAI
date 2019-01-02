@@ -285,6 +285,10 @@ $route['get_perifericos'] = 'Consultas_Controller/get_perifericos';
 $route['adm_software'] = 'Consultas_Controller/adm_software';
 $route['lab_software'] = 'Consultas_Controller/lab_software';
 
+$route['detalle-unidad'] = 'Consultas_Controller/vista_detalle_unidad';
+$route['get_detalle_unidad'] = 'Consultas_Controller/get_detalle_unidad';
+
+
 //devoluciones :v
 
 $route['Devoluciones-list'] = 'Devoluciones_Controller/index';
