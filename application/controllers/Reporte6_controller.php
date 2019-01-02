@@ -44,42 +44,41 @@ class Reporte6_controller extends CI_Controller {
 	   	$unidadFinal = $this->General->where_('unidad', $unidad, 'id_unidad');
 	   	$name = 'Reporte-impresores-'.$unidadFinal[0]['unidad'].'-'.$this->date();
 	   }
-		
 
-		for ($i=0; $i <count($impresores) ; $i++) { 
+	   if(count($impresores) > 0){
+		  for ($i=0; $i <count($impresores) ; $i++) { 
 			$bodega[$i] = $this->General->where_('inventario_bodega', $impresores[$i]['serial'], 'serial');
-		}
+		  }
 
+	     //confinguraciones iniciales con clase Excel para reporte.
+	          $spreadsheet = Excel::Create_Excel__(null, null);
+			  Excel::Header_format__(null , null,'A1:D1' , $spreadsheet);
+	          Excel::Values_Header__($spreadsheet, 0, $ArrayColumnas, $ArrayTitulo);
 
+	        //impresion de datos.
+	           $cont = 1;
+			   for ($i=0; $i <count($impresores) ; $i++) { 
+			   	$cont++;
+			     $spreadsheet->setActiveSheetIndex(0)
+			      ->setCellValue('A'.$cont, $impresores[$i]['identificador'])
+			      ->setCellValue('B'.$cont, $bodega[$i][0]['tipo'])
+			      ->setCellValue('C'.$cont, $impresores[$i]['encargado_puesto'])
+			      ->setCellValue('D'.$cont, $bodega[$i][0]['pc_servidor_id']);
+			   }
+	           
+			   Excel::borders__($spreadsheet, '686868', "A1:D".$cont);
 
-     //confinguraciones iniciales con clase Excel para reporte.
-          $spreadsheet = Excel::Create_Excel__(null, null);
-		  Excel::Header_format__(null , null,'A1:D1' , $spreadsheet);
-          Excel::Values_Header__($spreadsheet, 0, $ArrayColumnas, $ArrayTitulo);
+	         //AUTOTAMAÑO DE LAS COLUMNAS
+			  Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);
+			 //AUTOTAMAÑO DE LAS COLUMNAS
 
-        //impresion de datos.
-           $cont = 1;
-		   for ($i=0; $i <count($impresores) ; $i++) { 
-		   	$cont++;
-		     $spreadsheet->setActiveSheetIndex(0)
-		      ->setCellValue('A'.$cont, $impresores[$i]['identificador'])
-		      ->setCellValue('B'.$cont, $bodega[$i][0]['tipo'])
-		      ->setCellValue('C'.$cont, $impresores[$i]['encargado_puesto'])
-		      ->setCellValue('D'.$cont, $bodega[$i][0]['pc_servidor_id']);
-		   }
-           
-		   Excel::borders__($spreadsheet, '686868', "A1:D".$cont);
+			//SAVE
+	        Excel::save__($spreadsheet,$name);
+	        //SAVE*/
+	   }else{
+	   	redirect(base_url().'error-404-reporteria');
+	   }
 
-         //AUTOTAMAÑO DE LAS COLUMNAS
-		  Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);
-		 //AUTOTAMAÑO DE LAS COLUMNAS
-
-		//SAVE
-        Excel::save__($spreadsheet,$name);
-        //SAVE*/
-
-        
-       
 	}
 
 
