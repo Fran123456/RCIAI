@@ -143,4 +143,23 @@ class Consultas_Model extends CI_Model
 			return false;
 		}
 	}
+
+	//función para obtener el registro de una sola factura
+	public function get_factura($factura)
+	{
+		#vamos a obtener la fecha de compra, numero de factura, costo, detalle de la factura
+		$this->db->select('fecha_compra, n_factura, total, detalle');
+		$this->db->from('compras');
+		$this->db->where('n_factura',$factura);
+		$query=$this->db->get();
+
+		//comprobamos
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros devolvemos false
+			return false;
+		}
+	}
 }

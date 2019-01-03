@@ -288,6 +288,8 @@ $route['lab_software'] = 'Consultas_Controller/lab_software';
 $route['detalle-unidad'] = 'Consultas_Controller/vista_detalle_unidad';
 $route['get_detalle_unidad'] = 'Consultas_Controller/get_detalle_unidad';
 
+$route['detalle-compras'] = 'Consultas_Controller/vista_detalle_compra';
+
 
 //devoluciones :v
 

@@ -116,4 +116,19 @@ class Consultas_Controller extends CI_Controller {
 
 		echo json_encode($detalle);
 	}
+
+	///////////////////////////////// para consulta de compra ///////////////////////
+	public function vista_detalle_compra()
+	{
+		$this->load->view('Dashboard/consultas/consulta_compras_view');
+	}
+
+	public function codigo_factura()
+	{
+		$factura = $this->input->post('codigo_factura');
+
+		$datos = $this->consulta->get_factura($factura);
+
+		echo json_encode($datos);
+	}
 }

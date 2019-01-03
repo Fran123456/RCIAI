@@ -76,7 +76,6 @@
 							<option value="lab-red">Laboratorio de red</option>
 						</select>
 					</div>
-	    			<span id="msj"></span>
     			</div>
     		</div>
     		<br>

@@ -23,3 +23,4 @@
 
 	<!--librerias para usar sweetalert2-->
 	<script src="<?php echo base_url()?>assets/sweetalert.min.js"></script>
+	<script src="<?php echo base_url()?>assets/sweetalert2.all.min.js"></script>
