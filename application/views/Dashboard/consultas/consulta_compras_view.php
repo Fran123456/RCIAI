@@ -131,7 +131,7 @@
 
 			//boton
 			$('#consulta').click(function(){
-				$('#datos1').remove();
+				$('#datos').remove();
 				$('#msj1').remove();
 				var tipo_consulta = $('input:radio[name=opciones]:checked').val();
 
@@ -167,7 +167,7 @@
 									else
 									{
 										//vamos a construir el formulario
-										var html = '<div id="datos1" class="row">'+
+										var html = '<div id="datos" class="row">'+
 														'<div class="form-group col-md-6">'+
 				      										'<label for="num_factura">N° de factura</label>'+
 				      										'<input type="text" class="form-control" id="num_factura" value="'+ data[0].n_factura +'" readonly>'+
@@ -196,7 +196,34 @@
 						}
 					break;
 					case 'unidad':
-						alert('unidades de la usam');
+						//removemos los posibles datos que hayan
+						$('#datos').remove();
+						$('#msj1').remove();
+						
+						var unidad = $('#unidades').val();//vamos a obtener el valor de el select
+    					var nombre = $('select[name="unidades"] option:selected').text();
+						var html = '';
+						
+						//hacemos la petición ajax
+						$.ajax({
+							type: 'post',
+							url: '<?php echo site_url()?>Consultas_Controller/unidad_factura',
+							data: {unidad: unidad},
+							async: false,
+							dataType: 'json', 
+							success: function(data){
+								if(data === false)
+								{
+									html = '<div id="msj1"><center><h3>sin registros en la base de datos</h3></center></div>';
+								}
+								else
+								{
+									html = '<div id="msj1"><center><h3>compras en '+ nombre +'</h3></center></div>';
+								}
+
+								$('#detalle').append(html);
+							}
+						});
 					break;
 				}
 			});

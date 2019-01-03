@@ -123,12 +123,37 @@ class Consultas_Controller extends CI_Controller {
 		$this->load->view('Dashboard/consultas/consulta_compras_view');
 	}
 
+	//función para obtener la compra por el numero de factura
 	public function codigo_factura()
 	{
 		$factura = $this->input->post('codigo_factura');
 
 		$datos = $this->consulta->get_factura($factura);
 
+		echo json_encode($datos);
+	}
+
+	//función para obtener todas las compras de una unidad
+	public function unidad_factura()
+	{
+		$unidad = $this->input->post('unidad');
+
+		//vamos a verificar si es una unidad administrativa o un laboratorio
+		switch ($unidad) {
+			case 'lab-01':
+			case 'lab-02':
+			case 'lab-03':
+			case 'lab-04':
+			case 'lab-05':
+			case 'lab-HW':
+			case 'lab-red':
+				$datos = $this->consulta->get_compras_lab($unidad);
+			break;
+			
+			default:
+				$datos = $this->consulta->get_compras_adm($unidad);
+			break;
+		}
 		echo json_encode($datos);
 	}
 }

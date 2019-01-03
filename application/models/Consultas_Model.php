@@ -162,4 +162,29 @@ class Consultas_Model extends CI_Model
 			return false;
 		}
 	}
+
+	//función para obtener las compras de una unidad
+	public function get_compras_adm($unidad)
+	{
+		$this->db->select('c.n_factura,c.fecha_compra,c.total,c.detalle');
+		$this->db->from('compras AS c');
+		$this->db->join('compra_unidad AS cu','c.id_compra = cu.compra_id');
+		$this->db->where('cu.unidad_id',$unidad);
+		$query=$this->db->get();
+
+		//comprobamos
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros devolvemos false
+			return false;
+		}
+	}
+
+	//función para obtener las compras de un laboratorio
+	public function get_compras_lab($unidad)
+	{
+		
+	}
 }
