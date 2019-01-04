@@ -218,7 +218,33 @@
 								}
 								else
 								{
-									html = '<div id="msj1"><center><h3>compras en '+ nombre +'</h3></center></div>';
+									html = '<div id="msj1"><center><h3>compras en '+ nombre +'</h3></center></div>'+
+
+									'<div id="datos"><table class="table">'+
+			    								'<thead>'+
+				    								'<tr>'+
+				    									'<th>N° de Factura</th>'+
+				    									'<th>Fecha de compra</th>'+
+				    									'<th>Total de la compra</th>'+
+				    									'<th>Detalle de la compra</th>'+
+				    								'</tr>'+
+				    							'</thead>'+
+				    							'<tbody>';
+
+				    				//vamos a agregar los datos que hemos traido
+				    				for(i=0;i<data.length;i++){
+
+										html +='<tr>'+
+						      						'<td>'+ data[i].n_factura +'</td>'+
+						      						'<td>'+ data[i].fecha_compra +'</td>'+
+						      						'<td>'+ data[i].total +'</td>'+
+						      						'<td>'+ data[i].detalle +'</td>'+
+						    					'</tr>';
+									}
+
+					    			html += '</tbody>'+
+					    					'</table>'+
+											'</div>';
 								}
 
 								$('#detalle').append(html);
