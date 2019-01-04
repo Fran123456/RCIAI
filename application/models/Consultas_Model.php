@@ -185,6 +185,7 @@ class Consultas_Model extends CI_Model
 	//función para obtener las compras de un laboratorio
 	public function get_compras_lab($unidad)
 	{
+		$this->db->distinct();
 		$this->db->select('c.n_factura,c.fecha_compra,c.total,c.detalle');
 		$this->db->from('compras AS c');
 		$this->db->join('inventario_lab AS lab','c.id_compra=lab.compra_id');
