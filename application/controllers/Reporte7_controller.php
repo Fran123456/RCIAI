@@ -57,13 +57,14 @@ class Reporte7_controller extends CI_Controller {
 
        	 
 
-       }elseif($unidad == '01' || $unidad == '02' || $unidad == '03' || $unidad == '04' || $unidad == '05' || $unidad == 'red' || $unidad == 'hw'){
+       }elseif($unidad == '01l' || $unidad == '02l' || $unidad == '03l' || $unidad == '04l' || $unidad == '05l' || $unidad == 'red' || $unidad == 'hw'){
          	$name = 'Reporte-ups-'.$unidad."-".$this->date();
+         	
            $this->reporte_laboratorio_All($unidad, $name);
 
        }
        else{
-
+      
          	$this->reporte_admin($unidad);
        }
 
@@ -115,8 +116,10 @@ class Reporte7_controller extends CI_Controller {
 		$name = 'reporte-ups-' . $unidadFinal[0]['unidad'];
 		$header = $this->header__Admin();
 
+
+
 	
-		if(count($data) > 0){
+	if(count($data) > 0){
 			
 			   //confinguraciones iniciales con clase Excel para reporte.
 		          $spreadsheet = Excel::Create_Excel__(null, 10);
@@ -143,7 +146,7 @@ class Reporte7_controller extends CI_Controller {
 
 				  //SAVE
 		          Excel::save__($spreadsheet,$name);
-		         //SAVE*/
+		         //SAVE
 
 		}else{
 			redirect(base_url().'error-404-reporteria-11');
@@ -194,14 +197,9 @@ class Reporte7_controller extends CI_Controller {
 
 
 
-
-
-
-
-
     public function reporte_data($unidad){
 
-	      if($unidad != 37 && $unidad != '01' && $unidad != '02' && $unidad != '03' && $unidad != '04' && $unidad != '05' && $unidad != 'red'&& $unidad != 'hw'){
+	      if($unidad != 37 && $unidad != '01l' && $unidad != '02l' && $unidad != '03l' && $unidad != '04l' && $unidad != '05l' && $unidad != 'red'&& $unidad != 'hw'){
 	        $inventario = $this->General->like_where('inventario_adm' , $unidad  ,'destino', 'identificador', 'UPS');
 	        $campoCoparacion = "identificador";
 
@@ -223,7 +221,7 @@ class Reporte7_controller extends CI_Controller {
 
 
 
-	      }elseif($unidad == '01' || $unidad == '02' || $unidad == '03' || $unidad == '04' || $unidad == '05' || $unidad == 'red' || $unidad == 'hw'){
+	      }elseif($unidad == '01l' || $unidad == '02l' || $unidad == '03l' || $unidad == '04l' || $unidad == '05l' || $unidad == 'red' || $unidad == 'hw'){
 	      	    $inventario = $this->General->like_where('inventario_lab' , $unidad  ,'lab', 'identificador_lab', 'UPS');
                 $campoCoparacion = "identificador_lab";
 
