@@ -237,7 +237,8 @@
 									<div class="row">
 										<div class="col-md-8">
 											<label id="label"><span id="span">Año:</span></label>
-											<input required="" type="text" class="form-control" name="year">
+
+											<input required="" value="<?php echo date("Y") ?>" class="form-control" type="number" min="1000" max="5000" name="year">
 										</div>
 										<div class="col-md-4" style="padding-top: 10px">
 											<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
@@ -396,7 +397,7 @@
       </div>
       <div class="modal-body">
             <label>Ingrese un año:</label>
-      		<input required="" class="form-control" type="text" name="year">
+      		<input required="" value="<?php echo date("Y") ?>" class="form-control" type="number" min="1000" max="5000" name="year">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
