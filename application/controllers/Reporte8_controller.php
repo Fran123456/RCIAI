@@ -22,7 +22,7 @@ class Reporte8_controller extends CI_Controller {
 
 
 	public function error_message__(){
-		$mensaje = "No hay registro para el año o mes que ha proporcionado.";
+		$mensaje = "Es posible que no se encuentren datos existentes";
 		$this->load->view('Dashboard/Reporteria/success', compact('mensaje'));
 	}
 
