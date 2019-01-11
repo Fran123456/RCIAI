@@ -120,8 +120,10 @@ class Reporte8_controller extends CI_Controller {
 
 
 	public function reporte8_mes()
-	{  
-		$year = $this->input->post('date');
+	{  //2018-12
+		$year = $this->input->post('year').'-'.$this->input->post('dia');
+
+
 		$data = $this->data_factory_mouth($year);
 		$header = $this->header__();
 
@@ -180,7 +182,7 @@ class Reporte8_controller extends CI_Controller {
 
 				  //SAVE
 		          Excel::save__($spreadsheet,'Reporte-movimientos-por-mes-'.$year);
-		         //SAVE*/
+		         //SAVE
 
 		}else{
 			redirect(base_url().'error-404-reporteria');
@@ -215,7 +217,9 @@ class Reporte8_controller extends CI_Controller {
 
 	public function data_factory_mouth($mouth){
      // $mouth = '2018-12-07';
-      $mouth =substr($mouth, 0,7);
+     // $mouth =substr($mouth, 0,7);
+
+
       $movimientoYears = $this->General->like__('fecha_cambio', $mouth, 'movimiento');
 
       if(count($movimientoYears) > 0){
