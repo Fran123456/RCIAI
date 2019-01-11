@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-01-2019 a las 17:27:28
+-- Tiempo de generación: 04-01-2019 a las 20:22:28
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `usam-sistema-5`
 --
+CREATE DATABASE IF NOT EXISTS `usam-sistema-5` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `usam-sistema-5`;
 
 -- --------------------------------------------------------
 
@@ -365,7 +367,7 @@ INSERT INTO `inventario_adm` (`id_adm`, `identificador`, `encargado_puesto`, `de
 (1, 'LAP001USAM', 'Karla Margarita', 'LAP001USAM', 'LAP001USAM', 'LAP001USAM', 'LAP001USAM', 'LAP001USAM', '2018-11-29', 1, NULL, 2, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'Academica', '53x-cx2-11-0'),
 (2, 'PC001USAM', 'Juan Perez', 'PC001USAM', 'PC001USAM', 'PC001USAM', 'PC001USAM', 'PC001USAM', '2018-12-07', 4, NULL, 6, 'COMPRA-l9KBfLuU6M-8651805-5221', 'RRHH', NULL),
 (3, 'PC002USAM', 'Juan Perez', 'PC002USAM', 'PC002USAM', 'PC002USAM', 'PC002USAM', 'PC002USAM', '2018-12-07', 4, NULL, 10, 'COMPRA-l9KBfLuU6M-8651805-5221', 'Medicina', NULL),
-(4, 'PC004USAM', '', 'PC004USAM', 'PC004USAM', 'PC004USAM', 'PC004USAM', 'PC004USAM', '2018-12-07', 4, NULL, 10, 'COMPRA-l9KBfLuU6M-8651805-5221', 'Medicina', NULL),
+(4, 'PC004USAM', 'Maria Jimenez', 'PC004USAM', 'PC004USAM', 'PC004USAM', 'PC004USAM', 'PC004USAM', '2018-12-07', 4, NULL, 10, 'COMPRA-l9KBfLuU6M-8651805-5221', 'Medicina', NULL),
 (5, 'LAP002USAM', 'Carlos Garcia', 'LAP002USAM', 'LAP002USAM', 'LAP002USAM', 'LAP002USAM', 'LAP002USAM', '2018-12-10', 4, NULL, 3, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'Academica', '4566546456-lap'),
 (6, 'PC003USAM', 'Mario Martinez', 'PC003USAM', 'PC003USAM', 'PC003USAM', 'PC003USAM', 'PC003USAM', '2018-12-11', 4, NULL, 2, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'Academica', NULL),
 (7, 'IMPR001USAM', 'Karla Gabriela', NULL, NULL, NULL, NULL, NULL, '2018-11-13', 4, NULL, 2, 'COMPRA-9tYiRqUFWZ-9378724-6993', 'Academica', '344-IMPR-XXX'),
@@ -686,10 +688,10 @@ INSERT INTO `placa_base` (`id`, `pc_id`, `procesador`, `velocidad_reloj`, `fabri
 (4, 'PC001USAM', 'Intel Quad-Core i3-8100', '3.4', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'HP', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
 (5, 'PC--CXhk174mMl722785-9441Md9UH', 'i7', '3.6', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'Optiplex GX270', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
 (6, 'PC002USAM', 'Intel Quad-Core i3-8100', '2.5', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'Optiplex GX270', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'LAB1-PC1', 'Intel - Core 3', '3.5', 'Intel', 'BIO star', 'Dell', '2.5', 'Dell-12', '2018-12-10', 'Dell', 'D-14', '14', '', '', '', '', '', '', ''),
-(8, 'LAB1-PC2', 'Intel - Core 3', '3.5', 'Intel', 'BIO star', 'Dell', '', '5555555', '2006-12-12', 'Dell', 'D-14', '14', 'Dell', '', '', '', '', '', ''),
+(7, 'LAB1-PC1', 'Intel - Core 3', '3.5', 'Intel', 'BIO star', 'Dell', '2.5', 'Dell-12', '2018-12-10', 'Biostar', 'H310MHD3', 'V7.x', '', '', '', '', '', '', ''),
+(8, 'LAB1-PC2', 'Intel - Core 3', '3.5', 'Intel', 'BIO star', 'Dell', '', '5555555', '2006-12-12', 'Biostar', 'TB360-BTC Expert', 'V7.x', 'Dell', '', '', '', '', '', ''),
 (9, 'PC--nuaW0cPj5F147089-21917XalC', 'Intel Quad-Core i3-8100', '3.5', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'HP', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 'PC004USAM', 'Intel Quad-Core i3-8100', '3.5', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'HP', NULL, 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'PC004USAM', 'Intel Quad-Core i3-8100', '3.5', 'Intel', NULL, NULL, NULL, NULL, NULL, ' Biostar', 'TB360-BTC Expert', '6.x', 'HiperX Fury', NULL, NULL, NULL, NULL, NULL, NULL),
 (11, 'LAB1-PC4', 'Intel - Core 3', '3.5', 'Intel', 'BIO star', 'Dell', '2.3', '98765432154', '2018-12-07', 'Dell', 'D-14', '14', 'Dell', '', '', '', '', '', ''),
 (12, 'LAB5-PC1', 'Intel - Core 3', '3.5', 'Intel', 'BIO star', 'Dell', '2.5', 'Dell-12', '2018-12-07', 'Dell', 'D-14', '14', 'Dell', '', '', '', '', '', ''),
 (13, 'LAP002USAM', 'Intel core i5 4400K', '3.2 GHZ', 'Intel', NULL, NULL, NULL, NULL, NULL, NULL, 'Sin grupo', NULL, 'Kin', NULL, NULL, NULL, NULL, NULL, NULL),
