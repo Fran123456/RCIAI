@@ -12,7 +12,7 @@ class Reporte9_controller extends CI_Controller {
       if (!$this->session->userdata('login')) {
 			redirect(base_url());
 		}
-		$this->load->model('GeneralReporte_Model', 'General');
+		$this->load->model('Reporte9_Model', 'R9');
 
 		require 'application/plus/noty.php';
 		require 'application/plus/Excel.php';
@@ -41,7 +41,16 @@ class Reporte9_controller extends CI_Controller {
 
 			case 'anual':
 				//vamos hacer la consulta de datos para el año que se a elegido
-				$result = $this->
+				$result = $this->R9->reporte_anual($anio);
+				//comparamos
+				if($result)
+				{
+					print_r($result);
+				}
+				else
+				{
+					echo "error";
+				}
 			break;
 		}
 
