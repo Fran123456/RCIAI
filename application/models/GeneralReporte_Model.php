@@ -29,7 +29,12 @@ class GeneralReporte_Model extends CI_Model
     }
 
     public function where_($table, $id ,$campoCoparacion){
-      $data = $this->db->where( $campoCoparacion, $id)->get($table)->result_array();
+      $data = $this->db->where( $campoCoparacion ,$id)->get($table)->result_array();
+      return $data;
+    }
+
+     public function where_no($table, $id ,$campoCoparacion){
+      $data = $this->db->where( $campoCoparacion . '!=' ,$id)->get($table)->result_array();
       return $data;
     }
 
