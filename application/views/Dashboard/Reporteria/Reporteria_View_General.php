@@ -139,6 +139,7 @@
 										<div class="col-md-8">
 											<label>Unidad</label>
 											<select name="unidad" id="unidad" class="form-control">
+												<option value="todo">Todo</option>
 											<?php for ($i=0; $i <count($unidades) ; $i++): ?>
 												
 												<?php if($unidades[$i]['id_unidad'] != 4 && $unidades[$i]['id_unidad'] != 1 && $unidades[$i]['id_unidad'] != 38): ?>
