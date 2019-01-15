@@ -104,6 +104,7 @@
 	        		</div>
 	        	</div>
 	        	<hr>
+	        	<?php if($unidad !=false){ ?>
 	        	<?php foreach($unidad as $unidad){ ?>
 	        	<div class="row">
 	        		<div class="form-group">
@@ -118,6 +119,11 @@
 	        		</div>
 	        	</div>
 	        	<?php } ?>
+	        <?php } else {?>
+	        	<center>
+	        		<h1>compra aun no asignada a alguna unidad</h1>
+	        	</center>
+	        <?php } ?>
 	        	<br>
 	        	 <a class="btn btn-success" href="<?php echo base_url()?>pagina/compra">ATRAS</a>
 	        </form>
