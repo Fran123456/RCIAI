@@ -42,14 +42,19 @@ class Reporte9_controller extends CI_Controller {
 			case 'anual':
 				//vamos hacer la consulta de datos para el año que se a elegido
 				$result = $this->R9->reporte_anual($anio);
-				//comparamos
+				$msj = ' Costo Anual ';
+				//nombre con el que se guardara el reporte
+				$name = 'Reporte-anual-de-equipos-nuevos-'.$anio;
+			break;
+		}
+
+		//comparamos
 				if($result)
 				{
 					//print_r($result);
-					//nombre con el que se guardara el reporte
-					$name = 'Reporte-anual-de-equipos-nuevos-'.$anio;
+					
 					//titulos
-					$ArrayTitulo = array(' N° Factura ', ' Detalle ', ' unidad ', ' fecha ',' costo por factura ', ' Costo anual ' );
+					$ArrayTitulo = array(' N° Factura ', ' Detalle ', ' unidad ', ' fecha ',' costo por factura ', $msj );
 					//configuración iniciales con clase excel para reporte
 					$spreadsheet = Excel::Create_Excel__(null,null);//creamos el objeto
 					Excel::Header_format__(null,null,'A1:G1',$spreadsheet);//preparamos la cabecera de el excel
@@ -59,6 +64,7 @@ class Reporte9_controller extends CI_Controller {
 					$cont = 1; //contador que nos ayudara a llevar el control de los registros y que hace que imprima los datos en la segunda fila
 					for($i=0;$i<count($result);$i++)
 					{
+						//$unidades = $this->R9->obtener_destino($result[$i]['n_factura']);
 						$cont++;
 						$spreadsheet->setActiveSheetIndex(0)
 						 ->setCellValue('A'.$cont,$result[$i]['n_factura'])
@@ -80,9 +86,5 @@ class Reporte9_controller extends CI_Controller {
 				{
 					redirect(base_url().'error-404-reporteria');
 				}
-			break;
-		}
-
-
 	}
 }

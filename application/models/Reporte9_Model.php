@@ -23,4 +23,19 @@ class Reporte9_Model extends CI_Model
 			return false;
 		}
 	}
+
+	//función para obtener el destino de las ventas
+	/*public function obtener_destino($factura)
+	{
+		echo $factura;
+		$c="SELECT u.unidad FROM unidad AS u INNER JOIN compra_unidad AS cu ON cu.unidad_id = u.id_unidad WHERE cu.compra_id = (SELECT c.id_compra FROM compras AS c WHERE c.n_factura = $factura)";
+		$query = $this->db->query($c);
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros, devolvemos un false
+			return false;
+		}
+	}*/
 }
