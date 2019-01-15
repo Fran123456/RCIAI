@@ -32,16 +32,30 @@ class Reporte9_controller extends CI_Controller {
 
 		switch ($fecha) {
 			case '1':
-				echo "semestre 1";
-				break;
+				//vamos hacer la consulta de datos para el año que se a elegido
+				$fecha_inicio = "$anio-01-01";
+				$fecha_fin = "$anio-06-30";
+				$result = $this->R9->reporte($anio,$fecha_inicio,$fecha_fin);
+				$msj = ' Costo Anual ';
+				//nombre con el que se guardara el reporte
+				$name = 'Reporte-primer-semestre-de-equipos-nuevos-'.$anio;
+			break;
 			
 			case '2':
-				echo "semestre 2";
-				break;
+				//vamos hacer la consulta de datos para el año que se a elegido
+				$fecha_inicio = "$anio-07-01";
+				$fecha_fin = "$anio-12-31";
+				$result = $this->R9->reporte($anio,$fecha_inicio,$fecha_fin);
+				$msj = ' Costo Anual ';
+				//nombre con el que se guardara el reporte
+				$name = 'Reporte-segundo-semestre-de-equipos-nuevos-'.$anio;
+			break;
 
 			case 'anual':
 				//vamos hacer la consulta de datos para el año que se a elegido
-				$result = $this->R9->reporte_anual($anio);
+				$fecha_inicio = "$anio-01-01";
+				$fecha_fin = "$anio-12-31";
+				$result = $this->R9->reporte($anio,$fecha_inicio,$fecha_fin);
 				$msj = ' Costo Anual ';
 				//nombre con el que se guardara el reporte
 				$name = 'Reporte-anual-de-equipos-nuevos-'.$anio;
@@ -64,12 +78,19 @@ class Reporte9_controller extends CI_Controller {
 					$cont = 1; //contador que nos ayudara a llevar el control de los registros y que hace que imprima los datos en la segunda fila
 					for($i=0;$i<count($result);$i++)
 					{
-						//$unidades = $this->R9->obtener_destino($result[$i]['n_factura']);
+						$unidad = $this->R9->obtener_destino($result[$i]['id_compra']);
+						$unidades ='';
+						//agregar las unidades a una variable
+						for($j=0;$j<count($unidad);$j++)
+						{
+							$unidades .= $unidad[$j]['unidad'].' ' ;
+						}
+
 						$cont++;
 						$spreadsheet->setActiveSheetIndex(0)
 						 ->setCellValue('A'.$cont,$result[$i]['n_factura'])
 						 ->setCellValue('B'.$cont,$result[$i]['detalle'])
-						 ->setCellValue('C'.$cont,$result[$i]['destino'])
+						 ->setCellValue('C'.$cont,$unidades)
 						 ->setCellValue('D'.$cont,$result[$i]['fecha_compra'])
 						 ->setCellValue('E'.$cont,$result[$i]['total']);
 
