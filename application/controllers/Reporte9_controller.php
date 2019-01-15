@@ -22,8 +22,8 @@ class Reporte9_controller extends CI_Controller {
 	//función para realizar el reporte
 	public function reporte_9()
 	{
-		$Arraycolumnas = array('A1','B1','C1','D1','E1','F1');
-		$ArrayColumnasLetra = array('A','B', 'C', 'D', 'E', 'F');
+		$Arraycolumnas = array('A1','B1','C1','D1','E1','G1');
+		$ArrayColumnasLetra = array('A','B', 'C', 'D', 'E', 'G');
 
 		//capturamos los datos del formulario para hacer la consulta
 		$anio = $this->input->post('anio_9'); 
@@ -52,7 +52,7 @@ class Reporte9_controller extends CI_Controller {
 					$ArrayTitulo = array(' N° Factura ', ' Detalle ', ' unidad ', ' fecha ',' costo por factura ', ' Costo anual ' );
 					//configuración iniciales con clase excel para reporte
 					$spreadsheet = Excel::Create_Excel__(null,null);//creamos el objeto
-					Excel::Header_format__(null,null,'A1:F1',$spreadsheet);//preparamos la cabecera de el excel
+					Excel::Header_format__(null,null,'A1:G1',$spreadsheet);//preparamos la cabecera de el excel
 					Excel::Values_Header__($spreadsheet,0,$Arraycolumnas,$ArrayTitulo);
 
 					//impresión de Datos
@@ -65,11 +65,11 @@ class Reporte9_controller extends CI_Controller {
 						 ->setCellValue('B'.$cont,$result[$i]['detalle'])
 						 ->setCellValue('C'.$cont,$result[$i]['destino'])
 						 ->setCellValue('D'.$cont,$result[$i]['fecha_compra'])
-						 ->setCellValue('E'.$cont,$result[$i]['total'])
-						 ->setCellValue('F'.$cont,$result[$i]['total']);
+						 ->setCellValue('E'.$cont,$result[$i]['total']);
 
 					}
-					Excel::borders__($spreadsheet, '686868', "A1:F".$cont);
+					$spreadsheet->setActiveSheetIndex(0)->setCellValue('G2',"=SUM(E2:E$cont)");
+					Excel::borders__($spreadsheet, '686868', "A1:G".$cont);
 
 					//Autotamaño de las columnas
 					Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);
