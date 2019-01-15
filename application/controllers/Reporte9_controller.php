@@ -35,7 +35,7 @@ class Reporte9_controller extends CI_Controller {
 				//vamos hacer la consulta de datos para el año que se a elegido
 				$fecha_inicio = "$anio-01-01";
 				$fecha_fin = "$anio-06-30";
-				$result = $this->R9->reporte($anio,$fecha_inicio,$fecha_fin);
+				$result = $this->R9->reporte($fecha_inicio,$fecha_fin);
 				$msj = ' Costo Anual ';
 				//nombre con el que se guardara el reporte
 				$name = 'Reporte-primer-semestre-de-equipos-nuevos-'.$anio;
@@ -45,7 +45,7 @@ class Reporte9_controller extends CI_Controller {
 				//vamos hacer la consulta de datos para el año que se a elegido
 				$fecha_inicio = "$anio-07-01";
 				$fecha_fin = "$anio-12-31";
-				$result = $this->R9->reporte($anio,$fecha_inicio,$fecha_fin);
+				$result = $this->R9->reporte($fecha_inicio,$fecha_fin);
 				$msj = ' Costo Anual ';
 				//nombre con el que se guardara el reporte
 				$name = 'Reporte-segundo-semestre-de-equipos-nuevos-'.$anio;
@@ -55,7 +55,7 @@ class Reporte9_controller extends CI_Controller {
 				//vamos hacer la consulta de datos para el año que se a elegido
 				$fecha_inicio = "$anio-01-01";
 				$fecha_fin = "$anio-12-31";
-				$result = $this->R9->reporte($anio,$fecha_inicio,$fecha_fin);
+				$result = $this->R9->reporte($fecha_inicio,$fecha_fin);
 				$msj = ' Costo Anual ';
 				//nombre con el que se guardara el reporte
 				$name = 'Reporte-anual-de-equipos-nuevos-'.$anio;

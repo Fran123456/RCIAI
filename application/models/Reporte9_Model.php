@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Reporte9_Model extends CI_Model
 {
 	//función para hacer la consulta para el reporte anual
-	public function reporte($anio,$fecha_inicio,$fecha_fin)
+	public function reporte($fecha_inicio,$fecha_fin)
 	{
 		$this->db->select('com.id_compra,com.n_factura,com.detalle,bod.destino,com.fecha_compra,com.total');
 		$this->db->from('compras AS com');
