@@ -17,7 +17,7 @@ class Reporte9_Model extends CI_Model
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			//si hay registros los devolvemos
-			return $query->result();
+			return $query->result_array();
 		}else{
 			//si no hay registros, devolvemos un false
 			return false;

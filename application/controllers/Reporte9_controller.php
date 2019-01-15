@@ -22,8 +22,8 @@ class Reporte9_controller extends CI_Controller {
 	//función para realizar el reporte
 	public function reporte_9()
 	{
-		$Arraycolumnas = array('A1','B1','C1','D1','E1','G1');
-		$ArrayColumnasLetra = array('A','B', 'C', 'D', 'E', 'G');
+		$Arraycolumnas = array('A1','B1','C1','D1','E1','F1');
+		$ArrayColumnasLetra = array('A','B', 'C', 'D', 'E', 'F');
 
 		//capturamos los datos del formulario para hacer la consulta
 		$anio = $this->input->post('anio_9'); 
@@ -45,11 +45,40 @@ class Reporte9_controller extends CI_Controller {
 				//comparamos
 				if($result)
 				{
-					print_r($result);
+					//print_r($result);
+					//nombre con el que se guardara el reporte
+					$name = 'Reporte-anual-de-equipos-nuevos-'.$anio;
+					//titulos
+					$ArrayTitulo = array(' N° Factura ', ' Detalle ', ' unidad ', ' fecha ',' costo por factura ', ' Costo anual ' );
+					//configuración iniciales con clase excel para reporte
+					$spreadsheet = Excel::Create_Excel__(null,null);//creamos el objeto
+					Excel::Header_format__(null,null,'A1:F1',$spreadsheet);//preparamos la cabecera de el excel
+					Excel::Values_Header__($spreadsheet,0,$Arraycolumnas,$ArrayTitulo);
+
+					//impresión de Datos
+					$cont = 1; //contador que nos ayudara a llevar el control de los registros y que hace que imprima los datos en la segunda fila
+					for($i=0;$i<count($result);$i++)
+					{
+						$cont++;
+						$spreadsheet->setActiveSheetIndex(0)
+						 ->setCellValue('A'.$cont,$result[$i]['n_factura'])
+						 ->setCellValue('B'.$cont,$result[$i]['detalle'])
+						 ->setCellValue('C'.$cont,$result[$i]['destino'])
+						 ->setCellValue('D'.$cont,$result[$i]['fecha_compra'])
+						 ->setCellValue('E'.$cont,$result[$i]['total'])
+						 ->setCellValue('F'.$cont,$result[$i]['total']);
+
+					}
+					Excel::borders__($spreadsheet, '686868', "A1:F".$cont);
+
+					//Autotamaño de las columnas
+					Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);
+					//SAVE
+					Excel::save__($spreadsheet,$name);
 				}
 				else
 				{
-					echo "error";
+					redirect(base_url().'error-404-reporteria');
 				}
 			break;
 		}
