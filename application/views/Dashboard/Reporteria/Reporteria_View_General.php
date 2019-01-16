@@ -253,13 +253,17 @@
 		 		 </div>
 			<!--REPORTE 4 por codigo-->
 
+
+		</div>
+		<div class="row">
+			<!--            REORTES PARA LA GERENTE   -->
 			<!--REPORTE 9-->
 			<form method="post" action="<?php echo base_url()?>Reporte9_controller/reporte_9">
 				<div class="col-md-6">
 		         <!-- PANEL HEADLINE -->
 						<div class="panel panel-headline">
 								<div class="panel-heading">
-									<h3 class="panel-title"><i class="fa fa-pencil-square-o " aria-hidden="true"></i> Reporte equipo nuevo</h3>
+									<h3 class="panel-title"><i class="fa fa-pencil-square-o " aria-hidden="true"></i> Reporte equipo nuevo en el inventario</h3>
 								</div>
 								<div class="panel-body text-center">
 									<p>Reporte de los equipos nuevos agregados al inventario en el año.</p>
@@ -287,13 +291,170 @@
 								</div>
 						</div>
 				<!-- END PANEL HEADLINE -->
-		 		 </div>
-		 		 </form>
+		 		</div>
+		 	</form>
 
-
+		 	<!--REPORTE 12-->
+			<form method="post" action="<?php echo base_url()?>Reporte12_controller/reporte_12">
+				<div class="col-md-6">
+		        	<!-- PANEL HEADLINE -->
+					<div class="panel panel-headline">
+							<div class="panel-heading">
+								<h3 class="panel-title"><i class="fa fa-pencil-square-o " aria-hidden="true"></i> Reporte detalle de equipo</h3>
+							</div>
+							<div class="panel-body text-center">
+								<p>detalle de equipos por unidad, encargado o código pc</p>
+								<div class="row">
+									<div class="col-md-4">
+										<label>Consultar por:</label>
+										<select class="form-control" name="consulta12" id="consulta12">
+											<option value="1">Unidad</option>
+											<option value="2">Nombre del encargado</option>
+											<option value="3">Código PC</option>
+										</select>
+									</div>
+									<div id="dato_12" class="col-md-4">
+										
+									</div>
+									<div class="col-md-4" style="padding-top: 10px">
+										<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
+									</div>
+								</div>
+							</div>
+					</div>
+					<!-- END PANEL HEADLINE -->
+		 		</div>
+		 	</form>
 		</div>
 	</div>
+<!-- script para reportes de gerencia -->
+<script>
+	var valor;
 
+	$(document).ready(function(){
+		valor = $('#consulta12').val();
+		//console.log(valor);
+		var html = '<label id="label_parametro" for="parametro">Parametro</label>'+
+							'<select class="form-control" name="parametro12" id="parametro12">'+
+								'<option value=2>Academica</option>'+
+								'<option value=33>Almacen y Bodega</option>'+
+								'<option value=27>Audiovisuales</option>'+
+								'<option value=8>Biblioteca</option>'+
+								'<option value=31>CEFADE</option>'+
+								'<option value=34>Celula de quimica</option>'+
+								'<option value=24>Ciencias Empresariales</option>'+
+								'<option value=13>Colecturia</option>'+
+								'<option value=5>Contabilidad</option>'+
+								'<option value=23>Control de calidad</option>'+
+								'<option value=18>Decanato de jurisprudencia</option>'+
+								'<option value=15>Egresados y graduados</option>'+
+								'<option value=30>Enfermeria</option>'+
+								'<option value=12>Extensión Cultural</option>'+
+								'<option value=28>Fiscalia</option>'+
+								'<option value=3>Gerencia General</option>'+
+								'<option value=22>Gestión Educativa</option>'+
+								'<option value=9>ICTUSAM</option>'+
+								'<option value=25>Informática</option>'+
+								'<option value=10>Medicina</option>'+
+								'<option value=19>Odontología</option>'+
+								'<option value=32>OFAL</option>'+
+								'<option value=36>Otros proyectos</option>'+
+								'<option value=7>Planificación</option>'+
+								'<option value=11>Proyecto Social</option>'+
+								'<option value=35>Proyecto USAID</option>'+
+								'<option value=21>Química y Farmacia</option>'+
+								'<option value=17>Rectoria y Vicerrectoria</option>'+
+								'<option value=26>Relaciones Píblicas</option>'+
+								'<option value=6>RRHH</option>'+
+								'<option value=14>Secretaria General</option>'+
+								'<option value=16>Ultrasonografia</option>'+
+								'<option value=29>URNI</option>'+
+								'<option value=20>Veterinaria</option>'+
+								'<option value="lab-01">Laboratorio 1</option>'+
+								'<option value="lab-02">Laboratorio 2</option>'+
+								'<option value="lab-03">Laboratorio 3</option>'+
+								'<option value="lab-04">Laboratorio 4</option>'+
+								'<option value="lab-05">Laboratorio 5</option>'+
+								'<option value="lab-HW">Laboratorio de Hardware</option>'+
+								'<option value="lab-red">Laboratorio de red</option>'+
+							'</select>'+
+						'</div>';
+				$('#dato_12').append(html);
+
+	});
+
+	$('#consulta12').change(function(){
+		valor = $(this).val();console.log(valor);
+		switch(valor)
+		{
+			case "1":
+				console.log('select');
+				$('#label_parametro').remove();
+				$('#parametro12').remove();
+
+				var html='';
+
+				var html = '<label id="label_parametro" for="parametro">Parametro</label>'+
+							'<select class="form-control" name="parametro12" id="parametro12">'+
+								'<option value=2>Academica</option>'+
+								'<option value=33>Almacen y Bodega</option>'+
+								'<option value=27>Audiovisuales</option>'+
+								'<option value=8>Biblioteca</option>'+
+								'<option value=31>CEFADE</option>'+
+								'<option value=34>Celula de quimica</option>'+
+								'<option value=24>Ciencias Empresariales</option>'+
+								'<option value=13>Colecturia</option>'+
+								'<option value=5>Contabilidad</option>'+
+								'<option value=23>Control de calidad</option>'+
+								'<option value=18>Decanato de jurisprudencia</option>'+
+								'<option value=15>Egresados y graduados</option>'+
+								'<option value=30>Enfermeria</option>'+
+								'<option value=12>Extensión Cultural</option>'+
+								'<option value=28>Fiscalia</option>'+
+								'<option value=3>Gerencia General</option>'+
+								'<option value=22>Gestión Educativa</option>'+
+								'<option value=9>ICTUSAM</option>'+
+								'<option value=25>Informática</option>'+
+								'<option value=10>Medicina</option>'+
+								'<option value=19>Odontología</option>'+
+								'<option value=32>OFAL</option>'+
+								'<option value=36>Otros proyectos</option>'+
+								'<option value=7>Planificación</option>'+
+								'<option value=11>Proyecto Social</option>'+
+								'<option value=35>Proyecto USAID</option>'+
+								'<option value=21>Química y Farmacia</option>'+
+								'<option value=17>Rectoria y Vicerrectoria</option>'+
+								'<option value=26>Relaciones Píblicas</option>'+
+								'<option value=6>RRHH</option>'+
+								'<option value=14>Secretaria General</option>'+
+								'<option value=16>Ultrasonografia</option>'+
+								'<option value=29>URNI</option>'+
+								'<option value=20>Veterinaria</option>'+
+								'<option value="lab-01">Laboratorio 1</option>'+
+								'<option value="lab-02">Laboratorio 2</option>'+
+								'<option value="lab-03">Laboratorio 3</option>'+
+								'<option value="lab-04">Laboratorio 4</option>'+
+								'<option value="lab-05">Laboratorio 5</option>'+
+								'<option value="lab-HW">Laboratorio de Hardware</option>'+
+								'<option value="lab-red">Laboratorio de red</option>'+
+							'</select>'+
+						'</div>';
+				$('#dato_12').append(html);
+
+				////////////////////
+			break;
+			case "2":
+			case "3":
+				$('#label_parametro').remove();
+				$('#parametro12').remove();
+				var html = '';
+				html += '<label id="label_parametro" for="parametro">Parametro de consulta</label>'+
+						'<input name="parametro12" id="parametro12" type="text" class="form-control">';
+				$('#dato_12').append(html);
+			break;
+		}
+	});
+</script>
 
 <script type="text/javascript">
 	
