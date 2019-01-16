@@ -307,6 +307,11 @@ $route['error-404-reporteria-11'] = 'Reporte11_controller/error_message__';
 
 
 
-
+//No es de lo que nos pidieron 
+//pero hay que hacerlo :( 
+//Sub-rama de eliminar elementos con 
+//estado Desechado. Desechado
+$route['Eliminar-bodega'] = 'Desecho_Controller/index';
+$route['EliminarElemento/(:any)'] = 'Desecho_Controller/EliminarElemento/$1';
 
 //

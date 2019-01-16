@@ -74,6 +74,11 @@ class GeneralReporte_Model extends CI_Model
           return $query;
      }
 
+     function delete_($campo, $id, $table){
+       $this->db->where($campo, $id)->delete($table);
+     }
+
+
 
 
 
