@@ -208,6 +208,16 @@
         <label>Nº serie:</label>
          <input type="text" class="form-control"  name="7-e">
       </div>
+
+      <div class="es col-md-3">
+        <label>Organización:</label>
+         <input type="text" class="form-control"  name="8-e">
+      </div>
+
+      <div class="es col-md-3">
+        <label>Idioma:</label>
+         <input type="text" class="form-control"  name="9-e">
+      </div>
     </div>
   </div>
 </div>
@@ -229,6 +239,10 @@
       <div class="es col-md-3">
         <label>Fabricante procesador:</label>
         <input type="text" class="form-control" value="Intel" name="2-c">
+      </div>
+      <div class="es col-md-3">
+        <label>Fabricante motherboard:</label>
+         <input type="text"   class="form-control"  name="fav">
       </div>
       <div class="es col-md-3">
         <label>Modelo motherboard:</label>
