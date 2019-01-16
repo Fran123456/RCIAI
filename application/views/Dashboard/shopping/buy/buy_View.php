@@ -90,7 +90,7 @@
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label class="control-label">Total de compra ($)</label>
-                                <input required   class="form-control int2" type="text"  name="total"/>
+                                <input required   class="form-control int2" type="number"  min="0.00" step="0.01" value="0.00"  name="total"/>
                              </div>
                         </div>
                     </div>
