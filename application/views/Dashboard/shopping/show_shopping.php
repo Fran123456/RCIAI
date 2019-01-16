@@ -48,7 +48,8 @@
   						</div>
   						<div class="col-md-4">
   							<label>Tipo de compra</label>
-  							<input type="text" id="tipo" name="tipo" class="form-control" readonly="" value="<?php echo empty($compras->tipo) ? 'no disponible' : $compras->tipo ?>">
+  							<textarea class="form-control" name="tipo" id="tipo" cols="30" rows="1" readonly=""><?php echo empty($compras->tipo) ? 'no disponible' : $compras->tipo ?></textarea>
+  							
   						</div>
   						<div class="col-md-4">
   							<label>Detalle</label>
