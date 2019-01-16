@@ -246,18 +246,16 @@
         <label>Tarjetas extra:</label>
          <input type="text"   class="form-control"  name="6-c">
       </div>
-      <div class="es col-md-3">
-        <label>Marca monitor:</label>
-         <input type="text" class="form-control"  name="7-c">
-      </div>
-      <div class="es col-md-3">
-        <label>Modelo monitor:</label>
-        <input type="text" class="form-control"  name="8-c">
-      </div>
-      <div class="es col-md-3">
-        <label>serie monitor:</label>
-        <input type="text" class="form-control"  name="9-c">
-      </div>
+      
+         <input type="hidden" class="form-control"  name="7-c">
+     
+     
+        <input type="hidden" class="form-control"  name="8-c">
+     
+     
+       
+        <input type="hidden" class="form-control"  name="9-c">
+      
       <div class="es col-md-3">
         <label>Disco físico 1:</label>
         <input type="number"  min="1" class="form-control"  name="10-c">
