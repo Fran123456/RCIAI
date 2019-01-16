@@ -31,23 +31,26 @@
 <script type="text/javascript">
 	 swal({
               type: 'success',
-              title: 'El elemento se ha devolvido correctamente',
+              title: 'Elemento eliminado correctamente',
             });
 </script>
 
 <?php endif; ?>
 
-<?php if($this->session->flashdata('validar2')): ?>
-<script type="text/javascript">
-	 swal({
-              type: 'success',
-              title: 'El elemento se ha asignado correctamente',
-            });
-</script>
+  <div class="col-md-6">
+  	<h3> PERIFERICOS CON ESTADO EN DESECHO </h3>
+  </div>
 
-<?php endif; ?>
+   <div class="col-md-6 text-right">
+   	<?php if(count($elementos) > 0): ?>
+  	<a class="btn btn-danger" href="<?php echo base_url()?>Desecho_Controller/del__all">Eliminar todo</a>
+  <?php endif ?>
+  </div>
+  <br>
 
-	<h3> PRESTAMOS PENDIENTES PARA DEVOLVER </h3>
+
+	
+	
 <!--verificamos si la variable no viene vacia -->
 <?php if(count($elementos) > 0) {?>
 	<!--Creamos la tabla donde vamos a mostrar nuestros registros de inventario Bodega-->
@@ -57,8 +60,8 @@
 				<td>#</td>
 				<th scope="col">Serial</th>
 				<th scope="col">destino</th>
-				<th scope="col">Devolver</th>
-				<th scope="col">Asignar</th>
+				<th scope="col">Eliminar</th>
+
 			</tr>
 		</thead>
 		<tbody id="showdata">
@@ -67,9 +70,8 @@
 					<td><?php echo $i+1 ?></td>
 					<td><?php echo $elementos[$i]['serial'] ?></td>
 					<td><?php echo $unidad['destino'][$i][0]['unidad'] ?></td>
-					<td><a href="<?php base_url();?>retornar/<?php echo $elementos[$i]['serial']?>" class="btn btn-success item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+					<td><a href="<?php base_url();?>EliminarElemento/<?php echo $elementos[$i]['serial']?>" class="btn btn-danger item-view"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 
-					<td><a href="<?php base_url();?>asignar-prestamo/<?php echo $elementos[$i]['serial']?>" class="btn btn-warning item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 				</tr>
 			<?php } ?>
 			
@@ -77,6 +79,7 @@
 	</table>
 	<?php } else {?>
 		<center>
+			<br>
 			<h3>SIN REGISTROS EN LA BASE DE DATOS</h3>
 		</center>
 	<?php } ?>

@@ -691,6 +691,8 @@ public function disco_asignado_add(){
         'memoria_fisica' => $this->input->post('6-e'),
         'dominio' => $this->input->post('2-e'),
         'serie_des' => $this->input->post('7-e'),
+         'organizacion' => $this->input->post('8-e'),
+        'idioma' => $this->input->post('9-e'),
     );
 
     $red = array(
@@ -719,6 +721,7 @@ public function disco_asignado_add(){
        'procesador' => $this->input->post('0-c'),
        'velocidad_reloj' => $this->input->post('1-c'),
        'fabricante_procesador ' => $this->input->post('2-c'),
+       'fabricante_placa' => $this->input->post('fav'),
         'modelo_placa' => $this->input->post('3-c'),
         'marca_ram' => $this->input->post('4-c'),
     );
