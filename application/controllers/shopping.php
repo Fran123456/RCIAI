@@ -62,7 +62,10 @@
 			
 				$this->load->view('Dashboard/shopping/show_shopping',$data);
 			}else{
-				echo "ERROR";
+				$data['compras'] = $result1;
+				$data['unidad'] = false;
+			
+				$this->load->view('Dashboard/shopping/show_shopping',$data);
 			}
 			
 		}#fin de mostrar

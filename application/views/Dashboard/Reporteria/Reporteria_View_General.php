@@ -252,7 +252,43 @@
 				</form>
 		 		 </div>
 			<!--REPORTE 4 por codigo-->
-			
+
+			<!--REPORTE 9-->
+			<form method="post" action="<?php echo base_url()?>Reporte9_controller/reporte_9">
+				<div class="col-md-6">
+		         <!-- PANEL HEADLINE -->
+						<div class="panel panel-headline">
+								<div class="panel-heading">
+									<h3 class="panel-title"><i class="fa fa-pencil-square-o " aria-hidden="true"></i> Reporte equipo nuevo</h3>
+								</div>
+								<div class="panel-body text-center">
+									<p>Reporte de los equipos nuevos agregados al inventario en el año.</p>
+									<div class="row">
+										<div class="col-md-4">
+											<label>Año</label>
+											<input required="" value="<?php echo date("Y") ?>" class="form-control" type="number" min="1000" max="5000" name="anio_9">
+										</div>
+
+										<div class="col-md-4">
+											<label>Fecha de compra</label>
+											<select name="fecha_9" id="fecha_9" class="form-control">
+												<option value="1">Semestre 1</option>
+												<option value="2">Semestre 2</option>
+												<option value="anual">Anual</option>
+											</select>
+										</div>
+
+										
+										<div class="col-md-4" style="padding-top: 10px">
+											<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
+										</div>
+										
+									</div>
+								</div>
+						</div>
+				<!-- END PANEL HEADLINE -->
+		 		 </div>
+		 		 </form>
 
 
 		</div>
