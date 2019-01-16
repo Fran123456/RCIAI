@@ -7,13 +7,11 @@ class Reporte9_Model extends CI_Model
 	//función para hacer la consulta para el reporte anual
 	public function reporte($fecha_inicio,$fecha_fin)
 	{
-		$this->db->select('com.id_compra,com.n_factura,com.detalle,bod.destino,com.fecha_compra,com.total');
+		$this->db->select('com.id_compra,com.n_factura,com.tipo,com.fecha_compra,com.total');
 		$this->db->from('compras AS com');
-		$this->db->join('inventario_bodega AS bod','bod.compra_id = com.id_compra');
-		$this->db->where('bod.origen','4');
 		$this->db->where('com.fecha_compra >=',$fecha_inicio);
 		$this->db->where('com.fecha_compra <=',$fecha_fin);
-		$this->db->group_by('com.total');
+		$this->db->group_by('com.n_factura');
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			//si hay registros los devolvemos

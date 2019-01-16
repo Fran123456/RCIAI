@@ -36,7 +36,7 @@ class Reporte9_controller extends CI_Controller {
 				$fecha_inicio = "$anio-01-01";
 				$fecha_fin = "$anio-06-30";
 				$result = $this->R9->reporte($fecha_inicio,$fecha_fin);
-				$msj = ' Costo Anual ';
+				$msj = ' Costo semestre 1 ';
 				//nombre con el que se guardara el reporte
 				$name = 'Reporte-primer-semestre-de-equipos-nuevos-'.$anio;
 			break;
@@ -46,7 +46,7 @@ class Reporte9_controller extends CI_Controller {
 				$fecha_inicio = "$anio-07-01";
 				$fecha_fin = "$anio-12-31";
 				$result = $this->R9->reporte($fecha_inicio,$fecha_fin);
-				$msj = ' Costo Anual ';
+				$msj = ' Costo semestre 2 ';
 				//nombre con el que se guardara el reporte
 				$name = 'Reporte-segundo-semestre-de-equipos-nuevos-'.$anio;
 			break;
@@ -81,15 +81,22 @@ class Reporte9_controller extends CI_Controller {
 						$unidad = $this->R9->obtener_destino($result[$i]['id_compra']);
 						$unidades ='';
 						//agregar las unidades a una variable
-						for($j=0;$j<count($unidad);$j++)
+						if($unidad == true || $unidad != '')
 						{
-							$unidades .= $unidad[$j]['unidad'].' ' ;
+							for($j=0;$j<count($unidad);$j++)
+							{
+								$unidades .= $unidad[$j]['unidad'].' ';
+							}
+						}
+						else
+						{
+							$unidades .= 'compra aun sin asignar';
 						}
 
 						$cont++;
 						$spreadsheet->setActiveSheetIndex(0)
 						 ->setCellValue('A'.$cont,$result[$i]['n_factura'])
-						 ->setCellValue('B'.$cont,$result[$i]['detalle'])
+						 ->setCellValue('B'.$cont,$result[$i]['tipo'])
 						 ->setCellValue('C'.$cont,$unidades)
 						 ->setCellValue('D'.$cont,$result[$i]['fecha_compra'])
 						 ->setCellValue('E'.$cont,$result[$i]['total']);
