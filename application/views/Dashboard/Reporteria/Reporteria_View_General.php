@@ -326,6 +326,95 @@
 		 		</div>
 		 	</form>
 		</div>
+		<div class="row">
+			<!--REPORTE 10 Reporte de cambio de computadoras por unidad-->
+			<form method="post" action="<?php echo base_url()?>Reporte10_controller/reporte_10">
+				<div class="col-md-6">
+		        	<!-- PANEL HEADLINE -->
+					<div class="panel panel-headline">
+							<div class="panel-heading">
+								<h3 class="panel-title"><i class="fa fa-arrows" aria-hidden="true"></i> Reporte cambio de computadora</h3>
+							</div>
+							<div class="panel-body text-center">
+								<p>movimiento de computadoras por unidad</p>
+								<div class="row">
+									<div class="col-md-4">
+										<label>UNIDAD:</label>
+										<select class="form-control" name="unidad10" id="unidad10">'+
+											<option value=2>Academica</option>
+											<option value=33>Almacen y Bodega</option>
+											<option value=27>Audiovisuales</option>
+											<option value=8>Biblioteca</option>
+											<option value=31>CEFADE</option>
+											<option value=34>Celula de quimica</option>
+											<option value=24>Ciencias Empresariales</option>
+											<option value=13>Colecturia</option>
+											<option value=5>Contabilidad</option>
+											<option value=23>Control de calidad</option>
+											<option value=18>Decanato de jurisprudencia</option>
+											<option value=15>Egresados y graduados</option>
+											<option value=30>Enfermeria</option>
+											<option value=12>Extensión Cultural</option>
+											<option value=28>Fiscalia</option>
+											<option value=3>Gerencia General</option>
+											<option value=22>Gestión Educativa</option>
+											<option value=9>ICTUSAM</option>
+											<option value=25>Informática</option>
+											<option value=10>Medicina</option>
+											<option value=19>Odontología</option>
+											<option value=32>OFAL</option>
+											<option value=36>Otros proyectos</option>
+											<option value=7>Planificación</option>
+											<option value=11>Proyecto Social</option>
+											<option value=35>Proyecto USAID</option>
+											<option value=21>Química y Farmacia</option>
+											<option value=17>Rectoria y Vicerrectoria</option>
+											<option value=26>Relaciones Píblicas</option>
+											<option value=6>RRHH</option>
+											<option value=14>Secretaria General</option>
+											<option value=16>Ultrasonografia</option>
+											<option value=29>URNI</option>
+											<option value=20>Veterinaria</option>
+											<option value="lab-01">Laboratorio 1</option>
+											<option value="lab-02">Laboratorio 2</option>
+											<option value="lab-03">Laboratorio 3</option>
+											<option value="lab-04">Laboratorio 4</option>
+											<option value="lab-05">Laboratorio 5</option>
+											<option value="lab-HW">Laboratorio de Hardware</option>
+											<option value="lab-red">Laboratorio de red</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<label for="">Mes:</label>
+										<select class="form-control" name="mes_10" id="mes_10">
+											<option value=01>Enero</option>
+											<option value=02>Febrero</option>
+											<option value=03>Marzo</option>
+											<option value=04>Abril</option>
+											<option value=05>Mayo</option>
+											<option value=06>Junio</option>
+											<option value=07>Julio</option>
+											<option value=08>Agosto</option>
+											<option value=09>Septiembre</option>
+											<option value=10>Octubre</option>
+											<option value=11>Noviembre</option>
+											<option value=12>Diciembre</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+											<label>Año</label>
+											<input required="" value="<?php echo date("Y") ?>" class="form-control" type="number" min="1000" max="5000" name="anio_10">
+										</div>
+									<div class="col-md-2" style="padding-top: 10px">
+										<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
+									</div>
+								</div>
+							</div>
+					</div>
+					<!-- END PANEL HEADLINE -->
+		 		</div>
+		 	</form>
+		</div>
 	</div>
 <!-- script para reportes de gerencia -->
 <script>
@@ -449,7 +538,7 @@
 				$('#parametro12').remove();
 				var html = '';
 				html += '<label id="label_parametro" for="parametro">Parametro</label>'+
-						'<input name="parametro12" id="parametro12" type="text" class="form-control">';
+						'<input name="parametro12" id="parametro12" type="text" class="form-control" required>';
 				$('#dato_12').append(html);
 			break;
 		}

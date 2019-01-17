@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Reporte12_Model extends CI_Model
 {
 	
-	#función para hacer la consulta por unidad
+	#función para hacer la consulta por unidad el parametro es el nombre de la unidad o laboratorio
 	public function consulta_adm($parametro)
 	{
 		$this->db->select("adm.identificador, alm.capacidad, descri.memoria_fisica,base.procesador");
@@ -47,7 +47,7 @@ class Reporte12_Model extends CI_Model
 			return false;
 		}
 	}
-
+###########################################################################################################################################
 	#función para obtener los perifericos
 	public function perifericos($identificador)
 	{
@@ -60,8 +60,8 @@ class Reporte12_Model extends CI_Model
 			return false;
 		}
 	}
-
-	#función para obtener el nombre de la unidad a la que se le hace la consulta
+###########################################################################################################################################
+	#función para obtener el nombre de la unidad a la que se le hace la consulta el parametro es el nombre del encargado
 	public function nom_unidad($unidad)
 	{
 		$query = $this->db->select('u.unidad')->from('unidad as u')->where('u.id_unidad',$unidad)->get();
@@ -105,6 +105,47 @@ class Reporte12_Model extends CI_Model
 			$this->db->or_like('adm.identificador','LAP');
 		$this->db->group_end();
 		$this->db->order_by('adm.identificador','ASC');
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros, devolvemos un false
+			return false;
+		}
+	}
+
+###############################################################################################################
+	#funciones para obtener el detalle por codigo de equipo, el parametro es el codigo de la pc
+
+	//función para obtener detalle de inventario adm
+	public function consulta_codigoAdm($codigo)
+	{
+		$this->db->select("adm.identificador, adm.encargado_puesto, alm.capacidad, descri.memoria_fisica, base.procesador");
+		$this->db->from("inventario_adm AS adm");
+		$this->db->join("almacenamiento AS alm","adm.almacenamiento_id = alm.pc_id");
+		$this->db->join("placa_base AS base","adm.placa_base_id = base.pc_id");
+		$this->db->join("descripcion_sistema AS descri",'adm.des_sistema_id = descri.pc_ids');
+		$this->db->where("adm.identificador",$codigo);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros, devolvemos un false
+			return false;
+		}
+	}
+
+	//función para obtener detalle de inventario lab
+	public function consulta_codigoLab($codigo)
+	{
+		$this->db->select("lab.identificador_lab, alm.capacidad, descri.memoria_fisica,base.procesador");
+		$this->db->from("inventario_lab AS lab");
+		$this->db->join("almacenamiento AS alm","lab.almacenamiento_id = alm.pc_id");
+		$this->db->join("placa_base AS base","lab.placa_base_id = base.pc_id");
+		$this->db->join("descripcion_sistema AS descri",'lab.descripcion_sistema_id = descri.pc_ids');
+		$this->db->where("lab.identificador_lab",$codigo);
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			//si hay registros los devolvemos
