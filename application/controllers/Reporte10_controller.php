@@ -35,7 +35,11 @@ class Reporte10_controller extends CI_Controller
 
 		$nom_mes = $this->nom_mes($mes);
 
-		$name = "Reporte_movimiento-para-$unidad-del-mes-$nom_mes";
+		$nom_unidad = $this->R10->nom_unidad($unidad);
+
+		$n_unidad = $nom_unidad[0]['unidad'];
+
+		$name = "Reporte_movimiento-para-$n_unidad-del-mes-$nom_mes";
 
 		#hacemos la consulta para obtener los datos
 		$result = $this->R10->reporte_10($unidad, $fecha_inicio, $fecha_fin);
