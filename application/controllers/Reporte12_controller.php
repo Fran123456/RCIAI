@@ -26,8 +26,7 @@ class Reporte12_controller extends CI_Controller
 	//función para realizar el reporte en excel
 	public function reporte_12()
 	{
-		$Arraycolumnas = array('A1','B1','C1','D1','E1');
-		$ArrayColumnasLetra = array('A','B', 'C', 'D', 'E');
+		
 
 		#capturamos los datos
 		$consulta = $this->input->post('consulta12');
@@ -52,6 +51,9 @@ class Reporte12_controller extends CI_Controller
 					case 'lab-red':
 						$result = $this->R12->consulta_lab($parametro);
 						$name = 'Reporte-de-equipo-para-'.$parametro;
+
+						$Arraycolumnas = array('A1','B1','C1','D1','E1');
+						$ArrayColumnasLetra = array('A','B', 'C', 'D', 'E');
 
 						//vamos a verificar si el result trae o no parametros
 						if($result)
@@ -112,6 +114,9 @@ class Reporte12_controller extends CI_Controller
 						$unidad = $this->R12->nom_unidad($parametro);
 						$result = $this->R12->consulta_adm($parametro);
 						$name = 'Reporte-de-equipo-para-'.$unidad[0]['unidad'];
+
+						$Arraycolumnas = array('A1','B1','C1','D1','E1');
+						$ArrayColumnasLetra = array('A','B', 'C', 'D', 'E');
 						//vamos a verificar si el result trae o no parametros
 						if($result)
 						{
@@ -170,13 +175,16 @@ class Reporte12_controller extends CI_Controller
 			case '2':
 				# consultamos por encargado
 				$result = $this->R12->consulta_encargado($parametro);
-				$name = 'Reporte-de-equipo-por-encargado';
+				$name = 'Reporte-de-equipo-por-encargado-'.$parametro;
+
+				$Arraycolumnas = array('A1','B1','C1','D1','E1','F1');
+				$ArrayColumnasLetra = array('A','B','C','D','E','F');
 				if($result)
 				{
-					$ArrayTitulo = array(' Identificador ', ' Disco Duro ', ' Memoria RAM ', ' Procesador ',' perifericos ' );
+					$ArrayTitulo = array(' Identificador ', ' Encargado ',' Disco Duro ', ' Memoria RAM ', ' Procesador ',' perifericos ' );
 					//configuración iniciales con clase excel para reporte
 					$spreadsheet = Excel::Create_Excel__(null,null);//creamos el objeto
-					Excel::Header_format__(null,null,'A1:E1',$spreadsheet);//preparamos la cabecera de el excel
+					Excel::Header_format__(null,null,'A1:F1',$spreadsheet);//preparamos la cabecera de el excel
 					Excel::Values_Header__($spreadsheet,0,$Arraycolumnas,$ArrayTitulo);
 
 					$cont = 1;
@@ -202,12 +210,13 @@ class Reporte12_controller extends CI_Controller
 							}
 						$spreadsheet->setActiveSheetIndex(0)
 						 ->setCellValue('A'.$cont,$result[$i]['identificador'])
-						 ->setCellValue('B'.$cont,$result[$i]['capacidad'])
-						 ->setCellValue('C'.$cont,$result[$i]['memoria_fisica'])
-						 ->setCellValue('D'.$cont,$result[$i]['procesador'])
-						 ->setCellValue('E'.$cont,$periferico);
+						 ->setCellValue('B'.$cont,$result[$i]['encargado_puesto'])
+						 ->setCellValue('C'.$cont,$result[$i]['capacidad'])
+						 ->setCellValue('D'.$cont,$result[$i]['memoria_fisica'])
+						 ->setCellValue('E'.$cont,$result[$i]['procesador'])
+						 ->setCellValue('F'.$cont,$periferico);
 					}
-					Excel::borders__($spreadsheet, '686868', "A1:E".$cont);
+					Excel::borders__($spreadsheet, '686868', "A1:F".$cont);
 
 					//Autotamaño de las columnas
 					Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);

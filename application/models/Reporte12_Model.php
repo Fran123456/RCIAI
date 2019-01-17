@@ -51,7 +51,7 @@ class Reporte12_Model extends CI_Model
 	#función para obtener los perifericos
 	public function perifericos($identificador)
 	{
-		$query = $this->db->select('bod.tipo')->from('inventario_bodega AS bod')->where('bod.pc_servidor_id',$identificador)->get();
+		$query = $this->db->select('bod.tipo')->from('inventario_bodega AS bod')->where('bod.pc_servidor_id',$identificador)->where('bod.tipo !=','LAPTOP')->get();
 		if($query->num_rows() > 0){
 			//si hay registros los devolvemos
 			return $query->result_array();
@@ -75,15 +75,35 @@ class Reporte12_Model extends CI_Model
 	}
 
 	#función para hacer la consulta por encargado
+	/* consulta en sql 
+			SELECT
+			    adm.identificador, adm.encargado_puesto,alm.capacidad, descri.memoria_fisica,base.procesador
+			FROM
+			    inventario_adm AS adm
+			INNER JOIN almacenamiento AS alm
+			ON
+			    adm.almacenamiento_id = alm.pc_id
+			INNER JOIN placa_base AS base
+			ON
+			    adm.placa_base_id = base.pc_id
+			INNER JOIN descripcion_sistema AS descri
+			ON
+			    adm.des_sistema_id = descri.pc_ids
+			WHERE
+			    `encargado_puesto` = $encargado AND (adm.identificador LIKE 'PC%' OR adm.identificador LIKE 'LAP%')
+	*/
 	public function consulta_encargado($parametro)
 	{
-		$this->db->select("adm.identificador, alm.capacidad, descri.memoria_fisica,base.procesador");
+		$this->db->select("adm.identificador, adm.encargado_puesto, alm.capacidad, descri.memoria_fisica, base.procesador");
 		$this->db->from("inventario_adm AS adm");
 		$this->db->join("almacenamiento AS alm","adm.almacenamiento_id = alm.pc_id");
 		$this->db->join("placa_base AS base","adm.placa_base_id = base.pc_id");
 		$this->db->join("descripcion_sistema AS descri",'adm.des_sistema_id = descri.pc_ids');
-		$this->db->like('adm.identificador','PC');
 		$this->db->where("adm.encargado_puesto",$parametro);
+		$this->db->group_start();
+			$this->db->like('adm.identificador','PC');
+			$this->db->or_like('adm.identificador','LAP');
+		$this->db->group_end();
 		$this->db->order_by('adm.identificador','ASC');
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
