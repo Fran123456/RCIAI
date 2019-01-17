@@ -169,6 +169,55 @@ class Reporte12_controller extends CI_Controller
 			
 			case '2':
 				# consultamos por encargado
+				$result = $this->R12->consulta_encargado($parametro);
+				$name = 'Reporte-de-equipo-por-encargado';
+				if($result)
+				{
+					$ArrayTitulo = array(' Identificador ', ' Disco Duro ', ' Memoria RAM ', ' Procesador ',' perifericos ' );
+					//configuración iniciales con clase excel para reporte
+					$spreadsheet = Excel::Create_Excel__(null,null);//creamos el objeto
+					Excel::Header_format__(null,null,'A1:E1',$spreadsheet);//preparamos la cabecera de el excel
+					Excel::Values_Header__($spreadsheet,0,$Arraycolumnas,$ArrayTitulo);
+
+					$cont = 1;
+
+					for($i=0;$i<count($result);$i++)
+					{
+						$periferico = '';
+						$cont++;
+						
+						
+						# si es un laboratorio
+						$perifericos = $this->R12->perifericos($result[$i]['identificador']);
+						if($perifericos == true || $perifericos != '')
+							{
+								for($j=0;$j<count($perifericos);$j++)
+								{
+									$periferico .= $perifericos[$j]['tipo'].' ';
+								}
+							}
+							else
+							{
+								$periferico .= 'Sin perifericos';
+							}
+						$spreadsheet->setActiveSheetIndex(0)
+						 ->setCellValue('A'.$cont,$result[$i]['identificador'])
+						 ->setCellValue('B'.$cont,$result[$i]['capacidad'])
+						 ->setCellValue('C'.$cont,$result[$i]['memoria_fisica'])
+						 ->setCellValue('D'.$cont,$result[$i]['procesador'])
+						 ->setCellValue('E'.$cont,$periferico);
+					}
+					Excel::borders__($spreadsheet, '686868', "A1:E".$cont);
+
+					//Autotamaño de las columnas
+					Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);
+					//SAVE
+					Excel::save__($spreadsheet,$name);
+				}
+				else
+				{
+					redirect(base_url().'error-404-reporteria');
+				}
 				
 			break;
 

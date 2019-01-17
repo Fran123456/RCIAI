@@ -448,7 +448,7 @@
 				$('#label_parametro').remove();
 				$('#parametro12').remove();
 				var html = '';
-				html += '<label id="label_parametro" for="parametro">Parametro de consulta</label>'+
+				html += '<label id="label_parametro" for="parametro">Parametro</label>'+
 						'<input name="parametro12" id="parametro12" type="text" class="form-control">';
 				$('#dato_12').append(html);
 			break;

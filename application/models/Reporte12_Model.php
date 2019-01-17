@@ -7,11 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Reporte12_Model extends CI_Model
 {
 	
-	#función para hacer la consulta por unidad, le mandamos como parametros:
-	#	$identificador = adm.identificador para administrativo lab.identificador_lab para laboratorio
-	#	$tabla = la tabla inventario_adm ó inventario_lab
-	#	$alias = el alias (adm para administrativo, lab para laboratorio)
-	#	$sistema = el campo para la descripcion del sistema (des_sistema_id para administrativo, descripcion_sistema_id para laboratorios)
+	#función para hacer la consulta por unidad
 	public function consulta_adm($parametro)
 	{
 		$this->db->select("adm.identificador, alm.capacidad, descri.memoria_fisica,base.procesador");
@@ -69,6 +65,27 @@ class Reporte12_Model extends CI_Model
 	public function nom_unidad($unidad)
 	{
 		$query = $this->db->select('u.unidad')->from('unidad as u')->where('u.id_unidad',$unidad)->get();
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros, devolvemos un false
+			return false;
+		}
+	}
+
+	#función para hacer la consulta por encargado
+	public function consulta_encargado($parametro)
+	{
+		$this->db->select("adm.identificador, alm.capacidad, descri.memoria_fisica,base.procesador");
+		$this->db->from("inventario_adm AS adm");
+		$this->db->join("almacenamiento AS alm","adm.almacenamiento_id = alm.pc_id");
+		$this->db->join("placa_base AS base","adm.placa_base_id = base.pc_id");
+		$this->db->join("descripcion_sistema AS descri",'adm.des_sistema_id = descri.pc_ids');
+		$this->db->like('adm.identificador','PC');
+		$this->db->where("adm.encargado_puesto",$parametro);
+		$this->db->order_by('adm.identificador','ASC');
+		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			//si hay registros los devolvemos
 			return $query->result_array();
