@@ -51,4 +51,30 @@ class Reporte12_Model extends CI_Model
 			return false;
 		}
 	}
+
+	#función para obtener los perifericos
+	public function perifericos($identificador)
+	{
+		$query = $this->db->select('bod.tipo')->from('inventario_bodega AS bod')->where('bod.pc_servidor_id',$identificador)->get();
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros, devolvemos un false
+			return false;
+		}
+	}
+
+	#función para obtener el nombre de la unidad a la que se le hace la consulta
+	public function nom_unidad($unidad)
+	{
+		$query = $this->db->select('u.unidad')->from('unidad as u')->where('u.id_unidad',$unidad)->get();
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result_array();
+		}else{
+			//si no hay registros, devolvemos un false
+			return false;
+		}
+	}
 }

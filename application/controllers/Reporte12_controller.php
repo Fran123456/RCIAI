@@ -51,12 +51,118 @@ class Reporte12_controller extends CI_Controller
 					case 'lab-HW':
 					case 'lab-red':
 						$result = $this->R12->consulta_lab($parametro);
-						$name = 'Reporte-de-equipo-por-'.$parametro;
+						$name = 'Reporte-de-equipo-para-'.$parametro;
+
+						//vamos a verificar si el result trae o no parametros
+						if($result)
+						{
+							//titulos
+							//print_r($result);
+							$ArrayTitulo = array(' Identificador ', ' Disco Duro ', ' Memoria RAM ', ' Procesador ',' perifericos ' );
+							//configuración iniciales con clase excel para reporte
+							$spreadsheet = Excel::Create_Excel__(null,null);//creamos el objeto
+							Excel::Header_format__(null,null,'A1:E1',$spreadsheet);//preparamos la cabecera de el excel
+							Excel::Values_Header__($spreadsheet,0,$Arraycolumnas,$ArrayTitulo);
+
+							$cont = 1; //contador que nos ayudara a llevar el control de los registros y que hace que imprima los datos en la segunda fila
+							for($i=0;$i<count($result);$i++)
+							{
+								#vamos a obtener los perifericos de ese equipo
+								#$perifericos = $this->R12->perifericos($result[$i]['identificador']);
+								$periferico = '';
+								$cont++;
+								
+								
+								# si es un laboratorio
+								$perifericos = $this->R12->perifericos($result[$i]['identificador_lab']);
+								if($perifericos == true || $perifericos != '')
+									{
+										for($j=0;$j<count($perifericos);$j++)
+										{
+											$periferico .= $perifericos[$j]['tipo'].' ';
+										}
+									}
+									else
+									{
+										$periferico .= 'Sin perifericos';
+									}
+								$spreadsheet->setActiveSheetIndex(0)
+								 ->setCellValue('A'.$cont,$result[$i]['identificador_lab'])
+								 ->setCellValue('B'.$cont,$result[$i]['capacidad'])
+								 ->setCellValue('C'.$cont,$result[$i]['memoria_fisica'])
+								 ->setCellValue('D'.$cont,$result[$i]['procesador'])
+								 ->setCellValue('E'.$cont,$periferico);
+							}
+							Excel::borders__($spreadsheet, '686868', "A1:E".$cont);
+
+							//Autotamaño de las columnas
+							Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);
+							//SAVE
+							Excel::save__($spreadsheet,$name);
+						}
+						else
+						{
+							redirect(base_url().'error-404-reporteria');
+						}
+						############################################################################################
 					break;
 					
 					default:
+						#vamos a obtener el nombre de la unidad a la que queremos consultar
+						$unidad = $this->R12->nom_unidad($parametro);
 						$result = $this->R12->consulta_adm($parametro);
-						$name = 'Reporte-de-equipo-por-unidad-'.$parametro;
+						$name = 'Reporte-de-equipo-para-'.$unidad[0]['unidad'];
+						//vamos a verificar si el result trae o no parametros
+						if($result)
+						{
+							//titulos
+							//print_r($result);
+							$ArrayTitulo = array(' Identificador ', ' Disco Duro ', ' Memoria RAM ', ' Procesador ',' perifericos ' );
+							//configuración iniciales con clase excel para reporte
+							$spreadsheet = Excel::Create_Excel__(null,null);//creamos el objeto
+							Excel::Header_format__(null,null,'A1:E1',$spreadsheet);//preparamos la cabecera de el excel
+							Excel::Values_Header__($spreadsheet,0,$Arraycolumnas,$ArrayTitulo);
+
+							$cont = 1; //contador que nos ayudara a llevar el control de los registros y que hace que imprima los datos en la segunda fila
+							for($i=0;$i<count($result);$i++)
+							{
+								#vamos a obtener los perifericos de ese equipo
+								#$perifericos = $this->R12->perifericos($result[$i]['identificador']);
+								$periferico = '';
+								$cont++;
+								
+								
+								# si es un laboratorio
+								$perifericos = $this->R12->perifericos($result[$i]['identificador']);
+								if($perifericos == true || $perifericos != '')
+									{
+										for($j=0;$j<count($perifericos);$j++)
+										{
+											$periferico .= $perifericos[$j]['tipo'].' ';
+										}
+									}
+									else
+									{
+										$periferico .= 'Sin perifericos';
+									}
+								$spreadsheet->setActiveSheetIndex(0)
+								 ->setCellValue('A'.$cont,$result[$i]['identificador'])
+								 ->setCellValue('B'.$cont,$result[$i]['capacidad'])
+								 ->setCellValue('C'.$cont,$result[$i]['memoria_fisica'])
+								 ->setCellValue('D'.$cont,$result[$i]['procesador'])
+								 ->setCellValue('E'.$cont,$periferico);
+							}
+							Excel::borders__($spreadsheet, '686868', "A1:E".$cont);
+
+							//Autotamaño de las columnas
+							Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);
+							//SAVE
+							Excel::save__($spreadsheet,$name);
+						}
+						else
+						{
+							redirect(base_url().'error-404-reporteria');
+						}
 					break;
 				}
 			break;
@@ -69,54 +175,6 @@ class Reporte12_controller extends CI_Controller
 			case '3':
 				# code...
 			break;
-		}
-		//vamos a verificar si el result trae o no parametros
-		if($result)
-		{
-			//titulos
-			$ArrayTitulo = array(' Identificador ', ' Disco Duro ', ' Memoria RAM ', ' Procesador ' );
-			//configuración iniciales con clase excel para reporte
-			$spreadsheet = Excel::Create_Excel__(null,null);//creamos el objeto
-			Excel::Header_format__(null,null,'A1:E1',$spreadsheet);//preparamos la cabecera de el excel
-			Excel::Values_Header__($spreadsheet,0,$Arraycolumnas,$ArrayTitulo);
-
-			$cont = 1; //contador que nos ayudara a llevar el control de los registros y que hace que imprima los datos en la segunda fila
-			for($i=0;$i<count($result);$i++)
-			{
-				/*$unidad = $this->R9->obtener_destino($result[$i]['id_compra']);
-				$unidades ='';
-				//agregar las unidades a una variable
-				if($unidad == true || $unidad != '')
-				{
-					for($j=0;$j<count($unidad);$j++)
-					{
-						$unidades .= $unidad[$j]['unidad'].' ';
-					}
-				}
-				else
-				{
-					$unidades .= 'compra aun sin asignar';
-				}*/
-				$periferico = 'periferico';
-				$cont++;
-				$spreadsheet->setActiveSheetIndex(0)
-				 ->setCellValue('A'.$cont,$result[$i]['identificador'])
-				 ->setCellValue('B'.$cont,$result[$i]['capacidad'])
-				 ->setCellValue('C'.$cont,$result[$i]['memoria_fisica'])
-				 ->setCellValue('D'.$cont,$result[$i]['procesador'])
-				 ->setCellValue('E'.$cont,$periferico);
-
-			}
-			Excel::borders__($spreadsheet, '686868', "A1:E".$cont);
-
-			//Autotamaño de las columnas
-			Excel::ColumnDimension_AutoSize__(true,$ArrayColumnasLetra, $spreadsheet);
-			//SAVE
-			Excel::save__($spreadsheet,$name);
-		}
-		else
-		{
-			redirect(base_url().'error-404-reporteria');
 		}
 	}
 }
