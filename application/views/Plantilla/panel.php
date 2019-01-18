@@ -171,6 +171,18 @@
 
 
 
+						 <li>
+						 	<a href="#git" data-toggle="collapse" class="collapsed"><i class="fa fa-bars" ></i> <span>Audiovisuales</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						 	<div id="git" class="collapse ">
+								<ul class="nav">
+									<li><a href="<?php echo base_url('Audiovisuales-teclados') ?>">Teclado</a></li>
+									<li><a href="<?php echo base_url('Audiovisuales-mouses') ?>">Mouse</a></li>
+									<li><a href="<?php echo base_url('Audiovisuales-cpus') ?>">CPU</a></li>
+								</ul>
+
+							</div>
+						 </li>
+
 
 
 					<!-- fin del Root-->
