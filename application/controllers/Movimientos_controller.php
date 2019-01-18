@@ -205,50 +205,60 @@ class Movimientos_controller extends CI_Controller {
 				break;
 			
 			case ['devolucion',2]:
-				//no se recibira nada a cambio por parte del equipo que recibe el prestamo
-				$cambio = "Prestamo de $perifericos del equipo $equipo a el equipo $codigo";
-				
-				//obtenemos el serial del periferico que se esta prestando
-				$serial = $this->mov->serial_periferico($equipo,$perifericos);
-				$serial_nuevo = $serial->serial;
-
-				//mandamos los campos que se van a insertar en la tabla movimiento
-				$datos = array('token' => $token,
-							   'fecha_retiro' => $fecha_retiro,
-							   'fecha_cambio' => $fecha_prestamo,
-							   'codigo_id' => $codigo,
-							   'unidad_pertenece_id' => $unidad_pertenece_id,
-							   'unidad_traslado_id' => 38,
-							   'cambio' => $cambio,
-							   'descripcion_cambio' => $desc_prestamo,
-							   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
-							   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
-							   'descripcion_equipoRetirado' => 'ninguna',
-							   'descripcion_equipoNuevo' => $caract_equipo_f,
-							   'encargado' => $encargado,
-							   'tecnico' => $tecnico,
-							   'tipoHardSoft' => $tipoHardSoft,
-							   'tipo_movimiento' => $tipo_movimiento,
-							   'serial_nuevo' => $serial_nuevo,
-							   'laboratorio' => $laboratorios );
-
-				$respuesta1 = $this->mov->crear_prestamo($datos);
-
-				if($respuesta1)
+				#vamos a verificar si el periferico es un CPU, si es un CPU no podemos hacer el prestamo en devolución, ya que 
+				#no pueden existir dos equipos con el mismo codigo
+				if($perifericos==='CPU')
 				{
-					//si es verdadero generamos la siguiente consulta
-					//actualizaremos los campos en la tabla inventario bodega
-					$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo);
-
-					if($respuesta2)
-					{
-						//si todo fue bien
-						$this->session->set_flashdata('exito','movimiento realizado');
-						redirect(base_url().'prestamos');
-
-					}
-
+					$this->session->set_flashdata('error1','no se puede realizar movimiento');
+					redirect(base_url().'prestamos');
 				}
+				else
+				{
+					//no se recibira nada a cambio por parte del equipo que recibe el prestamo
+					$cambio = "Prestamo de $perifericos del equipo $equipo a el equipo $codigo";
+					
+					//obtenemos el serial del periferico que se esta prestando
+					$serial = $this->mov->serial_periferico($equipo,$perifericos);
+					$serial_nuevo = $serial->serial;
+
+					//mandamos los campos que se van a insertar en la tabla movimiento
+					$datos = array('token' => $token,
+								   'fecha_retiro' => $fecha_retiro,
+								   'fecha_cambio' => $fecha_prestamo,
+								   'codigo_id' => $codigo,
+								   'unidad_pertenece_id' => $unidad_pertenece_id,
+								   'unidad_traslado_id' => 38,
+								   'cambio' => $cambio,
+								   'descripcion_cambio' => $desc_prestamo,
+								   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
+								   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
+								   'descripcion_equipoRetirado' => 'ninguna',
+								   'descripcion_equipoNuevo' => $caract_equipo_f,
+								   'encargado' => $encargado,
+								   'tecnico' => $tecnico,
+								   'tipoHardSoft' => $tipoHardSoft,
+								   'tipo_movimiento' => $tipo_movimiento,
+								   'serial_nuevo' => $serial_nuevo,
+								   'laboratorio' => $laboratorios );
+
+					$respuesta1 = $this->mov->crear_prestamo($datos);
+
+					if($respuesta1)
+					{
+						//si es verdadero generamos la siguiente consulta
+						//actualizaremos los campos en la tabla inventario bodega
+						$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo);
+
+						if($respuesta2)
+						{
+							//si todo fue bien
+							$this->session->set_flashdata('exito','movimiento realizado');
+							redirect(base_url().'prestamos');
+
+						}
+					}
+				}
+				
 				break;
 
 			case ['sustitucion',1]:

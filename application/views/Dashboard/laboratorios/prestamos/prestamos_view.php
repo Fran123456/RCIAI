@@ -26,42 +26,54 @@
 				)
             </script>
 			<?php endif; ?>
+	<?php if($this->session->flashdata('error1')): ?>
+			<script>
+                swal(
+				  'Atención!',
+				  'No se puede realizar prestamo con devolución de un CPU!',
+				  'Warning'
+				)
+            </script>
+			<?php endif; ?>
 
 	<form id="Form_prestamo" method="post" action="<?php echo base_url()?>prestamo">
 	  <div class="form-row">
 	    <div class="form-group col-md-3">
 	      <label for="fecha_retiro">Fecha de retiro de el equipo</label>
-	      <input type="date" class="form-control" id="fecha_retiro" name="fecha_retiro"  placeholder="Email">
+	      <input type="date" class="form-control" id="fecha_retiro" name="fecha_retiro"  placeholder="Email" required="">
 	    </div>
 	    <div class="form-group col-md-3">
 	      <label for="fecha_prestamo">Fecha que se da el prestamo</label>
-	      <input type="date" class="form-control" id="fecha_prestamo"  name="fecha_prestamo" >
+	      <input type="date" class="form-control" id="fecha_prestamo"  name="fecha_prestamo" required="" >
 	    </div>
 	    <div class="form-group col-md-3">
 	      <label for="encargado">Encargado del equipo</label>
-	      <input type="text" class="form-control" id="encargado" name="encargado"  placeholder="Digite el nombre del encargado del equipo">
+	      <input type="text" class="form-control" id="encargado" name="encargado"  placeholder="Digite el nombre del encargado del equipo" required="">
 	    </div>
 	    <div class="form-group col-md-3">
 	      <label for="tecnico">Técnico</label>
-	      <input type="text" class="form-control" id="tecnico" name="tecnico"  placeholder="Digite el nombre del tecnico">
+	      <input type="text" class="form-control" id="tecnico" name="tecnico"  placeholder="Digite el nombre del tecnico" required="">
 	    </div>
 	  </div>
 
+	  <input type="hidden" name="tipo_prestamo" id="tipo_prestamo" value="2">
+
 	  <div class="form-row">
-		<div class="form-group col-md-3">
-		    <label>Elemento a prestamo</label>
-		    <select name="tipo_prestamo" id="tipo_prestamo" class="form-control">
-		    	<!--<option value=1>PC Completa</option>-->
+		<!--<div class="form-group col-md-3">
+		    <label>Elemento a prestamo</label>-->
+
+		    <!--<select name="tipo_prestamo" id="tipo_prestamo" class="form-control">
+		    	<option value=1>PC Completa</option>
 		    	<option value=2>Periferico</option>
 		    </select>
-		</div>
+		</div>-->
 		<div class="form-group col-md-3">
 			<label for="">Equipo al que se le hara el prestamo</label>
-			<input type="text" class="form-control" id="codigo" name="codigo"  placeholder="Digite el código del equipo">
+			<input type="text" class="form-control" id="codigo" name="codigo"  placeholder="Digite el código del equipo" required="">
 		</div>
-		<div class="form-group col-md-6">
+		<div class="form-group col-md-9">
 		    <label for="desc_prestamo">Porque solicita el prestamo</label>
-		    <textarea name="desc_prestamo" id="desc_prestamo" class="form-control"  cols="1" rows="1" placeholder="Descripción del porque solicitad el cambio"></textarea>
+		    <textarea name="desc_prestamo" id="desc_prestamo" class="form-control"  cols="1" rows="1" placeholder="Descripción del porque solicitad el cambio" required=""></textarea>
 		</div>
 		
 	  </div>
@@ -98,6 +110,7 @@
 	  			<option value="DISCO DURO EXTERNO">Disco duro externo</option>
 	  			<option value="UPS">UPS</option>
 	  			<option value="WEBCAM">Webcam</option>
+	  			<option value="CPU">CPU</option>
 	  		</select>
 	  	</div>
 
@@ -106,12 +119,6 @@
 	  		<button class=" btn btn-info" id="verificar2" type="button" name="verificar2" onclick="verificarPeriferico()">Verificar</button>
 	  	</div>
 
-	  </div>
-
-	  <div class="form-row">
-	  	<div class="form-group col-md-12">
-			<button class="btn btn-info" id="verificar1" type="button" onclick="verificar_codigo()">validar código</button>
-		</div>
 	  </div>
 
 	  <div class="form row">
@@ -178,9 +185,11 @@
 			$('#estado_equipo').hide();
 
     		//función que quita color al escribir dentro del input
-    		$('#codigo').keydown(function(){
-    			$("#codigo").css("border-color","");
-    		})
+    		
+
+    		//vamos a verificar que el codigo del equipo a recibir el prestamo no sea igual al que hace el prestamo
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
     		/*$('#equipo').mousemove(function(){
     			var equipo = $(this).val();
@@ -271,7 +280,18 @@
 		    					equipos.prop('disabled',false);
 		    					ver2.prop('disabled',false);
 		    					ver2.addClass('btn btn-info');
-		    					$('#movimiento').prop("disabled",false);
+		    					
+		    					var ver_igual = verificar_codigos();//vamos a verificar si los codigos son distintos
+		    					if(ver_igual==1)
+		    					{
+		    						//si son distintos los codigos
+		    						$('#movimiento').prop("disabled",false);
+		    					}
+		    					else
+		    					{
+		    						//si los codigos son iguales
+		    						$('#movimiento').prop("disabled",true);
+		    					}
 
 	    					}else{
 	    						equipos.find('option').remove();
@@ -299,7 +319,23 @@
 			
 		})
 
-    	
+    	function verificar_codigos()
+    	{
+    		//vamos a verificar si los codigos de el equipo a prestar como el equipo que recibe el prestamo son iguales o no
+    		var pc_codigo = $('#codigo').val();
+    		var lab_codigo = $('#equipo').val();
+
+    		if(pc_codigo == lab_codigo)
+    		{
+    			//si son iguales le mandamos un 0
+    			return 0;
+    		}
+    		else
+    		{
+    			//si son distintos le mandamos un 1
+    			return 1;
+    		}
+    	}
 
     	
     	function verificarPeriferico()
@@ -321,7 +357,7 @@
 					//hacemos un switch para evaluar el valor retornado
 					if(valor==true){
 						swal({
-							  position: 'bottom',
+							  position: 'center',
 							  type: 'success',
 							  title: 'El equipo '+ equipoLab +' contiene el periferico '+periferico,
 							  showConfirmButton: false,
@@ -329,7 +365,7 @@
 							})
 					}else{
 						swal({
-							  position: 'top-end',
+							  position: 'center',
 							  type: 'warning',
 							  title: 'El equipo '+ equipoLab +' NO contiene el periferico '+periferico,
 							  showConfirmButton: false,
@@ -345,7 +381,56 @@
 
     	}
 
-		function verificar_codigo()
+    	$('#codigo').keyup(function(){
+    		var codigo = $('#codigo').val();
+    		console.log(codigo);
+    		//creamos un ajax el cual le mandaremos el codigo y verificara que si existe
+			$.ajax({
+				type: 'post',
+				async: false,
+				url: '<?php echo base_url()?>Movimientos_controller/verificar_codigo',
+				data: 'codigo='+codigo,
+				dataType: 'json',
+				success: function(valor){
+					//hacemos un switch para evaluar el valor retornado
+					switch(valor)
+					{
+						case 0:
+							
+							//$("#codigo").val('');//limpiamos el input
+							$("#codigo").css("border-color","#a94442");//pone el border del input en color rojo
+							//$("#codigo").focus();//ponemos el foco en el input del código
+							$("#movimiento").prop("disabled",true);
+
+							break;
+						case 1:
+						case 2:
+							
+							var ver_igual = verificar_codigos();//vamos a verificar si los codigos son distintos
+
+							$("#codigo").css("border-color","#66ff99");//pone el border del input en color verde
+
+							if(ver_igual == 1){
+								if($('#equipo').val() != null)
+								{
+									$("#movimiento").prop("disabled",false);//si son distintos habilitamos los el botón
+								}
+								else
+								{
+									$("#movimiento").prop("disabled",true);	//si son iguales bloqueamos el botón
+								}
+							} 
+
+							
+							
+
+							break;
+					}
+				}
+			})
+    	});
+
+		/*function verificar_codigo()
 		{
 			//vamos a verificar el codigo digitado, si el codigo existe en el sistema
 			var codigo = $('#codigo').val();
@@ -365,7 +450,7 @@
 						case 0:
 							
 							swal({
-							  position: 'top-end',
+							  position: 'center',
 							  type: 'warning',
 							  title: 'El código del equipo no existe',
 							  showConfirmButton: false,
@@ -380,7 +465,7 @@
 						case 1:
 						case 2:
 							swal({
-							  position: 'top-end',
+							  position: 'center',
 							  type: 'success',
 							  title: 'Equipo encontrado',
 							  showConfirmButton: false,
@@ -395,7 +480,7 @@
 					}
 				}
 			})
-		}
+		}*/
     </script>
 
     <!--Script-->
