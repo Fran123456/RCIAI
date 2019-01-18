@@ -1,0 +1,58 @@
+.contenido{
+        margin-top: 20px;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    .margentitulo{
+        margin-bottom: 40px;
+    }
+    hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #c9d0dc;
+        }
+
+    .hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #bdc4d0;
+        }
+        .panel {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: 0.5px 2px 2px 4px #bdc4d0;
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+
+.form-control {
+    -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border-color: #b5bac1;
+    background-color: #f1f3f5;
+}
+
+.space{
+ margin-left: 10px;
+ margin-right: 10px;
+ margin-bottom: 10px;
+}
+
+/*@media all and (min-width:768px)*/
+.modal-dialog {
+    width: 900px;
+    margin: 30px auto;
+}
+
+select[multiple], select[size] {
+    height: 160px;
+}
