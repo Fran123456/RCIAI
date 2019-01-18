@@ -635,27 +635,6 @@ class Sustitucion_Controller extends CI_Controller {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //sustitucion con codigo
   public function sustituir_laptop_chida(){
     $serialNueva = $this->input->post('serialNueva');
