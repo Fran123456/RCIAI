@@ -328,3 +328,12 @@ $route['Audiovisuales-mouses'] = 'AudioVisualesController/mouses';
 $route['Audiovisuales-mouses-agregar'] = 'AudioVisualesController/mouses_add';
 $route['Audiovisuales-mouses-eliminar/(:any)'] = 'AudioVisualesController/mouse_delete/$1';
 $route['Audiovisuales-mouses-edit/(:any)'] = 'AudioVisualesController/mouse_edit/$1';
+
+
+//ultimas rutas del proyecto wii (∪ ◡ ∪)
+$route['Audiovisuales-cpus'] = 'AudioVisualesController/cpus';
+$route['Audiovisuales-cpus-agregar'] = 'AudioVisualesController/cpus_add';
+$route['Audiovisuales-cpus-eliminar/(:any)'] = 'AudioVisualesController/cpu_delete/$1';
+$route['Audiovisuales-cpus-edit/(:any)'] = 'AudioVisualesController/cpu_edit/$1';
+$route['Audiovisuales-cpus-show/(:any)'] = 'AudioVisualesController/cpu_show/$1';
+
