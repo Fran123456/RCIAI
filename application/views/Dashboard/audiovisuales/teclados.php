@@ -13,12 +13,41 @@
 		    margin-left: 20px;
 		}
 	</style>
-	
+	<script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
+	<script src="<?php echo base_url()?>assets/package/dist/sweetalert2.min.js"></script>
 	
 </head>
 <body>
     <?php require 'application/views/Plantilla/nav.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LA BARRA DE NAVEGACION-->
     <?php require 'application/views/Plantilla/panel.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL MENU DESPLEGABLE-->
+
+
+    <?php if($this->session->flashdata('success')):?>
+        <script>
+        	swal({
+				  type: 'success',
+				  title: 'Elemento agregado correctamente',
+				})
+        </script>
+    <?php endif; ?>
+
+     <?php if($this->session->flashdata('delete')):?>
+        <script>
+        	swal({
+				  type: 'success',
+				  title: 'Elemento eliminado correctamente',
+				})
+        </script>
+    <?php endif; ?>
+
+       <?php if($this->session->flashdata('edit')):?>
+        <script>
+        	swal({
+				  type: 'success',
+				  title: 'Elemento editado correctamente',
+				})
+        </script>
+    <?php endif; ?>
 
     <!--CONTENIDO DE LA APLICACION-->
  <div class="row">
@@ -26,7 +55,7 @@
   	<h3> Teclados de audiovisuales </h3>
   </div>
   <div class="col-md-6 text-right">
-  	<a href="" class="btn btn-info">Nuevo teclado</a>
+  	<a href="<?php echo base_url() ?>Audiovisuales-teclados-agregar" class="btn btn-info">Nuevo teclado</a>
   </div>
  </div>
 <br> <br>
@@ -50,16 +79,18 @@
 			</tr>
 		</thead>
 		<tbody id="showdata">
-			<?php for ($i = 0 ; $i > count($data) ; $i++ ) { ?>
+			<?php for ($i = 0 ; $i < count($data) ; $i++ ) { ?>
 				<tr>
 					<th><?php echo $i+1 ?></th>
 					<td><?php echo empty($data[$i]['codigo']) ? '<span style= "color:red">no disponible</span>' : $data[$i]['codigo']?></td>
 					<td><?php echo empty($data[$i]['marca']) ? '<span style= "color:red">no disponible</span>' : $data[$i]['marca'] ?></td>
 					<td><?php echo empty($data[$i]['serie']) ? '<span style= "color:red">no disponible</span>' : $data[$i]['serie'] ?></td>
 					<td><?php echo empty($data[$i]['tipo']) ? '<span style= "color:red">no disponible</span>' : $data[$i]['tipo'] ?></td>
-					<td><a href="<?php base_url();?>Editar-teclado-audiovisuales/<?php echo $data[$i]['id'];?>" class="btn btn-warning item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
 
-					<td><a href="<?php base_url();?>Eliminar-teclado-audiovisuales/<?php echo $data[$i]['id'];?>" class="btn btn-danger item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+					<td><?php echo empty($data[$i]['equipo']) ? '<span style= "color:red">no disponible</span>' : $data[$i]['equipo'] ?></td>
+					<td><a href="<?php base_url();?>Audiovisuales-teclados-edit/<?php echo $data[$i]['id'];?>" class="btn btn-warning item-view"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+
+					<td><a href="<?php base_url();?>Audiovisuales-teclados-eliminar/<?php echo $data[$i]['id'];?>" class="btn btn-danger item-view"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 				</tr>
 			<?php } ?>
 			
