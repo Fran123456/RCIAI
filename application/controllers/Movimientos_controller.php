@@ -283,6 +283,17 @@ class Movimientos_controller extends CI_Controller {
 				$descripcion_equipoRetirado = 'serial: '.$descripcionEquipo->serial.' '.'marca: '.$descripcionEquipo->marca.' '.'tipo: '.$descripcionEquipo->tipo;
 				//echo "<br>";
 				//print_r($descripcion_equipoRetirado);
+				
+				/*************************************************************************************************************************/
+				//si el periferico es un cpuse modificaran las diversas tablas con la información
+				if($perifericos==='CPU')
+				{
+					//vamos a obtener los valores de cada una de las tablas asociadas al cpu
+					//obtenemos el valor de adaptador_red
+					$red_prestado = $this->mov->get_red($equipo);//esta es la información del equipo que es prestado le mandamos el codigo de la pc que esta en el lab
+					$red_recibe = $this->mov->get_red($codigo);//información del equipo que recibe el prestamo. recibe de parametro el codigo del equipo que recibe el prestamo
+				}
+
 				//mandamos los campos que se van a insertar en la tabla movimiento
 				$datos = array('token' => $token,
 							   'fecha_retiro' => $fecha_retiro,

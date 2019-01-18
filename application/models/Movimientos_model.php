@@ -281,4 +281,15 @@ class Movimientos_model extends CI_Model
   		return $query->row();
   	}
 
+
+  	//función para obtener el detalle de la tabla adaptador_red
+  	public function get_red($pc_id)
+  	{
+  		$this->db->select('*');
+  		$this->db->from('adaptador_red');
+  		$this->db->where('pc_id',$pc_id);
+  		$query = $this->db->get();
+  		return $query->row();
+  	}
+
 }//fin de la clase
