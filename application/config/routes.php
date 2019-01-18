@@ -322,3 +322,9 @@ $route['Audiovisuales-teclados-agregar'] = 'AudioVisualesController/teclados_add
 $route['Audiovisuales-teclados-eliminar/(:any)'] = 'AudioVisualesController/teclado_delete/$1';
 $route['Audiovisuales-teclados-edit/(:any)'] = 'AudioVisualesController/teclado_edit/$1';
 
+
+
+$route['Audiovisuales-mouses'] = 'AudioVisualesController/mouses';
+$route['Audiovisuales-mouses-agregar'] = 'AudioVisualesController/mouses_add';
+$route['Audiovisuales-mouses-eliminar/(:any)'] = 'AudioVisualesController/mouse_delete/$1';
+$route['Audiovisuales-mouses-edit/(:any)'] = 'AudioVisualesController/mouse_edit/$1';

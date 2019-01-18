@@ -70,5 +70,59 @@ class AudioVisualesController extends CI_Controller {
   }
 //TECLADOS-----------------------------------------------------------
 
+//MOUSES--------------------------------------------------------------
 
+  public function mouses()
+  {
+      $data = $this->general->where_('audiovisuales', 'mouse' ,'periferico');
+       $this->load->view('Dashboard/audiovisuales/mouses', compact('data'));
+  }
+
+  public function mouses_add(){
+    $this->load->view('Dashboard/audiovisuales/mouses_add');
+  }
+
+
+  public function add_mouse_db(){
+    $data = array(
+     'codigo' => $this->input->post('codigo'),
+     'marca'=> $this->input->post('marca'),
+     'serie'=> $this->input->post('serie'),
+     'tipo'=> $this->input->post('tipo'),
+     'equipo'=> $this->input->post('equipo'),
+     'periferico'=> 'mouse',
+    );
+
+    $this->general->add_('audiovisuales', $data);
+    $this->session->set_flashdata('success', 'Elemento agregado correctamente');
+    redirect(base_url().'Audiovisuales-mouses');
+  }
+
+  public function mouse_delete($id){
+     $this->general->delete_('id', $id, 'audiovisuales');
+
+     $this->session->set_flashdata('delete', 'Elemento eliminado correctamente');
+     redirect(base_url().'Audiovisuales-mouses');
+  }
+
+  public function mouse_edit($id){
+    $data = $this->general->where_('audiovisuales', $id ,'id');
+    $this->load->view('Dashboard/audiovisuales/mouses_edit', compact('data'));
+  }
+
+
+ public function edit_mouse_db(){
+    $data = array(
+     'codigo' => $this->input->post('codigo'),
+     'marca'=> $this->input->post('marca'),
+     'serie'=> $this->input->post('serie'),
+     'tipo'=> $this->input->post('tipo'),
+     'equipo'=> $this->input->post('equipo'),
+     'periferico'=> 'mouse',
+    );
+
+    $this->general->update_('audiovisuales', $this->input->post('id'), 'id' ,$data);
+    $this->session->set_flashdata('edit', 'Elemento agregado correctamente');
+    redirect(base_url().'Audiovisuales-mouses');
+  }
 }
