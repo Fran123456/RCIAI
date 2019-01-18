@@ -314,9 +314,11 @@ $route['error-404-reporteria-11'] = 'Reporte11_controller/error_message__';
 $route['Eliminar-bodega'] = 'Desecho_Controller/index';
 $route['EliminarElemento/(:any)'] = 'Desecho_Controller/EliminarElemento/$1';
 
+
 //faltaba aun :c ya en las ultimas
 //AUDIOVISUALES --> remendado 
 $route['Audiovisuales-teclados'] = 'AudioVisualesController/teclados';
 $route['Audiovisuales-teclados-agregar'] = 'AudioVisualesController/teclados_add';
 $route['Audiovisuales-teclados-eliminar/(:any)'] = 'AudioVisualesController/teclado_delete/$1';
 $route['Audiovisuales-teclados-edit/(:any)'] = 'AudioVisualesController/teclado_edit/$1';
+
