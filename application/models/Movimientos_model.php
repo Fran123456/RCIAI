@@ -282,12 +282,25 @@ class Movimientos_model extends CI_Model
   	}
 
 
-  	//función para obtener el detalle de la tabla adaptador_red
-  	public function get_red($pc_id)
+  	//función para obtener el detalle de los campos de la tabla establecida
+  	//como parametros recibe el $pc_id, $tabla, $comparar
+  	//para las tablas adaptador_red, adaptador_video, almacenamiento, descripcion_sistema, placa_base
+  	public function get_detalles($tabla,$comparar,$pc_id)
   	{
   		$this->db->select('*');
-  		$this->db->from('adaptador_red');
-  		$this->db->where('pc_id',$pc_id);
+  		$this->db->from($tabla);
+  		$this->db->where($comparar,$pc_id);
+  		$query = $this->db->get();
+  		return $query->row();
+  	}
+
+  	//función para obtener los detalles de las compras
+  	public function get_compra($id)
+  	{
+  		$this->db->select('b.compra_id');
+  		$this->db->from('inventario_bodega as b');
+  		$this->db->where('b.pc_servidor_id',$id);
+  		$this->db->where('b.tipo','CPU');
   		$query = $this->db->get();
   		return $query->row();
   	}

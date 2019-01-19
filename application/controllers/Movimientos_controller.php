@@ -290,8 +290,29 @@ class Movimientos_controller extends CI_Controller {
 				{
 					//vamos a obtener los valores de cada una de las tablas asociadas al cpu
 					//obtenemos el valor de adaptador_red
-					$red_prestado = $this->mov->get_red($equipo);//esta es la información del equipo que es prestado le mandamos el codigo de la pc que esta en el lab
-					$red_recibe = $this->mov->get_red($codigo);//información del equipo que recibe el prestamo. recibe de parametro el codigo del equipo que recibe el prestamo
+					$red_prestado = $this->mov->get_detalles('adaptador_red','pc_id',$equipo);//esta es la información del equipo que es prestado le mandamos el codigo de la pc que esta en el lab
+					$red_recibe = $this->mov->get_detalles('adaptador_red','pc_id',$codigo);//información del equipo que recibe el prestamo. recibe de parametro el codigo del equipo que recibe el prestamo
+					$video_prestamo = $this->mov->get_detalles('adaptador_video','pc_id',$equipo);
+					$video_recibe = $this->mov->get_detalles('adaptador_video','pc_id',$codigo);
+
+					//detalle de la tabla almacenamiento
+					$almacenamiento_prestamo = $this->mov->get_detalles('almacenamiento','pc_id',$equipo);
+					$almacenamiento_recibe = $this->mov->get_detalles('almacenamiento','pc_id',$codigo);
+
+					//detalle de la descripcion_sistema
+					$descripcion_prestamo = $this->mov->get_detalles('descripcion_sistema','pc_ids',$equipo);
+					$descripcion_recibe = $this->mov->get_detalles('descripcion_sistema','pc_ids',$codigo);
+
+					//detalle de la placa
+					$placa_prestamo = $this->mov->get_detalles('placa_base','pc_id',$equipo);
+					$placa_recibe = $this->mov->get_detalles('placa_base','pc_id',$codigo);
+
+					//traemos el detalle de la compra
+					$compra_prestamo = $this->mov->get_compra($equipo);
+					$compra_recibe = $this->mov->get_compra($codigo);
+
+					/* vamos a generar un nuevo codigo el cual actualizara el registro nuevo */
+					
 				}
 
 				//mandamos los campos que se van a insertar en la tabla movimiento
