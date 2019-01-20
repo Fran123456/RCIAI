@@ -3,17 +3,23 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<?php if($this->session->userdata('rol') == "root"): ?>
-						        <li><a href="<?php echo base_url()?>dashboard" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-								<li><a href="<?php echo base_url() ?>users" class=""><i class="fa fa-user"></i><span>Usuarios</span></a></li>
-					   <?php else: ?>
+
 						<li><a href="<?php echo base_url()?>dashboard" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-						<?php if($this->session->userdata('rol') == "super usuario"): ?>
+						
+						<!--USERS-->
+						<?php if($this->session->userdata('rol') == "super usuario" || $this->session->userdata('rol') == "root"): ?>
 						<li><a href="<?php echo base_url() ?>users" class=""><i class="fa fa-user"></i><span>Usuarios</span></a></li>
-						<?php endif; ?>
+					   <?php endif; ?>
+					   <!--USERS-->
+
+					  <?php if($this->session->userdata('rol') != "root"): ?>
 						<li><a href="<?php echo base_url() ?>notifications"><i class="fa fa-comment"></i><span>Anuncios leidos</span></a></li>
+					  <?php endif; ?>
+
+
+                        
 						<!--- REFERENTE A LAS COMPRAS -->
-						<?php if($this->session->userdata('rol') == 'administrador' || $this->session->userdata('rol') == 'super usuario' ): ?>
+						<?php if($this->session->userdata('rol') == "administrador" || $this->session->userdata('rol') == "super usuario"): ?>
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="fa fa-shopping-cart"></i> <span>Compra</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
@@ -31,6 +37,7 @@
 							</div>
 						</li>
 						<?php endif; ?>
+						
 
 
 						<!-- INVENTARIO DE BODEGA -->
@@ -61,8 +68,8 @@
 							</div>
 						</li>
 
+                       <?php if($this->session->userdata('rol') == "administrador" || $this->session->userdata('rol') == "super usuario"): ?>
 						<!-- administrativo -->
-						<?php if($this->session->userdata('rol') == 'administrador' || $this->session->userdata('rol') == 'super usuario' ): ?>
 						<li>
 							<a href="#subPages1" data-toggle="collapse" class="collapsed"><i class="fa fa-list-alt"></i> <span>Administrativo</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages1" class="collapse ">
@@ -74,11 +81,12 @@
 								</ul>
 							</div>
 						</li>
-						<?php endif; ?>
+					<?php endif; ?>
+						
 
 
 					<!-- laboratorios -->
-						<?php if($this->session->userdata('rol') == 'laboratorio' || $this->session->userdata('rol') == 'super usuario' ): ?>
+						<?php if($this->session->userdata('rol') == "laboratorio" || $this->session->userdata('rol') == "super usuario"): ?>
 						<li>
 							<a href="#subPages2" data-toggle="collapse" class="collapsed"><i class="fa fa-desktop"></i> <span>Laboratorios</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages2" class="collapse ">
@@ -103,29 +111,13 @@
 
 							</div>
 						</li>
-						<?php endif; ?>
-
-					<!-- Inventario de audio visuales  -->
-					<?php if($this->session->userdata('rol') == 'administrador' || $this->session->userdata('rol') == 'super usuario' ): ?>
-
-						<!--<li>
-							<a href="#subPages3" data-toggle="collapse" class="collapsed"><i class="fa fa-paint-brush"></i> <span>Audio visuales</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages3" class="collapse ">
-								<ul class="nav">
-									<li><a href="">Mouses</a></li>
-									<li><a href="">Teclados</a></li>
-									<li><a href="">CPU</a></li>
-								</ul>
-
-							</div>
-						</li>-->
-
-
 					<?php endif; ?>
-					<!-- fin del inventario audiovisuales-->
-
-					<!-- Notificaciones-->
 					
+
+					
+
+					<!-- MOVIMIENTOS-->
+					 <?php if($this->session->userdata('rol') != "root"): ?>
 						<li>
 							<a href="#subPages4" data-toggle="collapse" class="collapsed"><i class="fa fa-paper-plane"></i> <span>Movimientos</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages4" class="collapse ">
@@ -137,10 +129,12 @@
 
 							</div>
 						</li>
+					<?php endif; ?>
 
 
 
-
+                   <!--Edicion de hardware-->
+                   <?php if($this->session->userdata('rol') != "root"): ?>
 						<li>
 							<a href="#subPagesyt" data-toggle="collapse" class="collapsed"><i class="fa fa-laptop" aria-hidden="true"></i> <span>Hardware y más</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPagesyt" class="collapse ">
@@ -154,9 +148,20 @@
 
 							</div>
 						</li>
+						<!--Edicion de hardware-->
+						<?php endif; ?>
 
+                   
+                   <!--REPORTERIA-->
+                         <?php if($this->session->userdata('rol') != "root"): ?>
 						 <li><a href="<?php echo base_url()?>reporteria"><i class="far fa-file-alt"></i> <span>Reporteria</span></a></li>
+						 <?php endif; ?>
+					<!--REPORTERIA-->
+					
 
+
+					<!--CONSULTAS-->
+                          <?php if($this->session->userdata('rol') != "root"): ?>
 						 <li>
 						 	<a href="#consultas" data-toggle="collapse" class="collapsed"><i class="fa fa-search"></i> <span>Consultas</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 						 	<div id="consultas" class="collapse ">
@@ -168,9 +173,12 @@
 
 							</div>
 						 </li>
+                         <?php endif; ?>
+						 <!--CONSULTAS-->
 
 
-
+                         <!--AUDIOVISUALES-->
+                         <?php if($this->session->userdata('rol') == "administrador" || $this->session->userdata('rol') == "super usuario"): ?>
 						 <li>
 						 	<a href="#git" data-toggle="collapse" class="collapsed"><i class="fa fa-bars" ></i> <span>Audiovisuales</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 						 	<div id="git" class="collapse ">
@@ -182,11 +190,9 @@
 
 							</div>
 						 </li>
+						<?php endif; ?>
+						   <!--AUDIOVISUALES-->
 
-
-
-					<!-- fin del Root-->
-					<?php endif; ?>
 
 					</ul>
 				</nav>
