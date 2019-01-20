@@ -312,7 +312,31 @@ class Movimientos_controller extends CI_Controller {
 					$compra_recibe = $this->mov->get_compra($codigo);
 
 					/* vamos a generar un nuevo codigo el cual actualizara el registro nuevo */
-					
+					$codigo_aleatorio1 = $this->codigo_aleatorio();//para el elemento que recibe el prestamo
+					$codigo_aleatorio2 = $this->codigo_aleatorio();//para el elemento que se presta
+
+					//actualizamos a null cada uno de los inventarios
+					$cod = substr($codigo,0,2); //hacemos un substring para saber si es codigo PC o codigo LAB
+					if($cod === 'PC')
+					{
+						#actualizamos en null los campos de la tabla inventario_adm con el codigo
+						$null1 = $this->mov->actualizar_null('inventario_adm','des_sistema_id','identificador',$codigo);
+					}
+					else
+					{
+						#actualizamos en null los campos de la tabla inventario_lab con el codigo
+						$null1 = $this->mov->actualizar_null('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
+					}
+
+					#actualizamos en null los campos de la tabla inventario_lab de $equipo
+					$null2 = $this->mov->actualizar_null('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
+
+					//vamos a actualizar cada uno de las tablas donde esta el codigo que recibe el prestamo, con un codigo aleatorio 
+					$up_red = $this->mov->actualizar_tablas('adaptador_red','pc_id',$codigo,$codigo_aleatorio1);
+					$up_video = $this->mov->actualizar_tablas('adaptador_video','pc_id',$codigo,$codigo_aleatorio1);
+					$up_placa = $this->mov->actualizar_tablas('placa_base','pc_id',$codigo,$codigo_aleatorio1);
+					$up_desc = $this->mov->actualizar_tablas('descripcion_sistema','pc_ids',$codigo,$codigo_aleatorio1);
+					$up_alma = $this->mov->actualizar_tablas('almacenamiento','pc_id',$codigo,$codigo_aleatorio1);
 				}
 
 				//mandamos los campos que se van a insertar en la tabla movimiento
@@ -466,7 +490,22 @@ class Movimientos_controller extends CI_Controller {
 		}
 	}
 
-}//fin de la clase lab_lista_Controller
+	//función para generar un codigo aleatorio
+	public function codigo_aleatorio()
+	{
+		$variable = "";
+        $parte1 = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
+        $parte2 = rand(100000, 999999). "-" . rand(1000, 9999);
+        $parte3 = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
+
+        $parte4 = "PC--";
+        $variable = $parte4. $parte1 . $parte2 . $parte3 ;
+        
+        return $variable;
+    }
+
+
+}//fin de la clase Movimientos_Controller
 
 
 

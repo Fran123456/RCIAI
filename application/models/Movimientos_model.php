@@ -305,4 +305,34 @@ class Movimientos_model extends CI_Model
   		return $query->row();
   	}
 
+    #función para actualizar a null los campos de las tablas inventarios adm o lab
+    public function actualizar_null($tabla,$descripion,$identificador,$id)
+    {
+      $this->db->set($descripion,NULL);
+      $this->db->set('placa_base_id',NULL);
+      $this->db->set('adaptador_red_id',NULL);
+      $this->db->set('$adaptador_video_id',NULL);
+      $this->db->set('almacenamiento_id',NULL);
+      $this->db->where($identificador,$id);
+      $this->db->update($tabla);
+      if($this->db->affected_rows() > 0){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+    #función para actualizar el id de cada tabla
+    public function actualizar_tablas($tabla,$campo,$codigo,$nuevo_id)
+    {
+      $this->db->set($campo,$nuevo_id);
+      $this->db->where($campo,$codigo);
+      $this->db->update($tabla);
+      if($this->db->affected_rows() > 0){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
 }//fin de la clase
