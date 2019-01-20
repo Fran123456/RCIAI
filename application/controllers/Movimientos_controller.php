@@ -337,6 +337,20 @@ class Movimientos_controller extends CI_Controller {
 					$up_placa = $this->mov->actualizar_tablas('placa_base','pc_id',$codigo,$codigo_aleatorio1);
 					$up_desc = $this->mov->actualizar_tablas('descripcion_sistema','pc_ids',$codigo,$codigo_aleatorio1);
 					$up_alma = $this->mov->actualizar_tablas('almacenamiento','pc_id',$codigo,$codigo_aleatorio1);
+
+					//actualizamos los campos de el equipo que se presta con el codigo del equipo que recibe el prestamo
+					$lab_red = $this->mov->actualizar_tablas('adaptador_red','pc_id',$equipo,$codigo);
+					$lab_video = $this->mov->actualizar_tablas('adaptador_video','pc_id',$equipo,$codigo);
+					$lab_placa = $this->mov->actualizar_tablas('placa_base','pc_id',$equipo,$codigo);
+					$lab_desc = $this->mov->actualizar_tablas('descripcion_sistema','pc_ids',$equipo,$codigo);
+					$lab_alma = $this->mov->actualizar_tablas('almacenamiento','pc_id',$equipo,$codigo);
+
+					//hacemos una nueva inserción en las tablas foraneas con los datos del elemento que se presta y con su id
+					$t_red = $this->mov->insertar_red($red_prestado);
+					$t_video = $this->mov->insertar_video($video_prestamo);
+					$t_alma = $this->mov->insertar_alma($almacenamiento_prestamo);
+					$t_placa = $this->mov->insertar_placa($placa_prestamo);
+					$t_desc = $this->mov->insertar_desc($descripcion_prestamo);
 				}
 
 				//mandamos los campos que se van a insertar en la tabla movimiento
@@ -388,48 +402,6 @@ class Movimientos_controller extends CI_Controller {
 				break;
 		}
 
-
-		/*campos a usar si es pc completa 
-				***Tabla movimiento
-					- $fecha_retiro ............. fecha_retiro
-					- $fecha_prestamo ........... fecha_cambio
-					- $encargado ................ encargado
-					- $tecnico .................. tecnico
-					- $codigo ................... codigo_id
-					- $desc_prestamo ............ descripcion_cambio
-					- $laboratorios ............. laboratorio (de donde se saca el elemento para el prestamo)
-					- $caract_equipo_f .......... descripcion_equipoNuevo (del equipo del laboratorio)
-					- $caract_equipo_prestamo ... descripcion_equipoRetirado (si es prestamo en sustitución)
-
-					**** datos que se llenara por el sistema
-					campo ........ dato
-					¿que cambio sufrio el equipo?
-					- cambio ------------------- Prestamo de PC completa ¿que cambio sufrio el equipo?
-					- origen_nuevoEquipo_id ---- 37(laboratorio)
-					- destino_nuevoEquipo_id --- origen del codigo digitado ($codigo)
-					- tipoHardSoft ------------- HARDWARE-EXTERNO
-					- tipo_movimiento ---------- Prestamo
-					- serial ------------------- si es periferico
-					- unidad_pertenece_id ------ origen del codigo digitado ($codigo)
-					- unidad_traslado_id ------- bodega de informatica 1 si es prestamo en sustitucion $prestamo(sustitucion)
-											     null si es prestamo en devolucion $prestamo(devolucion)*/
-
-
-				/* tabla inventario_bodega 
-						el campo pc_servidor_antiguo_id----> tomara el valor de pc_servidor_id ($equipo)
-						y pc_Servidor_id----> tomara el origen del equipo del codigo digitado
-
-						el campo origen pasara a tener el valor 37(laboratorio) y destino el origen del codigo*/
-
-
-
-
-
-		
-
-
-
-		
 	}//fin de prestamos
 
 	//función que se encarga de verificar si el codigo existe en algún inventario

@@ -335,4 +335,155 @@ class Movimientos_model extends CI_Model
       }
     }
 
+    ######################################################################################################
+    #funciones para insertar
+    public function insertar_red($datos)
+    {
+      //arreglo para insertar los datos
+      $data = array(
+        'pc_id' => $datos->pc_id ,
+        'adaptador_1' => $datos->adaptador_1,
+        'tipo_adaptador' => $datos->tipo_adaptador,
+        'direccion_ip' => $datos->direccion_ip,
+        'subred_ip' => $datos->subred_ip,
+        'gateway' => $datos->gateway,
+        'servidor_primario' => $datos->servidor_primario,
+        'servidor_dns' => $datos->servidor_dns,
+        'servidor_dhcp' => $datos->servidor_dhcp,
+        'direccion_mac' => $datos->direccion_mac,
+        'tarjeta_extra' => $datos->tarjeta_extra );
+
+      $this->db->insert('adaptador_red',$data);
+      if($this->db->affected_rows() > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    //función para insertar en l tabla video
+    public function insertar_video($datos)
+    {
+      $data = array(
+        'pc_id' => $datos->pc_id,
+        'monitor_marca' => $datos->monitor_marca,
+        'tipo' => $datos->tipo,
+        'modelo' => $datos->modelo,
+        'serie' => $datos->serie,
+        'adaptador1' => $datos->adaptador1,
+        'adaptador_ram' => $datos->adaptador_ram,
+        'tipo_dac' => $datos->tipo_dac,
+        'monitor_pc1' => $datos->monitor_pc1,
+        'resolucion_video' => $datos->resolucion_video,
+        'velocidad' => $datos->velocidad );
+
+      $this->db->insert('adaptador_video',$data);
+      if($this->db->affected_rows() > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    //función para insertar en la tabla almacenamiento
+    public function insertar_alma($datos)
+    {
+      $data = array(
+        'pc_id' => $datos->pc_id,
+        'disco_fisico1' => $datos->disco_fisico1,
+        'capacidad' => $datos->capacidad,
+        'marca_disco' => $datos->marca_disco,
+        'dvd1' => $datos->dvd1,
+        'disco_logico' => $datos->disco_logico,
+        'sistema_archivos' => $datos->sistema_archivos,
+        'tamaño' => $datos->tamaño,
+        'espacio_libre' => $datos->espacio_libre,
+        'letra_unidad' => $datos->letra_unidad );
+
+      $this->db->insert('almacenamiento',$data);
+      if($this->db->affected_rows() > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    //funcion para insertar la descripcion del sistema
+    public function insertar_desc($datos)
+    {
+      $data = array(
+        'pc_ids' => $datos->pc_ids,
+        'nombre' => $datos->nombre,
+        'fabricante' => $datos->fabricante,
+        'sistema_operativo' => $datos->sistema_operativo,
+        'nucleo' => $datos->nucleo,
+        'paquete_servicio' => $datos->paquete_servicio,
+        'version' => $datos->version,
+        'usuario_registrado' => $datos->usuario_registrado,
+        'memoria_fisica' => $datos->memoria_fisica,
+        'dominio' => $datos->dominio,
+        'modelo' => $datos->modelo,
+        'serie_des' => $datos->serie_des,
+        'organizacion' => $datos->organizacion,
+        'idioma' => $datos->idioma,
+        'zona_horaria' => $datos->zona_horaria,
+        'usuario_sesion' => $datos->usuario_sesion,
+        'version_DirectX' => $datos->version_DirectX,
+        'caja_sistema' => $datos->caja_sistema);
+
+      $this->db->insert('descripcion_sistema',$data);
+      if($this->db->affected_rows() > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    //funcion insertar placa_base
+    public function insertar_placa($datos)
+    {
+      $data = array(
+        'pc_id' => $datos->pc_id,
+        'procesador' => $datos->procesador,
+        'velocidad_reloj' => $datos->velocidad_reloj,
+        'fabricante_procesador' => $datos->fabricante_procesador,
+        'etiqueta_BIOS' => $datos->etiqueta_BIOS,
+        'fabricante_BIOS' => $datos->fabricante_BIOS,
+        'version_BIOS' => $datos->version_BIOS,
+        'num_serie_BIOS' => $datos->num_serie_BIOS,
+        'fecha_instalacion_BIOS' => $datos->fecha_instalacion_BIOS,
+        'fabricante_placa' => $datos->fabricante_placa,
+        'mocelo_placa' => $datos->mocelo_placa,
+        'version_placa' => $datos->version_placa,
+        'marca_ram' => $datos->marca_ram,
+        'ranura_memoria' => $datos->ranura_memoria,
+        'ranura_sistema_0' => $datos->ranura_sistema_0,
+        'ranura_sistema_1' => $datos->ranura_sistema_1,
+        'ranura_sistema_2' => $datos->ranura_sistema_2,
+        'ranura_sistema_3' => $datos->ranura_sistema_3,
+        'ranura_sistema_4' => $datos->ranura_sistema_4 );
+
+      $this->db->insert('placa_base',$data);
+      if($this->db->affected_rows() > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
 }//fin de la clase
