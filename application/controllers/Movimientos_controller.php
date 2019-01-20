@@ -329,7 +329,7 @@ class Movimientos_controller extends CI_Controller {
 					}
 
 					#actualizamos en null los campos de la tabla inventario_lab de $equipo
-					$null2 = $this->mov->actualizar_null('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
+					$null2 = $this->mov->actualizar_null('inventario_lab','descripcion_sistema_id','identificador_lab',$equipo);
 
 					//vamos a actualizar cada uno de las tablas donde esta el codigo que recibe el prestamo, con un codigo aleatorio 
 					$up_red = $this->mov->actualizar_tablas('adaptador_red','pc_id',$codigo,$codigo_aleatorio1);
@@ -351,6 +351,19 @@ class Movimientos_controller extends CI_Controller {
 					$t_alma = $this->mov->insertar_alma($almacenamiento_prestamo);
 					$t_placa = $this->mov->insertar_placa($placa_prestamo);
 					$t_desc = $this->mov->insertar_desc($descripcion_prestamo);
+
+					
+					if($cod === 'PC')
+					{
+						//actualizamos en la tabla de los inventarios las llaves foraneas
+						$actualizar1 = $this->mov->actualizar_inv('inventario_adm','des_sistema_id','identificador',$codigo);
+					}
+					else
+					{
+						#actualizamos en null los campos de la tabla inventario_lab con el codigo
+						$actualizar1 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
+					}
+					$actualizar2 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$equipo);
 				}
 
 				//mandamos los campos que se van a insertar en la tabla movimiento

@@ -311,7 +311,7 @@ class Movimientos_model extends CI_Model
       $this->db->set($descripion,NULL);
       $this->db->set('placa_base_id',NULL);
       $this->db->set('adaptador_red_id',NULL);
-      $this->db->set('$adaptador_video_id',NULL);
+      $this->db->set('adaptador_video_id',NULL);
       $this->db->set('almacenamiento_id',NULL);
       $this->db->where($identificador,$id);
       $this->db->update($tabla);
@@ -327,6 +327,23 @@ class Movimientos_model extends CI_Model
     {
       $this->db->set($campo,$nuevo_id);
       $this->db->where($campo,$codigo);
+      $this->db->update($tabla);
+      if($this->db->affected_rows() > 0){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+    #función para actualizar los inventarios
+    public function actualizar_inv('$tabla','$descripcion','$identificador',$id)
+    {
+      $this->db->set($descripion,$id);
+      $this->db->set('placa_base_id',$id);
+      $this->db->set('adaptador_red_id',$id);
+      $this->db->set('adaptador_video_id',$id);
+      $this->db->set('almacenamiento_id',$id);
+      $this->db->where($identificador,$id);
       $this->db->update($tabla);
       if($this->db->affected_rows() > 0){
         return true;
@@ -465,7 +482,7 @@ class Movimientos_model extends CI_Model
         'num_serie_BIOS' => $datos->num_serie_BIOS,
         'fecha_instalacion_BIOS' => $datos->fecha_instalacion_BIOS,
         'fabricante_placa' => $datos->fabricante_placa,
-        'mocelo_placa' => $datos->mocelo_placa,
+        'modelo_placa' => $datos->modelo_placa,
         'version_placa' => $datos->version_placa,
         'marca_ram' => $datos->marca_ram,
         'ranura_memoria' => $datos->ranura_memoria,
