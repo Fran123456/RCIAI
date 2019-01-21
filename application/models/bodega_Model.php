@@ -245,6 +245,7 @@ class bodega_Model extends CI_Model{
 		        $this->db->where('pc_servidor_id !=',NULL);
 		        $this->db->where('pc_servidor_id !=',"");
 		        $this->db->where('bo.tipo !=',"LAPTOP");
+		        $this->db->where('bo.estatus !=',"Desechado");
 		        $this->db->group_by("pc_servidor_id");
 		        $query=$this->db->get();
 		        //comprobamos
