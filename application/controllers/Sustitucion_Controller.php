@@ -11,6 +11,7 @@ class Sustitucion_Controller extends CI_Controller {
 			redirect(base_url());
 		}
 		$this->load->model('Sustitucion_Model', 'sus');
+    $this->load->model('GeneralReporte_Model', 'general');
 		require 'application/plus/noty.php';
 
 	}
@@ -448,7 +449,6 @@ class Sustitucion_Controller extends CI_Controller {
      $inv =  $this->sus->ecuacion_serial_matricial($this->input->post('cod'));
 
 
-
     $serialNueva = $this->input->post('serialNueva');
     $serialVieja = $inv[0]['serial'];
     $codigoPC = $this->input->post('cod'); //viejo
@@ -525,8 +525,71 @@ class Sustitucion_Controller extends CI_Controller {
     
        $this->sus->add_('movimiento', $mov);
 
-      $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
-         redirect(base_url().'mantenimiento-administrativo');
+
+
+       //software: Anexo de bug :( 21-ENERO-2019 >:v no debio pasar este bug pero fui olvidadizo :'v aiuda
+     
+      
+      //variable con serial vieja $serialVieja , variable con serial nueva $serialNueva
+      //codigo del pC en administracion  $codigoPC , codigo de pc generico $datosSerialNueva[0]['pc_servidor_id']
+ 
+       $softwareBodega= $this->general->where_('software', $datosSerialNueva[0]['pc_servidor_id'] ,'bodega_id'); 
+       $softwareAdmin =$this->general->where_('software', $codigoPC ,'pc_id'); 
+
+
+       $adminNuevo = array(); $bodegaNuevo = array();
+       $this->general->delete_('pc_id', $codigoPC, 'software'); 
+       $this->general->delete_('bodega_id', $datosSerialNueva[0]['pc_servidor_id'], 'software');
+
+      
+       if(count($softwareBodega) > 0){
+        for ($i=0; $i <count($softwareBodega) ; $i++) { 
+          $adminNuevo[$i]['pc_id'] = $codigoPC;
+          $adminNuevo[$i]['pc_lab_id'] = null;
+          $adminNuevo[$i]['bodega_id'] = null;
+          $adminNuevo[$i]['nombre'] = $softwareBodega[$i]['nombre'];
+          $adminNuevo[$i]['empresa'] = $softwareBodega[$i]['empresa'];
+          $adminNuevo[$i]['nom_carpeta'] = $softwareBodega[$i]['nom_carpeta'];
+          $adminNuevo[$i]['version'] = $softwareBodega[$i]['version'];
+          $adminNuevo[$i]['nom_archivo'] = $softwareBodega[$i]['nom_archivo'];
+
+          $this->general->add_('software', $adminNuevo[$i]);
+       }
+
+       for ($i=0; $i <count($softwareAdmin) ; $i++) { 
+          $bodegaNuevo[$i]['pc_id'] = null;
+          $bodegaNuevo[$i]['pc_lab_id'] = null;
+          $bodegaNuevo[$i]['bodega_id'] = $datosSerialNueva[0]['pc_servidor_id'];
+          $bodegaNuevo[$i]['nombre'] = $softwareAdmin[$i]['nombre'];
+          $bodegaNuevo[$i]['empresa'] = $softwareAdmin[$i]['empresa'];
+          $bodegaNuevo[$i]['nom_carpeta'] =$softwareAdmin[$i]['nom_carpeta'];
+          $bodegaNuevo[$i]['version'] = $softwareAdmin[$i]['version'];
+          $bodegaNuevo[$i]['nom_archivo'] = $softwareAdmin[$i]['nom_archivo'];
+
+          $this->general->add_('software', $bodegaNuevo[$i]);
+       }
+         
+       }else{
+
+          for ($i=0; $i <count($softwareAdmin) ; $i++) { 
+          $bodegaNuevo[$i]['pc_id'] = null;
+          $bodegaNuevo[$i]['pc_lab_id'] = null;
+          $bodegaNuevo[$i]['bodega_id'] = $softwareAdmin[$i]['pc_id'];
+          $bodegaNuevo[$i]['nombre'] = $softwareAdmin[$i]['nombre'];
+          $bodegaNuevo[$i]['empresa'] = $softwareAdmin[$i]['empresa'];
+          $bodegaNuevo[$i]['nom_carpeta'] = $softwareAdmin[$i]['nom_carpeta'];
+          $bodegaNuevo[$i]['version'] = $softwareAdmin[$i]['version'];
+          $bodegaNuevo[$i]['nom_archivo'] = $softwareAdmin[$i]['nom_archivo']; 
+
+          $this->general->add_('software', $bodegaNuevo[$i]);
+        }
+       }
+
+
+
+
+ $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
+        redirect(base_url().'mantenimiento-administrativo');
     
         
   }
@@ -550,11 +613,7 @@ class Sustitucion_Controller extends CI_Controller {
     //la serial de el cpu viejo que se va. :( 
 
 
-
-
    $infoCodigo = $this->sus->where_('inventario_lab', $codigoPC, 'identificador_lab'); //para actualizar admin
-
-   
 
 
 
@@ -625,8 +684,72 @@ class Sustitucion_Controller extends CI_Controller {
     
        $this->sus->add_('movimiento', $mov);
 
+
+
+
+      //software: Anexo de bug :( 21-ENERO-2019 >:v no debio pasar este bug pero fui olvidadizo :'v aiuda
+      
+      //variable con serial vieja $serialVieja , variable con serial nueva $serialNueva
+      //codigo del pC en administracion  $codigoPC , codigo de pc generico $datosSerialNueva[0]['pc_servidor_id']
+ 
+       $softwareBodega= $this->general->where_('software', $datosSerialNueva[0]['pc_servidor_id'] ,'bodega_id'); 
+       $softwareAdmin =$this->general->where_('software', $codigoPC ,'PC_lab_id'); 
+
+
+       $adminNuevo = array(); $bodegaNuevo = array();
+       $this->general->delete_('PC_lab_id', $codigoPC, 'software'); 
+       $this->general->delete_('bodega_id', $datosSerialNueva[0]['pc_servidor_id'], 'software');
+
+      
+       if(count($softwareBodega) > 0){
+        for ($i=0; $i <count($softwareBodega) ; $i++) { 
+          $adminNuevo[$i]['pc_id'] = null;
+          $adminNuevo[$i]['pc_lab_id'] = $codigoPC;
+          $adminNuevo[$i]['bodega_id'] = null;
+          $adminNuevo[$i]['nombre'] = $softwareBodega[$i]['nombre'];
+          $adminNuevo[$i]['empresa'] = $softwareBodega[$i]['empresa'];
+          $adminNuevo[$i]['nom_carpeta'] = $softwareBodega[$i]['nom_carpeta'];
+          $adminNuevo[$i]['version'] = $softwareBodega[$i]['version'];
+          $adminNuevo[$i]['nom_archivo'] = $softwareBodega[$i]['nom_archivo'];
+
+          $this->general->add_('software', $adminNuevo[$i]);
+       }
+
+       for ($i=0; $i <count($softwareAdmin) ; $i++) { 
+          $bodegaNuevo[$i]['pc_id'] = null;
+          $bodegaNuevo[$i]['pc_lab_id'] = null;
+          $bodegaNuevo[$i]['bodega_id'] = $datosSerialNueva[0]['pc_servidor_id'];
+          $bodegaNuevo[$i]['nombre'] = $softwareAdmin[$i]['nombre'];
+          $bodegaNuevo[$i]['empresa'] = $softwareAdmin[$i]['empresa'];
+          $bodegaNuevo[$i]['nom_carpeta'] =$softwareAdmin[$i]['nom_carpeta'];
+          $bodegaNuevo[$i]['version'] = $softwareAdmin[$i]['version'];
+          $bodegaNuevo[$i]['nom_archivo'] = $softwareAdmin[$i]['nom_archivo'];
+
+          $this->general->add_('software', $bodegaNuevo[$i]);
+       }
+         
+       }else{
+
+          for ($i=0; $i <count($softwareAdmin) ; $i++) { 
+          $bodegaNuevo[$i]['pc_id'] = null;
+          $bodegaNuevo[$i]['pc_lab_id'] = null;
+          $bodegaNuevo[$i]['bodega_id'] = $datosSerialNueva[0]['pc_servidor_id'];
+          $bodegaNuevo[$i]['nombre'] = $softwareAdmin[$i]['nombre'];
+          $bodegaNuevo[$i]['empresa'] = $softwareAdmin[$i]['empresa'];
+          $bodegaNuevo[$i]['nom_carpeta'] = $softwareAdmin[$i]['nom_carpeta'];
+          $bodegaNuevo[$i]['version'] = $softwareAdmin[$i]['version'];
+          $bodegaNuevo[$i]['nom_archivo'] = $softwareAdmin[$i]['nom_archivo']; 
+
+          $this->general->add_('software', $bodegaNuevo[$i]);
+
+        }
+       }
+
+
+
+
       $this->session->set_flashdata('change', 'Elemento agregado a la compra correctamente');
-         redirect(base_url().'detalle-lab/'.$codigoAdmin);
+        redirect(base_url().'detalle-lab/'.$codigoAdmin);
     
        
   }
