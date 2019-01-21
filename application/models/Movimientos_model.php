@@ -503,4 +503,128 @@ class Movimientos_model extends CI_Model
       }
     }
 
+    #función para obtener el sw de un equipo de lab
+    public function sw_lab($id)
+    {
+    	$this->db->select('*');
+    	$this->db->from('software AS s');
+    	$this->db->where('s.PC_lab_id',$id);
+    	$query = $this->db->get();
+
+			if($query->num_rows() > 0){
+				//si hay registros los devolvemos
+				return $query->result_array();
+			}else{
+				//si no hay registros, devolvemos un false
+				return false;
+	    }
+	  }
+
+	  #funcion para obtener el sw de un equipo de adm
+	  public function sw_adm($id)
+	  {
+	  	$this->db->select('*');
+    	$this->db->from('software AS s');
+    	$this->db->where('s.pc_id',$id);
+    	$query = $this->db->get();
+
+			if($query->num_rows() > 0){
+				//si hay registros los devolvemos
+				return $query->result_array();
+			}else{
+				//si no hay registros, devolvemos un false
+				return false;
+	    }
+	  }
+
+	  #función para actualizar el sw del equipo que recibe por un codigo generico
+	  public function actualizar_sw($id,$codigo_aleatorio1)
+	  {
+	  	$this->db->set('pc_id',null);
+	  	$this->db->set('bodega_id',$codigo_aleatorio1);
+	  	$this->db->where('id',$id);
+	  	$this->db->update('software');
+	  }
+
+	  //actualizamos el codigo del equipo que se presta, por el codigo del equipo a prestar
+	  public function up_swLab($id,$codigo)
+	  {
+	  	$this->db->set('pc_id',$codigo);
+	  	$this->db->set('PC_lab_id',NULL);
+	  	$this->db->where('id',$id);
+	  	$this->db->update('software');
+	  }
+
+	  #función para actualizar el sw del equipo que recibe el prestamo(si es de administrativo) con el sw del equipo que presta
+	  public function update_swAdm($software,$pc_id)
+	  {
+	  	$this->db->set('nombre',$software[0]->nombre);
+	  	$this->db->set('version',$software[0]->version);
+	  	$this->db->where('pc_id',$pc_id);
+	  	$this->db->update('software');
+	  	if($this->db->affected_rows() > 0){
+        return true;
+      }else{
+        return false;
+      }
+	  }
+
+	  #funcion para actualizar el sw del equipo que recibe 
+	  public function update_swLab($software,$PC_lab_id)
+	  {
+	  	$this->db->set('nombre',$software->nombre);
+	  	$this->db->set('empresa',$software->empresa);
+	  	$this->db->set('nom_carpeta',$software->nom_carpeta);
+	  	$this->db->set('version',$software->version);
+	  	$this->db->set('nom_archivo',$software->nom_archivo);
+	  	$this->db->where('PC_lab_id',$PC_lab_id);
+	  	$this->db->update('software');
+	  	if($this->db->affected_rows() > 0){
+        return true;
+      }else{
+        return false;
+      }
+	  }
+
+	  #función para insertar sw nuevo para adm
+	  public function add_swAdm($pc_id,$software)
+	  {
+	  	$datos = array(
+	  		'pc_id' =>$pc_id,
+	  		'nombre' =>$software->nombre ,
+	  		'version' =>$software->version);
+
+	  	$this->db->insert('software',$datos);
+	  	if($this->db->affected_rows() > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+	  }
+
+	   #función para insertar sw nuevo para lab
+	  public function add_swLab($PC_lab_id,$software)
+	  {
+	  	$datos = array(
+	  		'PC_lab_id' =>$PC_lab_id,
+	  		'nombre' =>$software->nombre ,
+	  		'empresa' =>$software->empresa,
+	  		'nom_carpeta' =>$software->nom_carpeta,
+	  		'version' =>$software->version,
+	  		'nom_archivo' =>$software->nom_archivo);
+
+	  	$this->db->insert('software',$datos);
+	  	if($this->db->affected_rows() > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+	  }
+
 }//fin de la clase
