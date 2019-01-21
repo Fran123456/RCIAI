@@ -48,7 +48,8 @@
 				success: function(data){
 					console.log(data);
 					//mandamos los datos al modal para que sean editados
-					$('#id').val(data[0]['PC_lab_id']);
+					$('#id').val(data[0]['id']);
+					$('#idpc').val(data[0]['PC_lab_id']);
 					$('#descripcionE').val(data[0]['nombre']);
 					$('#empresaE').val(data[0]['empresa']);
 					$('#nom_carpetaE').val(data[0]['nom_carpeta']);
@@ -286,7 +287,8 @@
 					      	<!--Agregamos un formulario para guardar los elementos del software-->
 						    <form method="post" action="<?php echo base_url()?>actualizar-software">
 								<!--input escondido que tendra el id de la pc-->
-								<input type="hidden" id="id" name="id" >
+								<input type="text" id="id" name="id" >
+								<input type="text" id="idpc" name="idpc" >
 						      	<div class="modal-body">
 						      		<div class="row">
 							      			<div class="form-group">

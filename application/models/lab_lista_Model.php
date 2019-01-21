@@ -157,7 +157,7 @@ class lab_lista_Model extends CI_Model{
 
 	  //esta función se encarga de actualizar los datos en la tabla software
 	  public function updateSoftware($data,$id){
-	  	$this->db->where('PC_lab_id',$id);
+	  	$this->db->where('id',$id);
 	  	$this->db->set('nombre', $data['nombre']);
 	  	$this->db->set('empresa', $data['empresa']);
 	  	$this->db->set('nom_carpeta', $data['nom_carpeta']);

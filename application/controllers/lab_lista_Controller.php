@@ -237,19 +237,20 @@ class lab_lista_Controller extends CI_Controller {
 					  'version' => $this->input->post('versionE'),
 					  'nom_archivo' => $this->input->post('nom_archivoE'), );
 		$id = $this->input->post('id');
+		$idpc = $this->input->post('idpc');
 
 		//llamamos a la funcion en el modelo para actualizar 
 		$result = $this->lab->updateSoftware($data,$id);
 		if($result){
 			
 			$this->session->set_flashdata('actualizado','El elemento ha sido actualizado ');
-			redirect(base_url().'lab_lista_Controller/mostrarSW/'.$id);
+			redirect(base_url().'lab_lista_Controller/mostrarSW/'.$idpc);
 			//return true;
 			//$this->editarLab($lab);
 		}else{
 			//return false;
 			$this->session->set_flashdata('Error_update','El elemento no ha podido ser actualizado ');
-			redirect(base_url().'lab_lista_Controller/mostrarSW/'.$id);
+			redirect(base_url().'lab_lista_Controller/mostrarSW/'.$idpc);
 		}
 	}//fin de updateSoftware
 ///////////////////////////////////////////////////////////////////////////////////////
