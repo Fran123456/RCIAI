@@ -20,11 +20,12 @@
 	<!-- vamos a crear un listado de cada uno de los elementos que tiene o tendria cada área-->
 		<h2>Reporteria </h2> 
 		<hr>
-	<div class="container" >
+	<div class="" >
 		<div class="row" >
 
 			
 			<!--REPORTE 5-->
+			<?php if($this->session->userdata('rol') == "administrador" || $this->session->userdata('rol') == "super usuario"): ?>
 			<form method="post" action="<?php echo base_url()?>Reporte5_controller/reporte5">
 				<div class="col-md-4">
 		         <!-- PANEL HEADLINE -->
@@ -60,10 +61,12 @@
 				<!-- END PANEL HEADLINE -->
 		 		 </div>
 		 		</form>
+		 	<?php endif; ?>
 			<!--REPORTE 5-->
 
 
 			<!--REPORTE 6-->
+			<?php if($this->session->userdata('rol') == "administrador" || $this->session->userdata('rol') == "super usuario"): ?>
 			<form method="post" action="<?php echo base_url()?>Reporte6_controller/reporte6">
 				<div class="col-md-4">
 		         <!-- PANEL HEADLINE -->
@@ -100,6 +103,7 @@
 				<!-- END PANEL HEADLINE -->
 		 		 </div>
 		 		</form>
+		 		<?php endif; ?>
 			<!--REPORTE 6-->
 
 
@@ -227,39 +231,37 @@
 
 			<!--REPORTE 4 por codigo-->
 				<div class="col-md-4">
-				<form method="post" action="<?php echo base_url()?>Reporte4_controller/reporte4">
-		         <!-- PANEL HEADLINE -->
-						<div class="panel panel-headline">
-								<div class="panel-heading">
-									<h3 class="panel-title"><i class="fa fa-shopping-cart" aria-hidden="true"></i></i> Reporte de compras</h3>
-								</div>
-								<div class="panel-body text-center">
-									<p>Reporte de compras por año para administración y laboratorios</p>
-									<div class="row">
-										<div class="col-md-8">
-											<label id="label"><span id="span">Año:</span></label>
-
-											<input required="" value="<?php echo date("Y") ?>" class="form-control" type="number" min="1000" max="5000" name="year">
-										</div>
-										<div class="col-md-4" style="padding-top: 10px">
-											<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
-										</div>
-										
+					<form method="post" action="<?php echo base_url()?>Reporte4_controller/reporte4">
+			         <!-- PANEL HEADLINE -->
+							<div class="panel panel-headline">
+									<div class="panel-heading">
+										<h3 class="panel-title"><i class="fa fa-shopping-cart" aria-hidden="true"></i></i> Reporte de compras</h3>
 									</div>
-								</div>
-						</div>
-				<!-- END PANEL HEADLINE -->
-				</form>
+									<div class="panel-body text-center">
+										<p>Reporte de compras por año para administración y laboratorios</p>
+										<div class="row">
+											<div class="col-md-8">
+												<label id="label"><span id="span">Año:</span></label>
+
+												<input required="" value="<?php echo date("Y") ?>" class="form-control" type="number" min="1000" max="5000" name="year">
+											</div>
+											<div class="col-md-4" style="padding-top: 10px">
+												<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
+											</div>
+											
+										</div>
+									</div>
+							</div>
+					<!-- END PANEL HEADLINE -->
+					</form>
 		 		 </div>
 			<!--REPORTE 4 por codigo-->
 
 
-		</div>
-		<div class="row">
-			<!--            REORTES PARA LA GERENTE   -->
-			<!--REPORTE 9-->
+     <!--REPORTE 9-->
+    <?php if($this->session->userdata('rol') == "super usuario"): ?>
+		<div class="col-md-8">
 			<form method="post" action="<?php echo base_url()?>Reporte9_controller/reporte_9">
-				<div class="col-md-6">
 		         <!-- PANEL HEADLINE -->
 						<div class="panel panel-headline">
 								<div class="panel-heading">
@@ -286,17 +288,23 @@
 										<div class="col-md-4" style="padding-top: 10px">
 											<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
 										</div>
-										
 									</div>
+									<br>
 								</div>
 						</div>
 				<!-- END PANEL HEADLINE -->
-		 		</div>
 		 	</form>
 
+		</div>
+		 <!--REPORTE 9-->
+		
+			<!--   REORTES PARA LA GERENTE   -->
+			
+
 		 	<!--REPORTE 12-->
-			<form method="post" action="<?php echo base_url()?>Reporte12_controller/reporte_12">
-				<div class="col-md-6">
+		 	<div class="col-md-6">
+		 		<form method="post" action="<?php echo base_url()?>Reporte12_controller/reporte_12">
+				<div class="col-md-12">
 		        	<!-- PANEL HEADLINE -->
 					<div class="panel panel-headline">
 							<div class="panel-heading">
@@ -325,11 +333,13 @@
 					<!-- END PANEL HEADLINE -->
 		 		</div>
 		 	</form>
-		</div>
-		<div class="row">
+		 	</div>
+			
+		
+
+		<div class="col-md-6">
 			<!--REPORTE 10 Reporte de cambio de computadoras por unidad-->
 			<form method="post" action="<?php echo base_url()?>Reporte10_controller/reporte_10">
-				<div class="col-md-6">
 		        	<!-- PANEL HEADLINE -->
 					<div class="panel panel-headline">
 							<div class="panel-heading">
@@ -412,10 +422,10 @@
 							</div>
 					</div>
 					<!-- END PANEL HEADLINE -->
-		 		</div>
 		 	</form>
-		</div>
+		
 	</div>
+ <?php endif; ?>
 <!-- script para reportes de gerencia -->
 <script>
 	var valor;
