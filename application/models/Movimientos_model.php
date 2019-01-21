@@ -254,11 +254,11 @@ class Movimientos_model extends CI_Model
   	}
 
   	//función para actualizar periferico que es sustituido
-  	public function actualizarPeriferico($origenP,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido)
+  	public function actualizarPeriferico($origenP,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido,$servidor_id)
   	{
   		$this->db->set('origen',$destinoP);
   		$this->db->set('destino',$origenP);
-  		$this->db->set('pc_servidor_id',null);
+  		$this->db->set('pc_servidor_id',$servidor_id);
   		$this->db->set('pc_servidor_antiguo_id',$codigo);
   		$this->db->set('estatus',$estado);
   		$this->db->set('fecha_salida',$fecha_prestamo);
@@ -336,9 +336,9 @@ class Movimientos_model extends CI_Model
     }
 
     #función para actualizar los inventarios
-    public function actualizar_inv('$tabla','$descripcion','$identificador',$id)
+    public function actualizar_inv($tabla,$descripcion,$identificador,$id)
     {
-      $this->db->set($descripion,$id);
+      $this->db->set($descripcion,$id);
       $this->db->set('placa_base_id',$id);
       $this->db->set('adaptador_red_id',$id);
       $this->db->set('adaptador_video_id',$id);

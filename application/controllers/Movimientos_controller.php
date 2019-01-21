@@ -364,7 +364,55 @@ class Movimientos_controller extends CI_Controller {
 						$actualizar1 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
 					}
 					$actualizar2 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$equipo);
-				}
+
+					#vamos a crear el movimiento
+					//mandamos los campos que se van a insertar en la tabla movimiento
+					$datos = array('token' => $token,
+								   'fecha_retiro' => $fecha_retiro,
+								   'fecha_cambio' => $fecha_prestamo,
+								   'codigo_id' => $codigo,
+								   'unidad_pertenece_id' => $unidad_pertenece_id,
+								   'unidad_traslado_id' => 1,
+								   'cambio' => $cambio,
+								   'descripcion_cambio' => $desc_prestamo,
+								   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
+								   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
+								   'descripcion_equipoRetirado' => $descripcion_equipoRetirado,
+								   'descripcion_equipoNuevo' => $caract_equipo_f,
+								   'encargado' => $encargado,
+								   'tecnico' => $tecnico,
+								   'tipoHardSoft' => $tipoHardSoft,
+								   'tipo_movimiento' => $tipo_movimiento,
+								   'serial_nuevo' => $serial_nuevo,
+								   'laboratorio' => $laboratorios );
+
+					$respuesta1 = $this->mov->crear_prestamo($datos);
+					if($respuesta1)
+					{
+						//si es verdadero generamos la siguiente consulta
+						//actualizaremos los campos en la tabla inventario bodega para el equipo que es prestado
+						$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo);
+						//actualizar periferico que es sustituido
+						$origen1 = $this->mov->origen_destino($serial_sustituido,'origen');
+						$destino1 = $this->mov->origen_destino($serial_sustituido,'destino');
+
+						$origenP = $origen1->origen;
+						$destinoP = $destino1->destino;
+
+						$respuesta3 = $this->mov->actualizarPeriferico(1,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido,$codigo_aleatorio1);
+
+						if($respuesta2 && $respuesta3)
+						{
+							//si todo fue bien
+							$this->session->set_flashdata('exito','movimiento realizado');
+							redirect(base_url().'prestamos');
+
+						}
+
+					}
+				} 
+				else
+				{
 
 				//mandamos los campos que se van a insertar en la tabla movimiento
 				$datos = array('token' => $token,
@@ -400,7 +448,7 @@ class Movimientos_controller extends CI_Controller {
 					$origenP = $origen1->origen;
 					$destinoP = $destino1->destino;
 
-					$respuesta3 = $this->mov->actualizarPeriferico($origenP,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido);
+					$respuesta3 = $this->mov->actualizarPeriferico($origenP,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido,null);
 
 					if($respuesta2 && $respuesta3)
 					{
@@ -411,6 +459,7 @@ class Movimientos_controller extends CI_Controller {
 					}
 
 				}
+			}
 
 				break;
 		}
