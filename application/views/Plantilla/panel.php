@@ -41,7 +41,7 @@
 
 
 						<!-- INVENTARIO DE BODEGA -->
-
+                      <?php if($this->session->userdata('rol') != "root"): ?>
 						<li>
 							<a href="#subPagesA" data-toggle="collapse" class="collapsed"><i class="fa fa-th-large fa-4x"></i> <span>Bodega</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPagesA" class="collapse ">
@@ -67,6 +67,7 @@
 								</ul>
 							</div>
 						</li>
+					 <?php endif; ?>
 
                        <?php if($this->session->userdata('rol') == "administrador" || $this->session->userdata('rol') == "super usuario"): ?>
 						<!-- administrativo -->

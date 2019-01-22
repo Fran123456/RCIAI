@@ -189,11 +189,12 @@ public function laptop_nuevo_add(){
     }else{
        $pcservidor = $this->__idElemento($this->input->post('tipo'));
     }
-   if($this->input->post('uni') == "1"){
+   if($this->input->post('destino-0') == "1"){
     $da = "Nuevo";
    }else{
     $da = "En uso";
    }
+
 
 
 
