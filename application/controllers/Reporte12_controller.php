@@ -232,14 +232,15 @@ class Reporte12_controller extends CI_Controller
 
 			case '3':
 				# verificamos si el codigo es administrativo o de lab con $parametro
-				$cod = substr($parametro, 0,2);
+				$codigo = strtoupper($parametro);
+				$cod = substr($codigo, 0,2);
 				
 				switch ($cod) {
 					case 'PC':
 						# vamos a realizar la consulta y preparar los campos para hacer el reporte
-						$result = $this->R12->consulta_codigoAdm($parametro);
+						$result = $this->R12->consulta_codigoAdm($codigo);
 
-						$name = 'Reporte-de-equipo-por-código-'.$parametro;
+						$name = 'Reporte-de-equipo-por-código-'.$codigo;
 
 						$Arraycolumnas = array('A1','B1','C1','D1','E1','F1');
 						$ArrayColumnasLetra = array('A','B','C','D','E','F');

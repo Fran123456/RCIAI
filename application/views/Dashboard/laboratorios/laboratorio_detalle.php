@@ -45,6 +45,7 @@
         </script>
         <?php endif; ?>
 
+	<?php if($detalle != false) { ?>
 	<?php foreach($detalle as $key) {?>
 	<div class="content1">
 		<!--  Datos iniciales del sistema   -->
@@ -632,6 +633,12 @@
 
 	</div>
 
+<?php } } else{ ?>
+	<div>
+		<center>
+			<h3>SIN REGISTROS EN LA BASE DE DATOS</h3>
+		</center>
+	</div>
 <?php } ?>
 <a class="btn btn-success" href="<?php echo base_url('lab_lista_Controller/redireccionar/'.$lab=$key->identificador_lab)?>">ATRAS</a>
 
