@@ -384,10 +384,23 @@ class Movimientos_controller extends CI_Controller {
 								$this->mov->up_swLab($id,$codigo);
 							}
 						}
-						/*else
+						elseif(($sw_recibe==FALSE)&&($sw_prestamo))
 						{
-							#
-						}*/
+							#si solo el equipo que se presta tiene sw
+							for($i=0;$i<count($sw_prestamo);$i++)
+							{
+								$id = $sw_prestamo[$i]['id'];
+								$this->mov->up_swLab($id,$codigo);
+							}
+						}elseif (($sw_recibe)&&($sw_prestamo==FALSE)) 
+						{
+							# si solo el equipo que recibe el prestamo tiene sw
+							for($i=0;$i<count($sw_recibe);$i++)
+							{
+								$id = $sw_recibe[$i]['id'];
+								$this->mov->actualizar_sw($id,$codigo_aleatorio1);
+							}
+						}
 					}
 					else
 					{
@@ -395,17 +408,38 @@ class Movimientos_controller extends CI_Controller {
 						$actualizar1 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
 
 						//vamos a actualizar el sw del equipo que recibe el prestamo con los datos del equipo prestado
-						if($software_recibe)
+						if($sw_recibe&&$sw_prestamo)
 						{
-							#si tienes datos hacemos la actualización
-							$sw_actualizacionLab = $this->mov->update_swLab($software_prestamo,$codigo);
-
-							#hacemos una nueva insercción con el código aleatorio y los datos del sw del equipo que recibe
-							$sw_agregarLab = $this->mov->add_swLab($codigo_aleatorio1,$software_recibe);
+							#si ambos tienen datos actualizamos los campos de la pc q recibe el prestamo por un codigo generico
+							#que se guardara en bodega_id
+							for($i=0;$i<count($sw_recibe);$i++)
+							{
+								$id = $sw_recibe[$i]['id'];
+								$this->mov->actualizar_swLab($id,$codigo_aleatorio1);
+							}
+							#actualizamos el codigo de el equipo que recibe el prestamo en pc_id y ponemos null en PC_lab_id
+							for($i=0;$i<count($sw_prestamo);$i++)
+							{
+								$id = $sw_prestamo[$i]['id'];
+								$this->mov->update_swLab($id,$codigo);
+							}
 						}
-						else
+						elseif(($sw_recibe==FALSE)&&($sw_prestamo))
 						{
-							#
+							#si solo el equipo que se presta tiene sw
+							for($i=0;$i<count($sw_prestamo);$i++)
+							{
+								$id = $sw_prestamo[$i]['id'];
+								$this->mov->update_swLab($id,$codigo);
+							}
+						}elseif (($sw_recibe)&&($sw_prestamo==FALSE)) 
+						{
+							# si solo el equipo que recibe el prestamo tiene sw
+							for($i=0;$i<count($sw_recibe);$i++)
+							{
+								$id = $sw_recibe[$i]['id'];
+								$this->mov->actualizar_swLab($id,$codigo_aleatorio1);
+							}
 						}
 					}
 					$actualizar2 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$equipo);
