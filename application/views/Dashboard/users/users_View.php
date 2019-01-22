@@ -798,10 +798,11 @@
 								success: function(data){
 									var html = '';
 									var i;
+									var j=1;
 
 									for(i=0;i<data.length;i++){
 										html +='<tr>'+
-						      						'<th scope="row">'+ data[i].id_usuario+ '</th>'+
+						      						'<th scope="row">'+ j++ + '</th>'+
 						      						'<td>'+data[i].nombre + " " +data[i].apellido + '</td>'+
 						      						'<td>'+data[i].rol+'</td>'+
 						      						'<td><a href="javascript:;" class="btn btn-success item-view" data="'+data[i].id_usuario+'"> <i class="fa fa-eye" aria-hidden="true"></i></a> </td>'+
