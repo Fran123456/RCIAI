@@ -163,10 +163,10 @@ class Movimientos_controller extends CI_Controller {
 		$encargado = $this->input->post('encargado');
 		$tecnico = $this->input->post('tecnico');
 		$tipo_prestamo = $this->input->post('tipo_prestamo');//tipo de prestamo si es una pc completa (1) o un periferico (2) 
-		$codigo = $this->input->post('codigo'); // codigo del equipo que recibe el prestamo
+		$codigo = strtoupper($this->input->post('codigo')); // codigo del equipo que recibe el prestamo
 		$desc_prestamo = $this->input->post('desc_prestamo');//descripción del porque se hace el prestamo
 		$laboratorios = $this->input->post('laboratorios'); // laboratorio de donde se sacara el equipo para hacer el prestamo
-		$equipo = $this->input->post('equipo'); //equipo del laboratorio que hara el prestamo
+		$equipo = strtoupper($this->input->post('equipo')); //equipo del laboratorio que hara el prestamo
 		$perifericos = $this->input->post('perifericos');//tipo de periferico, estara activo si el tipo prestamo es periferico
 		$caract_equipo_f = $this->input->post('caract_equipo_f'); //descripción del equipo que queda en función
 		$caract_equipo_prestamo = $this->input->post('caract_equipo_prestamo'); //caracteristica del equipo que recibe el prestamo ( el equipo del codigo ingresado)

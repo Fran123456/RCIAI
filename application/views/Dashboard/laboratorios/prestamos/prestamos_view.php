@@ -110,7 +110,7 @@
 	  			<option value="DISCO DURO EXTERNO">Disco duro externo</option>
 	  			<option value="UPS">UPS</option>
 	  			<option value="WEBCAM">Webcam</option>
-	  			<option value="CPU">CPU</option>
+	  			<!--<option value="CPU">CPU</option>-->
 	  		</select>
 	  	</div>
 
