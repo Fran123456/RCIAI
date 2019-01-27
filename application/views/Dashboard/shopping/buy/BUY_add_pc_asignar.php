@@ -371,7 +371,7 @@
                                 <div id="diverror" class="col-md-2 col-sm-2 ">
                                   <label id="errorlabel">Codigo</label>
                                   <div id="cod" class="form-group">
-                                    <input type="number" min="0" required=""   id="codex" class="form-control" name="codigopc">
+                                    <input min="0" required=""   id="codex" class="form-control" name="codigopc">
                                   </div>
                                 </div>
                                  <div id="diverror" class="col-md-1 col-sm-1">
