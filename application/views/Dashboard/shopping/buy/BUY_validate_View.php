@@ -91,7 +91,7 @@
 	        	<div class="row">
 	        		<div class="col-md-4">
 	        			<div class="form-group">
-	        				<label>Codigo factura</label>
+	        				<label>Número factura</label>
 	        				<input type="text" name="factura" class="form-control">
 	        			</div>
 	        		</div>
