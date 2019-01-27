@@ -142,9 +142,9 @@
 
                                     <select onchange="cambiar();" id="codex0" name="codex0"  class="form-control">
                                       <option selected="" value="UPS">UPS</option>
-                                <!--      <option value="APRADIO">APRADIO</option>
+                                   <option value="APRADIO">APRADIO</option>
                                       <option value="WEBCAM">WEBCAM</option>
-                                      <option value="IMPR">IMPR</option>-->
+                                      <option value="IMPR">IMPR</option>
                                     </select>
                                   </div>
                                 </div>
