@@ -108,7 +108,7 @@
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Estado</label>
-                            <input type="text" value="nuevo" class="form-control" name="estatus-0">
+                            <input type="text" readonly="" value="nuevo" class="form-control" name="estatus-0">
                           </div>
                         </div>
                         <div class="col-md-3">
