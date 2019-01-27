@@ -16,6 +16,9 @@
         background-color: #f2eceb;
         border: 1px solid #d1d0d0;
     }
+    .validar{
+      color: red;
+    }
   </style>
 
 </head>
@@ -23,7 +26,7 @@
     <?php require 'application/views/Plantilla/nav.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LA BARRA DE NAVEGACION-->
     <?php require 'application/views/Plantilla/panel.php'; ?>  <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA EL MENU DESPLEGABLE-->
     
-     <form action="<?php echo base_url() ?>addbuy" method="post" id="form-compra">
+     <form id="formi" action="<?php echo base_url() ?>addbuy" method="post" id="form-compra">
     	<div class="panel" > <!--INICIO DE COMPONENTE VUE-->
                 <div class="panel-heading">
                   <div class="text-center "><h3>Crea una nueva compra</h3></div>
@@ -38,14 +41,15 @@
                                 <div class="col-md-6">
                                      <div class="form-group">
                                           <label>Codigo compra</label>
-                                          <input  type="text" readonly=""  name="code" class="form-control int2" value="<?php echo $code ?>">
+                                          <input type="text" readonly=""  name="code" class="form-control int2" value="<?php echo $code ?>">
                                      </div>
                                      
                                  </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">proveedor</label>
-                                        <input required  class="form-control int2" type="text" name="proveedor"/>
+                                       
+                                        <input required id="proveedor"  class="form-control int2" type="text" name="proveedor"/>
                                     </div>
                                 </div>
                             </div>
@@ -54,13 +58,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Fecha autorización</label>
-                                        <input required   class="form-control int2" type="date" name="fechautorizacion"/>
+                                        <input required id="fecha_autorizacion"  class="form-control int2" type="date" name="fechautorizacion"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Fecha de compra</label>
-                                        <input required  class="form-control int2" type="date" name="fechacompra"/>
+                                        <input required id="fecha_compra" class="form-control int2" type="date" name="fechacompra"/>
                                     </div>
                                 </div>
                             </div>
@@ -78,19 +82,19 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label class="control-label">N° factura</label>
-                                <input required  class="form-control int2" type="text"  name="factura"/>
+                                <input required id="factura" class="form-control int2" type="text"  name="factura"/>
                              </div>
                         </div>
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label class="control-label">Periodo garantia</label>
-                                <input required  class="form-control int2" type="text"  name="garantia"/>
+                                <input required id="garantia" class="form-control int2" type="text"  name="garantia"/>
                              </div>
                         </div>
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label class="control-label">Total de compra ($)</label>
-                                <input required   class="form-control int2" type="number"  min="0.00" step="0.01" value="0.00"  name="total"/>
+                                <input required id="total"  class="form-control int2" type="number"  min="0.00" step="0.01" value="0.00"  name="total"/>
                              </div>
                         </div>
                     </div>
@@ -117,6 +121,7 @@
                                       <table id="tab" class="table">
                                                             <thead>
                                                                 <tr>
+                                                                  <label id="elemento_padre"></label>
                                                                     <th width="400">Elemento</th>
                                                                     <th width="100">Cantidad</th>
                                                                 </tr>
@@ -158,7 +163,7 @@
                     </div>
 
                     <br>
-				           	<button type="submit" class="btn btn-success">Agregar</button>
+				           	<button type="button" id="send" onclick="validar();" class="btn btn-success">Agregar</button>
                     </div>
               </div>
      </form>
@@ -174,6 +179,33 @@
 
     <script type="text/javascript">
  var cont = 0;
+ function validar(){
+    let validator = 7;
+    if(cont == 0)
+      validator--;
+    if($('#proveedor').val() =="")
+      validator--;
+    if($('#fecha_autorizacion').val() =="")
+      validator--;
+    if($('#fecha_compra').val() =="")
+      validator--;
+    if($('#factura').val() =="")
+      validator--;
+    if($('#total').val() =="")
+      validator--;
+    if($('#garantia').val() =="")
+      validator--;
+    
+
+    if(validator == 7){
+      $("#formi").submit();
+   } 
+    else{
+      alert('Debe llenar todos los campos');
+    }
+  
+  
+ }
 
    function add_(){
    var jhtml = '<select class="form-control">'+
