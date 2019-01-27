@@ -204,7 +204,7 @@
                               <div id="diverror" class="col-md-1 col-sm-1">
                                   <div id="cod" class="form-group">
                                     <label>&nbsp;</label>
-                                    <input type="text" required="" value="DDE" id="codex0" class="form-control" name="codex0">
+                                    <input type="text" required="" readonly="" value="DDE" id="codex0" class="form-control" name="codex0">
                                   </div>
                                 </div>
                                 <div id="diverror" class="col-md-2 col-sm-2 ">
@@ -216,7 +216,7 @@
                                  <div id="diverror" class="col-md-2 col-sm-2">
                                   <label >&nbsp;</label>
                                   <div id="cod" class="form-group">
-                                    <input type="text" required="" value="USAM" id="codex1" class="form-control" name="codex1">
+                                    <input type="text" required="" readonly="" value="USAM" id="codex1" class="form-control" name="codex1">
                                   </div>
                                 </div>
                             </div>
