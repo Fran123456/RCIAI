@@ -112,7 +112,7 @@
                                       <option  value="Servidor">Servidor</option>
                                       <option value="Laptop">Laptop</option>
                                       <option value="Disco duro externo">Disco duro externo</option>
-                                      <option  value="otro">UPS, Acces Point, Web Cam, Impresores</option>
+                                     <!-- <option  value="otro">UPS, Acces Point, Web Cam, Impresores</option>-->
                                  </select>
 	        			</div>
 	        		</div>
@@ -134,6 +134,17 @@
    //$('#uni').append('<option value="Sustituir">Sustituir</option>');
 
 
+   /*  let vv ='<select name="tipo" id="tipo" class="form-control">'+
+                '<option selected="" value="Periferico">Perifericos</option>'+
+                '<option value="PC">PC completa / CPU</option>'+
+                '<option value="Servidor">Servidor</option>'+
+                '<option value="Laptop">Laptop</option>'+
+                '<option value="Disco duro externo">Disco duro externo</option>'+
+                '</select>';
+
+      $('#tipo').remove();
+      $("#sel").append(vv);*/
+
    select = "";
    $('#uni').change(function() {
     var dato = $('#uni').val();
@@ -144,7 +155,33 @@
 
        $("#sel").append(html);
 
-    }else{
+    }else if(dato == 1){
+       let selectAA ='<select name="tipo" id="tipo" class="form-control">'+
+                '<option selected="" value="Periferico">Perifericos</option>'+
+                '<option value="PC">PC completa / CPU</option>'+
+                '<option value="Servidor">Servidor</option>'+
+                '<option value="Laptop">Laptop</option>'+
+                '<option value="Disco duro externo">Disco duro externo</option>'+
+                '</select>';
+
+      $('#tipo').remove();
+      $("#sel").append(selectAA);
+    }else if(dato != 37 || dato != 1){
+      
+
+      let selectAAS ='<select name="tipo" id="tipo" class="form-control">'+
+                '<option selected="" value="Periferico">Perifericos</option>'+
+                '<option value="PC">PC completa / CPU</option>'+
+                '<option value="Servidor">Servidor</option>'+
+                '<option value="Laptop">Laptop</option>'+
+                '<option value="Disco duro externo">Disco duro externo</option>'+
+                '<option value="otro">UPS, Acces Point, Web Cam, Impresores</option>'+
+                '</select>';
+
+      $('#tipo').remove();
+      $("#sel").append(selectAAS);
+    }
+    else{
       
       if(select != ""){
         $('#tipo').remove();
