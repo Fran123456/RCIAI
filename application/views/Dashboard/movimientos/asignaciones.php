@@ -36,9 +36,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($detalle as $key ) {?>
+				<?php foreach ($detalle as $keyA => $key ) {?>
 				<tr>
-					<td scope="row"><?php echo $key->id_cambio ?></td>
+					<td scope="row"><?php echo $keyA+1 ?></td>
 					<td scope="row"><?php echo $key->fecha_cambio ?></td>
 					<td scope="row"><?php echo $key->codigo_id ?></td>
 					<td scope="row"> <a href="<?php echo base_url('detalle-asignacion/'.$id=$key->id_cambio);?>" class="btn btn-success item-view" ><i class="fa fa-eye" aria-hidden="true"></i></a> </td>
