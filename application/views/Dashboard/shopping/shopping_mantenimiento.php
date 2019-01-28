@@ -34,7 +34,7 @@
 				<thead class="thead-dark">
 			    	<tr>
 				      
-				      <th style="width: 250px" scope="col">tipo compra</th>
+				      <th style="width: 250px" scope="col">Elementos de compra</th>
 				      <th style="width: 250px" scope="col">N° factura</th>
 				      <th style="width: 250px" scope="col">fecha  de compra</th>
 				      <th style="width: 60px">ver</th>
