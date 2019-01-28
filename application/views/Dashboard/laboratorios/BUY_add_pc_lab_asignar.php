@@ -312,18 +312,8 @@
                                <select size="14" id="exampleFormControlSelect2" name="select-A" v-model='seleccionPC' class="form-control" multiple>
                                   <option v-for="item in lists" selected value="{{item.keep}}">{{  item.keep}}</option>
                                   <option value="AUDIFONOS" >AUDIFONOS</option>
-                                  <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option>
-                                  <option value="IMPRESORES-MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
-                                  <option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option>
-                                  <option value="SCANNER">SCANNER</option>
                                   <option value="PARLANTES">PARLANTES</option>
-                                  <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
-                                  <option value="UPS">UPS</option>
-                                  <option value="WEBCAN">WEBCAN</option>
-                                  <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
                                   <option value="MEMORIA-SD">MEMORIA-SD</option>
-                                  <option value="PROYECTOR">PROYECTOR</option>
-                                  <option value="FAX">FAX</option>
                                   <option value="MICROFONO">MICROFONO</option>
                                   <option value="OTRO">OTRO</option>
                                 </select>
