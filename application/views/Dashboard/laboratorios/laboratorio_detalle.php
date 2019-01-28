@@ -88,12 +88,12 @@
 					<input type="text" name="destino" class="form-control" readonly="" value="<?php echo isset($key->destino[0]['unidad'])?$key->destino[0]['unidad'] : 'no disponible'?>">
 				</div>
 			</div>
-			<div class="col-md-4">
+			<!--<div class="col-md-4">
 				<div class="form-group">
 					<label>Serial del equipo</label>
-					<input type="text" name="destino" class="form-control" readonly="" value="<?php echo isset($key->serial)?$key->serial : 'no disponible'?>">
+					<input type="text" name="destino" class="form-control" readonly="" value="<?php //echo isset($key->serial)?$key->serial : 'no disponible'?>">
 				</div>
-			</div>
+			</div>-->
 		</div>
 
 		<!--   Descripción del equipo   -->
