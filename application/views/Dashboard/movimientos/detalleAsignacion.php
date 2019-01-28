@@ -73,21 +73,23 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-6">
 					<div class="form-group">
 						<label>Descripción del cambio</label>
-						<textarea name="" id="" cols="30" readonly="" rows="3"> <?php echo $d->descripcion_cambio ?> </textarea>
+						<textarea name="" class="form-control" id="" cols="30" readonly="" rows="3"> <?php echo $d->descripcion_cambio ?> </textarea>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Descripción del equipo asignado</label>
+						<textarea name=""  id="" class="form-control" cols="30" readonly="" rows="3"> <?php echo $d->descripcion_equipoNuevo ?> </textarea>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-md-3">
-					<div class="form-group">
-						<label>Descripción del equipo asignado</label>
-						<textarea name="" id="" cols="30" readonly="" rows="3"> <?php echo $d->descripcion_equipoNuevo ?> </textarea>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 		<!--fin del foreach-->
