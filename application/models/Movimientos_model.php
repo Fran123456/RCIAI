@@ -165,7 +165,7 @@ class Movimientos_model extends CI_Model
   	{
   		$this->db->select('identificador_lab');
   		$this->db->from('inventario_lab');
-  		$this->db->like('identificador_lab',$laboratorio);
+  		$this->db->like('identificador_lab',$laboratorio,'after');
   		$query = $this->db->get();
   		return $query->result();
   	}

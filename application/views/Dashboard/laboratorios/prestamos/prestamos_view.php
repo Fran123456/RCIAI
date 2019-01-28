@@ -107,7 +107,6 @@
 	  			<option value="TECLADO">Teclado</option>
 	  			<option value="MOUSE">Mouse</option>
 	  			<option value="MONITOR">Monitor</option>
-	  			<option value="DISCO DURO EXTERNO">Disco duro externo</option>
 	  			<option value="UPS">UPS</option>
 	  			<option value="WEBCAM">Webcam</option>
 	  			<!--<option value="CPU">CPU</option>-->
