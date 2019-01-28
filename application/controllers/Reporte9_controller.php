@@ -26,11 +26,16 @@ class Reporte9_controller extends CI_Controller {
 		$ArrayColumnasLetra = array('A','B', 'C', 'D', 'E', 'G');
 
 		//capturamos los datos del formulario para hacer la consulta
-		$anio = $this->input->post('anio_9'); 
-		$fecha = $this->input->post('fecha_9'); // 1(semestre 1), 2(semestre 2), anual
-		
+		//$anio = $this->input->post('anio_9'); 
+		//$fecha = $this->input->post('fecha_9'); // 1(semestre 1), 2(semestre 2), anual
+		$fecha_inicio = $this->input->post('f_inicio');
+		$fecha_fin = $this->input->post('f_fin');
 
-		switch ($fecha) {
+		$name = 'Reporte-de-equipos-nuevo-periodo-'.$fecha_inicio.'-'.$fecha_fin;
+
+		$result = $this->R9->reporte($fecha_inicio,$fecha_fin);
+
+		/*switch ($fecha) {
 			case '1':
 				//vamos hacer la consulta de datos para el año que se a elegido
 				$fecha_inicio = "$anio-01-01";
@@ -60,7 +65,7 @@ class Reporte9_controller extends CI_Controller {
 				//nombre con el que se guardara el reporte
 				$name = 'Reporte-anual-de-equipos-nuevos-'.$anio;
 			break;
-		}
+		}*/
 
 		//comparamos
 				if($result)
@@ -68,7 +73,7 @@ class Reporte9_controller extends CI_Controller {
 					//print_r($result);
 					
 					//titulos
-					$ArrayTitulo = array(' N° Factura ', ' Detalle ', ' unidad ', ' fecha ',' costo por factura ', $msj );
+					$ArrayTitulo = array(' N° Factura ', ' Detalle ', ' unidad ', ' fecha ',' costo por factura ', ' Costo total ' );
 					//configuración iniciales con clase excel para reporte
 					$spreadsheet = Excel::Create_Excel__(null,null);//creamos el objeto
 					Excel::Header_format__(null,null,'A1:G1',$spreadsheet);//preparamos la cabecera de el excel
