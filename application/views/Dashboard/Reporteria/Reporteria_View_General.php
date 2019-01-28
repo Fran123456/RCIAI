@@ -270,9 +270,9 @@
 								<div class="panel-body text-center">
 									<p>Reporte de los equipos nuevos agregados al inventario en el año.</p>
 									<div class="row">
-										<div class="col-md-4">
+										<!--<div class="col-md-4">
 											<label>Año</label>
-											<input required="" value="<?php echo date("Y") ?>" class="form-control" type="number" min="1000" max="5000" name="anio_9">
+											<input required="" value="<?php //echo date("Y") ?>" class="form-control" type="number" min="1000" max="5000" name="anio_9">
 										</div>
 
 										<div class="col-md-4">
@@ -282,9 +282,17 @@
 												<option value="2">Semestre 2</option>
 												<option value="anual">Anual</option>
 											</select>
+										</div>-->
+										<div class="col-md-4">
+											<label>Fecha inicial</label>
+											<input class="form-control" type="date" name="f_inicio">
 										</div>
 
-										
+										<div class="col-md-4">
+											<label>Fecha final</label>
+											<input class="form-control" type="date" name="f_fin">
+										</div>
+
 										<div class="col-md-4" style="padding-top: 10px">
 											<button type="submit"><img height="50" width="50" src="<?php echo base_url()?>assets/Reporteria/excel.png"></button>
 										</div>

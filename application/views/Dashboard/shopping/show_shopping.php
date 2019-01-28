@@ -106,20 +106,21 @@
 	        	</div>
 	        	<hr>
 	        	<?php if($unidad !=false){ ?>
-	        	<?php foreach($unidad as $unidad){ ?>
-	        	<div class="row">
-	        		<div class="form-group">
-	        			<div class="col-md-5">
-	        				<label>Unidad donde se encuentra</label>
-	        				<input type="text" id="unidad" name="unidad" class="form-control" readonly="" value="<?php echo empty($unidad->unidad) ? 'no disponible' : $unidad->unidad ?>">
-	        			</div>
-	        			<div class="col-md-2">
-	        				<label>Cantidad</label>
-	        				<input type="text" id="cantidad_U" name="cantidad_U" class="form-control" readonly="" value="<?php echo empty($unidad->cantidad) ? 'no disponible' : $unidad->cantidad ?>">
-	        			</div>
-	        		</div>
-	        	</div>
-	        	<?php } ?>
+	        		<table class="table">
+	        			<thead>
+	        				<th>Unidad donde se encuentra</th>
+	        				<th>Cantidad</th>
+	        			</thead>
+	        			<tbody>
+	        				<?php foreach($unidad as $unidad){ ?>
+	        					<tr>
+	        						<td><?php echo $unidad->unidad ?></td>
+	        						<td><?php echo $unidad->cantidad ?></td>
+	        					</tr>
+				        	<?php } ?>
+	        			</tbody>
+	        		</table>
+	        	
 	        <?php } else {?>
 	        	<center>
 	        		<h1>compra aun no asignada a alguna unidad</h1>
