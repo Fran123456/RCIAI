@@ -287,8 +287,8 @@
 					      	<!--Agregamos un formulario para guardar los elementos del software-->
 						    <form method="post" action="<?php echo base_url()?>actualizar-software">
 								<!--input escondido que tendra el id de la pc-->
-								<input type="text" id="id" name="id" >
-								<input type="text" id="idpc" name="idpc" >
+								<input type="hidden" id="id" name="id" >
+								<input type="hidden" id="idpc" name="idpc" >
 						      	<div class="modal-body">
 						      		<div class="row">
 							      			<div class="form-group">
