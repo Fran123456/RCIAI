@@ -94,10 +94,10 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-6">
 					<div class="form-group">
 						<label>Caracteristicas de equipo que queda en función con ese código de inventario. </label>
-						<textarea name="" id="" cols="30" readonly="" rows="2"> <?php echo $d->descripcion_equipoNuevo ?> </textarea>
+						<textarea name="" class="form-control" id="" cols="30" readonly="" rows="5"> <?php echo $d->descripcion_equipoNuevo ?> </textarea>
 					</div>
 				</div>
 			</div>
@@ -123,10 +123,10 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<div class="form-group">
 						<label>Características del equipo que se retira. </label>
-						<textarea name="" id="" cols="30" readonly="" rows="2"> <?php echo $d->descripcion_equipoRetirado ?> </textarea>
+						<textarea name="" class="form-control" id="" cols="30" readonly="" rows="6"> <?php echo $d->descripcion_equipoRetirado ?> </textarea>
 					</div>
 				</div>
 			</div>
@@ -148,7 +148,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Breve descripción porque se hizo el cambio(Daño,obsoleto, etc.) </label>
-						<textarea name="" id="" cols="30" readonly="" rows="2"> <?php echo $d->descripcion_cambio ?> </textarea>
+						<textarea name="" class="form-control" id="" cols="30" readonly="" rows="5"> <?php echo $d->descripcion_cambio ?> </textarea>
 					</div>
 				</div>
 
