@@ -64,7 +64,7 @@
 				
 						
 						<td> <a href="<?php echo base_url('detalle/'.$id=$key->identificador.'/'.$unidad=$this->uri->segment(2));?>" class="btn btn-success item-view" ><i class="fa fa-eye" aria-hidden="true"></i></a> </td>
-						<td> <a href="<?php echo base_url('sotfware/'.$id=$key->identificador.'/'.$unidad=$this->uri->segment(2));?>" id="sw" class="btn btn-primary item-sw" data="<?php echo $key->identificador ?>"><i class="fa fa-file-text" aria-hidden="true"></i></a> </td>
+						<td> <a href="<?php echo base_url('software/'.$id=$key->identificador.'/'.$unidad=$this->uri->segment(2));?>" id="sw" class="btn btn-primary item-sw" data="<?php echo $key->identificador ?>"><i class="fa fa-file-text" aria-hidden="true"></i></a> </td>
 						<!--<td><a href="" class="btn btn-info item-edit" data=""><i class="fa fa-pencil" aria-hidden="true"></i></a> </td>
 						<td><a href="" class="btn btn-danger item-delete" data=""><i class="fa fa-trash" aria-hidden="true"></i> </a> </td>-->
 					</tr>

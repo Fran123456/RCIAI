@@ -700,13 +700,13 @@ class administrativo_Controller extends CI_Controller {
 		if($result){
 
 			$this->session->set_flashdata('Exitos','El elemento ha sido eliminado ');
-			redirect(base_url().'sotfware/'.$pc[0]['pc_id'].'/'.$area);
+			redirect(base_url().'software/'.$pc[0]['pc_id'].'/'.$area);
 			//return true;
 			//$this->editarLab($lab);
 		}else{
 			//return false;
 			$this->session->set_flashdata('Errors','El elemento no ha podido ser eliminado ');
-			redirect(base_url().'sotfware/'.$pc[0]['pc_id'].'/'.$area);
+			redirect(base_url().'software/'.$pc[0]['pc_id'].'/'.$area);
 		}
 	}//fin de deleteSoftware
 
@@ -730,14 +730,14 @@ class administrativo_Controller extends CI_Controller {
 		if($result){
 
 			$this->session->set_flashdata('Exitos','El elemento ha sido eliminado ');
-			redirect(base_url().'sotfware/'.$id.'/'.$area);
+			redirect(base_url().'software/'.$id.'/'.$area);
 			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
 			//return true;
 			//$this->editarLab($lab);
 		}else{
 			//return false;
 			$this->session->set_flashdata('Errors','El elemento no ha podido ser eliminado ');
-			redirect(base_url().'sotfware/'.$id.'/'.$area);
+			redirect(base_url().'software/'.$id.'/'.$area);
 		}
 	}
 
@@ -763,11 +763,11 @@ class administrativo_Controller extends CI_Controller {
 
 		if($result){
 			$this->session->set_flashdata('agregado','El elemento ha sido agregado ');
-			redirect(base_url().'sotfware/'.$id.'/'.$area);
+			redirect(base_url().'software/'.$id.'/'.$area);
 			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id.'/'.$area);
 		}else{
 			$this->session->set_flashdata('error2','El elemento no ha podido ser agregado ');
-			redirect(base_url().'sotfware/'.$id.'/'.$area);
+			redirect(base_url().'software/'.$id.'/'.$area);
 			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id.'/'.$area);
 		}
 	}//fin de guardar
@@ -786,13 +786,13 @@ class administrativo_Controller extends CI_Controller {
 		if($result){
 
 			$this->session->set_flashdata('actualizado','El elemento ha sido actualizado ');
-			redirect(base_url().'sotfware/'.$pc[0]['pc_id'].'/'.$area);
+			redirect(base_url().'software/'.$pc[0]['pc_id'].'/'.$area);
 			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
 
 		}else{
 			//return false;
 			$this->session->set_flashdata('Error_update','El elemento no ha podido ser actualizado ');
-			redirect(base_url().'sotfware/'.$pc[0]['pc_id'].'/'.$area);
+			redirect(base_url().'software/'.$pc[0]['pc_id'].'/'.$area);
 			//redirect(base_url().'administrativo_Controller/mostrarSW/'.$id);
 		}
 	}//fin de updateSoftware

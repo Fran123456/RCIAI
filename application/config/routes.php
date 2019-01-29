@@ -139,7 +139,7 @@ $route['eliminar_todoAdm'] = 'administrativo_Controller/deleteAll';
 $route['actualizar-sw'] = 'administrativo_Controller/updateSoftware';
 
 //rutas agregadas 18/10/2018 por Enrique
-$route['sotfware/(:any)/(:any)']  = 'administrativo_Controller/mostrarSW/$1/$2';
+$route['software/(:any)/(:any)']  = 'administrativo_Controller/mostrarSW/$1/$2';
 $route['areas-administrativas'] = 'administrativo_Controller/mostrarAreas';
 #$route['listado-elementos/(:any)'] = 'administrativo_Controller/mostrarAll/$1';
 $route['listado-elementos/(:any)'] = 'administrativo_Controller/mostrarElementos/$1';
@@ -233,6 +233,8 @@ $route['listado-prestamos'] = 'Movimientos_controller/prestamos';
 $route['listado-sustituciones'] = 'Movimientos_controller/sustituciones';
 $route['detalle-sustitucion/(:any)'] = 'Movimientos_controller/detalleSustitucion/$1';
 $route['detalle-prestamo/(:any)'] = 'Movimientos_controller/detallePrestamo/$1';
+$route['listado-software'] = 'Movimientos_controller/software';
+$route['detalle-software/(:any)'] = 'Movimientos_controller/detalle_software/$1';
 
 //prestamos
 $route['prestamo'] = 'Movimientos_controller/hacer_prestamos';
