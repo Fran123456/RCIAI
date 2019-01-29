@@ -12,6 +12,7 @@ class bodega_Model extends CI_Model{
 		$this->db->or_where('estatus','Disponible');
 		$this->db->or_where('estatus','En uso');
 		$this->db->or_where('estatus','Desechado');*/
+		$this->db->order_by('bo.fecha_ingreso', 'DESC');;
 		$query=$this->db->get();
 
 		//comprobamos
