@@ -182,7 +182,7 @@ $route['asignar-otro/(:any)'] = 'bodega_Controller/asignar_otro_pc_View';
 $route['validar-cpu/(:any)'] = 'Sustitucion_Controller/vista_cpu_sustituir';
 $route['validar-cpu-lab/(:any)'] = 'Sustitucion_Controller/vista_cpu_sustituir_lab';
 
-
+$route['bodega-detalle/(:any)'] = 'bodega_Controller/detalle/$1';
 $route['get_pcs'] = 'bodega_Controller/showCodePC';
 //$route['asignar-periferico/(:any)'] = 'bodega_Controller/asignar_elemento';
 

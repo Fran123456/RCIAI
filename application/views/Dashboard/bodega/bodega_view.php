@@ -44,7 +44,7 @@
 					<td><?php echo empty($key->tipo) ? '<span style= "color:red">no disponible</span>' : $key->tipo ?></td>
 					<td><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso ?></td>
 					<td><?php echo empty($key->estatus) ? '<span style= "color:red">no disponible</span>' : $key->estatus ?></td>
-					<td><a href="<?php echo base_url('bodega_Controller/detalle/'.$id=$key->serial);?>"  data='<?php echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+					<td><a href="<?php echo base_url('bodega-detalle/'.$id=$key->serial);?>"  data='<?php echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
 					<!--<td><a  href="javascript:;"  data='<?php //echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>-->
 				<!--	<td><a  href="javascript:;"  data='<?php// echo $key->serial ?>' class="btn btn-info item-edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 					<td><a  href="javascript:;"  data='<?php// echo $key->serial ?>' class="btn btn-danger item-delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
@@ -55,7 +55,7 @@
 					<td><?php echo empty($key->tipo) ? '<span style= "color:red">no disponible</span>' : $key->tipo ?></td>
 					<td><?php echo empty($key->fecha_ingreso) ? '<span style= "color:red">no disponible</span>' : $key->fecha_ingreso ?></td>
 					<td><?php echo empty($key->estatus) ? '<span style= "color:red">no disponible</span>' : $key->estatus ?></td>
-					<td><a href="<?php echo base_url('bodega_Controller/detalle/'.$id=$key->serial);?>"  data='<?php echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+					<td><a href="<?php echo base_url('bodega-detalle/'.$id=$key->serial);?>"  data='<?php echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
 					<!--<td><a  href="javascript:;"  data='<?php //echo $key->serial ?>' class="btn btn-success item-view"><i class="fa fa-eye" aria-hidden="true"></i></a></td>-->
 				<!--	<td><a  href="javascript:;"  data='<?php// echo $key->serial ?>' class="btn btn-info item-edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 					<td><a  href="javascript:;"  data='<?php// echo $key->serial ?>' class="btn btn-danger item-delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
