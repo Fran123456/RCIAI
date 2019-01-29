@@ -261,7 +261,7 @@ public function get_codigosLAB(){
 
 
 
-		$this->load->view('Dashboard/bodega/asignar_bodega_pc_View', compact('data','unidades','idpc','elementos', 'info'));
+		$this->load->view('Dashboard/bodega/asignar_bodega_pc_View', compact('unidades','idpc','elementos', 'info'));
 	}
 
 
