@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Asignación de pc</title>
+	<title>Asignación de Laptop</title>
 	<?php require 'application/views/Plantilla/Bootstrap.php'; ?> <!-- AQUI REQUERIMOS DE EL ARCHIVO QUE NOS PROPORCIONA LOS ENLACES A ARCHIVOS BOOTSTRAP, JS, FONTS-->
 
    <script src="<?php echo base_url()?>assets/package/dist/sweetalert2.all.min.js"></script>
@@ -145,7 +145,7 @@
 	<div class="row">
 			<div class="col-md-12">
      		<div class="thead-d">
-     			<h4>Información general de PC</h4>
+     			<h4>Información general de Laptop</h4>
 			 </div>
      		<table class="table">
 			  <tbody>
