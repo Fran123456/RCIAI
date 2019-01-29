@@ -190,7 +190,7 @@
 	       <div id="col" class="col-md-2">
 	       	 <div id="cont" class="form-group">
 	       	 	<label>Codigo</label>
-	       	 	<input id="d" type="text" class="form-control"  name="codigopc">
+	       	 	<input id="d" type="text" class="form-control"  name="codigopc" placeholder="DDE000USAM">
 	       	 </div>
 	       </div>
 
