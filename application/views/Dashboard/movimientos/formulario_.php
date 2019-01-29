@@ -161,6 +161,7 @@
        	 	 	<option value="Asignacion-bodega">ASIGNACIÓN</option>
        	 	 	<option value="Sustitucion-bodega">SUSTITUCIÓN</option>
        	 	 	<option value="Sustitucion-compra">SUSTITUCIÓN COMPRA</option>
+                        <option value="SOFTWARE">SOFTWARE</option>
        	 	 </select>
        	 </div>
        </div>

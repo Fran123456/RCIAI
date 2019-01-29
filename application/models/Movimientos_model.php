@@ -46,6 +46,42 @@ class Movimientos_model extends CI_Model
 		}
 	}
 
+  //función para traer todos los movimientos de software
+  public function getSoftware()
+  {
+    #hacemos la consulta
+    $this->db->select('id_cambio,fecha_cambio,codigo_id,cambio');
+    $this->db->from('movimiento');
+    $this->db->where('tipo_movimiento','SOFTWARE');
+    $query = $this->db->get();
+
+    if($query->num_rows() > 0){
+      //si hay registros los devolvemos
+      return $query->result();
+    }else{
+      //si no hay registros, devolvemos un false
+      return false;
+    }
+  }
+
+  public function getDetalleSof($id)
+  {
+    #hacemos la consulta de los datos
+    $this->db->select('*');
+    $this->db->from('movimiento');
+    $this->db->where('tipo_movimiento','SOFTWARE');
+    $this->db->where('id_cambio',$id);
+    $query = $this->db->get();
+
+    if($query->num_rows() > 0){
+      //si hay registros los devolvemos
+      return $query->result();
+    }else{
+      //si no hay registros, devolvemos un false
+      return false;
+    }
+  }
+
 	//////////////////////////    detalles de los movimientos    //////////////////////////////////// 
 
 	#función que nos trae la consulta de los campos asociados a un movimiento por medio de su id_Cambio

@@ -21,8 +21,41 @@ class Movimientos_controller extends CI_Controller {
 		$this->load->view('Dashboard/movimientos/movimientoGeneral');
 	}
 
-/**********************************************************************************************************************
-********************************  ASIGNACION **************************************************************************
+/****************************     SOFTWARE *  ************************************************************************/
+
+public function software()
+{
+	$datos['detalle'] = $this->mov->getSoftware();
+	$this->load->view('Dashboard/movimientos/software',$datos);
+}
+
+public function detalle_software($id)
+{
+	//obtenemos el detalle de ese movimiento
+	$resultado = $this->mov->getDetalleSof($id);
+		if($resultado){
+		//vamos a obtener las unidades
+		foreach ($resultado as $u) {
+			$origen = $this->mov->getOrigen_destino($u->origen_nuevoEquipo_id);
+			$u->origen_nuevoEquipo_id = $origen;
+			$destino = $this->mov->getOrigen_destino($u->destino_nuevoEquipo_id);
+			$u->destino_nuevoEquipo_id = $destino;
+
+			//equipo viejo
+			$origenViejo = $this->mov->getOrigen_destino($u->unidad_pertenece_id);
+			$u->unidad_pertenece_id = $origenViejo;
+			$destinoViejo = $this->mov->getOrigen_destino($u->unidad_traslado_id);
+			$u->unidad_traslado_id = $destinoViejo;
+		}
+	}
+	$datos['detalle'] = $resultado;
+	//print_r($datos['detalle']);
+
+	#mandamos los datos a la vista que tendra el detalle
+	$this->load->view('Dashboard/movimientos/detalleSoftware',$datos);
+}
+
+/********************************  ASIGNACION **************************************************************************
 ***********************************************************************************************************************/
 	
 	//muestra un listado de las asignaciones
