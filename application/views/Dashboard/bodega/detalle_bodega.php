@@ -100,8 +100,8 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-						<label>Compra asociada</label>
-						<input type="text" class="form-control" readonly="" id="compra_asociada" value="<?php echo empty($key->compra_id) ? 'no disponible' : $key->compra_id  ?>">
+						<label>Número de Factura</label>
+						<input type="text" class="form-control" readonly="" id="compra_asociada" value="<?php echo empty($key->n_factura) ? 'no disponible' : $key->n_factura  ?>">
 					</div>
 				</div>
 				<div class="col-md-3">

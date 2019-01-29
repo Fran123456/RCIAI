@@ -50,8 +50,9 @@ class bodega_Model extends CI_Model{
 
 	//esta función obtiene los datos de un articulo especifico por medio de la serial
 	public function getDetalle2($serial){
-		$this->db->select('bo.*');
+		$this->db->select('bo.*,c.n_factura');
 		$this->db->from('inventario_bodega bo');
+		$this->db->join('compras as c','bo.compra_id=c.id_compra');
 		$this->db->where('bo.serial',$serial);
 		$query=$this->db->get();
 		//comprobamos
