@@ -28,7 +28,7 @@
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Serial</th>
-				<th scope="col">Periferico</th>
+				<th scope="col">Elemento</th>
 				<th scope="col">Fecha de ingreso</th>
 				<th scope="col">Estado</th>
 				<th scope="col">ver</th>
