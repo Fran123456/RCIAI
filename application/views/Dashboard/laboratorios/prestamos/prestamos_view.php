@@ -35,6 +35,15 @@
 				)
             </script>
 			<?php endif; ?>
+	<?php if($this->session->flashdata('error_pe')): ?>
+			<script>
+                swal(
+				  'Atención!',
+				  'la pc que recibe el prestamo, no tiene el periferico!',
+				  'Warning'
+				)
+            </script>
+			<?php endif; ?>
 
 	<form id="Form_prestamo" method="post" action="<?php echo base_url()?>prestamo">
 	  <div class="form-row">

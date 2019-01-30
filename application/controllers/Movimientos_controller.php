@@ -300,281 +300,294 @@ public function detalle_software($id)
 				
 				break;
 			case ['sustitucion',2]:
-				//se recibira el elemento por parte de el equipo que recibe el prestamo
-				$cambio = "Prestamo de $perifericos del equipo $equipo a el equipo $codigo";
 
-				//obtenemos el serial del periferico que se esta prestando
-				$serial = $this->mov->serial_periferico($equipo,$perifericos);
-				$serial_nuevo = $serial->serial;
+				#verificamos si el elemento que se va a prestar tiene el periferico solicitado para devolver
+				$verificar_periferico = $this->mov->verificar_periferico($codigo,$perifericos);
 
-				//serial del equipo que es sustiuido y regresa a bodega
-				$serial2 = $this->mov->serial_equipo_sustituido($codigo,$perifericos);
-				$serial_sustituido = $serial2->serial;
-
-				$descripcionEquipo = $this->mov->descripcionEquipoRetirado($serial_sustituido);
-				//print_r($descripcionEquipo);
-				$descripcion_equipoRetirado = 'serial: '.$descripcionEquipo->serial.' '.'marca: '.$descripcionEquipo->marca.' '.'tipo: '.$descripcionEquipo->tipo;
-				//echo "<br>";
-				//print_r($descripcion_equipoRetirado);
-				
-				/*************************************************************************************************************************/
-				//si el periferico es un cpuse modificaran las diversas tablas con la información
-				if($perifericos==='CPU')
+				if($verificar_periferico)
 				{
-					//vamos a obtener los valores de cada una de las tablas asociadas al cpu
-					//obtenemos el valor de adaptador_red
-					$red_prestado = $this->mov->get_detalles('adaptador_red','pc_id',$equipo);//esta es la información del equipo que es prestado le mandamos el codigo de la pc que esta en el lab
-					$red_recibe = $this->mov->get_detalles('adaptador_red','pc_id',$codigo);//información del equipo que recibe el prestamo. recibe de parametro el codigo del equipo que recibe el prestamo
-					$video_prestamo = $this->mov->get_detalles('adaptador_video','pc_id',$equipo);
-					$video_recibe = $this->mov->get_detalles('adaptador_video','pc_id',$codigo);
+					//se recibira el elemento por parte de el equipo que recibe el prestamo
+					$cambio = "Prestamo de $perifericos del equipo $equipo a el equipo $codigo";
 
-					//detalle de la tabla almacenamiento
-					$almacenamiento_prestamo = $this->mov->get_detalles('almacenamiento','pc_id',$equipo);
-					$almacenamiento_recibe = $this->mov->get_detalles('almacenamiento','pc_id',$codigo);
+					//obtenemos el serial del periferico que se esta prestando
+					$serial = $this->mov->serial_periferico($equipo,$perifericos);
+					$serial_nuevo = $serial->serial;
 
-					//detalle de la descripcion_sistema
-					$descripcion_prestamo = $this->mov->get_detalles('descripcion_sistema','pc_ids',$equipo);
-					$descripcion_recibe = $this->mov->get_detalles('descripcion_sistema','pc_ids',$codigo);
+					//serial del equipo que es sustiuido y regresa a bodega
+					$serial2 = $this->mov->serial_equipo_sustituido($codigo,$perifericos);
+					$serial_sustituido = $serial2->serial;
 
-					//detalle de la placa
-					$placa_prestamo = $this->mov->get_detalles('placa_base','pc_id',$equipo);
-					$placa_recibe = $this->mov->get_detalles('placa_base','pc_id',$codigo);
-
-					//traemos el detalle de la compra
-					$compra_prestamo = $this->mov->get_compra($equipo);
-					$compra_recibe = $this->mov->get_compra($codigo);
-
-					/* vamos a generar un nuevo codigo el cual actualizara el registro nuevo */
-					$codigo_aleatorio1 = $this->codigo_aleatorio();//para el elemento que recibe el prestamo
-					$codigo_aleatorio2 = $this->codigo_aleatorio();//para el elemento que se presta
-
-					$sw_prestamo = $this->mov->sw_lab($equipo);#sw del equipo que se presta
+					$descripcionEquipo = $this->mov->descripcionEquipoRetirado($serial_sustituido);
+					//print_r($descripcionEquipo);
+					$descripcion_equipoRetirado = 'serial: '.$descripcionEquipo->serial.' '.'marca: '.$descripcionEquipo->marca.' '.'tipo: '.$descripcionEquipo->tipo;
+					//echo "<br>";
+					//print_r($descripcion_equipoRetirado);
 					
-
-					//actualizamos a null cada uno de los inventarios
-					$cod = substr($codigo,0,2); //hacemos un substring para saber si es codigo PC o codigo LAB
-					if($cod === 'PC')
+					/*************************************************************************************************************************/
+					//si el periferico es un cpuse modificaran las diversas tablas con la información
+					if($perifericos==='CPU')
 					{
-						#actualizamos en null los campos de la tabla inventario_adm con el codigo
-						$null1 = $this->mov->actualizar_null('inventario_adm','des_sistema_id','identificador',$codigo);
+						//vamos a obtener los valores de cada una de las tablas asociadas al cpu
+						//obtenemos el valor de adaptador_red
+						$red_prestado = $this->mov->get_detalles('adaptador_red','pc_id',$equipo);//esta es la información del equipo que es prestado le mandamos el codigo de la pc que esta en el lab
+						$red_recibe = $this->mov->get_detalles('adaptador_red','pc_id',$codigo);//información del equipo que recibe el prestamo. recibe de parametro el codigo del equipo que recibe el prestamo
+						$video_prestamo = $this->mov->get_detalles('adaptador_video','pc_id',$equipo);
+						$video_recibe = $this->mov->get_detalles('adaptador_video','pc_id',$codigo);
 
-						#vamos a traer el sw si el equipo es administrativo
-						$sw_recibe = $this->mov->sw_adm($codigo);#sw del equipo que recibe el prestamo
-					}
+						//detalle de la tabla almacenamiento
+						$almacenamiento_prestamo = $this->mov->get_detalles('almacenamiento','pc_id',$equipo);
+						$almacenamiento_recibe = $this->mov->get_detalles('almacenamiento','pc_id',$codigo);
+
+						//detalle de la descripcion_sistema
+						$descripcion_prestamo = $this->mov->get_detalles('descripcion_sistema','pc_ids',$equipo);
+						$descripcion_recibe = $this->mov->get_detalles('descripcion_sistema','pc_ids',$codigo);
+
+						//detalle de la placa
+						$placa_prestamo = $this->mov->get_detalles('placa_base','pc_id',$equipo);
+						$placa_recibe = $this->mov->get_detalles('placa_base','pc_id',$codigo);
+
+						//traemos el detalle de la compra
+						$compra_prestamo = $this->mov->get_compra($equipo);
+						$compra_recibe = $this->mov->get_compra($codigo);
+
+						/* vamos a generar un nuevo codigo el cual actualizara el registro nuevo */
+						$codigo_aleatorio1 = $this->codigo_aleatorio();//para el elemento que recibe el prestamo
+						$codigo_aleatorio2 = $this->codigo_aleatorio();//para el elemento que se presta
+
+						$sw_prestamo = $this->mov->sw_lab($equipo);#sw del equipo que se presta
+						
+
+						//actualizamos a null cada uno de los inventarios
+						$cod = substr($codigo,0,2); //hacemos un substring para saber si es codigo PC o codigo LAB
+						if($cod === 'PC')
+						{
+							#actualizamos en null los campos de la tabla inventario_adm con el codigo
+							$null1 = $this->mov->actualizar_null('inventario_adm','des_sistema_id','identificador',$codigo);
+
+							#vamos a traer el sw si el equipo es administrativo
+							$sw_recibe = $this->mov->sw_adm($codigo);#sw del equipo que recibe el prestamo
+						}
+						else
+						{
+							#actualizamos en null los campos de la tabla inventario_lab con el codigo
+							$null1 = $this->mov->actualizar_null('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
+
+							#vamos a traer el sw si el equipo es administrativo
+							$sw_recibe = $this->mov->sw_lab($codigo);#sw del equipo que recibe el prestamo
+						}
+
+						#actualizamos en null los campos de la tabla inventario_lab de $equipo
+						$null2 = $this->mov->actualizar_null('inventario_lab','descripcion_sistema_id','identificador_lab',$equipo);
+
+						//vamos a actualizar cada uno de las tablas donde esta el codigo que recibe el prestamo, con un codigo aleatorio 
+						$up_red = $this->mov->actualizar_tablas('adaptador_red','pc_id',$codigo,$codigo_aleatorio1);
+						$up_video = $this->mov->actualizar_tablas('adaptador_video','pc_id',$codigo,$codigo_aleatorio1);
+						$up_placa = $this->mov->actualizar_tablas('placa_base','pc_id',$codigo,$codigo_aleatorio1);
+						$up_desc = $this->mov->actualizar_tablas('descripcion_sistema','pc_ids',$codigo,$codigo_aleatorio1);
+						$up_alma = $this->mov->actualizar_tablas('almacenamiento','pc_id',$codigo,$codigo_aleatorio1);
+
+						//actualizamos los campos de el equipo que se presta con el codigo del equipo que recibe el prestamo
+						$lab_red = $this->mov->actualizar_tablas('adaptador_red','pc_id',$equipo,$codigo);
+						$lab_video = $this->mov->actualizar_tablas('adaptador_video','pc_id',$equipo,$codigo);
+						$lab_placa = $this->mov->actualizar_tablas('placa_base','pc_id',$equipo,$codigo);
+						$lab_desc = $this->mov->actualizar_tablas('descripcion_sistema','pc_ids',$equipo,$codigo);
+						$lab_alma = $this->mov->actualizar_tablas('almacenamiento','pc_id',$equipo,$codigo);
+
+						//hacemos una nueva inserción en las tablas foraneas con los datos del elemento que se presta y con su id
+						$t_red = $this->mov->insertar_red($red_prestado);
+						$t_video = $this->mov->insertar_video($video_prestamo);
+						$t_alma = $this->mov->insertar_alma($almacenamiento_prestamo);
+						$t_placa = $this->mov->insertar_placa($placa_prestamo);
+						$t_desc = $this->mov->insertar_desc($descripcion_prestamo);
+
+						
+						if($cod === 'PC')
+						{
+							//actualizamos en la tabla de los inventarios las llaves foraneas
+							$actualizar1 = $this->mov->actualizar_inv('inventario_adm','des_sistema_id','identificador',$codigo);
+
+							//vamos a actualizar el sw del equipo que recibe el prestamo con los datos del equipo prestado
+							if($sw_recibe&&$sw_prestamo)
+							{
+								#si ambos tienen datos actualizamos los campos de la pc q recibe el prestamo por un codigo generico
+								#que se guardara en bodega_id
+								for($i=0;$i<count($sw_recibe);$i++)
+								{
+									$id = $sw_recibe[$i]['id'];
+									$this->mov->actualizar_sw($id,$codigo_aleatorio1);
+								}
+								#actualizamos el codigo de el equipo que recibe el prestamo en pc_id y ponemos null en PC_lab_id
+								for($i=0;$i<count($sw_prestamo);$i++)
+								{
+									$id = $sw_prestamo[$i]['id'];
+									$this->mov->up_swLab($id,$codigo);
+								}
+							}
+							elseif(($sw_recibe==FALSE)&&($sw_prestamo))
+							{
+								#si solo el equipo que se presta tiene sw
+								for($i=0;$i<count($sw_prestamo);$i++)
+								{
+									$id = $sw_prestamo[$i]['id'];
+									$this->mov->up_swLab($id,$codigo);
+								}
+							}elseif (($sw_recibe)&&($sw_prestamo==FALSE)) 
+							{
+								# si solo el equipo que recibe el prestamo tiene sw
+								for($i=0;$i<count($sw_recibe);$i++)
+								{
+									$id = $sw_recibe[$i]['id'];
+									$this->mov->actualizar_sw($id,$codigo_aleatorio1);
+								}
+							}
+						}
+						else
+						{
+							#actualizamos en null los campos de la tabla inventario_lab con el codigo
+							$actualizar1 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
+
+							//vamos a actualizar el sw del equipo que recibe el prestamo con los datos del equipo prestado
+							if($sw_recibe&&$sw_prestamo)
+							{
+								#si ambos tienen datos actualizamos los campos de la pc q recibe el prestamo por un codigo generico
+								#que se guardara en bodega_id
+								for($i=0;$i<count($sw_recibe);$i++)
+								{
+									$id = $sw_recibe[$i]['id'];
+									$this->mov->actualizar_swLab($id,$codigo_aleatorio1);
+								}
+								#actualizamos el codigo de el equipo que recibe el prestamo en pc_id y ponemos null en PC_lab_id
+								for($i=0;$i<count($sw_prestamo);$i++)
+								{
+									$id = $sw_prestamo[$i]['id'];
+									$this->mov->update_swLab($id,$codigo);
+								}
+							}
+							elseif(($sw_recibe==FALSE)&&($sw_prestamo))
+							{
+								#si solo el equipo que se presta tiene sw
+								for($i=0;$i<count($sw_prestamo);$i++)
+								{
+									$id = $sw_prestamo[$i]['id'];
+									$this->mov->update_swLab($id,$codigo);
+								}
+							}elseif (($sw_recibe)&&($sw_prestamo==FALSE)) 
+							{
+								# si solo el equipo que recibe el prestamo tiene sw
+								for($i=0;$i<count($sw_recibe);$i++)
+								{
+									$id = $sw_recibe[$i]['id'];
+									$this->mov->actualizar_swLab($id,$codigo_aleatorio1);
+								}
+							}
+						}
+						$actualizar2 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$equipo);
+
+						#vamos a crear el movimiento
+						//mandamos los campos que se van a insertar en la tabla movimiento
+						$datos = array('token' => $token,
+									   'fecha_retiro' => $fecha_retiro,
+									   'fecha_cambio' => $fecha_prestamo,
+									   'codigo_id' => $codigo,
+									   'unidad_pertenece_id' => $unidad_pertenece_id,
+									   'unidad_traslado_id' => 1,
+									   'cambio' => $cambio,
+									   'descripcion_cambio' => $desc_prestamo,
+									   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
+									   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
+									   'descripcion_equipoRetirado' => $descripcion_equipoRetirado,
+									   'descripcion_equipoNuevo' => $caract_equipo_f,
+									   'encargado' => $encargado,
+									   'tecnico' => $tecnico,
+									   'tipoHardSoft' => $tipoHardSoft,
+									   'tipo_movimiento' => $tipo_movimiento,
+									   'serial_nuevo' => $serial_nuevo,
+									   'laboratorio' => $laboratorios );
+
+						$respuesta1 = $this->mov->crear_prestamo($datos);
+						if($respuesta1)
+						{
+							//si es verdadero generamos la siguiente consulta
+							//actualizaremos los campos en la tabla inventario bodega para el equipo que es prestado
+							$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo);
+							//actualizar periferico que es sustituido
+							$origen1 = $this->mov->origen_destino($serial_sustituido,'origen');
+							$destino1 = $this->mov->origen_destino($serial_sustituido,'destino');
+
+							$origenP = $origen1->origen;
+							$destinoP = $destino1->destino;
+
+							$respuesta3 = $this->mov->actualizarPeriferico(1,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido,$codigo_aleatorio1);
+
+							if($respuesta2 && $respuesta3)
+							{
+								//si todo fue bien
+								$this->session->set_flashdata('exito','movimiento realizado');
+								redirect(base_url().'prestamos');
+
+							}
+
+						}
+					} 
 					else
 					{
-						#actualizamos en null los campos de la tabla inventario_lab con el codigo
-						$null1 = $this->mov->actualizar_null('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
 
-						#vamos a traer el sw si el equipo es administrativo
-						$sw_recibe = $this->mov->sw_lab($codigo);#sw del equipo que recibe el prestamo
-					}
+						//mandamos los campos que se van a insertar en la tabla movimiento
+						$datos = array('token' => $token,
+									   'fecha_retiro' => $fecha_retiro,
+									   'fecha_cambio' => $fecha_prestamo,
+									   'codigo_id' => $codigo,
+									   'unidad_pertenece_id' => $unidad_pertenece_id,
+									   'unidad_traslado_id' => 1,
+									   'cambio' => $cambio,
+									   'descripcion_cambio' => $desc_prestamo,
+									   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
+									   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
+									   'descripcion_equipoRetirado' => $descripcion_equipoRetirado,
+									   'descripcion_equipoNuevo' => $caract_equipo_f,
+									   'encargado' => $encargado,
+									   'tecnico' => $tecnico,
+									   'tipoHardSoft' => $tipoHardSoft,
+									   'tipo_movimiento' => $tipo_movimiento,
+									   'serial_nuevo' => $serial_nuevo,
+									   'laboratorio' => $laboratorios );
 
-					#actualizamos en null los campos de la tabla inventario_lab de $equipo
-					$null2 = $this->mov->actualizar_null('inventario_lab','descripcion_sistema_id','identificador_lab',$equipo);
+						$respuesta1 = $this->mov->crear_prestamo($datos);
 
-					//vamos a actualizar cada uno de las tablas donde esta el codigo que recibe el prestamo, con un codigo aleatorio 
-					$up_red = $this->mov->actualizar_tablas('adaptador_red','pc_id',$codigo,$codigo_aleatorio1);
-					$up_video = $this->mov->actualizar_tablas('adaptador_video','pc_id',$codigo,$codigo_aleatorio1);
-					$up_placa = $this->mov->actualizar_tablas('placa_base','pc_id',$codigo,$codigo_aleatorio1);
-					$up_desc = $this->mov->actualizar_tablas('descripcion_sistema','pc_ids',$codigo,$codigo_aleatorio1);
-					$up_alma = $this->mov->actualizar_tablas('almacenamiento','pc_id',$codigo,$codigo_aleatorio1);
-
-					//actualizamos los campos de el equipo que se presta con el codigo del equipo que recibe el prestamo
-					$lab_red = $this->mov->actualizar_tablas('adaptador_red','pc_id',$equipo,$codigo);
-					$lab_video = $this->mov->actualizar_tablas('adaptador_video','pc_id',$equipo,$codigo);
-					$lab_placa = $this->mov->actualizar_tablas('placa_base','pc_id',$equipo,$codigo);
-					$lab_desc = $this->mov->actualizar_tablas('descripcion_sistema','pc_ids',$equipo,$codigo);
-					$lab_alma = $this->mov->actualizar_tablas('almacenamiento','pc_id',$equipo,$codigo);
-
-					//hacemos una nueva inserción en las tablas foraneas con los datos del elemento que se presta y con su id
-					$t_red = $this->mov->insertar_red($red_prestado);
-					$t_video = $this->mov->insertar_video($video_prestamo);
-					$t_alma = $this->mov->insertar_alma($almacenamiento_prestamo);
-					$t_placa = $this->mov->insertar_placa($placa_prestamo);
-					$t_desc = $this->mov->insertar_desc($descripcion_prestamo);
-
-					
-					if($cod === 'PC')
-					{
-						//actualizamos en la tabla de los inventarios las llaves foraneas
-						$actualizar1 = $this->mov->actualizar_inv('inventario_adm','des_sistema_id','identificador',$codigo);
-
-						//vamos a actualizar el sw del equipo que recibe el prestamo con los datos del equipo prestado
-						if($sw_recibe&&$sw_prestamo)
+						if($respuesta1)
 						{
-							#si ambos tienen datos actualizamos los campos de la pc q recibe el prestamo por un codigo generico
-							#que se guardara en bodega_id
-							for($i=0;$i<count($sw_recibe);$i++)
+							//si es verdadero generamos la siguiente consulta
+							//actualizaremos los campos en la tabla inventario bodega para el equipo que es prestado
+							$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo);
+							//actualizar periferico que es sustituido
+							$origen1 = $this->mov->origen_destino($serial_sustituido,'origen');
+							$destino1 = $this->mov->origen_destino($serial_sustituido,'destino');
+
+							$origenP = $origen1->origen;
+							$destinoP = $destino1->destino;
+
+							$respuesta3 = $this->mov->actualizarPeriferico($origenP,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido,null);
+
+							if($respuesta2 && $respuesta3)
 							{
-								$id = $sw_recibe[$i]['id'];
-								$this->mov->actualizar_sw($id,$codigo_aleatorio1);
+								//si todo fue bien
+								$this->session->set_flashdata('exito','movimiento realizado');
+								redirect(base_url().'prestamos');
+
 							}
-							#actualizamos el codigo de el equipo que recibe el prestamo en pc_id y ponemos null en PC_lab_id
-							for($i=0;$i<count($sw_prestamo);$i++)
-							{
-								$id = $sw_prestamo[$i]['id'];
-								$this->mov->up_swLab($id,$codigo);
-							}
-						}
-						elseif(($sw_recibe==FALSE)&&($sw_prestamo))
-						{
-							#si solo el equipo que se presta tiene sw
-							for($i=0;$i<count($sw_prestamo);$i++)
-							{
-								$id = $sw_prestamo[$i]['id'];
-								$this->mov->up_swLab($id,$codigo);
-							}
-						}elseif (($sw_recibe)&&($sw_prestamo==FALSE)) 
-						{
-							# si solo el equipo que recibe el prestamo tiene sw
-							for($i=0;$i<count($sw_recibe);$i++)
-							{
-								$id = $sw_recibe[$i]['id'];
-								$this->mov->actualizar_sw($id,$codigo_aleatorio1);
-							}
+
 						}
 					}
-					else
-					{
-						#actualizamos en null los campos de la tabla inventario_lab con el codigo
-						$actualizar1 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$codigo);
-
-						//vamos a actualizar el sw del equipo que recibe el prestamo con los datos del equipo prestado
-						if($sw_recibe&&$sw_prestamo)
-						{
-							#si ambos tienen datos actualizamos los campos de la pc q recibe el prestamo por un codigo generico
-							#que se guardara en bodega_id
-							for($i=0;$i<count($sw_recibe);$i++)
-							{
-								$id = $sw_recibe[$i]['id'];
-								$this->mov->actualizar_swLab($id,$codigo_aleatorio1);
-							}
-							#actualizamos el codigo de el equipo que recibe el prestamo en pc_id y ponemos null en PC_lab_id
-							for($i=0;$i<count($sw_prestamo);$i++)
-							{
-								$id = $sw_prestamo[$i]['id'];
-								$this->mov->update_swLab($id,$codigo);
-							}
-						}
-						elseif(($sw_recibe==FALSE)&&($sw_prestamo))
-						{
-							#si solo el equipo que se presta tiene sw
-							for($i=0;$i<count($sw_prestamo);$i++)
-							{
-								$id = $sw_prestamo[$i]['id'];
-								$this->mov->update_swLab($id,$codigo);
-							}
-						}elseif (($sw_recibe)&&($sw_prestamo==FALSE)) 
-						{
-							# si solo el equipo que recibe el prestamo tiene sw
-							for($i=0;$i<count($sw_recibe);$i++)
-							{
-								$id = $sw_recibe[$i]['id'];
-								$this->mov->actualizar_swLab($id,$codigo_aleatorio1);
-							}
-						}
-					}
-					$actualizar2 = $this->mov->actualizar_inv('inventario_lab','descripcion_sistema_id','identificador_lab',$equipo);
-
-					#vamos a crear el movimiento
-					//mandamos los campos que se van a insertar en la tabla movimiento
-					$datos = array('token' => $token,
-								   'fecha_retiro' => $fecha_retiro,
-								   'fecha_cambio' => $fecha_prestamo,
-								   'codigo_id' => $codigo,
-								   'unidad_pertenece_id' => $unidad_pertenece_id,
-								   'unidad_traslado_id' => 1,
-								   'cambio' => $cambio,
-								   'descripcion_cambio' => $desc_prestamo,
-								   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
-								   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
-								   'descripcion_equipoRetirado' => $descripcion_equipoRetirado,
-								   'descripcion_equipoNuevo' => $caract_equipo_f,
-								   'encargado' => $encargado,
-								   'tecnico' => $tecnico,
-								   'tipoHardSoft' => $tipoHardSoft,
-								   'tipo_movimiento' => $tipo_movimiento,
-								   'serial_nuevo' => $serial_nuevo,
-								   'laboratorio' => $laboratorios );
-
-					$respuesta1 = $this->mov->crear_prestamo($datos);
-					if($respuesta1)
-					{
-						//si es verdadero generamos la siguiente consulta
-						//actualizaremos los campos en la tabla inventario bodega para el equipo que es prestado
-						$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo);
-						//actualizar periferico que es sustituido
-						$origen1 = $this->mov->origen_destino($serial_sustituido,'origen');
-						$destino1 = $this->mov->origen_destino($serial_sustituido,'destino');
-
-						$origenP = $origen1->origen;
-						$destinoP = $destino1->destino;
-
-						$respuesta3 = $this->mov->actualizarPeriferico(1,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido,$codigo_aleatorio1);
-
-						if($respuesta2 && $respuesta3)
-						{
-							//si todo fue bien
-							$this->session->set_flashdata('exito','movimiento realizado');
-							redirect(base_url().'prestamos');
-
-						}
-
-					}
-				} 
+				}
 				else
 				{
-
-				//mandamos los campos que se van a insertar en la tabla movimiento
-				$datos = array('token' => $token,
-							   'fecha_retiro' => $fecha_retiro,
-							   'fecha_cambio' => $fecha_prestamo,
-							   'codigo_id' => $codigo,
-							   'unidad_pertenece_id' => $unidad_pertenece_id,
-							   'unidad_traslado_id' => 1,
-							   'cambio' => $cambio,
-							   'descripcion_cambio' => $desc_prestamo,
-							   'origen_nuevoEquipo_id' => $origen_nuevoEquipo_id,
-							   'destino_nuevoEquipo_id' => $destino_nuevoEquipo_id,
-							   'descripcion_equipoRetirado' => $descripcion_equipoRetirado,
-							   'descripcion_equipoNuevo' => $caract_equipo_f,
-							   'encargado' => $encargado,
-							   'tecnico' => $tecnico,
-							   'tipoHardSoft' => $tipoHardSoft,
-							   'tipo_movimiento' => $tipo_movimiento,
-							   'serial_nuevo' => $serial_nuevo,
-							   'laboratorio' => $laboratorios );
-
-				$respuesta1 = $this->mov->crear_prestamo($datos);
-
-				if($respuesta1)
-				{
-					//si es verdadero generamos la siguiente consulta
-					//actualizaremos los campos en la tabla inventario bodega para el equipo que es prestado
-					$respuesta2 = $this->mov->actualizar_bodega($codigo, $perifericos, $equipo, $unidad_pertenece_id, $origen_nuevoEquipo_id, $fecha_prestamo);
-					//actualizar periferico que es sustituido
-					$origen1 = $this->mov->origen_destino($serial_sustituido,'origen');
-					$destino1 = $this->mov->origen_destino($serial_sustituido,'destino');
-
-					$origenP = $origen1->origen;
-					$destinoP = $destino1->destino;
-
-					$respuesta3 = $this->mov->actualizarPeriferico($origenP,$destinoP,$fecha_prestamo,$codigo,$estado,$serial_sustituido,null);
-
-					if($respuesta2 && $respuesta3)
-					{
-						//si todo fue bien
-						$this->session->set_flashdata('exito','movimiento realizado');
-						redirect(base_url().'prestamos');
-
-					}
-
+					#creamos la flash dara
+					$this->session->set_flashdata('error_pe','no tiene periferico');
+					redirect(base_url().'prestamos');
 				}
-			}
 
 				break;
-		}
+		}//fin del switch
 
 	}//fin de prestamos
 
