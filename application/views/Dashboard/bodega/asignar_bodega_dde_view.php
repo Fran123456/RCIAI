@@ -122,7 +122,7 @@
 	
 		<div class="row border">
 			<div class="text-center">
-				<label><u>Información sobre el disco duro externo que se va asignar</u></label>
+				<label><u>Información:</u></label>
 			</div>
 			<br>
 			<input type="hidden" name="comprac" value="<?php echo $datos[0]['compra_id'] ?>">
@@ -177,20 +177,20 @@
 	       <div id="col" class="col-md-2">
 	       	 <div id="cont" class="form-group">
 	       	 	<label>Estado:</label>
-	       	 	<input id="asi" type="text" class="form-control" value="sin asignar" name="">
+	       	 	<input id="asi" readonly="" type="text" class="form-control" value="sin asignar" name="">
 	       	 </div>
 	       </div>
 	       <div id="col" class="col-md-4">
 	       	 <div id="cont" class="form-group">
 	       	 	<label>Encargado:</label>
-	       	 	<input id="asi" type="text" class="form-control" name="enc" >
+	       	 	<input id="asi"  type="text" class="form-control" name="enc" >
 	       	 </div>
 	       </div>
 
 	       <div id="col" class="col-md-2">
 	       	 <div id="cont" class="form-group">
 	       	 	<label>Codigo</label>
-	       	 	<input id="d" type="text" class="form-control"  name="codigopc" placeholder="DDE000USAM">
+	       	 	<input id="d" type="text" class="form-control"  name="codigopc" >
 	       	 </div>
 	       </div>
 

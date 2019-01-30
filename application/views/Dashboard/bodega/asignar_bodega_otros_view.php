@@ -194,8 +194,9 @@
 	       	 	<label></label>
 	       	 	<select id="a" class="form-control"> <option selected="" value="UPS">UPS</option>
                                       <option value="APRADIO">APRADIO</option>
-                                      <option value="WEBCAM">WEBCAM</option>
-                                      <option value="IMPR">IMPR</option></select>
+                                      <!--<option value="WEBCAM">WEBCAM</option>
+                                      <option value="IMPR">IMPR</option>-->
+                                  </select>
 	       	 	<!--<input id="a" readonly="" value="DDE" type="text" class="form-control"  >-->
 	       	 </div>
            </div>
@@ -204,7 +205,7 @@
            <div class="col-md-2">
            	 <div id="cont" class="form-group">
 	       	 	<label>Codigo</label>
-	       	 	<input id="b" type="number" class="form-control"  >
+	       	 	<input id="b" type="text" class="form-control"  >
 	       	 </div>
            </div>
 

@@ -277,7 +277,31 @@
 	          '</div>'+
 	          '<div id="aux2" class="col-md-2 col-sm-2 ">'+
                            '<label id="errorlabel">Codigo</label>'+
-                            '<input type="number" min="0" required=""  id="cod2" class="form-control" name="cod2">'+
+                            '<input type="text" min="0" required=""  id="cod2" class="form-control" name="cod2">'+
+                '</div>'+
+                '<div id="aux3" class="col-md-2 col-sm-2 ">'+
+                           '<label id="errorlabel"></label>'+
+                            '<select onchange="cambioUSAM();" class="form-control" id="cod3" name="cod3"><option value="USAM">USAM</option><option value="LAB1">LAB1</option><option value="LAB2">LAB2</option><option value="LAB3">LAB3</option><option value="LAB4">LAB4</option><option value="LAB5">LAB5</option><option value="HW">HW</option><option value="RED">RED</option></select>'+
+                '</div>'+
+	       	'</div>';
+
+	       	$('#contenidoAux').append(htmlc);
+
+	       	$('#fantasma').val('concodigo');
+
+	}
+
+	if($('#go').val() == 'IMPRESORES-MULTIFUNCIONALES' || $('#go').val() == 'IMPRESOR-DESJEKT' || $('#go').val() == 'IMPRESORES-MATRICIALES'){
+		htmlc = '<div id="delx">'+'<div id="encargadox" class="col-md-4"><label>Encargado</label><input type="text" name="enc" class="form-control"></div>'+
+	       		'<div id="aux1" class="col-md-1">'+
+	       	        '<div id="cont" class="form-group">'+
+	       	 	      '<label></label>'+
+	       	 	      '<input id="asi" readonly="" type="text" class="form-control"  name="cod1" value="IMPR">'+
+	       	     '</div>'+
+	          '</div>'+
+	          '<div id="aux2" class="col-md-2 col-sm-2 ">'+
+                           '<label id="errorlabel">Codigo</label>'+
+                            '<input type="text" min="0" required=""  id="cod2" class="form-control" name="cod2">'+
                 '</div>'+
                 '<div id="aux3" class="col-md-2 col-sm-2 ">'+
                            '<label id="errorlabel"></label>'+
@@ -302,7 +326,7 @@
 	          '</div>'+
 	          '<div id="aux2" class="col-md-2 col-sm-2 ">'+
                            '<label id="errorlabel">Codigo</label>'+
-                            '<input type="number" min="0" required=""  id="cod2" class="form-control" name="cod2">'+
+                            '<input type="text"  required=""  id="cod2" class="form-control" name="cod2">'+
                 '</div>'+
                 '<div id="aux3" class="col-md-2 col-sm-2 ">'+
                            '<label id="errorlabel"></label>'+
@@ -327,6 +351,8 @@
 			$('#delx').append('<div id="encargadox" class="col-md-4"><label>Encargado</label><input type="text" name="enc" class="form-control"></div>');
 			$('#fantasma2').val('admin');
 		}
+          $('#final').attr("disabled", true);
+          $('#op').remove();
       
 	}
 
