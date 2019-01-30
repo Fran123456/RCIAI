@@ -32,7 +32,7 @@ class administrativo_Model extends CI_Model
 		if($unidad == 37){
 			$this->db->select('*');
 			$this->db->from('inventario_adm');
-			$this->db->like('identificador',$tipo);
+			$this->db->like('identificador',$tipo,'after');
 			$query=$this->db->get();
 			//comprobamos
 			if($query->num_rows() > 0){
@@ -46,7 +46,7 @@ class administrativo_Model extends CI_Model
 			$this->db->select('*');
 			$this->db->from('inventario_adm');
 			$this->db->where('destino',$unidad);
-			$this->db->like('identificador',$tipo);
+			$this->db->like('identificador',$tipo,'after');
 			$query=$this->db->get();
 			//comprobamos
 			if($query->num_rows() > 0){
