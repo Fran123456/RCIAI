@@ -46,7 +46,20 @@
            }
         }
 
-
+        let filterConut =0;
+        for (var i = 0; i<serialesPropias.length-1; i++)
+        {
+           for (var j =i+1; j<serialesPropias.length; j++)
+           {
+              if (serialesPropias[i] == serialesPropias[j]){
+                 filterConut++;
+              }
+           }
+        }
+        
+        
+        if(filterConut == 0){
+        //
         if(controlador > 0){
           swal({
                   type: 'warning',
@@ -63,38 +76,12 @@
                  }
 
                }
-
-
-               /*for (var u = 0; u < cantidad; u++) {
-                   for (var uu = 0; uu < cantidad; uu++) {
-                          if(u != uu){
-                            if(serialesPropias[u] == serialesPropias[uu]){
-                             //console.log( serialesPropias[u] +' = '+ serialesPropias[uu] );
-                             contadorIguales++;
-                            }
-                          }
-                   }
-               }*/
-
-
-              /* if(contadorFinal > 0 && contadorIguales > 0){
-                    swal({
-                      type: 'warning',
-                      title: 'Las seriales de los campos: ' +stringVacioSe +'  Ya estan en uso. <br><br> ¡Hay seriales iguales en los perifericos que desea agregar, porfavor verifique!',
-                     });
-               }*/
               if(contadorFinal > 0){
                     swal({
                       type: 'warning',
                       title: 'Las seriales de los campos: ' +stringVacioSe + 'Ya estan en uso. <br><br>',
                      });
               }
-              /*else if(contadorIguales < 0){
-                    swal({
-                      type: 'warning',
-                      title: '¡Hay seriales iguales en los perifericos que desea agregar, porfavor verifique!',
-                     });
-              }*/
                else{
                 swal({
                       type: 'success',
@@ -103,7 +90,13 @@
                 activar();
                }
         }
-
+        //
+      }else{
+                swal({
+                      type: 'warning',
+                      title: 'Revisa las seriales no pueden ser iguales para dos o mas elementos',
+                     });
+      }
   }
 
   function activar(){
