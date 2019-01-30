@@ -86,6 +86,19 @@
            desactivar();
         }
 
+          let filterConut =0;
+        for (var i = 0; i<serialesPropias.length-1; i++)
+        {
+           for (var j =i+1; j<serialesPropias.length; j++)
+           {
+              if (serialesPropias[i] == serialesPropias[j]){
+                 filterConut++;
+              }
+           }
+        }
+
+
+     if(filterConut == 0){
         if(controlador > 0){
           swal({
                   type: 'warning',
@@ -157,6 +170,12 @@
                }
 
         }
+      }else{
+        swal({
+                      type: 'warning',
+                      title: 'Revisa las seriales no pueden ser iguales para dos o mas elementos',
+                     });
+      }
 
   }
 
@@ -170,7 +189,7 @@
 </script>
 
 <form method="post" action="<?php echo base_url()?>AddAdmin_Controller/pc_nuevo_add">
- <h3>AGREGA UNA PC Y ASIGNA A UNA UNIDAD</h3>
+ <h3>AGREGA UNA PC</h3>
 
 <div class="col-md-12 panel">
   <div class="panel-heading"><h3 class="panel-title">PC -  Descripción del sistema</h3><div class="right"><button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button></div></div>
