@@ -82,7 +82,7 @@ class Sustitucion_Model extends CI_Model
 
        public function perifericos_disponible_code(){
 
-      $perifericos = array('DISCO DURO EXTERNO','WEBCAM','UPS','ACCES POINT RADIO U MASFERRER','IMPRESORES MATRICIALES','IMPRESOR DESJEKT','SCANNER','IMPRESORES MULTIFUNCIONALES');
+      $perifericos = array('DISCO DURO EXTERNO','WEBCAM','UPS','ACCES POINT RADIO U MASFERRER','IMPRESORES-MATRICIALES','IMPRESOR-DESJEKT','SCANNER','IMPRESORES-MULTIFUNCIONALES');
        $estados = array('Disponible','nuevo');
        $this->db->select('bo.serial, bo.nombre, bo.fecha_ingreso, bo.tipo');
        $this->db->from('inventario_bodega bo');

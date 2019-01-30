@@ -82,13 +82,14 @@
                                         <option value="USB">USB</option>
                                         <option value="MEMORIA SD">MEMORIA SD</option>
                                         <option value="LECTOR DVD/CD">LECTOR DVD/CD</option>
-                                        <option value="IMPRESORES MATRICIALES">IMPRESORES MATRICIALES</option>
-                                        <option value="IMPRESORES MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
-                                        <option value="IMPRESOR DESJEKT">IMPRESOR DESJEKT</option>
+                                        <option value="IMPRESORES-MATRICIALES">IMPRESORES MATRICIALES</option>
+                                        <option value="IMPRESORES-MULTIFUNCIONALES">IMPRESORES MULTIFUNCIONALES</option>
+                                        <option value="IMPRESOR-DESJEKT">IMPRESOR DESJEKT</option>
                                         <option value="SCANNER">SCANNER</option>
                                         <option value="WEBCAM">WEBCAM</option>
                                         <option value="PARLANTES">PARLANTES</option>
                                         <option value="LECTOR PARA MEMORIA SD">LECTOR PARA MEMORIA SD</option>
+                                        <option value="ACCES POINT RADIO U MASFERRER">ACCES POINT RADIO U MASFERRER</option>
                                         <option value="UPS">UPS</option>
                                         <option value="AUDIFONOS">AUDIFONOS</option>
                                         <option value="MEMORIA SD">MEMORIA SD</option>
