@@ -40,8 +40,25 @@ class bodega_Controller extends CI_Controller {
 
 	//esta función se encargara de obtener los datos de bodega según el serial del articulo almacenado
 	public function detalle($serial){
+
+    #verificamos si el elemento tiene compras asociadas
+    $ver_compra = $this->bod->verificar_compra($serial);
+    
+
+    if($ver_compra[0]['compra_id'] === NULL)
+    {
+      //vamos a obtener el detalle de los articulos por medio de su serial
+      $resultado = $this->bod->getDetalle3($serial);
+
+    }
+    else
+    {
+      //vamos a obtener el detalle de los articulos por medio de su serial
+      $resultado = $this->bod->getDetalle2($serial);
+    }
+
 		//vamos a obtener el detalle de los articulos por medio de su serial
-		$resultado = $this->bod->getDetalle2($serial);
+		//$resultado = $this->bod->getDetalle2($serial);
 
 		//comprabamos si se devuelve datos o false
 		if($resultado){

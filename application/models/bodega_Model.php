@@ -66,6 +66,23 @@ class bodega_Model extends CI_Model{
 		}
 	}// fin de getDetalle
 
+	//esta función obtiene los datos de un articulo especifico por medio de la serial
+	public function getDetalle3($serial){
+		$this->db->select('bo.*');
+		$this->db->from('inventario_bodega bo');
+		$this->db->where('bo.serial',$serial);
+		$query=$this->db->get();
+		//comprobamos
+		if($query->num_rows() > 0){
+			//si hay registros los devolvemos
+			return $query->result();
+			//return false;
+		}else{
+			//si no hay registros devolvemos false
+			return false;
+		}
+	}// fin de getDetalle
+
 
 	//función que realizara la consulta para obtener los elementos en bodega que su destino sea 1
 	/*public function disponible(){
@@ -381,7 +398,14 @@ class bodega_Model extends CI_Model{
         }
 
 
-
+        public function verificar_compra($serial)
+        {
+        	$this->db->select('compra_id');
+        	$this->db->from('inventario_bodega');
+        	$this->db->where('serial',$serial);
+        	$query=$this->db->get();
+	        return $query->result_array();
+        }
 
 }// fin de la clase de bodega_Model
 
