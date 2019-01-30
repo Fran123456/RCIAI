@@ -121,7 +121,7 @@ class bodega_Controller extends CI_Controller {
       public function otros_disponible(){
       $dato['detalle'] = $this->bod->disponibleotros();
         $dato['titulo'] = "DDE's disponibles en Bodega";
-        $this->load->view('Dashboard/bodega/disponible_otros',$dato);
+      //  $this->load->view('Dashboard/bodega/disponible_otros',$dato);
     }
 
 
