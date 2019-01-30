@@ -95,7 +95,7 @@
     <div class="row">
       <div class="col-md-3">
       	<div class="form-group">
-      		<label>Codigo:</label>
+      		<label>Codigo del elemento:</label>
       		<input id="cod" value="" type="text" class="form-control" name="cod">
       	    <button type="button" onclick="perSelect();">Verificar</button>
       	</div>
