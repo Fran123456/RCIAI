@@ -80,7 +80,20 @@
            }
         }
 
+        //codigo nuevo//
+        let filterConut =0;
+        for (var i = 0; i<serialesPropias.length-1; i++)
+        {
+           for (var j =i+1; j<serialesPropias.length; j++)
+           {
+              if (serialesPropias[i] == serialesPropias[j]){
+                 filterConut++;
+              }
+           }
+        }
+       //codigo nuevo//
 
+      if(filterConut == 0){
         if(controlador > 0){
           swal({
                   type: 'warning',
@@ -137,6 +150,12 @@
                }
   
         }
+      }else{
+        swal({
+                      type: 'warning',
+                      title: 'Revisa las seriales no pueden ser iguales para dos o mas elementos',
+                     });
+      }
 
   }
 
@@ -432,8 +451,7 @@
                                   <option value="PARLANTES">PARLANTES</option>
                                   <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
                                 <!--  <option value="UPS">UPS</option>-->
-                                  <!--<option value="WEBCAN">WEBCAN</option><-->  1|</-->
-                                  <option value="LECTOR-PARA-MEMORIA-SD">LECTOR PARA MEMORIA SD</option>
+                                  <!--<option value="WEBCAN">WEBCAN</option>-->
                                   <option value="MEMORIA-SD">MEMORIA-SD</option>
                                   <option value="PROYECTOR">PROYECTOR</option>
                                   <option value="FAX">FAX</option>

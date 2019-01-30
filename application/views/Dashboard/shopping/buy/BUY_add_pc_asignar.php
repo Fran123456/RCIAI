@@ -80,11 +80,29 @@
            }
         }
 
+
+      //codigo nuevo//
+        let filterConut =0;
+        for (var i = 0; i<serialesPropias.length-1; i++)
+        {
+           for (var j =i+1; j<serialesPropias.length; j++)
+           {
+              if (serialesPropias[i] == serialesPropias[j]){
+                 filterConut++;
+              }
+           }
+        }
+       //codigo nuevo//
+
+
         if($('#codex').val() == ""){
           $("#error").remove();
            $("#errorlabel").append("<span id='error' style='color:red;'> - Vacio</span>");
            desactivar();
         }
+
+
+       if(filterConut == 0){
 
         if(controlador > 0){
           swal({
@@ -156,6 +174,12 @@
                }
   
         }
+      }else{
+                swal({
+                      type: 'warning',
+                      title: 'Revisa las seriales no pueden ser iguales para dos o mas elementos',
+                     });
+      }
 
   }
 
